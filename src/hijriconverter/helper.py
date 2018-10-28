@@ -4,7 +4,7 @@ from typing import Tuple
 
 def validate_hijri_date(year: int, month: int, day: int,
                         calendar: str) -> bool:
-    """Validate hijri date values and check if date is within limits."""
+    """Validate hijri date values and check if date is within range."""
     _check_hijri_calendar(calendar)
     _check_year(year)
     _check_month(month)
@@ -15,7 +15,7 @@ def validate_hijri_date(year: int, month: int, day: int,
 
 def validate_gregorian_date(year: int, month: int, day: int,
                             calendar: str = 'gregorian') -> bool:
-    """Validate gregorian date values and check if date is within limits."""
+    """Validate gregorian date values and check if date is within range."""
     _check_year(year)
     _check_month(month)
     _check_date_range(year, month, day, calendar)
