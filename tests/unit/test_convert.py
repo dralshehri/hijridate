@@ -9,7 +9,7 @@ def hijri():
 
 def test_ignore_validation_for_hijri_object():
     try:
-        convert.Hijri(1410, 8, 30, 'lunar', validate=False)
+        convert.Hijri(1410, 8, 30, 'lunar', validated=True)
     except TypeError or ValueError:
         pytest.fail()
 
