@@ -3,16 +3,20 @@ Hijri Converter
 
 |travis| |codecov| |supported-versions| |version|
 
-.. |travis| image:: https://travis-ci.org/dralshehri/hijri-converter.svg?branch=master
+.. |travis|
+    image:: https://travis-ci.org/dralshehri/hijri-converter.svg?branch=master
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/dralshehri/hijri-converter
-.. |codecov| image:: https://codecov.io/github/dralshehri/hijri-converter/coverage.svg?branch=master
+.. |codecov|
+    image:: https://codecov.io/github/dralshehri/hijri-converter/coverage.svg?branch=master
     :alt: Coverage Status
     :target: https://codecov.io/github/dralshehri/hijri-converter
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
+.. |supported-versions|
+    image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
     :alt: Supported versions
     :target: https://pypi.python.org/pypi/hijriconverter
-.. |version| image:: https://img.shields.io/pypi/v/hijriconverter.svg
+.. |version|
+    image:: https://img.shields.io/pypi/v/hijriconverter.svg
     :alt: PyPI Package latest release
     :target: https://pypi.python.org/pypi/hijriconverter
     
@@ -106,7 +110,8 @@ Documentation
 
 **Hijri Object**
 
-A Hijri object represents a hijri date (year, month and day) in lunar or solar hijri calendar.
+A Hijri object represents a Hijri date (year, month and day) in lunar or solar
+Hijri calendar.
 
 +-----------------------------------------------------------------------------+
 | class **Hijri**\ (*year, month, day, calendar='lunar'*)                     |
@@ -195,7 +200,8 @@ A Hijri object represents a hijri date (year, month and day) in lunar or solar h
 
 **Gregorian Object**
 
-A Gregorian object represents a gregorian date (year, month and day) in Gregorian calendar.
+A Gregorian object represents a Gregorian date (year, month and day) in
+Gregorian calendar.
 
 +-----------------------------------------------------------------------------+
 | class **Gregorian**\ (*year, month, day*)                                   |
