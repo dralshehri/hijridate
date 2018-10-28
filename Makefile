@@ -48,6 +48,7 @@ coverage:
 	$(BROWSER) htmlcov/index.html
 
 build: clean
+	pip install -q -U wheel
 	python setup.py sdist bdist_wheel
 
 deploy: build
