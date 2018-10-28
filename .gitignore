@@ -1,0 +1,20 @@
+# package
+build
+dist
+*.egg-info
+*.egg
+*.eggs
+*.py[cod]
+__pycache__
+
+# testing and coverage
+.cache
+.pytest_cache
+.coverage
+htmlcov
+
+# developer
+*.DS_Store
+._*
+.idea
+venv
