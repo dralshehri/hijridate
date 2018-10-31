@@ -78,17 +78,20 @@ To use Hijri solar calendar instead:
     convert.Gregorian(1982, 12, 2).to_hijri('solar')
     # Hijri(1361, 3, 11, solar)
 
-The instance of Hijri date object has some other useful attributes and methods:
+The instance of Hijri date object has some other useful methods:
 
 .. code-block:: python
 
     hijri = convert.Hijri(1403, 2, 17)
 
+    hijri.datetuple()
+    # (1403, 2, 17)
+
     hijri.isoformat()
     # '1403-02-17'
 
-    hijri.datetuple()
-    # (1403, 2, 17)
+    hijri.slashformat()
+    # '17/02/1403'
 
     hijri.month_days()
     # 30
@@ -160,15 +163,21 @@ Hijri calendar.
 *Instance methods:*
 
 +-----------------------------------------------------------------------------+
-| Hijri.\ **isoformat**\ ()                                                   |
-+-----------------------------------------------------------------------------+
-| Return a string representing the date in ISO format ‘YYYY-MM-DD’.           |
-+-----------------------------------------------------------------------------+
-
-+-----------------------------------------------------------------------------+
 | Hijri.\ **datetuple**\ ()                                                   |
 +-----------------------------------------------------------------------------+
 | Return the date as a tuple of (year, month, day).                           |
++-----------------------------------------------------------------------------+
+
++-----------------------------------------------------------------------------+
+| Hijri.\ **isoformat**\ ()                                                   |
++-----------------------------------------------------------------------------+
+| Return a string representing the date in ISO format ‘yyyy-mm-dd’.           |
++-----------------------------------------------------------------------------+
+
++-----------------------------------------------------------------------------+
+| Hijri.\ **slashformat**\ ()                                                 |
++-----------------------------------------------------------------------------+
+| Return a string representing the date in slash format ‘dd/mm/yyyy’.         |
 +-----------------------------------------------------------------------------+
 
 +-----------------------------------------------------------------------------+
