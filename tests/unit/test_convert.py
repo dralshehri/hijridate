@@ -38,6 +38,10 @@ def test_datetuple(hijri):
     assert hijri.datetuple() == (1410, 8, 13)
 
 
+def test_slashformat(hijri):
+    assert hijri.slashformat() == '13/08/1410'
+
+
 def test_month_days(hijri):
     assert hijri.month_days() == 29
 
