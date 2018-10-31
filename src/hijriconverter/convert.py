@@ -36,7 +36,7 @@ class Hijri:
                                            self._calendar)
 
     def isoformat(self) -> str:
-        """Return a string representing the date in ISO format ‘YYYY-MM-DD’."""
+        """Return a string representing the date in ISO format ‘yyyy-mm-dd’."""
         return '{:04}-{:02}-{:02}'.format(self._year, self._month, self._day)
 
     __str__ = isoformat
@@ -59,6 +59,11 @@ class Hijri:
     def datetuple(self) -> Tuple[int, int, int]:
         """Return date as a tuple of (year, month, day)."""
         return self._year, self._month, self._day
+
+    def slashformat(self) -> str:
+        """Return a string representing the date in slash format
+        ‘dd/mm/yyyy’."""
+        return '{:02}/{:02}/{:04}'.format(self._day, self._month, self._year)
 
     def month_days(self) -> int:
         """Return number of days in month as an integer."""
