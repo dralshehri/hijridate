@@ -39,7 +39,7 @@ def _check_year(year) -> bool:
     if not isinstance(year, int):
         raise TypeError('year must be an integer')
     if year < 1 or len(str(year)) != 4:
-        raise ValueError('year must be in YYYY format')
+        raise ValueError('year must be in yyyy format')
     return True
 
 
