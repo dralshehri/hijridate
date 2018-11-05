@@ -27,7 +27,7 @@ def test_valid_gregorian_date(test_input):
 
 @pytest.mark.parametrize('test_input, expected', [
     (1, 'calendar must be a string'),
-    ('other', 'calendar must be lunar or solar'),
+    ('other', 'calendar must be \'lunar\' or \'solar\''),
 ])
 def test_check_hijri_calendar_with_invalid_calendar(test_input, expected):
     with pytest.raises((TypeError, ValueError)) as excinfo:
@@ -37,7 +37,7 @@ def test_check_hijri_calendar_with_invalid_calendar(test_input, expected):
 
 @pytest.mark.parametrize('test_input, expected', [
     ('n', 'year must be an integer'),
-    (10, 'year must be in YYYY format'),
+    (10, 'year must be in yyyy format'),
 ])
 def test_check_year_with_invalid_year(test_input, expected):
     with pytest.raises((TypeError, ValueError)) as excinfo:
