@@ -29,7 +29,8 @@ def _check_hijri_calendar(calendar) -> bool:
     if not isinstance(calendar, str):
         raise TypeError('calendar must be a string')
     if calendar not in calendars:
-        raise ValueError('calendar must be {} or {}'.format(*calendars))
+        raise ValueError('calendar must be \'{}\' or \'{}\''.format(
+                *calendars))
     return True
 
 
