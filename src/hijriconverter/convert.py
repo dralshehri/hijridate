@@ -6,7 +6,7 @@ import bisect
 
 class Hijri:
     """
-    Hijri(year, month and day)
+    Hijri(year, month, day, calendar)
     A Hijri object represents a Hijri date (year, month and day) in lunar
     or solar Hijri calendar.
     """
