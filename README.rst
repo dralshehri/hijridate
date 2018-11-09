@@ -129,8 +129,8 @@ Documentation
 
 **Hijri Object**
 
-A Hijri object represents a Hijri date (year, month and day) in lunar or solar
-Hijri calendar.
+A Hijri object represents a Hijri date (year, month and day) in Umm al-Qura
+lunar or solar Hijri calendar.
 
 +-----------------------------------------------------------------------------+
 | class **Hijri**\ (*year, month, day, calendar='lunar'*)                     |
