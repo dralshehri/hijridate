@@ -5,24 +5,20 @@ import bisect
 
 
 class Hijri:
-    """
-    Hijri(year, month, day, calendar)
+    """Hijri(year, month, day, calendar)
     A Hijri object represents a Hijri date (year, month and day) in lunar
     or solar Hijri calendar.
     """
+
     def __init__(self, year: int, month: int, day: int,
-                 calendar: str = 'lunar', validated: bool = False) -> None:
-        """
-        Instantiate Hijri object.
+                 calendar: str = 'lunar') -> None:
+        """Construct Hijri object.
         The year, month and day arguments are required and must be integers.
         The calendar argument is optional and must be a string. It may be
         'lunar' or 'solar'. Default is 'lunar'.
-        The validated argument is optional and must be boolean. Default is
-        False. When True, it means date is already validated and validation
-        will be skipped.
         """
-        if not validated:
-            helper.validate_hijri_date(year, month, day, calendar)
+        calendar = helper.check_hijri_calendar(calendar)
+        year, month, day = helper.check_date(year, month, day, calendar)
         self._year = year
         self._month = month
         self._day = day
@@ -62,7 +58,8 @@ class Hijri:
 
     def slashformat(self) -> str:
         """Return a string representing the date in slash format
-        ‘dd/mm/yyyy’."""
+        ‘dd/mm/yyyy’.
+        """
         return '{:02}/{:02}/{:04}'.format(self._day, self._month, self._year)
 
     def month_days(self) -> int:
@@ -70,8 +67,7 @@ class Hijri:
         return helper.hijri_month_days(self._year, self._month, self._calendar)
 
     def month_name(self, language: str = 'en') -> str:
-        """
-        Return month name as a string in specified language.
+        """Return month name as a string in specified language.
         The language argument is optional and must be a string. It may
         be 'en' for English or 'ar' for Arabic. Default is 'en'.
         """
@@ -90,8 +86,7 @@ class Hijri:
         return int(jd % 7) + 1
 
     def day_name(self, language: str = 'en') -> str:
-        """
-        Return day name as a string in specified language.
+        """Return day name as a string in specified language.
         The language argument is optional and must be a string. It may
         be 'en' for English or 'ar' for Arabic. Default is 'en'.
         """
@@ -106,17 +101,16 @@ class Hijri:
 
 
 class Gregorian:
-    """
-    Gregorian(year, month, day)
+    """Gregorian(year, month, day)
     A Gregorian object represents a Gregorian date (year, month and day) in
     Gregorian calendar.
     """
+
     def __init__(self, year: int, month: int, day: int) -> None:
-        """
-        Instantiate Gregorian object.
+        """Construct Gregorian object.
         The year, month and day arguments are required and must be integers.
         """
-        helper.validate_gregorian_date(year, month, day)
+        year, month, day = helper.check_date(year, month, day, 'gregorian')
         self._year = year
         self._month = month
         self._day = day
@@ -128,12 +122,11 @@ class Gregorian:
                                        self._year, self._month, self._day)
 
     def to_hijri(self, calendar: str = 'lunar') -> Hijri:
-        """
-        Return a converted hijri date as a Hijri object.
+        """Return a converted hijri date as a Hijri object.
         The calendar argument is optional and must be a string. It may
         be 'lunar' or 'solar'. Default is 'lunar'.
         """
-        helper._check_hijri_calendar(calendar)
+        helper.check_hijri_calendar(calendar)
         jd = helper.gregorian_to_julian(self._year, self._month, self._day)
         mjd = helper.julian_to_modified_julian(jd)
         month_starts = ummalqura.month_starts[calendar]
@@ -143,4 +136,4 @@ class Gregorian:
         year = years + 1
         month = months - 12 * years
         day = mjd - month_starts[i - 1] + 1
-        return Hijri(year, month, day, calendar, validated=True)
+        return Hijri(year, month, day, calendar)
