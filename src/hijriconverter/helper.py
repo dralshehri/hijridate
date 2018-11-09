@@ -2,58 +2,36 @@ from hijriconverter import ummalqura
 from typing import Tuple
 
 
-def validate_hijri_date(year: int, month: int, day: int,
-                        calendar: str) -> bool:
-    """Validate hijri date values and check if date is within range."""
-    _check_hijri_calendar(calendar)
-    _check_year(year)
-    _check_month(month)
-    _check_date_range(year, month, day, calendar)
-    _check_day(year, month, day, calendar)
-    return True
-
-
-def validate_gregorian_date(year: int, month: int, day: int,
-                            calendar: str = 'gregorian') -> bool:
-    """Validate gregorian date values and check if date is within range."""
-    _check_year(year)
-    _check_month(month)
-    _check_date_range(year, month, day, calendar)
-    _check_day(year, month, day, calendar)
-    return True
-
-
-def _check_hijri_calendar(calendar) -> bool:
-    """Check whether hijri calendar is valid or not."""
+def check_hijri_calendar(calendar: str) -> str:
+    """Check type and value of hijri calendar."""
     calendars = ['lunar', 'solar']
     if not isinstance(calendar, str):
         raise TypeError('calendar must be a string')
-    if calendar not in calendars:
+    if calendar.lower() not in calendars:
         raise ValueError('calendar must be \'{}\' or \'{}\''.format(
                 *calendars))
-    return True
+    return calendar.lower()
 
 
-def _check_year(year) -> bool:
-    """Check whether year is valid or not."""
+def check_date(year: int, month: int, day: int,
+               calendar: str) -> Tuple[int, int, int]:
+    """Check date values and if date is within conversion range."""
+    # check year
     if not isinstance(year, int):
         raise TypeError('year must be an integer')
     if year < 1 or len(str(year)) != 4:
         raise ValueError('year must be in yyyy format')
-    return True
-
-
-def _check_month(month) -> bool:
-    """Check whether hijri month is valid or not."""
+    # check month
     if not isinstance(month, int):
         raise TypeError('month must be an integer')
     if not 1 <= month <= 12:
         raise ValueError('month must be in 1..12')
-    return True
-
-
-def _check_day(year: int, month: int, day: int, calendar: str) -> bool:
-    """Check whether day is valid or not."""
+    # check range
+    calendar_range = ummalqura.ranges[calendar]
+    if not calendar_range[0] <= (year, month, day) <= calendar_range[1]:
+        raise ValueError('date is out of range for conversion')
+    # check day
+    # check day
     if not isinstance(day, int):
         raise TypeError('day must be an integer')
     if calendar == 'gregorian':
@@ -65,19 +43,9 @@ def _check_day(year: int, month: int, day: int, calendar: str) -> bool:
             month_days = gregorian_months[month]
     else:
         month_days = hijri_month_days(year, month, calendar)
-
     if not 1 <= day <= month_days:
-        raise ValueError('day is out of range for month')
-    return True
-
-
-def _check_date_range(year: int, month: int, day: int, calendar: str) -> bool:
-    """Check whether date is within expected range or not."""
-    datetuple = (year, month, day)
-    calendar_range = ummalqura.ranges[calendar]
-    if not calendar_range[0] <= datetuple <= calendar_range[1]:
-        raise ValueError('date is out of range for conversion')
-    return True
+        raise ValueError('day must be in 1..{} for month'.format(month_days))
+    return year, month, day
 
 
 def hijri_month_index(year: int, month: int, calendar: str) -> int:
