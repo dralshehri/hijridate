@@ -7,13 +7,6 @@ def hijri():
     return convert.Hijri(1410, 8, 13)
 
 
-def test_ignore_validation_for_hijri_object():
-    try:
-        convert.Hijri(1410, 8, 30, 'lunar', validated=True)
-    except TypeError or ValueError:
-        pytest.fail()
-
-
 def test_representation_of_hijri_object(hijri):
     assert hijri.__repr__() == 'Hijri(1410, 8, 13, lunar)'
 
