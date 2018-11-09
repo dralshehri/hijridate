@@ -11,7 +11,7 @@ with open(path.join(here, 'CHANGELOG.rst'), encoding='utf-8') as f:
 
 setup(
     name='hijriconverter',
-    version='1.0.1',
+    version='1.2.0',
     description='Convert Hijri to/from Gregorian using Umm al-Qura calendar',
     long_description=long_description,
     url='https://github.com/dralshehri/hijri-converter',
