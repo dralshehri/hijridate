@@ -34,7 +34,7 @@ clean-test:
 	rm -fr htmlcov
 
 install: clean
-	pip install -q -U pip setuptools pytest pytest-cov wheel twine
+	pip install -q -U pip setuptools pytest pytest-cov black wheel twine
 	pip install -q -e .
 
 test:
@@ -46,6 +46,9 @@ test-all:
 coverage:
 	pytest --cov --cov-report term --cov-report html
 	$(BROWSER) htmlcov/index.html
+
+format:
+	black --line-length 79 src tests setup.py
 
 build: clean
 	python setup.py sdist bdist_wheel
