@@ -20,10 +20,10 @@ Hijri Converter
     :alt: PyPI Package latest release
     :target: https://pypi.python.org/pypi/hijriconverter
     
-A Python library to convert Hijri_ (Islamic) date to/from Gregorian date using
-Umm al-Qura calendar of Saudi Arabia.
+A Python library to convert Hijri (Islamic) date to/from Gregorian date using
+`Umm al-Qura calendar`_ of Saudi Arabia.
 
-.. _Hijri: https://en.wikipedia.org/wiki/Islamic_calendar
+.. _`Umm al-Qura calendar`: http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
 
 Features
 --------
