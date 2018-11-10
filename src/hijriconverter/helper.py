@@ -31,7 +31,6 @@ def check_date(year: int, month: int, day: int,
     if not calendar_range[0] <= (year, month, day) <= calendar_range[1]:
         raise ValueError('date is out of range for conversion')
     # check day
-    # check day
     if not isinstance(day, int):
         raise TypeError('day must be an integer')
     if calendar == 'gregorian':
