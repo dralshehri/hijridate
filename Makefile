@@ -34,8 +34,8 @@ clean-test:
 	rm -fr htmlcov
 
 install: clean
+	pip install -q -U pip setuptools pytest pytest-cov wheel twine
 	pip install -q -e .
-	pip install -q -U pytest pytest-cov
 
 test:
 	pytest
@@ -48,9 +48,7 @@ coverage:
 	$(BROWSER) htmlcov/index.html
 
 build: clean
-	pip install -q -U wheel
 	python setup.py sdist bdist_wheel
 
 deploy: build
-	pip install -q -U twine
 	twine upload dist/*
