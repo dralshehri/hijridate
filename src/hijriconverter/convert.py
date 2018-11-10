@@ -32,7 +32,7 @@ class Hijri:
                                            self._calendar)
 
     def isoformat(self) -> str:
-        """Return a string representing the date in ISO format ‘yyyy-mm-dd’."""
+        """Return a string representing the date in ISO format ‘YYYY-MM-DD’."""
         return '{:04}-{:02}-{:02}'.format(self._year, self._month, self._day)
 
     __str__ = isoformat
@@ -58,7 +58,7 @@ class Hijri:
 
     def slashformat(self) -> str:
         """Return a string representing the date in slash format
-        ‘dd/mm/yyyy’.
+        ‘DD/MM/YYYY’.
         """
         return '{:02}/{:02}/{:04}'.format(self._day, self._month, self._year)
 
