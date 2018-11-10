@@ -17,4 +17,4 @@ htmlcov
 *.DS_Store
 ._*
 .idea
-venv
+.venv
