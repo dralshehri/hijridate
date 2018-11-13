@@ -6,7 +6,7 @@ from hijriconverter import helper
     ('Lunar', 'lunar'),
     ('SOLAR', 'solar'),
 ])
-def test_check_hijri_calendar_with_valid_calendar(test_input, expected):
+def test_check_valid_hijri_calendar(test_input, expected):
     assert expected == helper.check_hijri_calendar(test_input)
 
 
@@ -14,7 +14,7 @@ def test_check_hijri_calendar_with_valid_calendar(test_input, expected):
     (1, 'calendar must be a string'),
     ('other', 'calendar must be \'lunar\' or \'solar\''),
 ])
-def test_check_hijri_calendar_with_invalid_calendar(test_input, expected):
+def test_check_invalid_hijri_calendar(test_input, expected):
     with pytest.raises((TypeError, ValueError)) as excinfo:
         helper.check_hijri_calendar(test_input)
     assert expected == str(excinfo.value)
@@ -31,7 +31,7 @@ def test_check_hijri_calendar_with_invalid_calendar(test_input, expected):
     (1937, 3, 14, 'gregorian'),
     (2077, 11, 16, 'gregorian'),
 ])
-def test_check_date_with_valid_date(test_input):
+def test_check_valid_date(test_input):
     year, month, day, calendar = test_input
     assert (year, month, day) == helper.check_date(year, month, day, calendar)
 
@@ -54,7 +54,7 @@ def test_check_date_with_valid_date(test_input):
     ((1456, 2, 26, 'gregorian'), 'date is out of range for conversion'),
     ((1456, 2, 26, 'gregorian'), 'date is out of range for conversion'),
 ])
-def test_check_date_with_invalid_date(test_input, expected):
+def test_check_invalid_date(test_input, expected):
     year, month, day, calendar = test_input
     with pytest.raises((TypeError, ValueError)) as excinfo:
         helper.check_date(year, month, day, calendar)
@@ -69,21 +69,21 @@ def test_hijri_month_days():
     assert helper.hijri_month_days(1410, 8, 'lunar') == 29
 
 
-def test_convert_hijri_date_to_julian_day():
+def test_convert_hijri_to_julian():
     assert helper.hijri_to_julian(1410, 8, 13, 'lunar') == 2447961
 
 
-def test_convert_gregorian_date_to_julian_day():
+def test_convert_gregorian_to_julian():
     assert helper.gregorian_to_julian(1990, 3, 26) == 2447977
 
 
-def test_convert_julian_day_to_gregorian_date():
+def test_convert_julian_to_gregorian():
     assert helper.julian_to_gregorian(2447977) == (1990, 3, 26)
 
 
-def test_convert_julian_day_to_modified_julian_day():
+def test_convert_julian_to_modified_julian():
     assert helper.julian_to_modified_julian(2456087) == 56087
 
 
-def test_convert_modified_julian_day_to_julian_day():
+def test_convert_modified_julian_to_julian():
     assert helper.modified_julian_to_julian(56087) == 2456087
