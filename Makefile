@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY: clean clean-test clean-pyc clean-docs clean-build help
 .DEFAULT_GOAL := help
 
 SOURCE_DIR := src/hijriconverter
@@ -31,7 +31,7 @@ export PRINT_HELP_PYSCRIPT
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean: clean-test clean-pyc clean-build ## remove all artifacts
+clean: clean-test clean-pyc clean-docs clean-build ## remove all artifacts
 
 clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
@@ -43,6 +43,9 @@ clean-pyc: ## remove python file artifacts
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -fr {} +
+
+clean-docs: ## remove docs artifacts
+	rm -fr docs/_build
 
 clean-build: ## remove build artifacts
 	rm -fr build
@@ -56,7 +59,7 @@ install: clean ## install dev requirments and project source
 	pip install -q -e .
 
 format: ## format code with black
-	black --line-length 79 src tests setup.py
+	black -l 79 src tests setup.py
 
 test: ## run unit tests only
 	pytest
@@ -68,8 +71,7 @@ coverage: ## check code coverage
 	pytest --cov --cov-report term --cov-report html
 	$(BROWSER) htmlcov/index.html
 
-docs: ## generate html documentation
-	$(MAKE) -C docs clean
+docs: clean-docs ## generate html documentation
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
 
