@@ -1,61 +1,60 @@
-"""Reference and translation variables.
+"""Umm al-Qura calendar specific variables.
 
-month_names:
-Translation of month names
+months:
+Hijri month names in different locales
 
-day_names:
-Translation of day names
+days:
+Day names in different locales
 
 ranges:
 Ranges of expected dates for conversion, which are:
-from 1356-01-01 to 1500-12-30 (lunar hijri),
-from 1315-06-23 to 1456-02-25 (solar hijri),
-from 1937-03-14 to 2077-11-26 (gregorian).
+from 1356-01-01 to 1500-12-30 (lunar Hijri),
+from 1315-06-23 to 1456-02-25 (solar Hijri),
+from 1937-03-14 to 2077-11-26 (Gregorian).
 
-first_month_offset:
-The total Hijri months before the first month of month_starts.
+offset:
+The total Hijri months before the first month of 'starts`.
 
-month_starts:
-Modified Julian Day (MJD) numbers for starts of Hijri months within ranges.
+starts:
+Modified Julian Day (MJD) numbers for starts of Hijri months within `ranges`.
 """
 
-month_names = {
-    'lunar': {
-        'en': ('', 'Muharram', 'Safar', 'Rabi’ al-Awwal',
-               'Rabi’ al-Thani', 'Jumada al-Ula',
-               'Jumada al-Akhirah', 'Rajab', 'Sha’ban',
-               'Ramadhan', 'Shawwal', 'Dhul-Qi’dah', 'Dhul-Hijjah'),
-        'ar': ('', 'محرم', 'صفر', 'ربيع الأول', 'ربيع الثاني',
-               'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان',
-               'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة'),
+months = {
+    'en': {
+            'lunar': ('', 'Muharram', 'Safar', 'Rabi’ al-Awwal',
+                      'Rabi’ al-Thani', 'Jumada al-Ula',
+                      'Jumada al-Akhirah', 'Rajab', 'Sha’ban',
+                      'Ramadhan', 'Shawwal', 'Dhul-Qi’dah', 'Dhul-Hijjah'),
+            'solar': ('', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn',
+                      'Aquarius', 'Pisces', 'Aries', 'Taurus',
+                      'Gemini', 'Cancer', 'Leo', 'Virgo'),
     },
-    'solar': {
-        'en': ('', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn',
-               'Aquarius', 'Pisces', 'Aries', 'Taurus',
-               'Gemini', 'Cancer', 'Leo', 'Virgo'),
-        'ar': ('', 'الميزان', 'العقرب', 'القوس', 'الجدي',
-               'الدلو', 'الحوت', 'الحمل', 'الثور',
-               'الجوزاء', 'السرطان', 'الأسد', 'السنبلة'),
-    }
-
+    'ar': {
+            'lunar': ('', 'محرم', 'صفر', 'ربيع الأول', 'ربيع الثاني',
+                      'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان',
+                      'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة'),
+            'solar': ('', 'الميزان', 'العقرب', 'القوس', 'الجدي',
+                      'الدلو', 'الحوت', 'الحمل', 'الثور',
+                      'الجوزاء', 'السرطان', 'الأسد', 'السنبلة'),
+    },
 }
 
-day_names = {
+days = {
     'en': ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
-           'Saturday', 'Sunday'),
+                   'Saturday', 'Sunday'),
     'ar': ('الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة',
-           'السبت', 'الأحد'),
+                   'السبت', 'الأحد'),
 }
 
 ranges = {
     'gregorian': ((1937, 3, 14), (2077, 11, 16)),
-    'lunar': ((1356, 1, 1), (1500, 12, 30)),
-    'solar': ((1315, 6, 23), (1456, 2, 25)),
+    'lunar'    : ((1356, 1, 1), (1500, 12, 30)),
+    'solar'    : ((1315, 6, 23), (1456, 2, 25)),
 }
 
-first_month_offset = {'lunar': (1355 * 12), 'solar': (1314 * 12 + 5)}
+offset = {'lunar': (1355 * 12), 'solar': (1314 * 12 + 5)}
 
-month_starts = {
+starts = {
     'lunar': (28607, 28636, 28665, 28695, 28724, 28754, 28783, 28813, 28843,
               28872, 28901, 28931, 28960, 28990, 29019, 29049, 29078, 29108,
               29137, 29167, 29196, 29226, 29255, 29285, 29315, 29345, 29375,
