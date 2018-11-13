@@ -1,20 +1,19 @@
 from setuptools import setup, find_packages
-from os import path
+import pathlib
 
-here = path.abspath(path.dirname(__file__))
-
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
-
-with open(path.join(here, 'CHANGELOG.rst'), encoding='utf-8') as f:
-    long_description += '\n' + f.read()
+here = pathlib.Path(__file__).parent
+readme = (here / 'README.rst').read_text(encoding='utf-8')
 
 setup(
     name='hijriconverter',
     version='1.2.0',
     description='Convert Hijri to/from Gregorian using Umm al-Qura calendar',
-    long_description=long_description,
-    url='https://github.com/dralshehri/hijri-converter',
+    long_description=readme,
+    url='',
+    project_urls={
+        "Source Code": "https://github.com/dralshehri/hijri-converter",
+        "Documentation": "http://hijriconverter.readthedocs.io/en/latest",
+    },
     author='Mohammed Alshehri',
     author_email='',
     license='MIT',
