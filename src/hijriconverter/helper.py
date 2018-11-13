@@ -3,7 +3,7 @@ from typing import Tuple
 
 
 def check_hijri_calendar(calendar: str) -> str:
-    """Check type and value of hijri calendar."""
+    """Check type and value of Hijri calendar."""
     calendars = ['lunar', 'solar']
     if not isinstance(calendar, str):
         raise TypeError('calendar must be a string')
@@ -48,7 +48,7 @@ def check_date(year: int, month: int, day: int,
 
 
 def hijri_month_index(year: int, month: int, calendar: str) -> int:
-    """Return index of month modified julian day in ummalqura month_starts."""
+    """Return index of month modified Julian day in ummalqura month_starts."""
     years = year - 1
     months = (years * 12) + month
     index = months - ummalqura.offset[calendar]
@@ -56,7 +56,7 @@ def hijri_month_index(year: int, month: int, calendar: str) -> int:
 
 
 def hijri_month_days(year: int, month: int, calendar: str) -> int:
-    """Return number of days in hijri month."""
+    """Return number of days in Hijri month."""
     i = hijri_month_index(year, month, calendar)
     month_starts = ummalqura.starts[calendar]
     days = month_starts[i] - month_starts[i - 1]
@@ -64,7 +64,7 @@ def hijri_month_days(year: int, month: int, calendar: str) -> int:
 
 
 def hijri_to_julian(year: int, month: int, day: int, calendar: str) -> int:
-    """Convert hijri date to julian day."""
+    """Convert Hijri date to Julian day."""
     i = hijri_month_index(year, month, calendar)
     month_starts = ummalqura.starts[calendar]
     mjd = day + month_starts[i - 1] - 1
@@ -73,7 +73,7 @@ def hijri_to_julian(year: int, month: int, day: int, calendar: str) -> int:
 
 
 def gregorian_to_julian(year: int, month: int, day: int) -> int:
-    """Convert gregorian date to julian day."""
+    """Convert Gregorian date to Julian day."""
     i = int((month - 14) / 12)
     jd = int((1461 * (year + 4800 + i)) / 4)
     jd += int((367 * (month - 2 - (12 * i))) / 12)
@@ -83,7 +83,7 @@ def gregorian_to_julian(year: int, month: int, day: int) -> int:
 
 
 def julian_to_gregorian(jd: int) -> Tuple[int, int, int]:
-    """Convert julian day to gregorian date."""
+    """Convert Julian day to Gregorian date."""
     i = jd + 68569
     n = int((4 * i) / 146097)
     i -= int(((146097 * n) + 3) / 4)
@@ -98,13 +98,13 @@ def julian_to_gregorian(jd: int) -> Tuple[int, int, int]:
 
 
 def julian_to_modified_julian(jd: int) -> int:
-    """Convert julian day to modified julian day number."""
+    """Convert Julian day to modified Julian day number."""
     mjd0 = 2400000
     return jd - mjd0
 
 
 def modified_julian_to_julian(mjd: int) -> int:
-    """Convert modified julian day number to julian day."""
+    """Convert modified Julian day number to Julian day."""
     mjd0 = 2400000
     return mjd + mjd0
 
