@@ -7,8 +7,12 @@ def hijri():
     return convert.Hijri(1410, 8, 13)
 
 
-def test_representation_of_hijri_object(hijri):
+def test_representation_of_hijri(hijri):
     assert hijri.__repr__() == 'Hijri(1410, 8, 13, lunar)'
+
+
+def test_string_representation_of_hijri(hijri):
+    assert hijri.__str__() == '1410-08-13'
 
 
 def test_isoformat(hijri):
