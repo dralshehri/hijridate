@@ -13,6 +13,9 @@ __pycache__
 .coverage
 htmlcov
 
+# documentation
+_build
+
 # developer
 *.DS_Store
 ._*
