@@ -51,14 +51,14 @@ def hijri_month_index(year: int, month: int, calendar: str) -> int:
     """Return index of month modified julian day in ummalqura month_starts."""
     years = year - 1
     months = (years * 12) + month
-    index = months - ummalqura.first_month_offset[calendar]
+    index = months - ummalqura.offset[calendar]
     return index
 
 
 def hijri_month_days(year: int, month: int, calendar: str) -> int:
     """Return number of days in hijri month."""
     i = hijri_month_index(year, month, calendar)
-    month_starts = ummalqura.month_starts[calendar]
+    month_starts = ummalqura.starts[calendar]
     days = month_starts[i] - month_starts[i - 1]
     return days
 
@@ -66,7 +66,7 @@ def hijri_month_days(year: int, month: int, calendar: str) -> int:
 def hijri_to_julian(year: int, month: int, day: int, calendar: str) -> int:
     """Convert hijri date to julian day."""
     i = hijri_month_index(year, month, calendar)
-    month_starts = ummalqura.month_starts[calendar]
+    month_starts = ummalqura.starts[calendar]
     mjd = day + month_starts[i - 1] - 1
     jd = modified_julian_to_julian(mjd)
     return jd
