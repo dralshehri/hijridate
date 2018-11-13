@@ -39,6 +39,7 @@ author = 'Mohammed Alshehri'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -107,3 +108,4 @@ html_sidebars = {'**': []}
 autodoc_member_order = 'bysource'
 autoclass_content = 'both'
 autodoc_default_flags = ['members', 'show-inheritance']
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
