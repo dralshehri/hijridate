@@ -15,15 +15,15 @@ def test_isoformat(hijri):
     assert hijri.isoformat() == '1410-08-13'
 
 
-def test_year_number(hijri):
+def test_year(hijri):
     assert hijri.year == 1410
 
 
-def test_month_number(hijri):
+def test_month(hijri):
     assert hijri.month == 8
 
 
-def test_day_number(hijri):
+def test_day(hijri):
     assert hijri.day == 13
 
 
@@ -55,7 +55,7 @@ def test_day_name(hijri):
     assert hijri.day_name() == 'Saturday'
 
 
-def test_convert_hijri_date_to_gregorian(hijri):
+def test_convert_hijri_to_gregorian(hijri):
     assert hijri.to_gregorian().timetuple()[:3] == (1990, 3, 10)
 
 
@@ -68,5 +68,5 @@ def test_representation_of_gregorian_object(gregorian):
     assert repr(gregorian) == 'Gregorian(1990, 3, 10)'
 
 
-def test_convert_gregorian_date_to_hijri(gregorian):
+def test_convert_gregorian_to_hijri(gregorian):
     assert gregorian.to_hijri().datetuple() == (1410, 8, 13)
