@@ -6,7 +6,7 @@ import json
 
 def load_params_from_json():
     here = path.abspath(path.dirname(__file__))
-    with open(path.join(here, 'fixtures', 'month_starts.json')) as f:
+    with open(path.join(here, "fixtures", "month_starts.json")) as f:
         loaded = [[tuple(i) for i in x] for x in json.load(f)]
         hijri_gregorian = [tuple(x) for x in loaded]
         gregorian_hijri = [tuple(x[::-1]) for x in loaded]
