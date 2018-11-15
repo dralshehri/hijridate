@@ -9,8 +9,14 @@ class Hijri:
     or solar Hijri calendar.
     """
 
-    def __init__(self, year: int, month: int, day: int,
-                 calendar: str = 'lunar', validate: bool = False) -> None:
+    def __init__(
+        self,
+        year: int,
+        month: int,
+        day: int,
+        calendar: str = "lunar",
+        validate: bool = False,
+    ) -> None:
         """
         :param year: Hijri year
         :type year: int
@@ -27,8 +33,9 @@ class Hijri:
         """
 
         if validate:
-            year, month, day, calendar = _check_date(year, month, day,
-                                                     calendar)
+            year, month, day, calendar = _check_date(
+                year, month, day, calendar
+            )
         self._year = year
         self._month = month
         self._day = day
@@ -36,9 +43,9 @@ class Hijri:
 
     def __repr__(self) -> str:
         class_name = self.__class__.__name__
-        return '{}({}, {}, {}, {})'.format(class_name,
-                                           self._year, self._month, self._day,
-                                           self._calendar)
+        return "{}({}, {}, {}, {})".format(
+            class_name, self._year, self._month, self._day, self._calendar
+        )
 
     def __str__(self) -> str:
         return self.isoformat()
@@ -64,17 +71,17 @@ class Hijri:
 
     def isoformat(self) -> str:
         """Return Hijri date in ISO format 'YYYY-MM-DD'."""
-        return '{:04}-{:02}-{:02}'.format(self._year, self._month, self._day)
+        return "{:04}-{:02}-{:02}".format(self._year, self._month, self._day)
 
     def slashformat(self) -> str:
         """Return Hijri date in slash format 'DD/MM/YYYY'."""
-        return '{:02}/{:02}/{:04}'.format(self._day, self._month, self._year)
+        return "{:02}/{:02}/{:04}".format(self._day, self._month, self._year)
 
     def month_days(self) -> int:
         """Return number of days in Hijri month."""
         return _hijri_month_days(self._year, self._month, self._calendar)
 
-    def month_name(self, language: str = 'en') -> str:
+    def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 
         :param language: language which may be 'en' or 'ar'
@@ -86,17 +93,19 @@ class Hijri:
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 ... Sunday is 6."""
-        jd = _hijri_to_julian(self._year, self._month, self._day,
-                              self._calendar)
+        jd = _hijri_to_julian(
+            self._year, self._month, self._day, self._calendar
+        )
         return int(jd % 7)
 
     def isoweekday(self) -> int:
         """Return day of week, where Monday is 1 ... Sunday is 7."""
-        jd = _hijri_to_julian(self._year, self._month, self._day,
-                              self._calendar)
+        jd = _hijri_to_julian(
+            self._year, self._month, self._day, self._calendar
+        )
         return int(jd % 7) + 1
 
-    def day_name(self, language: str = 'en') -> str:
+    def day_name(self, language: str = "en") -> str:
         """Return day name.
 
         :param language: language which may be ``en`` or ``ar``
@@ -113,8 +122,9 @@ class Hijri:
         :rtype: datetime.date
         """
 
-        jd = _hijri_to_julian(self._year, self._month, self._day,
-                              self._calendar)
+        jd = _hijri_to_julian(
+            self._year, self._month, self._day, self._calendar
+        )
         gregorian = _julian_to_gregorian(jd)
         return date(*gregorian)
 
@@ -124,8 +134,9 @@ class Gregorian:
     Gregorian calendar.
     """
 
-    def __init__(self, year: int, month: int, day: int,
-                 validate: bool = False) -> None:
+    def __init__(
+        self, year: int, month: int, day: int, validate: bool = False
+    ) -> None:
         """
         :param year: Gregorian year
         :type year: int
@@ -146,10 +157,11 @@ class Gregorian:
 
     def __repr__(self) -> str:
         class_name = self.__class__.__name__
-        return '{}({}, {}, {})'.format(class_name,
-                                       self._year, self._month, self._day)
+        return "{}({}, {}, {})".format(
+            class_name, self._year, self._month, self._day
+        )
 
-    def to_hijri(self, calendar: str = 'lunar') -> Hijri:
+    def to_hijri(self, calendar: str = "lunar") -> Hijri:
         """Convert Gregorian date to Hijri date.
 
         :param calendar: Hijri calendar which may be ``lunar`` or ``solar``
@@ -171,35 +183,37 @@ class Gregorian:
         return Hijri(year, month, day, calendar)
 
 
-def _check_date(year: int, month: int, day: int,
-                calendar: str = 'gregorian') -> Tuple[int, int, int, str]:
+def _check_date(
+    year: int, month: int, day: int, calendar: str = "gregorian"
+) -> Tuple[int, int, int, str]:
     """Check date values and if it's within conversion range."""
     # check calendar
     if not isinstance(calendar, str):
-        raise TypeError('calendar must be a string')
+        raise TypeError("calendar must be a string")
     calendar = calendar.lower()
-    hijri_calendars = ['lunar', 'solar']
-    if calendar != 'gregorian' and calendar not in hijri_calendars:
-        raise ValueError('calendar must be \'{}\' or \'{}\''.format(
-                *hijri_calendars))
+    hijri_calendars = ["lunar", "solar"]
+    if calendar != "gregorian" and calendar not in hijri_calendars:
+        raise ValueError(
+            "calendar must be '{}' or '{}'".format(*hijri_calendars)
+        )
     # check year
     if not isinstance(year, int):
-        raise TypeError('year must be an integer')
+        raise TypeError("year must be an integer")
     if year < 1 or len(str(year)) != 4:
-        raise ValueError('year must be in yyyy format')
+        raise ValueError("year must be in yyyy format")
     # check month
     if not isinstance(month, int):
-        raise TypeError('month must be an integer')
+        raise TypeError("month must be an integer")
     if not 1 <= month <= 12:
-        raise ValueError('month must be in 1..12')
+        raise ValueError("month must be in 1..12")
     # check range
     calendar_range = ummalqura.ranges[calendar]
     if not calendar_range[0] <= (year, month, day) <= calendar_range[1]:
-        raise ValueError('date is out of range for conversion')
+        raise ValueError("date is out of range for conversion")
     # check day
     if not isinstance(day, int):
-        raise TypeError('day must be an integer')
-    if calendar == 'gregorian':
+        raise TypeError("day must be an integer")
+    if calendar == "gregorian":
         is_leap = year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
         gregorian_months = [-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         if month == 2 and is_leap:
@@ -209,7 +223,7 @@ def _check_date(year: int, month: int, day: int,
     else:
         month_days = _hijri_month_days(year, month, calendar)
     if not 1 <= day <= month_days:
-        raise ValueError('day must be in 1..{} for month'.format(month_days))
+        raise ValueError("day must be in 1..{} for month".format(month_days))
     return year, month, day, calendar
 
 
