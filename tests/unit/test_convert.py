@@ -76,22 +76,14 @@ def test_convert_gregorian_to_hijri(gregorian):
     assert gregorian.to_hijri().datetuple() == (1410, 8, 13)
 
 
-@pytest.mark.parametrize('test_input, expected', [
-    ('Lunar', 'lunar'),
-    ('SOLAR', 'solar'),
-])
-def test_check_valid_hijri_calendar(test_input, expected):
-    assert expected == convert._check_hijri_calendar(test_input)
+def test_raise_exception_with_invalid_hijri_date(hijri):
+    with pytest.raises((TypeError, ValueError)):
+        convert.Hijri(1310, 8, 13, validate=True)
 
 
-@pytest.mark.parametrize('test_input, expected', [
-    (1, 'calendar must be a string'),
-    ('other', 'calendar must be \'lunar\' or \'solar\''),
-])
-def test_check_invalid_hijri_calendar(test_input, expected):
-    with pytest.raises((TypeError, ValueError)) as excinfo:
-        convert._check_hijri_calendar(test_input)
-    assert expected == str(excinfo.value)
+def test_raise_exception_with_invalid_gregorian_date(hijri):
+    with pytest.raises((TypeError, ValueError)):
+        convert.Gregorian(1890, 3, 10, validate=True)
 
 
 @pytest.mark.parametrize('test_input', [
@@ -108,10 +100,12 @@ def test_check_invalid_hijri_calendar(test_input, expected):
 def test_check_valid_date(test_input):
     year, month, day, calendar = test_input
     expected = convert._check_date(year, month, day, calendar)
-    assert (year, month, day) == expected
+    assert (year, month, day, calendar) == expected
 
 
 @pytest.mark.parametrize('test_input, expected', [
+    ((1410, 8, 24, 0), 'calendar must be a string'),
+    ((1410, 8, 24, 'other'), 'calendar must be \'lunar\' or \'solar\''),
     (('y', 8, 'n', 'lunar'), 'year must be an integer'),
     ((17, 2, 28, 'gregorian'), 'year must be in yyyy format'),
     ((2017, 'm', 28, 'gregorian'), 'month must be an integer'),
