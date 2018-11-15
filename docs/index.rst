@@ -1,10 +1,13 @@
 Hijri Converter
 ===============
 
-A Python library to convert Hijri (Islamic) date to/from Gregorian date using
+`Source Code <https://github.com/dralshehri/hijri-converter>`__
+
+A Python package to convert Hijri date to/from Gregorian date using
 `Umm al-Qura calendar`_ of Saudi Arabia.
 
-.. _`Umm al-Qura calendar`: http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
+.. _`Umm al-Qura calendar`:
+   http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
 
 .. contents::
    :local:
@@ -17,7 +20,7 @@ Features
 - Accurate and reliable calculation.
 - Easy and intuitive usage.
 - English/Arabic representation of Hijri months and days.
-- Ability to validate date input.
+- Optionally validate date input.
 - Fully tested against multiple references, including:
 
   * `Official website`_ of Umm al-Qura calendar maintained by King Abdulaziz
@@ -43,7 +46,7 @@ Installation
 Basic Usage
 -----------
 
-To import the library:
+To import the package:
 
 .. code-block:: pycon
 
@@ -101,10 +104,8 @@ The instance of Hijri date object has some other useful methods:
    'Thursday'
 
 The Gregorian date converted from Hijri date is actually an instance of
-`datetime.date`_ object and therefore inherits all of its attributes and
-methods:
-
-.. _`datetime.date`: https://docs.python.org/3/library/datetime.html#date-objects
+:obj:`datetime.date` object and therefore inherits all of its attributes
+and methods:
 
 .. code-block:: pycon
 
@@ -116,10 +117,24 @@ methods:
    >>> gregorian.strftime('%A %d %b %Y')
    'Thursday 02 Dec 1982'
 
+To validate date values and check if date is within valid conversion range,
+change the `validate` parameter to ``True``. Invalid date will raise an exception that can be caught and handled in
+try and except blocks:
+
+.. code-block:: pycon
+
+   >>> convert.Hijri(1403, 1, 30, validate=True)
+   Traceback...
+   ValueError: day must be in 1..29 for month
+
+   >>> convert.Gregorian(1882, 12, 2, validate=True)
+   Traceback...
+   ValueError: date is out of range for conversion
+
 Licence
 -------
 
-The library is distributed under an MIT licence.
+The package is distributed under an MIT licence.
 The text is as follows (from LICENSE.txt):
 
 .. code-block:: text
@@ -152,7 +167,10 @@ Credits
 - Julian Day Numbers by Peter Meyer.
   `Link <https://www.hermetic.ch/cal_stud/jdn.htm>`__
 
-API Reference
--------------
+Convert API
+-----------
+
+This section documents the API of convert module, which is the main module of
+Hijri Converter package.
 
 .. automodule:: convert
