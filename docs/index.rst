@@ -3,6 +3,29 @@ Hijri Converter
 
 `Source Code <https://github.com/dralshehri/hijri-converter>`__
 
+|travis| |codecov| |docs| |supported| |version|
+
+.. |travis|
+    image:: https://travis-ci.org/dralshehri/hijri-converter.svg?branch=master
+    :alt: Travis-CI Build Status
+    :target: https://travis-ci.org/dralshehri/hijri-converter
+.. |codecov|
+    image:: https://codecov.io/github/dralshehri/hijri-converter/coverage.svg?branch=master
+    :alt: Coverage Status
+    :target: https://codecov.io/github/dralshehri/hijri-converter
+.. |docs|
+    image:: https://readthedocs.org/projects/hijriconverter/badge/?version=latest
+    :alt: Docs Status
+    :target: http://hijriconverter.readthedocs.io/en/latest
+.. |supported|
+    image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
+    :alt: Supported versions
+    :target: https://pypi.python.org/pypi/hijriconverter
+.. |version|
+    image:: https://img.shields.io/pypi/v/hijriconverter.svg
+    :alt: PyPI Package latest release
+    :target: https://pypi.python.org/pypi/hijriconverter
+
 A Python package to convert Hijri date to/from Gregorian date using
 `Umm al-Qura calendar`_ of Saudi Arabia.
 
@@ -16,21 +39,13 @@ A Python package to convert Hijri date to/from Gregorian date using
 Features
 --------
 
-- Support for both lunar and solar Hijri calendars.
-- Accurate and reliable calculation.
+- Accurate and reliable conversion.
+- Fully tested against multiple original references.
+- Optimized code performance.
 - Easy and intuitive usage.
+- Support for both lunar and solar Hijri calendars.
 - English/Arabic representation of Hijri months and days.
-- Optionally validate date input.
-- Fully tested against multiple references, including:
-
-  * `Official website`_ of Umm al-Qura calendar maintained by King Abdulaziz
-    City for Science and Technology, Saudi Arabia.
-  * `Comparison Calendar (1356 AH - 1411 AH)`_ published by Research Institute,
-    King Fahd University of Petroleum & Minerals, Saudi Arabia.
-
-.. _`Official website`: http://www.ummulqura.org.sa/default.aspx
-.. _`Comparison Calendar (1356 AH - 1411 AH)`:
-   https://www.staff.science.uu.nl/~gent0113/islam/downloads/ksa_calendar_1356_1411.pdf
+- Optional validation of date input.
 
 .. note::
     The conversion is valid for dates between beginning of 1356 AH
@@ -41,10 +56,10 @@ Installation
 
 .. code-block:: bash
 
-   pip install hijriconverter
+   $ pip install hijriconverter
 
-Basic Usage
------------
+Usage Examples
+--------------
 
 To import the package:
 
@@ -131,34 +146,6 @@ try and except blocks:
    Traceback...
    ValueError: date is out of range for conversion
 
-Licence
--------
-
-The package is distributed under an MIT licence.
-The text is as follows (from LICENSE.txt):
-
-.. code-block:: text
-
-    Copyright (c) 2018 Mohammed Alshehri (dralshehri)
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
-
 Credits
 -------
 
@@ -167,8 +154,17 @@ Credits
 - Julian Day Numbers by Peter Meyer.
   `Link <https://www.hermetic.ch/cal_stud/jdn.htm>`__
 
-Convert API
------------
+Licence
+-------
+
+This package is distributed under an MIT licence.
+The licence is as follows (from ``LICENSE.txt`` file):
+
+.. literalinclude:: ../LICENSE.txt
+   :language: text
+
+API Reference
+-------------
 
 This section documents the API of convert module, which is the main module of
 Hijri Converter package.
