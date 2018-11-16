@@ -34,10 +34,10 @@ Features
 --------
 
 - Support for both lunar and solar Hijri calendars.
-- Accurate and reliable calculation.
+- Accurate and reliable conversion.
 - Easy and intuitive usage.
-- English/Arabic representation of Hijri months and days.
-- Optionally validate date input.
+- English/Arabic representation of days and Hijri months.
+- Optional validation of date input.
 - Fully tested against multiple references, including:
 
   * `Official website`_ of Umm al-Qura calendar maintained by King Abdulaziz
@@ -68,9 +68,9 @@ Changelog
 
 **1.2.0 (2018-11-09)**
 
-- Added `slashformat()` method to Hijri date.
-- Improved date validation code
-- Fixed some typos in documentation and docstrings
+- Added `slashformat()` method to Hijri object.
+- Improved date validation code.
+- Fixed some typos in documentation and docstrings.
 
 **1.0.1 (2018-10-28)**
 
