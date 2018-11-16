@@ -1,8 +1,6 @@
 .PHONY: clean clean-test clean-pyc clean-docs clean-build help
 .DEFAULT_GOAL := help
 
-SOURCE_DIR := src/hijriconverter
-
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
 try:
