@@ -6,7 +6,7 @@ readme = (here / "README.rst").read_text(encoding="utf-8")
 
 setup(
     name="hijriconverter",
-    version="1.3.0",
+    version="1.3.1",
     description="Convert Hijri to/from Gregorian using Umm al-Qura calendar",
     long_description=readme,
     url="",
