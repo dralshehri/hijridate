@@ -6,4 +6,5 @@ include pytest.ini
 include .coveragerc
 
 include README.rst
+include CHANGELOG.rst
 include LICENSE.txt
