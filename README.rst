@@ -59,6 +59,10 @@ in the ``docs`` directory.
 Changelog
 ---------
 
+**1.3.1 (2018-11-16)**
+
+- Fixed README file.
+
 **1.3.0 (2018-11-16)**
 
 - Added documentation directory with an online version.
