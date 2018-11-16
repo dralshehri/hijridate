@@ -33,53 +33,36 @@ A Python package to convert Hijri date to/from Gregorian date using
 Features
 --------
 
-- Support for both lunar and solar Hijri calendars.
 - Accurate and reliable conversion.
+- Fully tested against multiple original references.
+- Optimized code performance.
 - Easy and intuitive usage.
-- English/Arabic representation of days and Hijri months.
+- Support for both lunar and solar Hijri calendars.
+- English/Arabic representation of Hijri months and days.
 - Optional validation of date input.
-- Fully tested against multiple references, including:
 
-  * `Official website`_ of Umm al-Qura calendar maintained by King Abdulaziz
-    City for Science and Technology, Saudi Arabia.
-  * `Comparison Calendar (1356 AH - 1411 AH)`_ published by Research Institute,
-    King Fahd University of Petroleum & Minerals, Saudi Arabia.
+Installation
+------------
 
-.. _`Official website`: http://www.ummulqura.org.sa/default.aspx
-.. _`Comparison Calendar (1356 AH - 1411 AH)`:
-   https://www.staff.science.uu.nl/~gent0113/islam/downloads/ksa_calendar_1356_1411.pdf
+.. code-block:: bash
+
+   $ pip install hijriconverter
 
 Documentation
 -------------
 
-Documentation is available at https://hijriconverter.readthedocs.io and
-in the ``docs`` directory.
+Please see https://hijriconverter.readthedocs.io for full documentation of
+this package, including usage examples and API reference.
 
+Credits
+-------
 
-Changelog
----------
+- The Umm al-Qura Calendar of Saudi Arabia by Robert Harry van Gent.
+  `Link <http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm>`__
+- Julian Day Numbers by Peter Meyer.
+  `Link <https://www.hermetic.ch/cal_stud/jdn.htm>`__
 
-**1.3.1 (2018-11-16)**
+License
+-------
 
-- Fixed README file.
-
-**1.3.0 (2018-11-16)**
-
-- Added documentation directory with an online version.
-- Changed date input validation to be optional and disabled by default.
-- Improved code readability and performance.
-- Other minor fixes and enhancements.
-
-**1.2.0 (2018-11-09)**
-
-- Added `slashformat()` method to Hijri object.
-- Improved date validation code.
-- Fixed some typos in documentation and docstrings.
-
-**1.0.1 (2018-10-28)**
-
-- Improved examples and documentation.
-
-**1.0.0 (2018-10-28)**
-
-- First release.
+This package is distributed under an MIT licence. See ``LICENSE.rst`` file.
