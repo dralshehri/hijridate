@@ -1,7 +1,7 @@
 Change Log
 ----------
 
-**Unreleased**
+**1.3.2 (2018-11-16)**
 
 - Improved documentation and changelog.
 

@@ -7,7 +7,7 @@ changelog = (here / "CHANGELOG.rst").read_text(encoding="utf-8")
 
 setup(
     name="hijriconverter",
-    version="1.3.1",
+    version="1.3.2",
     description="Convert Hijri to/from Gregorian using Umm al-Qura calendar",
     long_description=readme + "\n" + changelog,
     url="",
