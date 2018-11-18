@@ -92,7 +92,7 @@ The instance of Hijri date object has some other useful methods:
 
 .. code-block:: pycon
 
-   >>> hijri = convert.Hijri(1403, 2, 17)
+   >>> hijri = convert.Gregorian(1982, 12, 2).to_hijri()
 
    >>> hijri.datetuple()
    (1403, 2, 17)
