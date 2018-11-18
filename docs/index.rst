@@ -6,25 +6,25 @@ Hijri Converter
 |travis| |codecov| |docs| |supported| |version|
 
 .. |travis|
-    image:: https://travis-ci.org/dralshehri/hijri-converter.svg?branch=master
-    :alt: Travis-CI Build Status
-    :target: https://travis-ci.org/dralshehri/hijri-converter
+   image:: https://travis-ci.org/dralshehri/hijri-converter.svg?branch=master
+   :alt: Travis-CI Build Status
+   :target: https://travis-ci.org/dralshehri/hijri-converter
 .. |codecov|
-    image:: https://codecov.io/github/dralshehri/hijri-converter/coverage.svg?branch=master
-    :alt: Coverage Status
-    :target: https://codecov.io/github/dralshehri/hijri-converter
+   image:: https://codecov.io/github/dralshehri/hijri-converter/coverage.svg?branch=master
+   :alt: Coverage Status
+   :target: https://codecov.io/github/dralshehri/hijri-converter
 .. |docs|
-    image:: https://readthedocs.org/projects/hijriconverter/badge/?version=latest
-    :alt: Docs Status
-    :target: http://hijriconverter.readthedocs.io/en/latest
+   image:: https://readthedocs.org/projects/hijriconverter/badge/?version=latest
+   :alt: Docs Status
+   :target: http://hijriconverter.readthedocs.io/en/latest
 .. |supported|
-    image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
-    :alt: Supported versions
-    :target: https://pypi.python.org/pypi/hijriconverter
+   image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
+   :alt: Supported versions
+   :target: https://pypi.python.org/pypi/hijriconverter
 .. |version|
-    image:: https://img.shields.io/pypi/v/hijriconverter.svg
-    :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/hijriconverter
+   image:: https://img.shields.io/pypi/v/hijriconverter.svg
+   :alt: PyPI Package latest release
+   :target: https://pypi.python.org/pypi/hijriconverter
 
 A Python package to convert Hijri date to/from Gregorian date using
 `Umm al-Qura calendar`_ of Saudi Arabia.
@@ -48,8 +48,8 @@ Features
 - Optional validation of date input.
 
 .. note::
-    The conversion is valid for dates between beginning of 1356 AH
-    (14 March 1937 CE) and end of 1500 AH (16 November 2077 CE).
+   The conversion is valid for dates between beginning of 1356 AH
+   (14 March 1937 CE) and end of 1500 AH (16 November 2077 CE).
 
 Installation
 ------------
@@ -88,7 +88,7 @@ To use Hijri solar calendar instead:
    >>> convert.Gregorian(1982, 12, 2).to_hijri('solar')
    Hijri(1361, 3, 11, solar)
 
-The instance of Hijri date object has some other useful methods:
+The instance of :obj:`Hijri` object has some other useful methods:
 
 .. code-block:: pycon
 
@@ -133,7 +133,8 @@ and methods:
    'Thursday 02 Dec 1982'
 
 To validate date values and check if date is within valid conversion range,
-change the `validate` parameter to ``True``. Invalid date will raise an exception that can be caught and handled in
+change the `validate` parameter to ``True``.
+Invalid date will raise an exception that can be caught and handled in
 try and except blocks:
 
 .. code-block:: pycon
@@ -166,7 +167,7 @@ The licence is as follows (from ``LICENSE.txt`` file):
 API Reference
 -------------
 
-This section documents the API of convert module, which is the main module of
-Hijri Converter package.
+This section documents the API of `convert` module, which is the main module
+of Hijri Converter package.
 
 .. automodule:: convert
