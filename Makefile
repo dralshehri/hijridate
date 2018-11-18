@@ -53,7 +53,7 @@ clean-build: ## remove build artifacts
 	find . -name '*.egg' -exec rm -f {} +
 
 install: clean ## install dev requirments and project source
-	pip install -q -U pip setuptools pytest pytest-cov black wheel twine
+	pip install -q -U pip setuptools pytest pytest-cov black sphinx wheel twine
 	pip install -q -e .
 
 format: ## format code with black
