@@ -1,27 +1,14 @@
-"""Umm al-Qura calendar specific variables.
+class Lunar:
+    """Umm al-Qura lunar calendar specific constants.
 
-months:
-Hijri month names in different locales
+    month_names: Month names in English and Arabic languages
+    valid_range: Range of expected dates for correct conversion (including end)
+    first_offset: Total months before the first item in `month_starts`
+    month_starts: Starts of months as Modified Julian Day (MJD) numbers
+    """
 
-days:
-Day names in different locales
-
-ranges:
-Ranges of expected dates for conversion, which are:
-from 1356-01-01 to 1500-12-30 (lunar Hijri),
-from 1315-06-23 to 1456-02-25 (solar Hijri),
-from 1937-03-14 to 2077-11-26 (Gregorian).
-
-offset:
-The total Hijri months before the first month of 'starts`.
-
-starts:
-Modified Julian Day (MJD) numbers for starts of Hijri months within `ranges`.
-"""
-
-months = {
-    "en": {
-        "lunar": (
+    month_names = {
+        "en": (
             "",
             "Muharram",
             "Safar",
@@ -36,24 +23,7 @@ months = {
             "Dhul-Qi’dah",
             "Dhul-Hijjah",
         ),
-        "solar": (
-            "",
-            "Libra",
-            "Scorpio",
-            "Sagittarius",
-            "Capricorn",
-            "Aquarius",
-            "Pisces",
-            "Aries",
-            "Taurus",
-            "Gemini",
-            "Cancer",
-            "Leo",
-            "Virgo",
-        ),
-    },
-    "ar": {
-        "lunar": (
+        "ar": (
             "",
             "محرم",
             "صفر",
@@ -68,55 +38,10 @@ months = {
             "ذو القعدة",
             "ذو الحجة",
         ),
-        "solar": (
-            "",
-            "الميزان",
-            "العقرب",
-            "القوس",
-            "الجدي",
-            "الدلو",
-            "الحوت",
-            "الحمل",
-            "الثور",
-            "الجوزاء",
-            "السرطان",
-            "الأسد",
-            "السنبلة",
-        ),
-    },
-}
-
-days = {
-    "en": (
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-    ),
-    "ar": (
-        "الاثنين",
-        "الثلاثاء",
-        "الأربعاء",
-        "الخميس",
-        "الجمعة",
-        "السبت",
-        "الأحد",
-    ),
-}
-
-ranges = {
-    "gregorian": ((1937, 3, 14), (2077, 11, 16)),
-    "lunar": ((1356, 1, 1), (1500, 12, 30)),
-    "solar": ((1315, 6, 23), (1456, 2, 25)),
-}
-
-offset = {"lunar": (1355 * 12), "solar": (1314 * 12 + 5)}
-
-starts = {
-    "lunar": (
+    }
+    valid_range = (1356, 1, 1), (1500, 12, 30)
+    first_offset = 1355 * 12
+    month_starts = (
         28607,
         28636,
         28665,
@@ -1858,8 +1783,53 @@ starts = {
         79930,
         79960,
         79990,
-    ),
-    "solar": (
+    )
+
+
+class Solar:
+    """Umm al-Qura solar calendar specific constants.
+
+    month_names: Month names in English and Arabic languages
+    valid_range: Range of expected dates for correct conversion (including end)
+    first_offset: Total months before the first item in `month_starts`
+    month_starts: Starts of months as Modified Julian Day (MJD) numbers
+    """
+
+    month_names = {
+        "en": (
+            "",
+            "Libra",
+            "Scorpio",
+            "Sagittarius",
+            "Capricorn",
+            "Aquarius",
+            "Pisces",
+            "Aries",
+            "Taurus",
+            "Gemini",
+            "Cancer",
+            "Leo",
+            "Virgo",
+        ),
+        "ar": (
+            "",
+            "الميزان",
+            "العقرب",
+            "القوس",
+            "الجدي",
+            "الدلو",
+            "الحوت",
+            "الحمل",
+            "الثور",
+            "الجوزاء",
+            "السرطان",
+            "الأسد",
+            "السنبلة",
+        ),
+    }
+    valid_range = (1315, 6, 23), (1456, 2, 25)
+    first_offset = 1314 * 12 + 5
+    month_starts = (
         28585,
         28614,
         28645,
@@ -3550,5 +3520,13 @@ starts = {
         79935,
         79965,
         79995,
-    ),
-}
+    )
+
+
+class Gregorian:
+    """Gregorian calendar constants related to Umm al-Qura calendar.
+
+    valid_range: Range of expected dates for correct conversion (including end)
+    """
+
+    valid_range = (1937, 3, 14), (2077, 11, 16)

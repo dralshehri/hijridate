@@ -88,7 +88,8 @@ class Hijri:
         :type language: str
         """
 
-        return ummalqura.months[language][self._calendar][self._month]
+        calendar = getattr(ummalqura, self._calendar.title())
+        return calendar.month_names[language][self._month]
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 ... Sunday is 6."""
@@ -112,7 +113,27 @@ class Hijri:
         :type language: str
         """
 
-        return ummalqura.days[language][self.weekday()]
+        day_names = {
+            "en": (
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+            ),
+            "ar": (
+                "الاثنين",
+                "الثلاثاء",
+                "الأربعاء",
+                "الخميس",
+                "الجمعة",
+                "السبت",
+                "الأحد",
+            ),
+        }
+        return day_names[language][self.weekday()]
 
     def to_gregorian(self) -> date:
         """Convert Hijri date to Gregorian date.
@@ -172,9 +193,9 @@ class Gregorian:
 
         jd = _gregorian_to_julian(self._year, self._month, self._day)
         mjd = _julian_to_modified_julian(jd)
-        month_starts = ummalqura.starts[calendar]
+        month_starts = getattr(ummalqura, calendar.title()).month_starts
         i = bisect.bisect_right(month_starts, mjd)
-        months = i + ummalqura.offset[calendar]
+        months = i + getattr(ummalqura, calendar.title()).first_offset
         years = int((months - 1) / 12)
         year = years + 1
         month = months - 12 * years
@@ -206,7 +227,7 @@ def _check_date(
     if not 1 <= month <= 12:
         raise ValueError("month must be in 1..12")
     # check range
-    calendar_range = ummalqura.ranges[calendar]
+    calendar_range = getattr(ummalqura, calendar.title()).valid_range
     if not calendar_range[0] <= (year, month, day) <= calendar_range[1]:
         raise ValueError("date is out of range for conversion")
     # check day
@@ -227,17 +248,17 @@ def _check_date(
 
 
 def _hijri_month_index(year: int, month: int, calendar: str) -> int:
-    """Return index of month's modified Julian day in ummalqura ``starts``."""
+    """Return index of month in Hijri month starts."""
     years = year - 1
     months = (years * 12) + month
-    index = months - ummalqura.offset[calendar]
+    index = months - getattr(ummalqura, calendar.title()).first_offset
     return index
 
 
 def _hijri_month_days(year: int, month: int, calendar: str) -> int:
     """Return number of days in Hijri month."""
     i = _hijri_month_index(year, month, calendar)
-    month_starts = ummalqura.starts[calendar]
+    month_starts = getattr(ummalqura, calendar.title()).month_starts
     days = month_starts[i] - month_starts[i - 1]
     return days
 
@@ -245,7 +266,7 @@ def _hijri_month_days(year: int, month: int, calendar: str) -> int:
 def _hijri_to_julian(year: int, month: int, day: int, calendar: str) -> int:
     """Convert Hijri date to Julian day."""
     i = _hijri_month_index(year, month, calendar)
-    month_starts = ummalqura.starts[calendar]
+    month_starts = getattr(ummalqura, calendar.title()).month_starts
     mjd = day + month_starts[i - 1] - 1
     jd = _modified_julian_to_julian(mjd)
     return jd
