@@ -1,16 +1,16 @@
 import pytest
 from hijriconverter import convert
-from os import path
+import pathlib
 import json
 
 
 def load_params_from_json():
-    here = path.abspath(path.dirname(__file__))
-    with open(path.join(here, "fixtures", "month_starts.json")) as f:
-        loaded = [[tuple(i) for i in x] for x in json.load(f)]
-        hijri_gregorian = [tuple(x) for x in loaded]
-        gregorian_hijri = [tuple(x[::-1]) for x in loaded]
-        return hijri_gregorian, gregorian_hijri
+    fixtures = pathlib.Path(__file__).parent.joinpath("fixtures")
+    file_content = (fixtures / "month_starts.json").read_text()
+    data = [[tuple(i) for i in x] for x in json.loads(file_content)]
+    params = [tuple(x) for x in data]
+    params_reversed = [tuple(x[::-1]) for x in data]
+    return params, params_reversed
 
 
 hijri_gregorian_params, gregorian_hijri_params = load_params_from_json()

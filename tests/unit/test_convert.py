@@ -2,7 +2,7 @@ import pytest
 from hijriconverter import convert
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def hijri():
     return convert.Hijri(1410, 8, 13)
 
@@ -47,6 +47,10 @@ def test_month_name(hijri):
     assert hijri.month_name() == "Sha’ban"
 
 
+def test_month_name_arabic(hijri):
+    assert hijri.month_name("ar") == "شعبان"
+
+
 def test_weekday(hijri):
     assert hijri.weekday() == 5
 
@@ -59,11 +63,32 @@ def test_day_name(hijri):
     assert hijri.day_name() == "Saturday"
 
 
+def test_day_name_arabic(hijri):
+    assert hijri.day_name("ar") == "السبت"
+
+
 def test_convert_hijri_to_gregorian(hijri):
     assert hijri.to_gregorian().timetuple()[:3] == (1990, 3, 10)
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
+def hijri_solar():
+    return convert.Hijri(1368, 6, 19, "solar")
+
+
+def test_hijri_solar_month_name(hijri_solar):
+    assert hijri_solar.month_name() == "Pisces"
+
+
+def test_hijri_solar_month_name_arabic(hijri_solar):
+    assert hijri_solar.month_name("ar") == "الحوت"
+
+
+def test_convert_hijri_solar_to_gregorian(hijri_solar):
+    assert hijri_solar.to_gregorian().timetuple()[:3] == (1990, 3, 10)
+
+
+@pytest.fixture(scope="module")
 def gregorian():
     return convert.Gregorian(1990, 3, 10)
 
@@ -76,12 +101,12 @@ def test_convert_gregorian_to_hijri(gregorian):
     assert gregorian.to_hijri().datetuple() == (1410, 8, 13)
 
 
-def test_raise_exception_with_invalid_hijri_date(hijri):
+def test_raise_exception_with_invalid_hijri_date():
     with pytest.raises((TypeError, ValueError)):
         convert.Hijri(1310, 8, 13, validate=True)
 
 
-def test_raise_exception_with_invalid_gregorian_date(hijri):
+def test_raise_exception_with_invalid_gregorian_date():
     with pytest.raises((TypeError, ValueError)):
         convert.Gregorian(1890, 3, 10, validate=True)
 
@@ -133,7 +158,7 @@ def test_check_invalid_date(test_input, expected):
     year, month, day, calendar = test_input
     with pytest.raises((TypeError, ValueError)) as excinfo:
         convert._check_date(year, month, day, calendar)
-    assert expected == str(excinfo.value)
+    assert str(excinfo.value) == expected
 
 
 def test_hijri_month_index():
