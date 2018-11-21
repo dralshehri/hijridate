@@ -1,6 +1,12 @@
 Hijri Converter
 ===============
 
+A Python package to convert Hijri date to/from Gregorian date using
+`Umm al-Qura calendar`_ of Saudi Arabia.
+
+.. _`Umm al-Qura calendar`:
+   http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
+
 `Source Code <https://github.com/dralshehri/hijri-converter>`__
 
 |travis| |codecov| |docs| |supported| |version|
@@ -25,12 +31,6 @@ Hijri Converter
    image:: https://img.shields.io/pypi/v/hijriconverter.svg
    :alt: PyPI Package latest release
    :target: https://pypi.python.org/pypi/hijriconverter
-
-A Python package to convert Hijri date to/from Gregorian date using
-`Umm al-Qura calendar`_ of Saudi Arabia.
-
-.. _`Umm al-Qura calendar`:
-   http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
 
 .. contents::
    :local:
