@@ -1,6 +1,13 @@
 Change Log
 ----------
 
+**1.3.3 (2018-11-21)**
+
+- Fixed a bug in range validation for gregorian date.
+- Changed generic typing to built-in types.
+- Added more tests to cover solar calendar.
+- Improved code structure and documentation.
+
 **1.3.2 (2018-11-16)**
 
 - Improved documentation and changelog.
