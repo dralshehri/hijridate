@@ -155,9 +155,8 @@ def test_check_valid_date(test_input):
     ],
 )
 def test_check_invalid_date(test_input, expected):
-    year, month, day, calendar = test_input
     with pytest.raises((TypeError, ValueError)) as excinfo:
-        convert._check_date(year, month, day, calendar)
+        convert._check_date(*test_input)
     assert str(excinfo.value) == expected
 
 
