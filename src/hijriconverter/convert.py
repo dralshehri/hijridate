@@ -1,5 +1,4 @@
 from hijriconverter import ummalqura
-from typing import Tuple
 from datetime import date
 import bisect
 
@@ -65,7 +64,7 @@ class Hijri:
         """Return Hijri day as an integer."""
         return self._day
 
-    def datetuple(self) -> Tuple[int, int, int]:
+    def datetuple(self) -> tuple:
         """Return Hijri date as a tuple of (year, month, day)."""
         return self._year, self._month, self._day
 
@@ -185,7 +184,7 @@ class Gregorian:
 
 def _check_date(
     year: int, month: int, day: int, calendar: str = "gregorian"
-) -> Tuple[int, int, int, str]:
+) -> tuple:
     """Check date values and if it's within conversion range."""
     # check calendar
     if not isinstance(calendar, str):
@@ -262,7 +261,7 @@ def _gregorian_to_julian(year: int, month: int, day: int) -> int:
     return jd
 
 
-def _julian_to_gregorian(jd: int) -> Tuple[int, int, int]:
+def _julian_to_gregorian(jd: int) -> tuple:
     """Convert Julian day to Gregorian date."""
     i = jd + 68569
     n = int((4 * i) / 146097)
