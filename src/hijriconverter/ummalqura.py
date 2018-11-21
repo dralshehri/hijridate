@@ -1,10 +1,16 @@
 class Lunar:
     """Umm al-Qura lunar calendar specific constants.
 
-    month_names: Month names in English and Arabic languages
-    valid_range: Range of expected dates for correct conversion (including end)
-    first_offset: Total months before the first item in `month_starts`
-    month_starts: Starts of months as Modified Julian Day (MJD) numbers
+    month_names: Month names in English and Arabic languages.
+
+    valid_range: Range of expected dates for correct conversion
+                 (including the end)
+
+    first_offset: Total months from epoch of lunar calendar to the the
+                  first month in `valid_range`.
+
+    month_starts: Modified Julian Day Numbers for first day of months
+                  within `valid_range`.
     """
 
     month_names = {
@@ -1789,10 +1795,16 @@ class Lunar:
 class Solar:
     """Umm al-Qura solar calendar specific constants.
 
-    month_names: Month names in English and Arabic languages
-    valid_range: Range of expected dates for correct conversion (including end)
-    first_offset: Total months before the first item in `month_starts`
-    month_starts: Starts of months as Modified Julian Day (MJD) numbers
+    month_names: Month names in English and Arabic languages.
+
+    valid_range: Range of expected dates for correct conversion
+                 (including the end)
+
+    first_offset: Total months from epoch of solar calendar to the the
+                  first month in `valid_range`.
+
+    month_starts: Modified Julian Day Numbers for first day of months
+                  within `valid_range`.
     """
 
     month_names = {
@@ -3526,7 +3538,8 @@ class Solar:
 class Gregorian:
     """Gregorian calendar constants related to Umm al-Qura calendar.
 
-    valid_range: Range of expected dates for correct conversion (including end)
+    valid_range: Range of expected dates for correct conversion
+                 (including the end)
     """
 
     valid_range = (1937, 3, 14), (2077, 11, 16)
