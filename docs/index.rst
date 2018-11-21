@@ -82,10 +82,10 @@ To use Hijri solar calendar instead:
 
 .. code-block:: pycon
 
-   >>> convert.Hijri(1361, 3, 11, 'solar').to_gregorian()
+   >>> convert.Hijri(1361, 3, 11, "solar").to_gregorian()
    datetime.date(1982, 12, 2)
 
-   >>> convert.Gregorian(1982, 12, 2).to_hijri('solar')
+   >>> convert.Gregorian(1982, 12, 2).to_hijri("solar")
    Hijri(1361, 3, 11, solar)
 
 The instance of :obj:`Hijri` object has some other useful methods:
@@ -129,7 +129,7 @@ and methods:
    >>> gregorian.isoformat()
    '1982-12-02'
 
-   >>> gregorian.strftime('%A %d %b %Y')
+   >>> gregorian.strftime("%A %d %b %Y")
    'Thursday 02 Dec 1982'
 
 To validate date values and check if date is within valid conversion range,
