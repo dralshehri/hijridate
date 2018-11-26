@@ -1,9 +1,18 @@
 Change Log
 ----------
 
+**1.4.0 (2018-11-26)**
+
+- Refactored conversion methods to improve performance.
+- Changed back date validation to be the default and removed optional parameter.
+- Added ``to_julian()`` method to ``Hijri`` object.
+- Updated documentation and testing code.
+- Other minor fixes and enhancements.
+
+
 **1.3.3 (2018-11-21)**
 
-- Fixed a bug in range validation for gregorian date.
+- Fixed a bug in range validation for Gregorian date.
 - Changed generic typing to built-in types.
 - Added more tests to cover solar calendar.
 - Improved code structure and documentation.
@@ -25,7 +34,7 @@ Change Log
 
 **1.2.0 (2018-11-09)**
 
-- Added `slashformat()` method to Hijri object.
+- Added ``slashformat()`` method to ``Hijri`` object.
 - Improved date validation code.
 - Fixed some typos in documentation and docstrings.
 
