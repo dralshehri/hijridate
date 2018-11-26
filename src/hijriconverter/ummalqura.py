@@ -1,3 +1,25 @@
+day_names = {
+    "en": (
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ),
+    "ar": (
+        "الاثنين",
+        "الثلاثاء",
+        "الأربعاء",
+        "الخميس",
+        "الجمعة",
+        "السبت",
+        "الأحد",
+    ),
+}
+
+
 class Lunar:
     """Umm al-Qura lunar calendar specific constants.
 
@@ -9,7 +31,7 @@ class Lunar:
     first_offset: Total months from epoch of lunar calendar to the the
                   first month in `valid_range`.
 
-    month_starts: Modified Julian Day Numbers for first day of months
+    month_starts: Reduced Julian Day Numbers for first day of months
                   within `valid_range`.
     """
 
@@ -1803,7 +1825,7 @@ class Solar:
     first_offset: Total months from epoch of solar calendar to the the
                   first month in `valid_range`.
 
-    month_starts: Modified Julian Day Numbers for first day of months
+    month_starts: Reduced Julian Day Numbers for first day of months
                   within `valid_range`.
     """
 
@@ -3533,13 +3555,3 @@ class Solar:
         79965,
         79995,
     )
-
-
-class Gregorian:
-    """Gregorian calendar constants related to Umm al-Qura calendar.
-
-    valid_range: Range of expected dates for correct conversion
-                 (including the end)
-    """
-
-    valid_range = (1937, 3, 14), (2077, 11, 16)
