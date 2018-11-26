@@ -34,12 +34,12 @@ Features
 --------
 
 - Accurate and reliable conversion.
-- Fully tested against multiple original references.
 - Optimized code performance.
-- Easy and intuitive usage.
+- Fully tested against multiple original references.
 - Support for both lunar and solar Hijri calendars.
+- Validation of date input.
+- Easy and intuitive usage.
 - English/Arabic representation of Hijri months and days.
-- Optional validation of date input.
 
 Installation
 ------------
@@ -57,10 +57,10 @@ this package, including usage examples and API reference.
 Credits
 -------
 
-- The Umm al-Qura Calendar of Saudi Arabia by Robert Harry van Gent.
-  `Link <http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm>`__
-- Julian Day Numbers by Peter Meyer.
-  `Link <https://www.hermetic.ch/cal_stud/jdn.htm>`__
+- Robert Harry van Gent.
+  `The Umm al-Qura Calendar of Saudi Arabia <http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm>`__.
+- Peter Meyer.
+  `Julian Day Numbers <https://www.hermetic.ch/cal_stud/jdn.htm>`__.
 
 License
 -------
