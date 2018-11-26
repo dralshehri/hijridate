@@ -97,11 +97,11 @@ def test_gregorian_valid_range(gregorian):
 
 
 @pytest.mark.parametrize(
-        "test_input, expected",
-        [
-            ((1937, 3, 13), "date is out of range for conversion"),
-            ((2077, 11, 17), "date is out of range for conversion"),
-        ],
+    "test_input, expected",
+    [
+        ((1937, 3, 13), "date is out of range for conversion"),
+        ((2077, 11, 17), "date is out of range for conversion"),
+    ],
 )
 def test_gregorian_invalid_range(test_input, expected):
     with pytest.raises(ValueError) as e:
