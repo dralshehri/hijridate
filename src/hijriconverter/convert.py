@@ -1,20 +1,20 @@
 from hijriconverter import ummalqura
-from datetime import date
+from datetime import date, timedelta
 import bisect
 
 
 class Hijri:
-    """A Hijri object represents a Hijri date (year, month and day) in lunar
-    or solar Hijri calendar.
+    """A Hijri object represents a date (year, month and day) in lunar or
+    solar Hijri calendar.
     """
 
+    def __new__(cls, year: int, month: int, day: int, calendar: str = "lunar") -> "Hijri":
+        """Construct Hijri date object after date validation"""
+        _check_hijri_date(year, month, day, calendar)
+        return super().__new__(cls)
+
     def __init__(
-        self,
-        year: int,
-        month: int,
-        day: int,
-        calendar: str = "lunar",
-        validate: bool = False,
+            self, year: int, month: int, day: int, calendar: str = "lunar"
     ) -> None:
         """
         :param year: Hijri year
@@ -26,24 +26,18 @@ class Hijri:
         :param calendar: Hijri calendar which may be ``lunar`` or ``solar``
             (default is ``lunar``)
         :type calendar: str
-        :param validate: check date values and if date is within valid
-            conversion range (default is ``False``)
-        :type validate: bool
         """
 
-        if validate:
-            year, month, day, calendar = _check_date(
-                year, month, day, calendar
-            )
         self._year = year
         self._month = month
         self._day = day
-        self._calendar = calendar
+        self._calendar = calendar.lower()
+        self._calendar_class = getattr(ummalqura, calendar.title())
+        self._index = _hijri_month_index(year, month, self._calendar_class)
 
     def __repr__(self) -> str:
-        class_name = self.__class__.__name__
-        return "{}({}, {}, {}, {})".format(
-            class_name, self._year, self._month, self._day, self._calendar
+        return "Hijri({}, {}, {}, {})".format(
+            self._year, self._month, self._day, self._calendar
         )
 
     def __str__(self) -> str:
@@ -78,7 +72,7 @@ class Hijri:
 
     def month_days(self) -> int:
         """Return number of days in Hijri month."""
-        return _hijri_month_days(self._year, self._month, self._calendar)
+        return _hijri_month_days(self._index, self._calendar_class)
 
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
@@ -88,21 +82,16 @@ class Hijri:
         :type language: str
         """
 
-        calendar = getattr(ummalqura, self._calendar.title())
-        return calendar.month_names[language][self._month]
+        return self._calendar_class.month_names[language][self._month]
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 ... Sunday is 6."""
-        jd = _hijri_to_julian(
-            self._year, self._month, self._day, self._calendar
-        )
+        jd = self.to_julian()
         return int(jd % 7)
 
     def isoweekday(self) -> int:
         """Return day of week, where Monday is 1 ... Sunday is 7."""
-        jd = _hijri_to_julian(
-            self._year, self._month, self._day, self._calendar
-        )
+        jd = self.to_julian()
         return int(jd % 7) + 1
 
     def day_name(self, language: str = "en") -> str:
@@ -113,73 +102,31 @@ class Hijri:
         :type language: str
         """
 
-        day_names = {
-            "en": (
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday",
-            ),
-            "ar": (
-                "الاثنين",
-                "الثلاثاء",
-                "الأربعاء",
-                "الخميس",
-                "الجمعة",
-                "السبت",
-                "الأحد",
-            ),
-        }
-        return day_names[language][self.weekday()]
+        return ummalqura.day_names[language][self.weekday()]
 
-    def to_gregorian(self) -> date:
+    def to_julian(self) -> int:
+        """Convert Hijri date to Julian day number."""
+        month_starts = self._calendar_class.month_starts
+        rjd = self._day + month_starts[self._index - 1] - 1
+        jd = _reduced_julian_to_julian(rjd)
+        return jd
+
+    def to_gregorian(self) -> "Gregorian":
         """Convert Hijri date to Gregorian date.
 
         :return: Gregorian date object
-        :rtype: datetime.date
+        :rtype: Gregorian
         """
 
-        jd = _hijri_to_julian(
-            self._year, self._month, self._day, self._calendar
-        )
-        gregorian = _julian_to_gregorian(jd)
-        return date(*gregorian)
+        jd = self.to_julian()
+        rd = _julian_to_ordinal(jd)
+        return Gregorian.fromordinal(rd)
 
 
-class Gregorian:
-    """A Gregorian object represents a Gregorian date (year, month and day) in
-    Gregorian calendar.
+class Gregorian(date):
+    """A Gregorian object represents a date (year, month and day) in Gregorian
+    calendar inheriting all attributes and methods of `datetime.date` object.
     """
-
-    def __init__(
-        self, year: int, month: int, day: int, validate: bool = False
-    ) -> None:
-        """
-        :param year: Gregorian year
-        :type year: int
-        :param month: Gregorian month
-        :type month: int
-        :param day: Gregorian day
-        :type day: int
-        :param validate: check date values and if date is within valid
-            conversion range (default is ``False``)
-        :type validate: bool
-        """
-
-        if validate:
-            year, month, day = _check_date(year, month, day)[:3]
-        self._year = year
-        self._month = month
-        self._day = day
-
-    def __repr__(self) -> str:
-        class_name = self.__class__.__name__
-        return "{}({}, {}, {})".format(
-            class_name, self._year, self._month, self._day
-        )
 
     def to_hijri(self, calendar: str = "lunar") -> Hijri:
         """Convert Gregorian date to Hijri date.
@@ -191,89 +138,96 @@ class Gregorian:
         :rtype: Hijri
         """
 
-        jd = _gregorian_to_julian(self._year, self._month, self._day)
-        mjd = _julian_to_modified_julian(jd)
-        month_starts = getattr(ummalqura, calendar.title()).month_starts
-        i = bisect.bisect_right(month_starts, mjd)
-        months = i + getattr(ummalqura, calendar.title()).first_offset
+        self._check_range()
+        calendar_class = getattr(ummalqura, calendar.title())
+        jd = _ordinal_to_julian(self.toordinal())
+        rjd = _julian_to_reduced_julian(jd)
+        month_starts = calendar_class.month_starts
+        index = bisect.bisect_right(month_starts, rjd)
+        months = index + calendar_class.first_offset
         years = int((months - 1) / 12)
         year = years + 1
         month = months - 12 * years
-        day = mjd - month_starts[i - 1] + 1
-        return Hijri(year, month, day, calendar)
+        day = rjd - month_starts[index - 1] + 1
+        return _Hijri(year, month, day, calendar)
+
+    def _check_range(self) -> None:
+        """Check if date is within valid conversion range."""
+        range_ = (1937, 3, 14), (2077, 11, 16)  # including end
+        if not range_[0] <= (self.year, self.month, self.day) <= range_[1]:
+            raise ValueError("date is out of range for conversion")
 
 
-def _check_date(
-    year: int, month: int, day: int, calendar: str = "gregorian"
-) -> tuple:
-    """Check date values and if it's within conversion range."""
+class _Hijri(Hijri):
+    """A Hijri object converted from Gregorian date. This implementation is
+    to avoid double checking of date.
+    """
+
+    def __new__(cls, *args, **kwargs) -> "Hijri":
+        return super(Hijri, cls).__new__(cls)
+
+
+def _check_hijri_date(year: int, month: int, day: int, calendar: str) -> None:
+    """Check Hijri date values and if date is within valid conversion range."""
     # check calendar
-    if not isinstance(calendar, str):
-        raise TypeError("calendar must be a string")
     calendar = calendar.lower()
-    hijri_calendars = ["lunar", "solar"]
-    if calendar != "gregorian" and calendar not in hijri_calendars:
-        raise ValueError(
-            "calendar must be '{}' or '{}'".format(*hijri_calendars)
-        )
+    calendars = ["lunar", "solar"]
+    if calendar not in calendars:
+        raise ValueError("calendar must be '{}' or '{}'".format(*calendars))
+    calendar_class = getattr(ummalqura, calendar.title())
     # check year
-    if not isinstance(year, int):
-        raise TypeError("year must be an integer")
-    if year < 1 or len(str(year)) != 4:
+    if len(str(year)) != 4:
         raise ValueError("year must be in yyyy format")
     # check month
-    if not isinstance(month, int):
-        raise TypeError("month must be an integer")
     if not 1 <= month <= 12:
         raise ValueError("month must be in 1..12")
     # check range
-    calendar_range = getattr(ummalqura, calendar.title()).valid_range
-    if not calendar_range[0] <= (year, month, day) <= calendar_range[1]:
+    valid_range = calendar_class.valid_range
+    if not valid_range[0] <= (year, month, day) <= valid_range[1]:
         raise ValueError("date is out of range for conversion")
     # check day
-    if not isinstance(day, int):
-        raise TypeError("day must be an integer")
-    if calendar == "gregorian":
-        is_leap = year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
-        gregorian_months = [-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        if month == 2 and is_leap:
-            month_days = 29
-        else:
-            month_days = gregorian_months[month]
-    else:
-        month_days = _hijri_month_days(year, month, calendar)
+    month_index = _hijri_month_index(year, month, calendar_class)
+    month_days = _hijri_month_days(month_index, calendar_class)
     if not 1 <= day <= month_days:
         raise ValueError("day must be in 1..{} for month".format(month_days))
-    return year, month, day, calendar
 
 
-def _hijri_month_index(year: int, month: int, calendar: str) -> int:
+def _hijri_month_index(year: int, month: int, calendar_class) -> int:
     """Return index of month in Hijri month starts."""
-    years = year - 1
-    months = (years * 12) + month
-    index = months - getattr(ummalqura, calendar.title()).first_offset
+    months = ((year - 1) * 12) + month
+    index = months - calendar_class.first_offset
     return index
 
 
-def _hijri_month_days(year: int, month: int, calendar: str) -> int:
+def _hijri_month_days(index: int, calendar_class) -> int:
     """Return number of days in Hijri month."""
-    i = _hijri_month_index(year, month, calendar)
-    month_starts = getattr(ummalqura, calendar.title()).month_starts
-    days = month_starts[i] - month_starts[i - 1]
+    month_starts = calendar_class.month_starts
+    days = month_starts[index] - month_starts[index - 1]
     return days
 
 
-def _hijri_to_julian(year: int, month: int, day: int, calendar: str) -> int:
-    """Convert Hijri date to Julian day."""
-    i = _hijri_month_index(year, month, calendar)
-    month_starts = getattr(ummalqura, calendar.title()).month_starts
-    mjd = day + month_starts[i - 1] - 1
-    jd = _modified_julian_to_julian(mjd)
-    return jd
+def _julian_to_ordinal(jd: int) -> int:
+    """Convert Julian day number to ordinal number."""
+    return jd - 1721425
+
+
+def _ordinal_to_julian(rd: int) -> int:
+    """Convert ordinal number to Julian day number."""
+    return rd + 1721425
+
+
+def _julian_to_reduced_julian(jd: int) -> int:
+    """Convert Julian day number to reduced Julian day number."""
+    return jd - 2400000
+
+
+def _reduced_julian_to_julian(rjd: int) -> int:
+    """Convert reduced Julian day number to Julian day number."""
+    return rjd + 2400000
 
 
 def _gregorian_to_julian(year: int, month: int, day: int) -> int:
-    """Convert Gregorian date to Julian day."""
+    """Convert Gregorian date to Julian day number."""
     i = int((month - 14) / 12)
     jd = int((1461 * (year + 4800 + i)) / 4)
     jd += int((367 * (month - 2 - (12 * i))) / 12)
@@ -283,27 +237,15 @@ def _gregorian_to_julian(year: int, month: int, day: int) -> int:
 
 
 def _julian_to_gregorian(jd: int) -> tuple:
-    """Convert Julian day to Gregorian date."""
+    """Convert Julian day number to Gregorian date."""
     i = jd + 68569
     n = int((4 * i) / 146097)
     i -= int(((146097 * n) + 3) / 4)
-    ii = int((4000 * (i + 1)) / 1461001)
-    i -= int((1461 * ii) / 4) - 31
-    j = int((80 * i) / 2447)
-    day = i - int((2447 * j) / 80)
-    i = int(j / 11)
-    month = j + 2 - (12 * i)
-    year = 100 * (n - 49) + ii + i
+    year = int((4000 * (i + 1)) / 1461001)
+    i -= int((1461 * year) / 4) - 31
+    month = int((80 * i) / 2447)
+    day = i - int((2447 * month) / 80)
+    i = int(month / 11)
+    month += 2 - (12 * i)
+    year += 100 * (n - 49) + i
     return year, month, day
-
-
-def _julian_to_modified_julian(jd: int) -> int:
-    """Convert Julian day to modified Julian day number."""
-    mjd0 = 2400000
-    return jd - mjd0
-
-
-def _modified_julian_to_julian(mjd: int) -> int:
-    """Convert modified Julian day number to Julian day."""
-    mjd0 = 2400000
-    return mjd + mjd0
