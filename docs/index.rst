@@ -40,12 +40,12 @@ Features
 --------
 
 - Accurate and reliable conversion.
-- Fully tested against multiple original references.
 - Optimized code performance.
-- Easy and intuitive usage.
+- Fully tested against multiple original references.
 - Support for both lunar and solar Hijri calendars.
+- Validation of date input.
+- Easy and intuitive usage.
 - English/Arabic representation of Hijri months and days.
-- Optional validation of date input.
 
 .. note::
    The conversion is valid for dates between beginning of 1356 AH
@@ -72,7 +72,7 @@ To convert between Hijri and Gregorian dates:
 .. code-block:: pycon
 
    >>> convert.Hijri(1403, 2, 17).to_gregorian()
-   datetime.date(1982, 12, 2)
+   Gregorian(1982, 12, 2)
 
    >>> convert.Gregorian(1982, 12, 2).to_hijri()
    Hijri(1403, 2, 17, lunar)
@@ -83,12 +83,26 @@ To use Hijri solar calendar instead:
 .. code-block:: pycon
 
    >>> convert.Hijri(1361, 3, 11, "solar").to_gregorian()
-   datetime.date(1982, 12, 2)
+   Gregorian(1982, 12, 2)
 
    >>> convert.Gregorian(1982, 12, 2).to_hijri("solar")
    Hijri(1361, 3, 11, solar)
 
-The instance of :obj:`Hijri` object has some other useful methods:
+The :obj:`convert.Gregorian` object inherits all attributes and methods of
+:obj:`datetime.date` object:
+
+.. code-block:: pycon
+
+   # To get today date in Hijri
+   >>> convert.Gregorian.today().to_hijri()
+   Hijri(1440, 3, 18, lunar)
+
+   # To format Gregorian date converted from Hijri
+   >>> gregorian = convert.Hijri(1403, 2, 17).to_gregorian()
+   >>> gregorian.strftime("%A %d %b %Y")
+   'Thursday 02 Dec 1982'
+
+The :obj:`convert.Hijri` object has some other useful methods:
 
 .. code-block:: pycon
 
@@ -118,42 +132,27 @@ The instance of :obj:`Hijri` object has some other useful methods:
    >>> hijri.day_name()
    'Thursday'
 
-The Gregorian date converted from Hijri date is actually an instance of
-:obj:`datetime.date` object and therefore inherits all of its attributes
-and methods:
+Date values are by default checked if valid and within conversion range.
+Invalid date will raise a ``ValueError`` exception that can be caught and handled
+in try and except blocks:
 
 .. code-block:: pycon
 
-   >>> gregorian = convert.Hijri(1403, 2, 17).to_gregorian()
-
-   >>> gregorian.isoformat()
-   '1982-12-02'
-
-   >>> gregorian.strftime("%A %d %b %Y")
-   'Thursday 02 Dec 1982'
-
-To validate date values and check if date is within valid conversion range,
-change the `validate` parameter to ``True``.
-Invalid date will raise an exception that can be caught and handled in
-try and except blocks:
-
-.. code-block:: pycon
-
-   >>> convert.Hijri(1403, 1, 30, validate=True)
+   >>> convert.Hijri(1403, 1, 30)
    Traceback...
    ValueError: day must be in 1..29 for month
 
-   >>> convert.Gregorian(1882, 12, 2, validate=True)
+   >>> convert.Gregorian(1882, 12, 2)
    Traceback...
    ValueError: date is out of range for conversion
 
 Credits
 -------
 
-- The Umm al-Qura Calendar of Saudi Arabia by Robert Harry van Gent.
-  `Link <http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm>`__
-- Julian Day Numbers by Peter Meyer.
-  `Link <https://www.hermetic.ch/cal_stud/jdn.htm>`__
+- Robert Harry van Gent.
+  `The Umm al-Qura Calendar of Saudi Arabia <http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm>`__.
+- Peter Meyer.
+  `Julian Day Numbers <https://www.hermetic.ch/cal_stud/jdn.htm>`__.
 
 Licence
 -------
