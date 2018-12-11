@@ -31,7 +31,7 @@ setup(
         "Topic :: Software Development :: Localization",
         "Topic :: Utilities",
     ],
-    keywords="hijri date converter ummulqura saudi calendar",
+    keywords="hijri date converter ummalqura saudi calendar",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     include_package_data=True,
