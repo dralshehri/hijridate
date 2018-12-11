@@ -33,13 +33,13 @@ A Python package to convert Hijri date to/from Gregorian date using
 Features
 --------
 
-- Accurate and reliable conversion.
-- Optimized code performance.
-- Fully tested against multiple original references.
+- Accurate and reliable conversion formula.
 - Support for both lunar and solar Hijri calendars.
+- English/Arabic representation of Hijri months and days.
+- Fully tested against multiple original references.
 - Validation of date input.
 - Easy and intuitive usage.
-- English/Arabic representation of Hijri months and days.
+- Optimized code performance.
 
 Installation
 ------------
