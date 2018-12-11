@@ -34,11 +34,10 @@ Features
 --------
 
 - Accurate and reliable conversion formula.
+- Fully tested against multiple original references.
 - Support for both lunar and solar Hijri calendars.
 - English/Arabic representation of Hijri months and days.
-- Fully tested against multiple original references.
-- Validation of date input.
-- Easy and intuitive usage.
+- Validation of Hijri dates.
 - Optimized code performance.
 
 Installation
