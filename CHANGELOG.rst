@@ -1,6 +1,13 @@
 Change Log
 ----------
 
+**1.5.0 (2018-12-27)**
+
+- Added ``fromisoformat()`` classmethod to ``Hijri`` object.
+- Added support for rich comparison between Hijri dates.
+- Updated documentation and testing code.
+- Other minor fixes and enhancements.
+
 **1.4.0 (2018-11-26)**
 
 - Refactored conversion methods to improve performance.
@@ -8,7 +15,6 @@ Change Log
 - Added ``to_julian()`` method to ``Hijri`` object.
 - Updated documentation and testing code.
 - Other minor fixes and enhancements.
-
 
 **1.3.3 (2018-11-21)**
 
