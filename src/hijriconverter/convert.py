@@ -1,5 +1,5 @@
 from hijriconverter import ummalqura
-from datetime import date, timedelta
+from datetime import date
 import bisect
 
 
@@ -45,6 +45,49 @@ class Hijri:
     def __str__(self) -> str:
         return self.isoformat()
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Hijri):
+            raise TypeError("second operand must be 'Hijri' object")
+        return self.datetuple() == other.datetuple()
+
+    def __gt__(self, other: object) -> bool:
+        if not isinstance(other, Hijri):
+            raise TypeError("second operand must be 'Hijri' object")
+        return self.datetuple() > other.datetuple()
+
+    def __ge__(self, other: object) -> bool:
+        if not isinstance(other, Hijri):
+            raise TypeError("second operand must be 'Hijri' object")
+        return self.datetuple() >= other.datetuple()
+
+    def __lt__(self, other: object) -> bool:
+        if not isinstance(other, Hijri):
+            raise TypeError("second operand must be 'Hijri' object")
+        return self.datetuple() < other.datetuple()
+
+    def __le__(self, other: object) -> bool:
+        if not isinstance(other, Hijri):
+            raise TypeError("second operand must be 'Hijri' object")
+        return self.datetuple() <= other.datetuple()
+
+    @classmethod
+    def fromisoformat(cls, isodate: str, calendar: str = "lunar"):
+        """
+        Construct Hijri object from an ISO formatted Hijri date 'YYYY-MM-DD'.
+
+        :param isodate: Hijri date in ISO format ``YYYY-MM-DD``
+        :type isodate: str
+        :param calendar: Hijri calendar which may be ``lunar`` or ``solar``
+            (default is ``lunar``)
+        :type calendar: str
+
+        """
+
+        year = int(isodate[0:4])
+        month = int(isodate[5:7])
+        day = int(isodate[8:10])
+        return cls(year, month, day, calendar)
+
     @property
     def year(self) -> int:
         """Return Hijri year as an integer."""
@@ -79,7 +122,7 @@ class Hijri:
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 
-        :param language: language which may be 'en' or 'ar'
+        :param language: language which may be ``en`` or ``ar``
             (default is ``en``)
         :type language: str
         """
@@ -100,7 +143,7 @@ class Hijri:
         """Return day name.
 
         :param language: language which may be ``en`` or ``ar``
-            (default is 'en')
+            (default is ``en``)
         :type language: str
         """
 
@@ -157,7 +200,7 @@ class Gregorian(date):
         """Check if date is within valid conversion range."""
         range_ = (1937, 3, 14), (2077, 11, 16)  # including end
         if not range_[0] <= (self.year, self.month, self.day) <= range_[1]:
-            raise ValueError("date is out of range for conversion")
+            raise OverflowError("date is out of range for conversion")
 
 
 class _Hijri(Hijri):
@@ -186,7 +229,7 @@ def _check_hijri_date(year: int, month: int, day: int, calendar: str) -> None:
     # check range
     valid_range = calendar_class.valid_range
     if not valid_range[0] <= (year, month, day) <= valid_range[1]:
-        raise ValueError("date is out of range for conversion")
+        raise OverflowError("date is out of range for conversion")
     # check day
     month_index = _hijri_month_index(year, month, calendar_class)
     month_days = _hijri_month_days(month_index, calendar_class)
@@ -229,7 +272,7 @@ def _reduced_julian_to_julian(rjd: int) -> int:
 
 
 def _gregorian_to_julian(year: int, month: int, day: int) -> int:
-    """Convert Gregorian date to Julian day number."""
+    """Convert Gregorian date to Julian day number. (NOT USED)"""
     i = int((month - 14) / 12)
     jd = int((1461 * (year + 4800 + i)) / 4)
     jd += int((367 * (month - 2 - (12 * i))) / 12)
@@ -239,7 +282,7 @@ def _gregorian_to_julian(year: int, month: int, day: int) -> int:
 
 
 def _julian_to_gregorian(jd: int) -> tuple:
-    """Convert Julian day number to Gregorian date."""
+    """Convert Julian day number to Gregorian date. (NOT USED)"""
     i = jd + 68569
     n = int((4 * i) / 146097)
     i -= int(((146097 * n) + 3) / 4)
