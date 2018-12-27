@@ -37,6 +37,7 @@ Features
 - Fully tested against multiple original references.
 - Support for both lunar and solar Hijri calendars.
 - English/Arabic representation of Hijri months and days.
+- Rich comparison between Hijri dates.
 - Validation of Hijri dates.
 - Optimized code performance.
 
@@ -45,7 +46,7 @@ Installation
 
 .. code-block:: bash
 
-   $ pip install hijriconverter
+   $ pip install -U hijriconverter
 
 Documentation
 -------------
