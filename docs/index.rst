@@ -43,6 +43,7 @@ Features
 - Fully tested against multiple original references.
 - Support for both lunar and solar Hijri calendars.
 - English/Arabic representation of Hijri months and days.
+- Rich comparison between Hijri dates.
 - Validation of Hijri dates.
 - Optimized code performance.
 
@@ -55,7 +56,7 @@ Installation
 
 .. code-block:: bash
 
-   $ pip install hijriconverter
+   $ pip install -U hijriconverter
 
 Usage Examples
 --------------
@@ -76,17 +77,6 @@ To convert between Hijri and Gregorian dates:
    >>> convert.Gregorian(1982, 12, 2).to_hijri()
    Hijri(1403, 2, 17, lunar)
 
-By default, conversion from/to Hijri date will assume Hijri lunar calendar.
-To use Hijri solar calendar instead:
-
-.. code-block:: pycon
-
-   >>> convert.Hijri(1361, 3, 11, "solar").to_gregorian()
-   Gregorian(1982, 12, 2)
-
-   >>> convert.Gregorian(1982, 12, 2).to_hijri("solar")
-   Hijri(1361, 3, 11, solar)
-
 The :obj:`convert.Gregorian` object inherits all attributes and methods of
 :obj:`datetime.date` object:
 
@@ -94,7 +84,7 @@ The :obj:`convert.Gregorian` object inherits all attributes and methods of
 
    # To get today date in Hijri
    >>> convert.Gregorian.today().to_hijri()
-   Hijri(1440, 3, 18, lunar)
+   Hijri(1440, 4, 20, lunar)
 
    # To format Gregorian date converted from Hijri
    >>> gregorian = convert.Hijri(1403, 2, 17).to_gregorian()
@@ -131,9 +121,46 @@ The :obj:`convert.Hijri` object has some other useful methods:
    >>> hijri.day_name()
    'Thursday'
 
+Rich comparison (==, !=, >, >=, <, <=) for :obj:`convert.Hijri` objects
+are supported:
+
+.. code-block:: pycon
+
+   >>> convert.Hijri(1403, 2, 17) > convert.Hijri(1402, 2, 17)
+   True
+
+   >>> today_hijri = convert.Gregorian.today().to_hijri()
+   >>> convert.Hijri.fromisoformat("1403-02-17") < today_hijri
+   True
+
+To convert from/to ISO format:
+
+.. code-block:: pycon
+
+   >>> convert.Hijri.fromisoformat("1403-02-17").to_gregorian().isoformat()
+   '1982-12-02'
+
+   >>> convert.Gregorian.fromisoformat("1982-12-02").to_hijri().isoformat()
+   '1403-02-17'
+
+By default, conversion from/to Hijri date will assume Hijri lunar calendar.
+To use Hijri solar calendar instead:
+
+.. code-block:: pycon
+
+   >>> convert.Hijri(1361, 3, 11, "solar").to_gregorian()
+   Gregorian(1982, 12, 2)
+
+   >>> convert.Hijri.fromisoformat("1361-03-11", "solar").to_gregorian()
+   Gregorian(1982, 12, 2)
+
+   >>> convert.Gregorian(1982, 12, 2).to_hijri("solar")
+   Hijri(1361, 3, 11, solar)
+
 Date values are by default checked if valid and within conversion range.
-Invalid date will raise a ``ValueError`` exception that can be caught and handled
-in try and except blocks:
+Invalid date will raise ``ValueError`` exception and out of range date will
+raise ``OverflowError`` exception. They can be caught and handled in try and
+except blocks:
 
 .. code-block:: pycon
 
@@ -141,9 +168,9 @@ in try and except blocks:
    Traceback...
    ValueError: day must be in 1..29 for month
 
-   >>> convert.Gregorian(1882, 12, 2)
+   >>> convert.Gregorian(1882, 12, 2).to_hijri()
    Traceback...
-   ValueError: date is out of range for conversion
+   OverflowError: date is out of range for conversion
 
 Credits
 -------
