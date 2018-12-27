@@ -25,6 +25,31 @@ def test_hijri_string_representation(hijri_lunar):
     assert hijri_lunar.__str__() == "1410-08-13"
 
 
+@pytest.mark.parametrize(
+    "test_input", ["__eq__", "__gt__", "__ge__", "__lt__", "__le__"]
+)
+def test_test_hijri_comparison_exception(hijri_lunar, test_input):
+    with pytest.raises(TypeError) as e:
+        getattr(hijri_lunar, test_input)("w")
+    assert str(e.value) == "second operand must be 'Hijri' object"
+
+
+def test_hijri_equality(hijri_lunar):
+    assert hijri_lunar == convert.Hijri(1410, 8, 13)
+    assert hijri_lunar != convert.Hijri(1410, 8, 14)
+
+
+def test_hijri_ordering(hijri_lunar):
+    assert hijri_lunar > convert.Hijri(1410, 8, 12)
+    assert hijri_lunar >= convert.Hijri(1410, 8, 13)
+    assert hijri_lunar < convert.Hijri(1410, 8, 14)
+    assert hijri_lunar <= convert.Hijri(1410, 8, 13)
+
+
+def test_hijri_fromisoformat(hijri_lunar):
+    assert convert.Hijri.fromisoformat("1410-08-13") == hijri_lunar
+
+
 def test_hijri_year(hijri_lunar, hijri_solar):
     assert hijri_lunar.year == 1410
     assert hijri_solar.year == 1368
@@ -92,7 +117,7 @@ def test_gregorian_to_hijri(gregorian):
 def test_gregorian_valid_range(gregorian):
     try:
         gregorian._check_range()
-    except ValueError:
+    except OverflowError:
         pytest.fail()
 
 
@@ -104,7 +129,7 @@ def test_gregorian_valid_range(gregorian):
     ],
 )
 def test_gregorian_invalid_range(test_input, expected):
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(OverflowError) as e:
         convert.Gregorian(*test_input)._check_range()
     assert str(e.value) == expected
 
@@ -143,7 +168,7 @@ def test_hijri_valid_date(test_input):
     ],
 )
 def test_hijri_invalid_date(test_input, expected):
-    with pytest.raises((TypeError, ValueError)) as e:
+    with pytest.raises((ValueError, OverflowError)) as e:
         convert._check_hijri_date(*test_input)
     assert str(e.value) == expected
 
