@@ -41,6 +41,12 @@ Features
 - Validation of Hijri dates.
 - Optimized code performance.
 
+Demo
+----
+
+Please visit https://www.dralshehri.com/code/hijri-convertr to try the
+conversion function of this package as a simple usage example.
+
 Installation
 ------------
 
