@@ -51,6 +51,12 @@ Features
    The conversion is valid for dates between beginning of 1356 AH
    (14 March 1937 CE) and end of 1500 AH (16 November 2077 CE).
 
+Demo
+----
+
+Please visit https://www.dralshehri.com/code/hijri-converter to try the
+conversion function of this package as a simple usage example.
+
 Installation
 ------------
 
