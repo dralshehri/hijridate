@@ -54,7 +54,7 @@ Features
 Demo
 ----
 
-Please visit https://www.dralshehri.com/code/hijri-converter to try the
+Please visit https://www.dralshehri.com/hijri-converter to try the
 conversion function of this package as a simple usage example.
 
 Installation
