@@ -185,6 +185,10 @@ class Gregorian(date):
         year, month, day = date_object.timetuple()[:3]
         return cls(year, month, day)
 
+    def datetuple(self) -> tuple:
+        """Return Gregorian date as a tuple of (year, month, day)."""
+        return self.year, self.month, self.day
+
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 
@@ -228,7 +232,7 @@ class Gregorian(date):
         :rtype: Hijri
         """
 
-        _check_gregorian_date(*self.timetuple()[:3])
+        _check_gregorian_date(*self.datetuple())
         jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
         month_starts = calendars.Hijri.month_starts
