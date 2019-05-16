@@ -27,8 +27,8 @@ class Lunar:
 
     month_names: Month names in English and Arabic languages.
 
-    valid_range: Range of expected dates for correct conversion
-                 (including the end)
+    valid_range: Range of covered dates (including the end) for correct
+                 conversion.
 
     first_offset: Total months from epoch of lunar calendar to the the
                   first month in `valid_range`.
@@ -36,10 +36,8 @@ class Lunar:
     month_starts: Reduced Julian Day Numbers for first day of months
                   within `valid_range`.
     """
-    notations = {
-        "en": "AH",
-        "ar": "هـ",
-    }
+
+    notations = {"en": "AH", "ar": "هـ"}
     month_names = {
         "en": (
             "",
@@ -1826,8 +1824,8 @@ class Solar:
 
     month_names: Month names in English and Arabic languages.
 
-    valid_range: Range of expected dates for correct conversion
-                 (including the end)
+    valid_range: Range of covered dates (including the end) for correct
+                 conversion.
 
     first_offset: Total months from epoch of solar calendar to the the
                   first month in `valid_range`.
@@ -1836,10 +1834,7 @@ class Solar:
                   within `valid_range`.
     """
 
-    notations = {
-        "en": "SH",
-        "ar": "ش",
-    }
+    notations = {"en": "SH", "ar": "ش"}
     month_names = {
         "en": (
             "",
