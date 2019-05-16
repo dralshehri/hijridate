@@ -1,22 +1,22 @@
-from hijriconverter import ummalqura
+from hijriconverter import calendars
 from datetime import date
 import bisect
 
 
 class Hijri:
-    """A Hijri object represents a date (year, month and day) in lunar or
-    solar Hijri calendar.
+    """A Hijri object represents a date (year, month and day) in Hijri
+    calendar.
     """
 
     def __new__(
-        cls, year: int, month: int, day: int, calendar: str = "lunar"
+        cls, year: int, month: int, day: int
     ) -> "Hijri":
         """Construct Hijri date object after date validation"""
-        _check_hijri_date(year, month, day, calendar)
+        _check_hijri_date(year, month, day)
         return super().__new__(cls)
 
     def __init__(
-        self, year: int, month: int, day: int, calendar: str = "lunar"
+        self, year: int, month: int, day: int
     ) -> None:
         """
         :param year: Hijri year
@@ -25,22 +25,15 @@ class Hijri:
         :type month: int
         :param day: Hijri day
         :type day: int
-        :param calendar: Hijri calendar which may be ``lunar`` or ``solar``
-            (default is ``lunar``)
-        :type calendar: str
         """
 
         self._year = year
         self._month = month
         self._day = day
-        self._calendar = calendar.lower()
-        self._calendar_class = getattr(ummalqura, calendar.title())
-        self._index = _hijri_month_index(year, month, self._calendar_class)
+        self._index = _hijri_month_index(year, month)
 
     def __repr__(self) -> str:
-        return "Hijri({}, {}, {}, {})".format(
-            self._year, self._month, self._day, self._calendar
-        )
+        return "Hijri({}, {}, {})".format(self._year, self._month, self._day)
 
     def __str__(self) -> str:
         return self.isoformat()
@@ -71,22 +64,19 @@ class Hijri:
         return self.datetuple() <= other.datetuple()
 
     @classmethod
-    def fromisoformat(cls, date_string: str, calendar: str = "lunar"):
+    def fromisoformat(cls, date_string: str):
         """Construct Hijri object from an ISO formatted Hijri date
         'YYYY-MM-DD'.
 
         :param date_string: Hijri date in ISO format ``YYYY-MM-DD``
         :type date_string: str
-        :param calendar: Hijri calendar which may be ``lunar`` or ``solar``
-            (default is ``lunar``)
-        :type calendar: str
 
         """
 
         year = int(date_string[0:4])
         month = int(date_string[5:7])
         day = int(date_string[8:10])
-        return cls(year, month, day, calendar)
+        return cls(year, month, day)
 
     @property
     def year(self) -> int:
@@ -117,7 +107,7 @@ class Hijri:
 
     def month_days(self) -> int:
         """Return number of days in Hijri month."""
-        return _hijri_month_days(self._index, self._calendar_class)
+        return _hijri_month_days(self._index)
 
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
@@ -127,7 +117,7 @@ class Hijri:
         :type language: str
         """
 
-        return self._calendar_class.month_names[language][self._month]
+        return calendars.Hijri.month_names[language][self._month]
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 ... Sunday is 6."""
@@ -147,7 +137,7 @@ class Hijri:
         :type language: str
         """
 
-        return ummalqura.day_names[language][self.weekday()]
+        return calendars.day_names[language][self.weekday()]
 
     def notation(self, language: str = "en") -> str:
         """Return calendar notation.
@@ -157,11 +147,11 @@ class Hijri:
         :type language: str
         """
 
-        return self._calendar_class.notations[language]
+        return calendars.Hijri.notations[language]
 
     def to_julian(self) -> int:
         """Convert Hijri date to Julian day number."""
-        month_starts = self._calendar_class.month_starts
+        month_starts = calendars.Hijri.month_starts
         rjd = self._day + month_starts[self._index - 1] - 1
         jd = _reduced_julian_to_julian(rjd)
         return jd
@@ -194,34 +184,24 @@ class Gregorian(date):
         year, month, day = date_object.timetuple()[:3]
         return cls(year, month, day)
 
-    def to_hijri(self, calendar: str = "lunar") -> Hijri:
+    def to_hijri(self) -> Hijri:
         """Convert Gregorian date to Hijri date.
 
-        :param calendar: Hijri calendar which may be ``lunar`` or ``solar``
-            (default is ``lunar``)
-        :type calendar: str
         :return: Hijri date object
         :rtype: Hijri
         """
 
-        self._check_range()
-        calendar_class = getattr(ummalqura, calendar.title())
+        _check_gregorian_date(*self.timetuple()[:3])
         jd = _ordinal_to_julian(self.toordinal())
         rjd = _julian_to_reduced_julian(jd)
-        month_starts = calendar_class.month_starts
+        month_starts = calendars.Hijri.month_starts
         index = bisect.bisect_right(month_starts, rjd)
-        months = index + calendar_class.first_offset
+        months = index + calendars.Hijri.first_offset
         years = int((months - 1) / 12)
         year = years + 1
         month = months - 12 * years
         day = rjd - month_starts[index - 1] + 1
-        return _ValidatedHijri(year, month, day, calendar)
-
-    def _check_range(self) -> None:
-        """Check if date is within valid conversion range."""
-        range_ = (1937, 3, 14), (2077, 11, 16)  # including end
-        if not range_[0] <= (self.year, self.month, self.day) <= range_[1]:
-            raise OverflowError("date is out of range for conversion")
+        return _ValidatedHijri(year, month, day)
 
 
 class _ValidatedHijri(Hijri):
@@ -233,14 +213,16 @@ class _ValidatedHijri(Hijri):
         return super(Hijri, cls).__new__(cls)
 
 
-def _check_hijri_date(year: int, month: int, day: int, calendar: str) -> None:
+def _check_gregorian_date(year: int, month: int, day: int) -> None:
+    """Check if Gregorian date is within valid conversion range."""
+    # check range
+    valid_range = calendars.Gregorian.valid_range
+    if not valid_range[0] <= (year, month, day) <= valid_range[1]:
+        raise OverflowError("date is out of range for conversion")
+
+
+def _check_hijri_date(year: int, month: int, day: int) -> None:
     """Check Hijri date values and if date is within valid conversion range."""
-    # check calendar
-    calendar = calendar.lower()
-    calendars = ["lunar", "solar"]
-    if calendar not in calendars:
-        raise ValueError("calendar must be '{}' or '{}'".format(*calendars))
-    calendar_class = getattr(ummalqura, calendar.title())
     # check year
     if len(str(year)) != 4:
         raise ValueError("year must be in yyyy format")
@@ -248,26 +230,26 @@ def _check_hijri_date(year: int, month: int, day: int, calendar: str) -> None:
     if not 1 <= month <= 12:
         raise ValueError("month must be in 1..12")
     # check range
-    valid_range = calendar_class.valid_range
+    valid_range = calendars.Hijri.valid_range
     if not valid_range[0] <= (year, month, day) <= valid_range[1]:
         raise OverflowError("date is out of range for conversion")
     # check day
-    month_index = _hijri_month_index(year, month, calendar_class)
-    month_days = _hijri_month_days(month_index, calendar_class)
+    month_index = _hijri_month_index(year, month)
+    month_days = _hijri_month_days(month_index)
     if not 1 <= day <= month_days:
         raise ValueError("day must be in 1..{} for month".format(month_days))
 
 
-def _hijri_month_index(year: int, month: int, calendar_class) -> int:
+def _hijri_month_index(year: int, month: int) -> int:
     """Return index of month in Hijri month starts."""
     months = ((year - 1) * 12) + month
-    index = months - calendar_class.first_offset
+    index = months - calendars.Hijri.first_offset
     return index
 
 
-def _hijri_month_days(index: int, calendar_class) -> int:
+def _hijri_month_days(index: int) -> int:
     """Return number of days in Hijri month."""
-    month_starts = calendar_class.month_starts
+    month_starts = calendars.Hijri.month_starts
     days = month_starts[index] - month_starts[index - 1]
     return days
 
