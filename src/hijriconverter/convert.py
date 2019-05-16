@@ -173,6 +173,17 @@ class Gregorian(date):
     calendar inheriting all attributes and methods of `datetime.date` object.
     """
 
+    @classmethod
+    def fromdate(cls, date_object: date) -> "Gregorian":
+        """Construct Gregorian object from a date object.
+
+        :param date_object: Date object
+        :type date_object: datetime.date
+        """
+
+        year, month, day = date_object.timetuple()[:3]
+        return cls(year, month, day)
+
     def to_hijri(self, calendar: str = "lunar") -> Hijri:
         """Convert Gregorian date to Hijri date.
 
