@@ -18,9 +18,9 @@ hijri_gregorian_params, gregorian_hijri_params = load_params_from_json()
 
 @pytest.mark.parametrize("test_input, expected", hijri_gregorian_params)
 def test_convert_hijri_to_gregorian(test_input, expected):
-    year, month, day, calendar = test_input
-    hijri = convert.Hijri(year, month, day, calendar)
-    converted = hijri.to_gregorian().timetuple()[:3]
+    year, month, day = test_input
+    hijri = convert.Hijri(year, month, day)
+    converted = hijri.to_gregorian().datetuple()
     assert converted == expected
 
 
@@ -28,5 +28,5 @@ def test_convert_hijri_to_gregorian(test_input, expected):
 def test_convert_gregorian_to_hijri(test_input, expected):
     year, month, day = test_input
     gregorian = convert.Gregorian(year, month, day)
-    converted = gregorian.to_hijri(expected[3]).datetuple()
-    assert converted == expected[:3]
+    converted = gregorian.to_hijri().datetuple()
+    assert converted == expected
