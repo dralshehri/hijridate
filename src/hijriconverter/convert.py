@@ -205,7 +205,7 @@ class Gregorian(date):
         year = years + 1
         month = months - 12 * years
         day = rjd - month_starts[index - 1] + 1
-        return _Hijri(year, month, day, calendar)
+        return _ValidatedHijri(year, month, day, calendar)
 
     def _check_range(self) -> None:
         """Check if date is within valid conversion range."""
@@ -214,7 +214,7 @@ class Gregorian(date):
             raise OverflowError("date is out of range for conversion")
 
 
-class _Hijri(Hijri):
+class _ValidatedHijri(Hijri):
     """A Hijri object converted from Gregorian date. This implementation is
     to avoid double checking of date.
     """
