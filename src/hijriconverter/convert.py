@@ -216,6 +216,11 @@ class Gregorian(date):
 
         return calendars.Gregorian.notations[language]
 
+    def to_julian(self) -> int:
+        """Convert Gregorian date to Julian day number."""
+        jd = _ordinal_to_julian(self.toordinal())
+        return jd
+
     def to_hijri(self) -> Hijri:
         """Convert Gregorian date to Hijri date.
 
@@ -224,7 +229,7 @@ class Gregorian(date):
         """
 
         _check_gregorian_date(*self.timetuple()[:3])
-        jd = _ordinal_to_julian(self.toordinal())
+        jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
         month_starts = calendars.Hijri.month_starts
         index = bisect.bisect_right(month_starts, rjd)
