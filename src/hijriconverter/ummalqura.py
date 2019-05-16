@@ -23,6 +23,8 @@ day_names = {
 class Lunar:
     """Umm al-Qura lunar calendar specific constants.
 
+    notations: Calendar notations in English and Arabic languages.
+
     month_names: Month names in English and Arabic languages.
 
     valid_range: Range of expected dates for correct conversion
@@ -34,7 +36,10 @@ class Lunar:
     month_starts: Reduced Julian Day Numbers for first day of months
                   within `valid_range`.
     """
-
+    notations = {
+        "en": "AH",
+        "ar": "هـ",
+    }
     month_names = {
         "en": (
             "",
@@ -1817,6 +1822,8 @@ class Lunar:
 class Solar:
     """Umm al-Qura solar calendar specific constants.
 
+    notations: Calendar notations in English and Arabic languages.
+
     month_names: Month names in English and Arabic languages.
 
     valid_range: Range of expected dates for correct conversion
@@ -1829,6 +1836,10 @@ class Solar:
                   within `valid_range`.
     """
 
+    notations = {
+        "en": "SH",
+        "ar": "ش",
+    }
     month_names = {
         "en": (
             "",

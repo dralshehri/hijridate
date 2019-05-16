@@ -149,6 +149,16 @@ class Hijri:
 
         return ummalqura.day_names[language][self.weekday()]
 
+    def notation(self, language: str = "en") -> str:
+        """Return calendar notation.
+
+        :param language: language which may be ``en`` or ``ar``
+            (default is ``en``)
+        :type language: str
+        """
+
+        return self._calendar_class.notations[language]
+
     def to_julian(self) -> int:
         """Convert Hijri date to Julian day number."""
         month_starts = self._calendar_class.month_starts
