@@ -71,21 +71,21 @@ class Hijri:
         return self.datetuple() <= other.datetuple()
 
     @classmethod
-    def fromisoformat(cls, isodate: str, calendar: str = "lunar"):
-        """
-        Construct Hijri object from an ISO formatted Hijri date 'YYYY-MM-DD'.
+    def fromisoformat(cls, date_string: str, calendar: str = "lunar"):
+        """Construct Hijri object from an ISO formatted Hijri date
+        'YYYY-MM-DD'.
 
-        :param isodate: Hijri date in ISO format ``YYYY-MM-DD``
-        :type isodate: str
+        :param date_string: Hijri date in ISO format ``YYYY-MM-DD``
+        :type date_string: str
         :param calendar: Hijri calendar which may be ``lunar`` or ``solar``
             (default is ``lunar``)
         :type calendar: str
 
         """
 
-        year = int(isodate[0:4])
-        month = int(isodate[5:7])
-        day = int(isodate[8:10])
+        year = int(date_string[0:4])
+        month = int(date_string[5:7])
+        day = int(date_string[8:10])
         return cls(year, month, day, calendar)
 
     @property
