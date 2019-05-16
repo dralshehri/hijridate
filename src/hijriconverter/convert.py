@@ -30,7 +30,6 @@ class Hijri:
         self._year = year
         self._month = month
         self._day = day
-        self._index = _hijri_month_index(year, month)
 
     def __repr__(self) -> str:
         return "Hijri({}, {}, {})".format(self._year, self._month, self._day)
@@ -105,10 +104,6 @@ class Hijri:
         """Return Hijri date in slash format 'DD/MM/YYYY'."""
         return "{:02}/{:02}/{:04}".format(self._day, self._month, self._year)
 
-    def month_days(self) -> int:
-        """Return number of days in Hijri month."""
-        return _hijri_month_days(self._index)
-
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 
@@ -153,7 +148,8 @@ class Hijri:
     def to_julian(self) -> int:
         """Convert Hijri date to Julian day number."""
         month_starts = calendars.Hijri.month_starts
-        rjd = self._day + month_starts[self._index - 1] - 1
+        index = _hijri_month_index(self._year, self._month)
+        rjd = self._day + month_starts[index - 1] - 1
         jd = _reduced_julian_to_julian(rjd)
         return jd
 
