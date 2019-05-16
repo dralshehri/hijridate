@@ -139,8 +139,9 @@ class Hijri:
 
         return calendars.day_names[language][self.weekday()]
 
-    def notation(self, language: str = "en") -> str:
-        """Return calendar notation.
+    @staticmethod
+    def notation(language: str = "en") -> str:
+        """Return calendar notation/abbreviation.
 
         :param language: language which may be ``en`` or ``ar``
             (default is ``en``)
@@ -183,6 +184,37 @@ class Gregorian(date):
 
         year, month, day = date_object.timetuple()[:3]
         return cls(year, month, day)
+
+    def month_name(self, language: str = "en") -> str:
+        """Return Hijri month name.
+
+        :param language: language which may be ``en`` or ``ar``
+            (default is ``en``)
+        :type language: str
+        """
+
+        return calendars.Gregorian.month_names[language][self.month]
+
+    def day_name(self, language: str = "en") -> str:
+        """Return day name.
+
+        :param language: language which may be ``en`` or ``ar``
+            (default is ``en``)
+        :type language: str
+        """
+
+        return calendars.day_names[language][self.weekday()]
+
+    @staticmethod
+    def notation(language: str = "en") -> str:
+        """Return calendar notation/abbreviation.
+
+        :param language: language which may be ``en`` or ``ar``
+            (default is ``en``)
+        :type language: str
+        """
+
+        return calendars.Gregorian.notations[language]
 
     def to_hijri(self) -> Hijri:
         """Convert Gregorian date to Hijri date.
