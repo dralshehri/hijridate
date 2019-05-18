@@ -138,12 +138,7 @@ def test_gregorian_to_hijri(gregorian):
 
 
 @pytest.mark.parametrize(
-    "test_input",
-    [
-        (1990, 3, 10),
-        (1937, 3, 14),
-        (2077, 11, 16),
-    ],
+    "test_input", [(1990, 3, 10), (1937, 3, 14), (2077, 11, 16)]
 )
 def test_gregorian_valid_range(test_input):
     year, month, day = test_input
@@ -167,12 +162,7 @@ def test_gregorian_invalid_range(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "test_input",
-    [
-        (1410, 9, 30),
-        (1356, 1, 1),
-        (1500, 12, 30),
-    ],
+    "test_input", [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)]
 )
 def test_hijri_valid_date(test_input):
     year, month, day = test_input
