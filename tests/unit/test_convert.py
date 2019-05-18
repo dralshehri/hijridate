@@ -70,6 +70,10 @@ def test_hijri_slashformat(hijri):
     assert hijri.slashformat() == "13/08/1410"
 
 
+def test_hijri_month_length(hijri):
+    assert hijri.month_length() == 29
+
+
 def test_hijri_month_name(hijri):
     assert hijri.month_name() == "Sha’ban"
     assert hijri.month_name("ar") == "شعبان"
@@ -201,14 +205,6 @@ def test_hijri_month_index():
 
 def test_hijri_month_days():
     assert convert._hijri_month_length(656) == 29
-
-
-def test__gregorian_to_julian():
-    assert convert._gregorian_to_julian(1990, 3, 26) == 2447977
-
-
-def test_julian_to_gregorian():
-    assert convert._julian_to_gregorian(2447977) == (1990, 3, 26)
 
 
 def test_julian_to_ordinal():
