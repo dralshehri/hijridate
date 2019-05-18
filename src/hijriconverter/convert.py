@@ -8,16 +8,12 @@ class Hijri:
     calendar.
     """
 
-    def __new__(
-        cls, year: int, month: int, day: int
-    ) -> "Hijri":
+    def __new__(cls, year: int, month: int, day: int) -> "Hijri":
         """Construct Hijri date object after date validation"""
         _check_hijri_date(year, month, day)
         return super().__new__(cls)
 
-    def __init__(
-        self, year: int, month: int, day: int
-    ) -> None:
+    def __init__(self, year: int, month: int, day: int) -> None:
         """
         :param year: Hijri year
         :type year: int
