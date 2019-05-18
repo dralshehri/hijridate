@@ -104,6 +104,12 @@ class Hijri:
         """Return Hijri date in slash format 'DD/MM/YYYY'."""
         return "{:02}/{:02}/{:04}".format(self._day, self._month, self._year)
 
+    def month_length(self) -> int:
+        """Return number of days in Hijri month."""
+        month_index = _hijri_month_index(self._year, self._month)
+        month_length = _hijri_month_length(month_index)
+        return month_length
+
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 
@@ -287,8 +293,8 @@ def _hijri_month_index(year: int, month: int) -> int:
 def _hijri_month_length(index: int) -> int:
     """Return number of days in Hijri month."""
     month_starts = calendars.Hijri.month_starts
-    days = month_starts[index] - month_starts[index - 1]
-    return days
+    length = month_starts[index] - month_starts[index - 1]
+    return length
 
 
 def _julian_to_ordinal(jd: int) -> int:
