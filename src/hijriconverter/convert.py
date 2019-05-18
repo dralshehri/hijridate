@@ -228,7 +228,7 @@ class Gregorian(date):
         :rtype: Hijri
         """
 
-        _check_gregorian_date(*self.datetuple())
+        _check_gregorian_range(*self.datetuple())
         jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
         month_starts = calendars.Hijri.month_starts
@@ -238,10 +238,10 @@ class Gregorian(date):
         year = years + 1
         month = months - 12 * years
         day = rjd - month_starts[index - 1] + 1
-        return _ValidatedHijri(year, month, day)
+        return _ValidHijri(year, month, day)
 
 
-class _ValidatedHijri(Hijri):
+class _ValidHijri(Hijri):
     """A Hijri object converted from Gregorian date. This implementation is
     to avoid double checking of date.
     """
@@ -250,7 +250,7 @@ class _ValidatedHijri(Hijri):
         return super(Hijri, cls).__new__(cls)
 
 
-def _check_gregorian_date(year: int, month: int, day: int) -> None:
+def _check_gregorian_range(year: int, month: int, day: int) -> None:
     """Check if Gregorian date is within valid conversion range."""
     # check range
     valid_range = calendars.Gregorian.valid_range
@@ -266,15 +266,15 @@ def _check_hijri_date(year: int, month: int, day: int) -> None:
     # check month
     if not 1 <= month <= 12:
         raise ValueError("month must be in 1..12")
-    # check range
+    # check range (placed in this order intentionally)
     valid_range = calendars.Hijri.valid_range
     if not valid_range[0] <= (year, month, day) <= valid_range[1]:
         raise OverflowError("date is out of range for conversion")
-    # check day
+    # check day (if not within valid range, day could not be checked)
     month_index = _hijri_month_index(year, month)
-    month_days = _hijri_month_days(month_index)
-    if not 1 <= day <= month_days:
-        raise ValueError("day must be in 1..{} for month".format(month_days))
+    month_length = _hijri_month_length(month_index)
+    if not 1 <= day <= month_length:
+        raise ValueError("day must be in 1..{} for month".format(month_length))
 
 
 def _hijri_month_index(year: int, month: int) -> int:
@@ -284,7 +284,7 @@ def _hijri_month_index(year: int, month: int) -> int:
     return index
 
 
-def _hijri_month_days(index: int) -> int:
+def _hijri_month_length(index: int) -> int:
     """Return number of days in Hijri month."""
     month_starts = calendars.Hijri.month_starts
     days = month_starts[index] - month_starts[index - 1]
@@ -309,28 +309,3 @@ def _julian_to_reduced_julian(jd: int) -> int:
 def _reduced_julian_to_julian(rjd: int) -> int:
     """Convert reduced Julian day number to Julian day number."""
     return rjd + 2400000
-
-
-def _gregorian_to_julian(year: int, month: int, day: int) -> int:
-    """Convert Gregorian date to Julian day number. (NOT USED)"""
-    i = int((month - 14) / 12)
-    jd = int((1461 * (year + 4800 + i)) / 4)
-    jd += int((367 * (month - 2 - (12 * i))) / 12)
-    jd -= int((3 * int((year + 4900 + i) / 100)) / 4)
-    jd += day - 32075
-    return jd
-
-
-def _julian_to_gregorian(jd: int) -> tuple:
-    """Convert Julian day number to Gregorian date. (NOT USED)"""
-    i = jd + 68569
-    n = int((4 * i) / 146097)
-    i -= int(((146097 * n) + 3) / 4)
-    year = int((4000 * (i + 1)) / 1461001)
-    i -= int((1461 * year) / 4) - 31
-    month = int((80 * i) / 2447)
-    day = i - int((2447 * month) / 80)
-    i = int(month / 11)
-    month += 2 - (12 * i)
-    year += 100 * (n - 49) + i
-    return year, month, day
