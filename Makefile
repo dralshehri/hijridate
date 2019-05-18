@@ -57,7 +57,7 @@ install: clean ## install dev requirments and project source
 	pip install -q -e .
 
 format: ## format code with black
-	black -l 79 src tests setup.py
+	black -l 79 -t py36 src tests setup.py
 
 test: ## run unit tests only
 	pytest
