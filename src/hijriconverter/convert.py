@@ -32,7 +32,7 @@ class Hijri:
         self._day = day
 
     def __repr__(self) -> str:
-        return "Hijri({}, {}, {})".format(self._year, self._month, self._day)
+        return f"Hijri({self._year}, {self._month}, {self._day})"
 
     def __str__(self) -> str:
         return self.isoformat()
@@ -98,11 +98,11 @@ class Hijri:
 
     def isoformat(self) -> str:
         """Return Hijri date in ISO format 'YYYY-MM-DD'."""
-        return "{:04}-{:02}-{:02}".format(self._year, self._month, self._day)
+        return f"{self._year:04}-{self._month:02}-{self._day:02}"
 
     def slashformat(self) -> str:
         """Return Hijri date in slash format 'DD/MM/YYYY'."""
-        return "{:02}/{:02}/{:04}".format(self._day, self._month, self._year)
+        return f"{self._day:02}/{self._month:02}/{self._year:04}"
 
     def month_length(self) -> int:
         """Return number of days in Hijri month."""
@@ -280,7 +280,7 @@ def _check_hijri_date(year: int, month: int, day: int) -> None:
     month_index = _hijri_month_index(year, month)
     month_length = _hijri_month_length(month_index)
     if not 1 <= day <= month_length:
-        raise ValueError("day must be in 1..{} for month".format(month_length))
+        raise ValueError(f"day must be in 1..{month_length} for month")
 
 
 def _hijri_month_index(year: int, month: int) -> int:
