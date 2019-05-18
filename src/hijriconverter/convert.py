@@ -65,7 +65,8 @@ class Hijri:
 
         :param date_string: Hijri date in ISO format ``YYYY-MM-DD``
         :type date_string: str
-
+        :return: Hijri date object
+        :rtype: Hijri
         """
 
         year = int(date_string[0:4])
@@ -178,6 +179,8 @@ class Gregorian(date):
 
         :param date_object: Date object
         :type date_object: datetime.date
+        :return: Gregorian date object
+        :rtype: Gregorian
         """
 
         year, month, day = date_object.timetuple()[:3]
@@ -249,7 +252,7 @@ class _ValidHijri(Hijri):
     """
 
     def __new__(cls, *args, **kwargs) -> "Hijri":
-        return super(Hijri, cls).__new__(cls)
+        return super(Hijri, cls).__new__(cls, *args, **kwargs)
 
 
 def _check_gregorian_range(year: int, month: int, day: int) -> None:
