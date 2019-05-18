@@ -144,7 +144,7 @@ def test_gregorian_to_hijri(gregorian):
 def test_gregorian_valid_range(test_input):
     year, month, day = test_input
     try:
-        convert._check_gregorian_date(year, month, day)
+        convert._check_gregorian_range(year, month, day)
     except OverflowError:
         pytest.fail()
 
@@ -158,7 +158,7 @@ def test_gregorian_valid_range(test_input):
 )
 def test_gregorian_invalid_range(test_input, expected):
     with pytest.raises(OverflowError) as e:
-        convert._check_gregorian_date(*test_input)
+        convert._check_gregorian_range(*test_input)
     assert str(e.value) == expected
 
 
@@ -200,7 +200,7 @@ def test_hijri_month_index():
 
 
 def test_hijri_month_days():
-    assert convert._hijri_month_days(656) == 29
+    assert convert._hijri_month_length(656) == 29
 
 
 def test__gregorian_to_julian():
