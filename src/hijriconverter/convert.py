@@ -190,6 +190,10 @@ class Gregorian(date):
         """Return Gregorian date as a tuple of (year, month, day)."""
         return self.year, self.month, self.day
 
+    def slashformat(self) -> str:
+        """Return Hijri date in slash format 'DD/MM/YYYY'."""
+        return f"{self.day:02}/{self.month:02}/{self.year:04}"
+
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 

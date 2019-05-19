@@ -114,6 +114,10 @@ def test_gregorian_datetuple(gregorian):
     assert gregorian.datetuple() == (1990, 3, 10)
 
 
+def test_gregorian_slashformat(gregorian):
+    assert gregorian.slashformat() == "10/03/1990"
+
+
 def test_gregorian_month_name(gregorian):
     assert gregorian.month_name() == "March"
     assert gregorian.month_name("ar") == "مارس"
