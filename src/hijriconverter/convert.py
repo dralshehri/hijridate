@@ -252,7 +252,7 @@ class _ValidHijri(Hijri):
     """
 
     def __new__(cls, *args, **kwargs) -> "Hijri":
-        return super(Hijri, cls).__new__(cls, *args, **kwargs)
+        return super(Hijri, cls).__new__(cls)
 
 
 def _check_gregorian_range(year: int, month: int, day: int) -> None:
