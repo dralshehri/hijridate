@@ -1,6 +1,6 @@
 from hijriconverter import calendars
 from datetime import date
-import bisect
+from bisect import bisect
 
 
 class Hijri:
@@ -152,7 +152,7 @@ class Hijri:
         """Convert Hijri date to Julian day number."""
         month_starts = calendars.Hijri.month_starts
         index = _hijri_month_index(self._year, self._month)
-        rjd = self._day + month_starts[index - 1] - 1
+        rjd = month_starts[index] + self._day - 1
         jd = _reduced_julian_to_julian(rjd)
         return jd
 
@@ -241,12 +241,12 @@ class Gregorian(date):
         jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
         month_starts = calendars.Hijri.month_starts
-        index = bisect.bisect_right(month_starts, rjd)
+        index = bisect(month_starts, rjd) - 1
         months = index + calendars.Hijri.first_offset
-        years = int((months - 1) / 12)
+        years = int(months / 12)
         year = years + 1
-        month = months - 12 * years
-        day = rjd - month_starts[index - 1] + 1
+        month = months - (years * 12) + 1
+        day = rjd - month_starts[index] + 1
         return _ValidHijri(year, month, day)
 
 
@@ -288,7 +288,7 @@ def _check_hijri_date(year: int, month: int, day: int) -> None:
 
 def _hijri_month_index(year: int, month: int) -> int:
     """Return index of month in Hijri month starts."""
-    months = ((year - 1) * 12) + month
+    months = ((year - 1) * 12) + month - 1
     index = months - calendars.Hijri.first_offset
     return index
 
@@ -296,7 +296,7 @@ def _hijri_month_index(year: int, month: int) -> int:
 def _hijri_month_length(index: int) -> int:
     """Return number of days in Hijri month."""
     month_starts = calendars.Hijri.month_starts
-    length = month_starts[index] - month_starts[index - 1]
+    length = month_starts[index + 1] - month_starts[index]
     return length
 
 
