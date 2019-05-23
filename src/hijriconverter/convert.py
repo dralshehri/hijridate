@@ -164,8 +164,7 @@ class Hijri:
         """
 
         jd = self.to_julian()
-        rd = _julian_to_ordinal(jd)
-        return Gregorian.fromordinal(rd)
+        return Gregorian.fromordinal(_julian_to_ordinal(jd))
 
 
 class Gregorian(date):
@@ -305,9 +304,9 @@ def _julian_to_ordinal(jd: int) -> int:
     return jd - 1721425
 
 
-def _ordinal_to_julian(rd: int) -> int:
+def _ordinal_to_julian(n: int) -> int:
     """Convert ordinal number to Julian day number."""
-    return rd + 1721425
+    return n + 1721425
 
 
 def _julian_to_reduced_julian(jd: int) -> int:
