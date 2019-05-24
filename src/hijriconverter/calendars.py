@@ -82,14 +82,14 @@ class Hijri:
     month_names: Month names in English and Arabic languages.
 
     valid_range: Range of covered dates (including the end) for correct
-                 conversion.
+        conversion.
 
-    first_offset: Total months from epoch of lunar calendar to the the
-                  first month in `valid_range`.
+    first_offset: Total months from epoch of lunar calendar to the first
+        month in `valid_range`.
 
-    month_starts: Reduced Julian Day Numbers for first day of months
-                  within `valid_range`. Based on data available on
-                  https://github.com/dralshehri/ummalqura-calendar-dataset
+    month_starts: Reduced Julian Day (RJD) numbers for beginning of lunar
+        months within `valid_range`. Based on data available on
+        https://github.com/dralshehri/ummalqura-calendar
     """
 
     notations = {"en": "AH", "ar": "هـ"}

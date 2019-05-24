@@ -149,7 +149,7 @@ class Hijri:
         return calendars.Hijri.notations[language]
 
     def to_julian(self) -> int:
-        """Convert Hijri date to Julian day number."""
+        """Convert Hijri date to Julian Day (JD) number."""
         month_starts = calendars.Hijri.month_starts
         index = _hijri_month_index(self._year, self._month)
         rjd = month_starts[index] + self._day - 1
@@ -225,7 +225,7 @@ class Gregorian(date):
         return calendars.Gregorian.notations[language]
 
     def to_julian(self) -> int:
-        """Convert Gregorian date to Julian day number."""
+        """Convert Gregorian date to Julian Day (JD) number."""
         jd = _ordinal_to_julian(self.toordinal())
         return jd
 
@@ -300,20 +300,20 @@ def _hijri_month_length(index: int) -> int:
 
 
 def _julian_to_ordinal(jd: int) -> int:
-    """Convert Julian day number to ordinal number."""
+    """Convert Julian Day (JD) number to ordinal number."""
     return jd - 1721425
 
 
 def _ordinal_to_julian(n: int) -> int:
-    """Convert ordinal number to Julian day number."""
+    """Convert ordinal number to Julian Day (JD) number."""
     return n + 1721425
 
 
 def _julian_to_reduced_julian(jd: int) -> int:
-    """Convert Julian day number to reduced Julian day number."""
+    """Convert Julian Day (JD) number to Reduced Julian Day (RJD) number."""
     return jd - 2400000
 
 
 def _reduced_julian_to_julian(rjd: int) -> int:
-    """Convert reduced Julian day number to Julian day number."""
+    """Convert Reduced Julian Day (RJD) number to Julian Day (JD) number."""
     return rjd + 2400000
