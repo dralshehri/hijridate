@@ -3,7 +3,6 @@ SHELL := /bin/bash
 
 VENV=.venv
 PYTHON=$(VENV)/bin/python
-ACTIVATE=source $(VENV)/bin/activate
 
 .PHONY: clean clean-test clean-pyc clean-docs clean-build install
 
@@ -18,14 +17,14 @@ clean-test: ## Remove tests artifacts
 	rm -f .coverage
 	rm -fr htmlcov
 
+clean-docs: ## Remove docs artifacts
+	rm -fr docs/_build
+
 clean-pyc: ## Remove python artifacts
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -fr {} +
-
-clean-docs: ## Remove docs artifacts
-	rm -fr docs/_build
 
 clean-build: ## Remove build artifacts
 	rm -fr build
@@ -35,7 +34,8 @@ clean-build: ## Remove build artifacts
 	find . -name '*.egg' -exec rm -f {} +
 
 install: clean ## Install development requirments
-	python3 -m venv .venv --clear --copies
+	rm -fr .venv
+	python3 -m venv .venv --copies
 	$(PYTHON) -m pip install -U pip setuptools
 	$(PYTHON) -m pip install -U pytest pytest-cov black sphinx wheel twine
 	$(PYTHON) -m pip install -e .
@@ -54,7 +54,7 @@ test-more: ## Run unit and integration tests
 	$(PYTHON) -m pytest tests/*
 
 docs: clean-docs ## Generate html documentation
-	$(ACTIVATE); $(MAKE) -C docs html
+	source $(VENV)/bin/activate; $(MAKE) -C docs html
 	$(PYTHON) -m webbrowser $(PWD)/docs/_build/html/index.html
 
 build: clean-build ## Build and check the package
