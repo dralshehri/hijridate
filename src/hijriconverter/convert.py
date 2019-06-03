@@ -1,6 +1,6 @@
 from datetime import date
 from bisect import bisect
-from hijriconverter import calendars
+from hijriconverter import ummalqura, locales
 
 
 class Hijri:
@@ -110,12 +110,12 @@ class Hijri:
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 
-        :param language: language which may be ``en`` or ``ar``
-            (default is ``en``)
+        :param language: Language for localized translation which may be
+            ``en`` or ``ar`` (default is ``en``)
         :type language: str
         """
 
-        return calendars.Hijri.month_names[language][self._month]
+        return getattr(locales, language).hijri_months[self._month]
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 ... Sunday is 6."""
@@ -130,27 +130,27 @@ class Hijri:
     def day_name(self, language: str = "en") -> str:
         """Return day name.
 
-        :param language: language which may be ``en`` or ``ar``
-            (default is ``en``)
+        :param language: Language for localized translation which may be
+            ``en`` or ``ar`` (default is ``en``)
         :type language: str
         """
 
-        return calendars.day_names[language][self.weekday()]
+        return getattr(locales, language).weekday_names[self.weekday()]
 
     @staticmethod
     def notation(language: str = "en") -> str:
         """Return calendar notation/abbreviation.
 
-        :param language: language which may be ``en`` or ``ar``
-            (default is ``en``)
+        :param language: Language for localized translation which may be
+            ``en`` or ``ar`` (default is ``en``)
         :type language: str
         """
 
-        return calendars.Hijri.notations[language]
+        return getattr(locales, language).hijri_notation
 
     def to_julian(self) -> int:
         """Convert Hijri date to Julian Day (JD) number."""
-        month_starts = calendars.Hijri.month_starts
+        month_starts = ummalqura.month_starts
         index = _hijri_month_index(self._year, self._month)
         rjd = month_starts[index] + self._day - 1
         jd = _reduced_julian_to_julian(rjd)
@@ -196,33 +196,33 @@ class Gregorian(date):
     def month_name(self, language: str = "en") -> str:
         """Return Hijri month name.
 
-        :param language: language which may be ``en`` or ``ar``
-            (default is ``en``)
+        :param language: Language for localized translation which may be
+            ``en`` or ``ar`` (default is ``en``)
         :type language: str
         """
 
-        return calendars.Gregorian.month_names[language][self.month]
+        return getattr(locales, language).gregorian_months[self.month]
 
     def day_name(self, language: str = "en") -> str:
         """Return day name.
 
-        :param language: language which may be ``en`` or ``ar``
-            (default is ``en``)
+        :param language: Language for localized translation which may be
+            ``en`` or ``ar`` (default is ``en``)
         :type language: str
         """
 
-        return calendars.day_names[language][self.weekday()]
+        return getattr(locales, language).weekday_names[self.weekday()]
 
     @staticmethod
     def notation(language: str = "en") -> str:
         """Return calendar notation/abbreviation.
 
-        :param language: language which may be ``en`` or ``ar``
-            (default is ``en``)
+        :param language: Language for localized translation which may be
+            ``en`` or ``ar`` (default is ``en``)
         :type language: str
         """
 
-        return calendars.Gregorian.notations[language]
+        return getattr(locales, language).gregorian_notation
 
     def to_julian(self) -> int:
         """Convert Gregorian date to Julian Day (JD) number."""
@@ -239,9 +239,9 @@ class Gregorian(date):
         _check_gregorian_range(*self.datetuple())
         jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
-        month_starts = calendars.Hijri.month_starts
+        month_starts = ummalqura.month_starts
         index = bisect(month_starts, rjd) - 1
-        months = index + calendars.Hijri.first_offset
+        months = index + ummalqura.hijri_offset
         years = int(months / 12)
         year = years + 1
         month = months - (years * 12) + 1
@@ -261,7 +261,7 @@ class _ValidHijri(Hijri):
 def _check_gregorian_range(year: int, month: int, day: int) -> None:
     """Check if Gregorian date is within valid conversion range."""
     # check range
-    valid_range = calendars.Gregorian.valid_range
+    valid_range = ummalqura.gregorian_range
     if not valid_range[0] <= (year, month, day) <= valid_range[1]:
         raise OverflowError("date is out of range for conversion")
 
@@ -275,7 +275,7 @@ def _check_hijri_date(year: int, month: int, day: int) -> None:
     if not 1 <= month <= 12:
         raise ValueError("month must be in 1..12")
     # check range (placed in this order intentionally)
-    valid_range = calendars.Hijri.valid_range
+    valid_range = ummalqura.hijri_range
     if not valid_range[0] <= (year, month, day) <= valid_range[1]:
         raise OverflowError("date is out of range for conversion")
     # check day (if not within valid range, day could not be checked)
@@ -288,13 +288,13 @@ def _check_hijri_date(year: int, month: int, day: int) -> None:
 def _hijri_month_index(year: int, month: int) -> int:
     """Return index of month in Hijri month starts."""
     months = ((year - 1) * 12) + month - 1
-    index = months - calendars.Hijri.first_offset
+    index = months - ummalqura.hijri_offset
     return index
 
 
 def _hijri_month_length(index: int) -> int:
     """Return number of days in Hijri month."""
-    month_starts = calendars.Hijri.month_starts
+    month_starts = ummalqura.month_starts
     length = month_starts[index + 1] - month_starts[index]
     return length
 
