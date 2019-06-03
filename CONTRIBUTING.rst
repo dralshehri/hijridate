@@ -32,7 +32,9 @@ to add a new feature, to update documentation). The steps below explain how:
    own feature branch off of the latest master commit. While working on your
    feature branch, make sure to stay up to date with the master branch by
    pulling in changes, possibly from the 'upstream' repository
-   (follow the instructions `here <https://help.github.com/articles/configuring-a-remote-for-a-fork/>`__ and `here <https://help.github.com/articles/syncing-a-fork/>`__).
+   (follow the instructions
+   `here <https://help.github.com/articles/configuring-a-remote-for-a-fork/>`__
+   and `here <https://help.github.com/articles/syncing-a-fork/>`__).
 #. Before coding on your local machine, make sure to run ``make install`` to
    create a virtual environment and install development dependencies. Then
    activate the environment by running ``source .venv/bin/activate``.
@@ -42,8 +44,14 @@ to add a new feature, to update documentation). The steps below explain how:
 #. Before committing changes, make sure to apply code styling by running
    ``make format``.
 #. Update or expand the documentation.
-#. `Push <http://rogerdudler.github.io/git-guide/>`__ your feature branch to
-   (your fork of) the Hijri Converter repository on GitHub.
-#. Create the pull request, e.g. following the instructions `here <https://help.github.com/articles/creating-a-pull-request/>`__.
+#. Push your feature branch to (your fork of) the Hijri Converter repository
+   on GitHub (you can follow the instructions
+   `here <https://help.github.com/en/articles/pushing-to-a-remote/>`__).
+#. Create the pull request, e.g. following the instructions
+   `here <https://help.github.com/articles/creating-a-pull-request/>`__.
 
-In case you feel like you've made a valuable contribution, but you don't know how to write or run tests for it, or how to generate the documentation: don't let this discourage you from making the pull request; I can help you! Just go ahead and submit the pull request, but keep in mind that you might be asked to append additional commits to your pull request.
+In case you feel like you've made a valuable contribution, but you don't know
+how to write or run tests for it, or how to generate the documentation: don't
+let this discourage you from making the pull request; I can help you! Just go
+ahead and submit the pull request, but keep in mind that you might be asked to
+append additional commits to your pull request.
