@@ -1,7 +1,7 @@
+import json
+import pathlib
 import pytest
 from hijriconverter import convert
-import pathlib
-import json
 
 
 def load_params_from_json():
