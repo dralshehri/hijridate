@@ -152,6 +152,8 @@ Installation
 Usage Examples
 --------------
 
+.. module:: convert
+
 To import the package:
 
 .. code-block:: pycon
@@ -168,7 +170,7 @@ To convert between Hijri and Gregorian dates:
    >>> convert.Gregorian(1982, 12, 2).to_hijri()
    Hijri(1403, 2, 17)
 
-The :obj:`convert.Gregorian` object inherits all attributes and methods of
+The :obj:`Gregorian` object inherits all attributes and methods of
 :obj:`datetime.date` object:
 
 .. code-block:: pycon
@@ -181,8 +183,8 @@ The :obj:`convert.Gregorian` object inherits all attributes and methods of
    >>> convert.Gregorian(1982, 12, 2).strftime("%A, %-d %B %Y")
    'Thursday, 2 December 1982'
 
-Rich comparison (==, !=, >, >=, <, <=) for :obj:`convert.Hijri` objects
-are also supported:
+Rich comparison (==, !=, >, >=, <, <=) for :obj:`Hijri` objects are also
+supported:
 
 .. code-block:: pycon
 
@@ -203,8 +205,7 @@ To convert from/to ISO format:
    >>> convert.Gregorian.fromisoformat("1982-12-02").to_hijri().isoformat()
    '1403-02-17'
 
-You can construct a :obj:`convert.Gregorian` object from :obj:`datetime.date`
-object:
+You can construct a :obj:`Gregorian` object from :obj:`datetime.date` object:
 
 .. code-block:: pycon
 
@@ -213,7 +214,7 @@ object:
    >>> convert.Gregorian.fromdate(my_date)
    Gregorian(1982, 12, 2)
 
-The :obj:`convert.Hijri` object has some other useful methods. For example:
+The :obj:`Hijri` object has some other useful methods. For example:
 
 .. code-block:: pycon
 
@@ -234,8 +235,32 @@ The :obj:`convert.Hijri` object has some other useful methods. For example:
    >>> hijri.notation()
    'AH'
 
-The above example methods can also be applied to :obj:`convert.Gregorian`
-object.
+The above example methods can also be applied to :obj:`Gregorian` object.
+
+Internationalization
+--------------------
+
+Representation of weekday names, month names, and calendar notations is
+supported. Currently, Arabic and English translations are available, but it
+can be easily extended for other natural languages.
+
+The English is the default language and following is an example showing how
+to use the Arabic language instead:
+
+.. code-block:: pycon
+
+   >>> from hijriconverter import convert
+
+   >>> hijri = convert.Hijri(1403, 2, 17)
+
+   >>> hijri.month_name("ar")
+      'صفر'
+
+   >>> hijri.day_name("ar")
+      'الخميس'
+
+   >>> hijri.notation("ar")
+      'هـ'
 
 Date Validation
 ---------------
@@ -256,29 +281,6 @@ raises an ``OverflowError`` exception. They can be caught and handled in
    >>> convert.Gregorian(1882, 12, 2).to_hijri()
    Traceback...
    OverflowError: date is out of range for conversion
-
-Internationalization
---------------------
-
-Representation of weekday names, month names, and calendar notations is
-supported. Currently, Arabic and English translations are available, but it
-can be easily extended for other natural languages.
-
-The English is the default language and following is an example showing how
-to use the Arabic language instead:
-
-.. code-block:: pycon
-
-   >>> from hijriconverter import convert
-
-   >>> hijri = convert.Hijri(1403, 2, 17)
-
-   >>> hijri.month_name("ar")
-      'صفر'
-   >>> hijri.day_name("ar")
-      'الخميس'
-   >>> hijri.notation("ar")
-      'هـ'
 
 Source Code
 -----------
@@ -314,4 +316,5 @@ API Reference
 This section documents the API of `convert` module, which is the main module
 of Hijri Converter package.
 
-.. automodule:: convert
+.. autoclass:: Hijri
+.. autoclass:: Gregorian
