@@ -14,3 +14,15 @@ a.reference:hover {
     border-bottom: none;
 }
 
+dl.class {
+    margin-top: 40px;
+}
+
+dl.method {
+    margin-top: 20px;
+}
+
+dd.field-odd {
+    margin-top: 0;
+}
+
