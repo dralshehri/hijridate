@@ -1,2 +1,1 @@
-from hijriconverter.locales import ar
-from hijriconverter.locales import en
+from hijriconverter.locales import ar, en
