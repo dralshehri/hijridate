@@ -4,7 +4,7 @@ Change Log
 **[Unreleased]**
 
 In short, this version supports only lunar Hijri calendar on Python 3.6+ with
-a more accurate conversion in complete alignment with Umm al-Qura official
+a more accurate conversion in complete alignment with the Umm al-Qura official
 calendar.
 
 Details are as follows:
@@ -21,7 +21,7 @@ Details are as follows:
 - Changed formatted string to use f-strings.
 - Improved documentation and examples.
 - Updated unit tests.
-- Fixed some minor issues and typos.
+- Fixed other minor issues and typos.
 
 **1.5.0**
 
