@@ -38,7 +38,7 @@ docs: clean-docs
 	$(PYTHON) -m webbrowser $(PWD)/docs/_build/html/index.html
 
 .PHONY: build ## Build and check the package
-build: clean-build
+build: clean
 	$(PYTHON) setup.py sdist bdist_wheel
 	$(PYTHON) -m twine check dist/*
 

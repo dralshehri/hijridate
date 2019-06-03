@@ -1,3 +1,7 @@
+graft src
+graft tests
+graft docs
+
 include LICENSE
 include CHANGELOG.rst
 include CONTRIBUTING.rst
