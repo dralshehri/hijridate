@@ -8,7 +8,7 @@ PYTHON=$(VENV)/bin/python
 
 help:
 	@grep '^[a-zA-Z]' $(MAKEFILE_LIST) | \
-    awk -F ':.*?## ' 'NF==2 {printf "\033[34m  %-15s\033[0m %s\n", $$1, $$2}'
+	awk -F ':.*?## ' 'NF==2 {printf "\033[34m  %-15s\033[0m %s\n", $$1, $$2}'
 
 clean: clean-test clean-pyc clean-docs clean-build ## Remove all artifacts
 
@@ -61,5 +61,5 @@ build: clean-build ## Build and check the package
 	$(PYTHON) setup.py sdist bdist_wheel
 	$(PYTHON) -m twine check dist/*
 
-deploy: build ## Deploy the package to PyPi
+deploy: build ## Deploy the package to PyPI
 	$(PYTHON) -m twine upload dist/*
