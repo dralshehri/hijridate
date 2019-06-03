@@ -1,3 +1,7 @@
+div.body {
+    min-width: auto;
+}
+
 div.body p, div.body dd, div.body li, div.body blockquote {
     -moz-hyphens: none;
     -ms-hyphens: none;
@@ -14,12 +18,36 @@ a.reference:hover {
     border-bottom: none;
 }
 
+@media screen and (max-width: 870px) {
+    ul {
+        margin-left: 30px;
+    }
+}
+
+div.contents {
+    padding: 7px;
+}
+
+div.contents ul {
+    list-style-type: none;
+    margin-left: 20px;
+}
+
 dl.class {
     margin-top: 40px;
 }
 
 dl.method {
-    margin-top: 20px;
+    margin-top: 30px;
+}
+
+dl.method > dd > p {
+    margin-bottom: 5px;
+}
+
+dl.class > dt, dl.method > dt {
+    background: #EAEAEA;
+    padding: 4px;
 }
 
 dd.field-odd {
