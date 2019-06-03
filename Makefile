@@ -1,65 +1,81 @@
+# Makefile config
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
+# Python environment variables
 VENV=.venv
 PYTHON=$(VENV)/bin/python
 
-.PHONY: clean clean-test clean-pyc clean-docs clean-build install
 
-help:
-	@grep '^[a-zA-Z]' $(MAKEFILE_LIST) | \
-	awk -F ':.*?## ' 'NF==2 {printf "\033[34m  %-15s\033[0m %s\n", $$1, $$2}'
-
-clean: clean-test clean-pyc clean-docs clean-build ## Remove all artifacts
-
-clean-test: ## Remove tests artifacts
-	rm -fr .pytest_cache
-	rm -f .coverage
-	rm -fr htmlcov
-
-clean-docs: ## Remove docs artifacts
-	rm -fr docs/_build
-
-clean-pyc: ## Remove python artifacts
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -fr {} +
-
-clean-build: ## Remove build artifacts
-	rm -fr build
-	rm -fr dist
-	rm -fr .eggs
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
-
-install: clean ## Install development requirments
+.PHONY: install ## Install development requirments
+install: clean
 	rm -fr .venv
 	python3 -m venv .venv --copies
 	$(PYTHON) -m pip install -U pip setuptools
 	$(PYTHON) -m pip install -U pytest pytest-cov black sphinx wheel twine
 	$(PYTHON) -m pip install -e .
 
-format: ## Format code with Black
-	$(PYTHON) -m black -l 79 -t py36 src tests setup.py
-
-test: ## Run unit tests
+.PHONY: test ## Run unit tests
+test: clean-test
 	$(PYTHON) -m pytest
 
-test-cov: ## Run tests with code coverage
+.PHONY: test-cov ## Run tests with code coverage
+test-cov: clean-test
 	$(PYTHON) -m pytest --cov --cov-report term --cov-report html
 	$(PYTHON) -m webbrowser $(PWD)/htmlcov/index.html
 
-test-more: ## Run unit and integration tests
+.PHONY: test-more ## Run unit and integration tests
+test-more: clean-test
 	$(PYTHON) -m pytest tests/*
 
-docs: clean-docs ## Generate html documentation
+.PHONY: format ## Format code with Black
+format:
+	$(PYTHON) -m black -l 79 -t py36 src tests setup.py
+
+.PHONY: docs ## Generate html documentation
+docs: clean-docs
 	source $(VENV)/bin/activate; $(MAKE) -C docs html
 	$(PYTHON) -m webbrowser $(PWD)/docs/_build/html/index.html
 
-build: clean-build ## Build and check the package
+.PHONY: build ## Build and check the package
+build: clean-build
 	$(PYTHON) setup.py sdist bdist_wheel
 	$(PYTHON) -m twine check dist/*
 
-deploy: build ## Deploy the package to PyPI
+.PHONY: deploy ## Deploy the package to PyPI
+deploy: build
 	$(PYTHON) -m twine upload dist/*
+
+.PHONY: clean ## Remove all artifacts
+clean: clean-test clean-pyc clean-docs clean-build
+
+.PHONY: clean-test ## Remove tests artifacts
+clean-test:
+	rm -fr .pytest_cache
+	rm -f .coverage
+	rm -fr htmlcov
+
+.PHONY: clean-docs ## Remove docs artifacts
+clean-docs:
+	rm -fr docs/_build
+
+.PHONY: clean-pyc ## Remove python artifacts
+clean-pyc:
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '*~' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -fr {} +
+
+.PHONY: clean-build ## Remove build artifacts
+clean-build:
+	rm -fr build
+	rm -fr dist
+	rm -fr .eggs
+	find . -name '*.egg-info' -exec rm -fr {} +
+	find . -name '*.egg' -exec rm -f {} +
+
+.PHONY: help
+help:
+	@echo "Please use \`make <target>\` where <target> is one of:"
+	@grep -E '^\.PHONY: [a-zA-Z_-]+ .*?## .*$$' $(MAKEFILE_LIST) | \
+	awk 'BEGIN {FS = "(: |##)"}; {printf "\033[36m%-15s\033[0m %s\n", $$2, $$3}'
