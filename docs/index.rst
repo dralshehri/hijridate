@@ -17,7 +17,7 @@ using the Umm al-Qura calendar of Saudi Arabia.
 .. |docs|
    image:: https://img.shields.io/readthedocs/hijriconverter/latest.svg
    :alt: Docs Status
-   :target: http://hijriconverter.readthedocs.io/en/latest
+   :target: https://hijriconverter.readthedocs.io/
 .. |supported|
    image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
    :alt: Python version support
@@ -140,7 +140,7 @@ Online Demo
 
 The following website implements a simple conversion tool using this package:
 
-https://www.dralshehri.com/hijri-converter
+https://www.dralshehri.com/hijri-converter/
 
 Installation
 ------------
