@@ -1,7 +1,7 @@
 Change Log
 ----------
 
-**[Unreleased]**
+**2.0.0**
 
 In short, this version supports only lunar Hijri calendar on Python 3.6+ with
 a more accurate conversion in complete alignment with the Umm al-Qura official
@@ -33,16 +33,16 @@ Details are as follows:
 **1.4.0**
 
 - Refactored conversion methods to improve performance.
-- Changed back date validation to be the default and removed optional parameter.
+- Changed date validation back to be the default and removed optional parameter.
 - Added ``to_julian()`` method to ``Hijri`` object.
 - Updated documentation and testing code.
 - Other minor fixes and enhancements.
 
 **1.3.3**
 
-- Fixed a bug in range validation for Gregorian date.
+- Fixed a bug in range validation for the Gregorian date.
 - Changed generic typing to built-in types.
-- Added more tests to cover solar calendar.
+- Added more tests to cover the solar calendar.
 - Improved code structure and documentation.
 
 **1.3.2**
