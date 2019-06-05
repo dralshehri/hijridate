@@ -1,6 +1,6 @@
 import pytest
 from datetime import date
-from hijriconverter import convert
+from hijri_converter import convert
 
 
 @pytest.fixture(scope="module")
