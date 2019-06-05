@@ -1,13 +1,13 @@
 """Umm al-Qura calendar specific constants.
 
 gregorian_range: Range of valid Gregorian dates (including the end)
-    for correct conversion.
+    supported by the converter.
 
 hijri_range: Range of valid Hijri dates (including the end) for
-    correct conversion.
+    supported by the converter.
 
 hijri_offset: Total Hijri months before the first month in `hijri_range`
-    starting from epoch of Hijri calendar.
+    starting from the epoch of Hijri calendar.
 
 month_starts: Reduced Julian Day (RJD) numbers for the beginning of
     Hijri months within `hijri_range`. Based on data available at
