@@ -1,8 +1,8 @@
 Contributing
 ------------
 
-Contributions are welcome, and they are greatly appreciated! Every
-little bit helps, and credit will always be given.
+Contributions are welcome, and they are much appreciated! Every
+little bit helps, and a credit will always be given.
 
 Reporting Issues
 ~~~~~~~~~~~~~~~~
@@ -22,12 +22,12 @@ Don't forget to apply relevant labels to the newly created issue.
 Development
 ~~~~~~~~~~~
 
-You may want to make some kind of change to the code base (e.g. to fix a bug,
-to add a new feature, to update documentation). The steps below explain how:
+You may want to make some changes to the code base (for example, to fix a bug,
+to add a new feature, or to update documentation). The steps below explain how:
 
 #. Announce your plan to the rest of the community **before you start**
    **working**. This announcement should be in the form of a (new) issue.
-#. Wait until you get a feedback about your idea being a good idea.
+#. Wait until you get feedback about your idea being a good idea.
 #. If needed, fork the repository to your own Github profile and create your
    own feature branch off of the latest master commit. While working on your
    feature branch, make sure to stay up to date with the master branch by
@@ -47,7 +47,7 @@ to add a new feature, to update documentation). The steps below explain how:
 #. Push your feature branch to (your fork of) the Hijri Converter repository
    on GitHub (you can follow the instructions
    `here <https://help.github.com/en/articles/pushing-to-a-remote/>`__).
-#. Create the pull request, e.g. following the instructions
+#. Create the pull request (follow the instructions
    `here <https://help.github.com/articles/creating-a-pull-request/>`__.
 
 In case you feel like you've made a valuable contribution, but you don't know
