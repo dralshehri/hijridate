@@ -34,18 +34,28 @@ div.contents ul {
 }
 
 dl.class {
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
-dl.method {
+dl.classmethod,
+dl.method,
+dl.staticmethod,
+dl.attribute {
     margin-top: 30px;
 }
 
-dl.method > dd > p {
+dl.classmethod > dd > p,
+dl.method > dd > p,
+dl.staticmethod > dd > p,
+dl.attribute > dd > p {
     margin-bottom: 5px;
 }
 
-dl.class > dt, dl.method > dt {
+dl.class > dt,
+dl.classmethod > dt,
+dl.method > dt,
+dl.staticmethod > dt,
+dl.attribute > dt {
     background: #EAEAEA;
     padding: 4px;
 }
