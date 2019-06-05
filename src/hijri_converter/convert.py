@@ -1,6 +1,6 @@
 from datetime import date
 from bisect import bisect
-from hijriconverter import ummalqura, locales
+from hijri_converter import ummalqura, locales
 
 
 class Hijri:
