@@ -13,9 +13,7 @@ setup(
     long_description="\n".join([readme, changelog]),
     long_description_content_type="text/x-rst",
     url="https://github.com/dralshehri/hijri-converter",
-    project_urls={
-        "Documentation": "https://hijri-converter.readthedocs.io/"
-    },
+    project_urls={"Documentation": "https://hijri-converter.readthedocs.io/"},
     author="Mohammed Alshehri",
     author_email="",
     license="MIT",
