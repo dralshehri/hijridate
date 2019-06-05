@@ -15,17 +15,17 @@ using the Umm al-Qura calendar of Saudi Arabia.
    :alt: Coverage Status
    :target: https://codecov.io/github/dralshehri/hijri-converter
 .. |docs|
-   image:: https://img.shields.io/readthedocs/hijriconverter/latest.svg
+   image:: https://img.shields.io/readthedocs/hijri-converter/stable.svg
    :alt: Docs Status
-   :target: https://hijriconverter.readthedocs.io/
+   :target: https://hijri-converter.readthedocs.io/
 .. |supported|
-   image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
+   image:: https://img.shields.io/pypi/pyversions/hijri-converter.svg
    :alt: Python version support
-   :target: https://pypi.python.org/pypi/hijriconverter
+   :target: https://pypi.python.org/pypi/hijri-converter
 .. |version|
-   image:: https://img.shields.io/pypi/v/hijriconverter.svg
+   image:: https://img.shields.io/pypi/v/hijri-converter.svg
    :alt: PyPI Package version
-   :target: https://pypi.python.org/pypi/hijriconverter
+   :target: https://pypi.python.org/pypi/hijri-converter
 .. |license|
    image:: https://img.shields.io/github/license/dralshehri/hijri-converter.svg
    :alt: License
@@ -75,7 +75,7 @@ faster than that of Umalqurra package.
 
 .. code-block:: bash
 
-   $ python -m timeit -s "from hijriconverter import convert" \
+   $ python -m timeit -s "from hijri_converter import convert" \
    > "convert.Gregorian(1982, 8, 4).to_hijri()" \
    > "convert.Hijri(1402, 10, 15).to_gregorian()"
    # 50000 loops, best of 5: 8.23 usec per loop
@@ -110,7 +110,7 @@ the following table summarizes the main differences:
 | Code testing              | Yes               | No                |
 +---------------------------+-------------------+-------------------+
 
-.. _Hijri Converter: https://pypi.org/project/hijriconverter/
+.. _Hijri Converter: https://pypi.org/project/hijri-converter/
 .. _Umalqurra: https://pypi.org/project/umalqurra/
 .. _Hijri.js: https://github.com/xsoh/Hijri.js
 .. _`R.H. van Gent`: http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
@@ -147,7 +147,7 @@ Installation
 
 .. code-block:: bash
 
-   $ pip install -U hijriconverter
+   $ pip install -U hijri-converter
 
 Usage Examples
 --------------
@@ -158,7 +158,7 @@ To import the package:
 
 .. code-block:: pycon
 
-   >>> from hijriconverter import convert
+   >>> from hijri_converter import convert
 
 To convert between Hijri and Gregorian dates:
 
@@ -249,7 +249,7 @@ to use the Arabic language instead:
 
 .. code-block:: pycon
 
-   >>> from hijriconverter import convert
+   >>> from hijri_converter import convert
 
    >>> hijri = convert.Hijri(1403, 2, 17)
 
@@ -272,7 +272,7 @@ raises an ``OverflowError`` exception. They can be caught and handled in
 
 .. code-block:: pycon
 
-   >>> from hijriconverter import convert
+   >>> from hijri_converter import convert
 
    >>> convert.Hijri(1403, 1, 30)
    Traceback...
