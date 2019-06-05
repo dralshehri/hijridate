@@ -58,7 +58,7 @@ Features
 - Intuitive, clean, and easy-to-use interface.
 - Most of methods and formats are similar to those of standard library.
 - Multilingual representation of weekday names, months, and calendar notations.
-- Easily extendable for other natural languages.
+- Easily extendable to support other natural languages.
 - Rich comparison between dates.
 - Validation of input dates.
 - Works on Python 3.6+ with zero dependencies.
@@ -121,5 +121,5 @@ for inspiration and help.
 License
 -------
 
-This package is distributed under an MIT licence.
+This package is distributed under an MIT license.
 See `LICENSE <https://github.com/dralshehri/hijri-converter/blob/master/LICENSE>`__.

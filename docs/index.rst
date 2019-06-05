@@ -125,15 +125,15 @@ Features
 - Intuitive, clean, and easy-to-use interface.
 - Most of methods and formats are similar to those of standard library.
 - Multilingual representation of weekday names, months, and calendar notations.
-- Easily extendable for other natural languages.
+- Easily extendable to support other natural languages.
 - Rich comparison between dates.
 - Validation of input dates.
 - Works on Python 3.6+ with zero dependencies.
 - Thoroughly tested on all supported python versions.
 
 .. note::
-   The conversion is valid for dates between beginning of 1300 AH
-   (11 November 1882 CE) and end of 1500 AH (16 November 2077 CE).
+   The conversion is valid for dates from the beginning of 1300 AH
+   (11 November 1882 CE) to the end of 1500 AH (16 November 2077 CE).
 
 Online Demo
 -----------
@@ -235,7 +235,7 @@ The :obj:`Hijri` object has some other useful methods. For example:
    >>> hijri.notation()
    'AH'
 
-The above example methods can also be applied to :obj:`Gregorian` object.
+The above example methods can also be applied to the :obj:`Gregorian` object.
 
 Internationalization
 --------------------
@@ -244,7 +244,7 @@ Representation of weekday names, month names, and calendar notations is
 supported. Currently, Arabic and English translations are available, but it
 can be easily extended for other natural languages.
 
-The English is the default language and following is an example showing how
+The English is the default language, and following is an example showing how
 to use the Arabic language instead:
 
 .. code-block:: pycon
@@ -301,11 +301,11 @@ Acknowledgment
 Thanks to `R.H. van Gent <http://www.staff.science.uu.nl/~gent0113>`__
 for inspiration and help.
 
-Licence
+License
 -------
 
-This package is distributed under an MIT licence.
-The licence is as follows:
+This package is distributed under an MIT license.
+The license is as follows:
 
 .. literalinclude:: ../LICENSE
    :language: text
@@ -314,7 +314,7 @@ API Reference
 -------------
 
 This section documents the API of `convert` module, which is the main module
-of Hijri Converter package.
+of the Hijri Converter package.
 
 .. autoclass:: Hijri
 .. autoclass:: Gregorian
