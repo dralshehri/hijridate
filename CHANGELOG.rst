@@ -9,7 +9,8 @@ calendar.
 
 Details are as follows:
 
-- Dropped support for Solar Hijri calendar.
+- Renamed the package to ``hijri-converter``.
+- Dropped support for the solar Hijri calendar.
 - Dropped support for Python 3.5.
 - Refactored localization and ``ummalqura.py`` module.
 - Updated ``month_starts`` tuple to make the conversion more accurate.
