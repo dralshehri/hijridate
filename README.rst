@@ -15,17 +15,17 @@ using the Umm al-Qura calendar of Saudi Arabia.
    :alt: Coverage Status
    :target: https://codecov.io/github/dralshehri/hijri-converter
 .. |docs|
-   image:: https://img.shields.io/readthedocs/hijriconverter/latest.svg
+   image:: https://img.shields.io/readthedocs/hijri-converter/stable.svg
    :alt: Docs Status
-   :target: https://hijriconverter.readthedocs.io/
+   :target: https://hijri-converter.readthedocs.io/
 .. |supported|
-   image:: https://img.shields.io/pypi/pyversions/hijriconverter.svg
+   image:: https://img.shields.io/pypi/pyversions/hijri-converter.svg
    :alt: Python version support
-   :target: https://pypi.python.org/pypi/hijriconverter
+   :target: https://pypi.python.org/pypi/hijri-converter
 .. |version|
-   image:: https://img.shields.io/pypi/v/hijriconverter.svg
+   image:: https://img.shields.io/pypi/v/hijri-converter.svg
    :alt: PyPI Package version
-   :target: https://pypi.python.org/pypi/hijriconverter
+   :target: https://pypi.python.org/pypi/hijri-converter
 .. |license|
    image:: https://img.shields.io/github/license/dralshehri/hijri-converter.svg
    :alt: License
@@ -76,14 +76,14 @@ Installation
 
 .. code-block:: bash
 
-   $ pip install -U hijriconverter
+   $ pip install -U hijri-converter
 
 Basic Usage
 -----------
 
 .. code-block:: python
 
-   from hijriconverter import convert
+   from hijri_converter import convert
 
    g = convert.Hijri(1403, 2, 17).to_gregorian()
    print(g)
@@ -96,7 +96,7 @@ Basic Usage
 Documentation
 -------------
 
-Please see https://hijriconverter.readthedocs.io/ for full documentation of
+Please see https://hijri-converter.readthedocs.io/ for full documentation of
 this package, including benchmarking, usage examples and API reference.
 
 Contributing
