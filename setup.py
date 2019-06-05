@@ -6,7 +6,7 @@ readme = (here / "README.rst").read_text(encoding="utf-8")
 changelog = (here / "CHANGELOG.rst").read_text(encoding="utf-8")
 
 setup(
-    name="hijriconverter",
+    name="hijri-converter",
     version="2.0.0",
     description="Accurate Hijri-Gregorian date converter based on the "
     "Umm al-Qura calendar",
@@ -14,7 +14,7 @@ setup(
     long_description_content_type="text/x-rst",
     url="https://github.com/dralshehri/hijri-converter",
     project_urls={
-        "Documentation": "https://hijriconverter.readthedocs.io/en/latest"
+        "Documentation": "https://hijri-converter.readthedocs.io/"
     },
     author="Mohammed Alshehri",
     author_email="",
