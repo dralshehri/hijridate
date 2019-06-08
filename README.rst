@@ -47,13 +47,12 @@ Therefore, a valid converter between Hijri and Gregorian dates is a necessity,
 especially when conducting research, analyzing data, or building applications
 that may have Hijri dates. Even though similar packages exist and try to fill
 the gap, `Hijri Converter <https://github.com/dralshehri/hijri-converter>`__
-comes with a pythonic code, more accuracy, and better performance.
+comes with a pythonic code, higher accuracy, and better performance.
 
 Features
 --------
 
-- Accurate and reliable conversion.
-- Complete alignment with the official calendar.
+- Accurate and tested conversion.
 - Optimized code performance compared to similar packages.
 - Intuitive, clean, and easy-to-use interface.
 - Most of methods and formats are similar to those of standard library.
