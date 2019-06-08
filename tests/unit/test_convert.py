@@ -110,6 +110,38 @@ def test_hijri_to_gregorian(hijri):
     assert hijri.to_gregorian().datetuple() == (1990, 3, 10)
 
 
+def test_hijri_month_index(hijri):
+    assert hijri._month_index() == 655
+
+
+@pytest.mark.parametrize(
+    "test_input", [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)]
+)
+def test_hijri_valid_date(test_input):
+    year, month, day = test_input
+    try:
+        convert.Hijri(year, month, day, validate=False)._check_date()
+    except (ValueError, OverflowError):
+        pytest.fail()
+
+
+@pytest.mark.parametrize(
+    "test_input, expected",
+    [
+        ((37, 12, 30), "date out of range"),
+        ((1355, 12, 30), "date out of range"),
+        ((1501, 1, 1), "date out of range"),
+        ((1410, 0, 1), "month must be in 1..12"),
+        ((1410, 13, 1), "month must be in 1..12"),
+        ((1410, 8, 30), "day must be in 1..29 for month"),
+    ],
+)
+def test_hijri_invalid_date(test_input, expected):
+    with pytest.raises((ValueError, OverflowError)) as e:
+        convert.Hijri(*test_input, validate=False)._check_date()
+    assert str(e.value) == expected
+
+
 def test_gregorian_fromdate():
     test_date = date(2014, 12, 28)
     assert convert.Gregorian.fromdate(test_date).datetuple() == (2014, 12, 28)
@@ -152,7 +184,7 @@ def test_gregorian_to_hijri(gregorian):
 def test_gregorian_valid_range(test_input):
     year, month, day = test_input
     try:
-        convert._check_gregorian_range(year, month, day)
+        convert.Gregorian(year, month, day)._check_range()
     except OverflowError:
         pytest.fail()
 
@@ -166,44 +198,8 @@ def test_gregorian_valid_range(test_input):
 )
 def test_gregorian_invalid_range(test_input, expected):
     with pytest.raises(OverflowError) as e:
-        convert._check_gregorian_range(*test_input)
+        convert.Gregorian(*test_input)._check_range()
     assert str(e.value) == expected
-
-
-@pytest.mark.parametrize(
-    "test_input", [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)]
-)
-def test_hijri_valid_date(test_input):
-    year, month, day = test_input
-    try:
-        convert._check_hijri_date(year, month, day)
-    except (ValueError, OverflowError):
-        pytest.fail()
-
-
-@pytest.mark.parametrize(
-    "test_input, expected",
-    [
-        ((37, 12, 30), "date out of range"),
-        ((1355, 12, 30), "date out of range"),
-        ((1501, 1, 1), "date out of range"),
-        ((1410, 0, 1), "month must be in 1..12"),
-        ((1410, 13, 1), "month must be in 1..12"),
-        ((1410, 8, 30), "day must be in 1..29 for month"),
-    ],
-)
-def test_hijri_invalid_date(test_input, expected):
-    with pytest.raises((ValueError, OverflowError)) as e:
-        convert._check_hijri_date(*test_input)
-    assert str(e.value) == expected
-
-
-def test_hijri_month_index():
-    assert convert._hijri_month_index(1410, 8) == 655
-
-
-def test_hijri_month_days():
-    assert convert._hijri_month_length(655) == 29
 
 
 def test_julian_to_ordinal():
