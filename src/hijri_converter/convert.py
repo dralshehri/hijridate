@@ -8,12 +8,7 @@ class Hijri:
     calendar.
     """
 
-    def __new__(cls, year: int, month: int, day: int) -> "Hijri":
-        """Construct Hijri date object after date validation"""
-        _check_hijri_date(year, month, day)
-        return super().__new__(cls)
-
-    def __init__(self, year: int, month: int, day: int) -> None:
+    def __init__(self, year: int, month: int, day: int, validate: bool = True) -> None:
         """
         :param year: Hijri year
         :type year: int
@@ -21,8 +16,12 @@ class Hijri:
         :type month: int
         :param day: Hijri day
         :type day: int
+        :param validate: Whether to validate date or not (default is ``True``)
+        :type validate: bool
         """
 
+        if validate:
+            _check_hijri_date(year, month, day)
         self._year = year
         self._month = month
         self._day = day
@@ -258,16 +257,7 @@ class Gregorian(datetime.date):
         year = years + 1
         month = months - (years * 12) + 1
         day = rjd - month_starts[index] + 1
-        return _ValidHijri(year, month, day)
-
-
-class _ValidHijri(Hijri):
-    """A Hijri object converted from Gregorian date. This implementation is
-    to avoid double checking of date.
-    """
-
-    def __new__(cls, *args, **kwargs) -> "Hijri":
-        return super(Hijri, cls).__new__(cls)
+        return Hijri(year, month, day, validate=False)
 
 
 def _check_gregorian_range(year: int, month: int, day: int) -> None:
