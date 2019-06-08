@@ -8,6 +8,8 @@ class Hijri:
     calendar.
     """
 
+    __slots__ = "_year", "_month", "_day"
+
     def __init__(self, year: int, month: int, day: int, validate: bool = True) -> None:
         """
         :param year: Hijri year
@@ -182,6 +184,8 @@ class Gregorian(datetime.date):
     """A Gregorian object represents a date (year, month and day) in Gregorian
     calendar inheriting all attributes and methods of `datetime.date` object.
     """
+
+    __slots__ = ()
 
     @classmethod
     def fromdate(cls, date_object: datetime.date) -> "Gregorian":
