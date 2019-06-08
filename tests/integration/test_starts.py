@@ -19,7 +19,7 @@ hijri_gregorian_params, gregorian_hijri_params = load_params_from_json()
 @pytest.mark.parametrize("test_input, expected", hijri_gregorian_params)
 def test_convert_hijri_to_gregorian(test_input, expected):
     year, month, day = test_input
-    hijri = convert.Hijri(year, month, day)
+    hijri = convert.Hijri(year, month, day, validate=False)
     converted = hijri.to_gregorian().datetuple()
     assert converted == expected
 
