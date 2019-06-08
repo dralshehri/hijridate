@@ -10,7 +10,9 @@ class Hijri:
 
     __slots__ = "_year", "_month", "_day"
 
-    def __init__(self, year: int, month: int, day: int, validate: bool = True) -> None:
+    def __init__(
+        self, year: int, month: int, day: int, validate: bool = True
+    ) -> None:
         """
         :param year: Hijri year
         :type year: int
@@ -22,11 +24,12 @@ class Hijri:
         :type validate: bool
         """
 
-        if validate:
-            _check_hijri_date(year, month, day)
         self._year = year
         self._month = month
         self._day = day
+
+        if validate:
+            self._check_date()
 
     def __repr__(self) -> str:
         class_name = self.__class__.__name__
@@ -90,39 +93,40 @@ class Hijri:
 
     @property
     def year(self) -> int:
-        """Return Hijri year as an integer."""
+        """Return year as an integer."""
         return self._year
 
     @property
     def month(self) -> int:
-        """Return Hijri month as an integer."""
+        """Return month as an integer."""
         return self._month
 
     @property
     def day(self) -> int:
-        """Return Hijri day as an integer."""
+        """Return day as an integer."""
         return self._day
 
     def datetuple(self) -> tuple:
-        """Return Hijri date as a tuple of (year, month, day)."""
+        """Return date as a tuple of (year, month, day)."""
         return self._year, self._month, self._day
 
     def isoformat(self) -> str:
-        """Return Hijri date in ISO format 'YYYY-MM-DD'."""
+        """Return date in ISO format 'YYYY-MM-DD'."""
         return f"{self._year:04}-{self._month:02}-{self._day:02}"
 
     def slashformat(self) -> str:
-        """Return Hijri date in slash format 'DD/MM/YYYY'."""
+        """Return date in slash format 'DD/MM/YYYY'."""
         return f"{self._day:02}/{self._month:02}/{self._year:04}"
 
     def month_length(self) -> int:
-        """Return number of days in Hijri month."""
-        month_index = _hijri_month_index(self._year, self._month)
-        month_length = _hijri_month_length(month_index)
-        return month_length
+        """Return number of days in month."""
+        month_starts = ummalqura.month_starts
+        index = self._month_index()
+        length = month_starts[index + 1] - month_starts[index]
+        return length
 
     def month_name(self, language: str = "en") -> str:
-        """Return Hijri month name.
+        """Return month name.
 
         :param language: Language for localized translation which may be
             ``en`` or ``ar`` (default is ``en``)
@@ -163,22 +167,43 @@ class Hijri:
         return getattr(locales, language).hijri_notation
 
     def to_julian(self) -> int:
-        """Convert Hijri date to Julian Day (JD) number."""
+        """Convert to Julian Day (JD) number."""
         month_starts = ummalqura.month_starts
-        index = _hijri_month_index(self._year, self._month)
+        index = self._month_index()
         rjd = month_starts[index] + self._day - 1
         jd = _reduced_julian_to_julian(rjd)
         return jd
 
     def to_gregorian(self) -> "Gregorian":
-        """Convert Hijri date to Gregorian date.
+        """Convert to Gregorian date.
 
         :return: Gregorian date object
         :rtype: Gregorian
         """
 
         jd = self.to_julian()
-        return Gregorian.fromordinal(_julian_to_ordinal(jd))
+        n = _julian_to_ordinal(jd)
+        return Gregorian.fromordinal(n)
+
+    def _check_date(self) -> None:
+        """Check date values if within valid range."""
+        # check year
+        min_year, max_year = [d[0] for d in ummalqura.hijri_range]
+        if not min_year <= self.year <= max_year:
+            raise OverflowError("date out of range")
+        # check month
+        if not 1 <= self.month <= 12:
+            raise ValueError("month must be in 1..12")
+        # check day
+        month_length = self.month_length()
+        if not 1 <= self.day <= month_length:
+            raise ValueError(f"day must be in 1..{month_length} for month")
+
+    def _month_index(self) -> int:
+        """Return month's index in ummalqura data"""
+        prior_months = ((self.year - 1) * 12) + self.month - 1
+        index = prior_months - ummalqura.hijri_offset
+        return index
 
 
 class Gregorian(datetime.date):
@@ -242,7 +267,8 @@ class Gregorian(datetime.date):
 
     def to_julian(self) -> int:
         """Convert Gregorian date to Julian Day (JD) number."""
-        jd = _ordinal_to_julian(self.toordinal())
+        n = self.toordinal()
+        jd = _ordinal_to_julian(n)
         return jd
 
     def to_hijri(self) -> Hijri:
@@ -252,7 +278,7 @@ class Gregorian(datetime.date):
         :rtype: Hijri
         """
 
-        _check_gregorian_range(self.year, self.month, self.day)
+        self._check_range()
         jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
         month_starts = ummalqura.month_starts
@@ -264,42 +290,11 @@ class Gregorian(datetime.date):
         day = rjd - month_starts[index] + 1
         return Hijri(year, month, day, validate=False)
 
-
-def _check_gregorian_range(year: int, month: int, day: int) -> None:
-    """Check if Gregorian date is within valid conversion range."""
-    min_date, max_date = ummalqura.gregorian_range
-    if not min_date <= (year, month, day) <= max_date:
-        raise OverflowError("date out of range")
-
-
-def _check_hijri_date(year: int, month: int, day: int) -> None:
-    """Check Hijri date values and if date is within valid conversion range."""
-    # check year
-    min_year, max_year = [d[0] for d in ummalqura.hijri_range]
-    if not min_year <= year <= max_year:
-        raise OverflowError("date out of range")
-    # check month
-    if not 1 <= month <= 12:
-        raise ValueError("month must be in 1..12")
-    # check day
-    month_index = _hijri_month_index(year, month)
-    month_length = _hijri_month_length(month_index)
-    if not 1 <= day <= month_length:
-        raise ValueError(f"day must be in 1..{month_length} for month")
-
-
-def _hijri_month_index(year: int, month: int) -> int:
-    """Return index of month in Hijri month starts."""
-    months = ((year - 1) * 12) + month - 1
-    index = months - ummalqura.hijri_offset
-    return index
-
-
-def _hijri_month_length(index: int) -> int:
-    """Return number of days in Hijri month."""
-    month_starts = ummalqura.month_starts
-    length = month_starts[index + 1] - month_starts[index]
-    return length
+    def _check_range(self) -> None:
+        """Check if Gregorian date is within valid range."""
+        min_date, max_date = ummalqura.gregorian_range
+        if not min_date <= (self.year, self.month, self.day) <= max_date:
+            raise OverflowError("date out of range")
 
 
 def _julian_to_ordinal(jd: int) -> int:
