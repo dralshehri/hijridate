@@ -1,4 +1,4 @@
-from datetime import date
+import datetime
 from bisect import bisect
 from hijri_converter import ummalqura, locales
 
@@ -167,13 +167,13 @@ class Hijri:
         return Gregorian.fromordinal(_julian_to_ordinal(jd))
 
 
-class Gregorian(date):
+class Gregorian(datetime.date):
     """A Gregorian object represents a date (year, month and day) in Gregorian
     calendar inheriting all attributes and methods of `datetime.date` object.
     """
 
     @classmethod
-    def fromdate(cls, date_object: date) -> "Gregorian":
+    def fromdate(cls, date_object: datetime.date) -> "Gregorian":
         """Construct Gregorian object from a date object.
 
         :param date_object: Date object
@@ -236,7 +236,7 @@ class Gregorian(date):
         :rtype: Hijri
         """
 
-        _check_gregorian_range(*self.datetuple())
+        _check_gregorian_range(self.year, self.month, self.day)
         jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
         month_starts = ummalqura.month_starts
@@ -260,25 +260,21 @@ class _ValidHijri(Hijri):
 
 def _check_gregorian_range(year: int, month: int, day: int) -> None:
     """Check if Gregorian date is within valid conversion range."""
-    # check range
-    valid_range = ummalqura.gregorian_range
-    if not valid_range[0] <= (year, month, day) <= valid_range[1]:
-        raise OverflowError("date is out of range for conversion")
+    min_date, max_date = ummalqura.gregorian_range
+    if not min_date <= (year, month, day) <= max_date:
+        raise OverflowError("date out of range")
 
 
 def _check_hijri_date(year: int, month: int, day: int) -> None:
     """Check Hijri date values and if date is within valid conversion range."""
     # check year
-    if len(str(year)) != 4:
-        raise ValueError("year must be in yyyy format")
+    min_year, max_year = [d[0] for d in ummalqura.hijri_range]
+    if not min_year <= year <= max_year:
+        raise OverflowError("date out of range")
     # check month
     if not 1 <= month <= 12:
         raise ValueError("month must be in 1..12")
-    # check range (placed in this order intentionally)
-    valid_range = ummalqura.hijri_range
-    if not valid_range[0] <= (year, month, day) <= valid_range[1]:
-        raise OverflowError("date is out of range for conversion")
-    # check day (if not within valid range, day could not be checked)
+    # check day
     month_index = _hijri_month_index(year, month)
     month_length = _hijri_month_length(month_index)
     if not 1 <= day <= month_length:
