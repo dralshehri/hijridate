@@ -15,6 +15,10 @@ install: clean
 	$(PYTHON) -m pip install -U pytest pytest-cov black sphinx wheel twine
 	$(PYTHON) -m pip install -e .
 
+.PHONY: install-pkg ## Install the package only
+install-pkg: clean-build
+	$(PYTHON) -m pip install -e .
+
 .PHONY: test ## Run unit tests
 test: clean-test
 	$(PYTHON) -m pytest
