@@ -33,6 +33,9 @@ class Hijri:
     def __str__(self) -> str:
         return self.isoformat()
 
+    def __hash__(self) -> int:
+        return hash(("Hijri", self._year, self._month, self._day))
+
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Hijri):
             return False
