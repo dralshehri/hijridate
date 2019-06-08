@@ -29,7 +29,8 @@ class Hijri:
         self._day = day
 
     def __repr__(self) -> str:
-        return f"Hijri({self._year}, {self._month}, {self._day})"
+        class_name = self.__class__.__name__
+        return f"{class_name}({self._year}, {self._month}, {self._day})"
 
     def __str__(self) -> str:
         return self.isoformat()
