@@ -155,8 +155,8 @@ def test_gregorian_valid_range(test_input):
 @pytest.mark.parametrize(
     "test_input, expected",
     [
-        ((1937, 3, 13), "date is out of range for conversion"),
-        ((2077, 11, 17), "date is out of range for conversion"),
+        ((1937, 3, 13), "date out of range"),
+        ((2077, 11, 17), "date out of range"),
     ],
 )
 def test_gregorian_invalid_range(test_input, expected):
@@ -179,12 +179,12 @@ def test_hijri_valid_date(test_input):
 @pytest.mark.parametrize(
     "test_input, expected",
     [
-        ((37, 12, 30), "year must be in yyyy format"),
+        ((37, 12, 30), "date out of range"),
+        ((1355, 12, 30), "date out of range"),
+        ((1501, 1, 1), "date out of range"),
         ((1410, 0, 1), "month must be in 1..12"),
         ((1410, 13, 1), "month must be in 1..12"),
         ((1410, 8, 30), "day must be in 1..29 for month"),
-        ((1355, 12, 30), "date is out of range for conversion"),
-        ((1501, 1, 1), "date is out of range for conversion"),
     ],
 )
 def test_hijri_invalid_date(test_input, expected):
