@@ -69,10 +69,9 @@ Although it was inspired by R.H. van Gent's work, it is based on the
 complete alignment with the official Umm al-Qura calendar. That makes it more
 accurate and broader in terms of years included, 1300-1500 AH.
 
-When it comes to performance, even though *Hijri Converter* package does extra
-date validations, its conversion from Hijri to Gregorian and back is seven
-(or five, when validating Hijri date) times faster than that of *Umalqurra*
-package.
+When it comes to performance, using *Hijri Converter* package to convert from
+Hijri to Gregorian and back is seven times faster (or five times faster, with
+Hijri date validation enabled) than that when *Umalqurra* package was used.
 
 .. code-block:: bash
 
@@ -103,10 +102,9 @@ has, the following table summarizes the main differences:
 +---------------------------+-------------------+-------------------+
 |         Item              |  Hijri Converter  |     Umalqurra     |
 +===========================+===================+===================+
-| Accuracy                  | 100%              | 93%               |
+| Accuracy [#]_             | 100%              | 99.79%            |
 +---------------------------+-------------------+-------------------+
-| Performance (without      | 7x faster         | 1x                |
-| Hijri date validation)    |                   |                   |
+| Performance [#]_          | 7x faster         | 1x                |
 +---------------------------+-------------------+-------------------+
 | Python 3 support          | Full              | Limited           |
 +---------------------------+-------------------+-------------------+
@@ -325,3 +323,7 @@ of the Hijri Converter package.
 
 .. autoclass:: Hijri
 .. autoclass:: Gregorian
+
+.. [#] Tested against official printed calendars.
+.. [#] With Hijri date validation disabled in *Hijri Converter* package; to be
+       comparable with *Umalqurra* package.
