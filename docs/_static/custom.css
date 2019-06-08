@@ -64,3 +64,25 @@ dd.field-odd {
     margin-top: 0;
 }
 
+a.footnote-reference {
+    text-decoration: none;
+}
+
+dl.footnote {
+    margin-top: 70px;
+    font-size: 0.9em;
+}
+
+dl.footnote .label {
+    line-height: 0.9em;
+}
+
+dl.footnote p {
+    line-height: 1.0em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+dl.footnote a {
+    text-decoration: none;
+}
