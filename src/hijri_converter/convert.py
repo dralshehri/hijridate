@@ -35,28 +35,37 @@ class Hijri:
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Hijri):
-            raise TypeError("second operand must be 'Hijri' object")
-        return self.datetuple() == other.datetuple()
+            return False
+        return self._compare(other) == 0
 
     def __gt__(self, other: object) -> bool:
         if not isinstance(other, Hijri):
-            raise TypeError("second operand must be 'Hijri' object")
-        return self.datetuple() > other.datetuple()
+            self._compare_error(other)
+        return self._compare(other) > 0
 
     def __ge__(self, other: object) -> bool:
         if not isinstance(other, Hijri):
-            raise TypeError("second operand must be 'Hijri' object")
-        return self.datetuple() >= other.datetuple()
+            self._compare_error(other)
+        return self._compare(other) >= 0
 
     def __lt__(self, other: object) -> bool:
         if not isinstance(other, Hijri):
-            raise TypeError("second operand must be 'Hijri' object")
-        return self.datetuple() < other.datetuple()
+            self._compare_error(other)
+        return self._compare(other) < 0
 
     def __le__(self, other: object) -> bool:
         if not isinstance(other, Hijri):
-            raise TypeError("second operand must be 'Hijri' object")
-        return self.datetuple() <= other.datetuple()
+            self._compare_error(other)
+        return self._compare(other) <= 0
+
+    def _compare(self, other: "Hijri") -> int:
+        x = self.datetuple()
+        y = other.datetuple()
+        return 0 if x == y else 1 if x > y else -1
+
+    def _compare_error(self, other: object) -> None:
+        """Raise an error when comparing Hijri object to non-Hijri object."""
+        raise TypeError(f"can't compare 'Hijri' to '{type(other).__name__}'")
 
     @classmethod
     def fromisoformat(cls, date_string: str):

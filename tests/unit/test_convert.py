@@ -22,17 +22,18 @@ def test_hijri_string_representation(hijri):
 
 
 @pytest.mark.parametrize(
-    "test_input", ["__eq__", "__gt__", "__ge__", "__lt__", "__le__"]
+    "test_input", ["__gt__", "__ge__", "__lt__", "__le__"]
 )
 def test_test_hijri_comparison_exception(hijri, test_input):
     with pytest.raises(TypeError) as e:
-        getattr(hijri, test_input)("w")
-    assert str(e.value) == "second operand must be 'Hijri' object"
+        getattr(hijri, test_input)("1410-08-13")
+    assert str(e.value) == "can't compare 'Hijri' to 'str'"
 
 
 def test_hijri_equality(hijri):
     assert hijri == convert.Hijri(1410, 8, 13)
     assert hijri != convert.Hijri(1410, 8, 14)
+    assert hijri != "1410-08-13"
 
 
 def test_hijri_ordering(hijri):
