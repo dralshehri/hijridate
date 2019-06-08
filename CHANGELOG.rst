@@ -1,11 +1,24 @@
 Change Log
 ----------
 
+**2.1.0**
+
+This version has more accurate conversion especially for the years before
+1401 AH and better internal code. Details as follows:
+
+- Updated the ``month_starts`` tuple for more accurate conversion.
+- Improved ``Hijri`` object rich comparison methods.
+- Improved date validation methods for better performance and readability.
+- Added ``validate`` parameter to Hijri object for optional disabling of
+  Hijri date validation.
+- Made the ``Hijri`` object hashable by adding a custom ``__hash__`` method.
+- Refactored many internal methods (not affecting the API).
+- Other minor fixes, enhancements and performance boost.
+
 **2.0.0**
 
-In short, this version supports only lunar Hijri calendar on Python 3.6+ with
-a more accurate conversion in complete alignment with the Umm al-Qura official
-calendar.
+In short, this version supports only lunar Hijri calendar on Python 3.6+, and
+the conversion is in complete agreement with the Umm al-Qura official calendar.
 
 Details are as follows:
 
@@ -13,7 +26,7 @@ Details are as follows:
 - Dropped support for the solar Hijri calendar.
 - Dropped support for Python 3.5.
 - Refactored localization and ``ummalqura.py`` module.
-- Updated ``month_starts`` tuple to make the conversion more accurate.
+- Updated ``month_starts`` tuple in alignment with the Umm al-Qura calendar.
 - Added ``fromdate()`` classmethod to ``Gregorian`` object.
 - Added ``notation()`` method to ``Hijri`` and ``Gregorian`` objects.
 - Added more methods to ``Gregorian`` object including ``slashformat()``,
