@@ -21,6 +21,10 @@ def test_hijri_string_representation(hijri):
     assert hijri.__str__() == "1410-08-13"
 
 
+def test_hijri_hash(hijri):
+    assert hijri.__hash__() == hash(("Hijri", 1410, 8, 13))
+
+
 @pytest.mark.parametrize(
     "test_input", ["__gt__", "__ge__", "__lt__", "__le__"]
 )
