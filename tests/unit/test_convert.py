@@ -155,7 +155,7 @@ def test_gregorian_valid_range(test_input):
 @pytest.mark.parametrize(
     "test_input, expected",
     [
-        ((1882, 11, 10), "date is out of range for conversion"),
+        ((1937, 3, 13), "date is out of range for conversion"),
         ((2077, 11, 17), "date is out of range for conversion"),
     ],
 )
@@ -166,7 +166,7 @@ def test_gregorian_invalid_range(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "test_input", [(1410, 9, 30), (1300, 1, 1), (1500, 12, 30)]
+    "test_input", [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)]
 )
 def test_hijri_valid_date(test_input):
     year, month, day = test_input
@@ -183,7 +183,7 @@ def test_hijri_valid_date(test_input):
         ((1410, 0, 1), "month must be in 1..12"),
         ((1410, 13, 1), "month must be in 1..12"),
         ((1410, 8, 30), "day must be in 1..29 for month"),
-        ((1299, 12, 30), "date is out of range for conversion"),
+        ((1355, 12, 30), "date is out of range for conversion"),
         ((1501, 1, 1), "date is out of range for conversion"),
     ],
 )
@@ -194,11 +194,11 @@ def test_hijri_invalid_date(test_input, expected):
 
 
 def test_hijri_month_index():
-    assert convert._hijri_month_index(1410, 8) == 1327
+    assert convert._hijri_month_index(1410, 8) == 655
 
 
 def test_hijri_month_days():
-    assert convert._hijri_month_length(1327) == 29
+    assert convert._hijri_month_length(655) == 29
 
 
 def test_julian_to_ordinal():
