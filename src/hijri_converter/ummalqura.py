@@ -1,30 +1,30 @@
-"""Umm al-Qura calendar specific constants.
+"""Umm al-Qura calendar specific constants."""
 
-gregorian_range: Range of valid Gregorian dates (including the end)
-    supported by the converter.
+"""Range of valid Gregorian dates (inclusive) supported by the converter."""
+gregorian_range = (1924, 8, 1), (2077, 11, 16)
 
-hijri_range: Range of valid Hijri dates (including the end) supported
-    by the converter.
+"""Range of valid Hijri dates (inclusive) supported by the converter."""
+hijri_range = (1343, 1, 1), (1500, 12, 30)
 
-hijri_offset: Total Hijri months before the first month in `hijri_range`
-    starting from the epoch of Hijri calendar.
+"""Total Hijri months before the first month."""
+hijri_offset = 1342 * 12
 
-month_starts: Reduced Julian Day (RJD) numbers for the beginning of
-    Hijri months within `hijri_range`.
-    Years 1343-1355 AH were calculated by Mohammed Alshehri (dralshehri),
+
+"""Reduced Julian Day (RJD) numbers for the beginning of Hijri months.
+
+Years 1343-1355 AH were calculated by Mohammed Alshehri (dralshehri),
     based on the issues published by Umm al-Qura newspaper at that time:
     http://ncar.gov.sa/OmElQuora/List
-    Years 1356-1411 AH were calculated by R.H. van Gent, based on
+Years 1356-1411 AH were calculated by R.H. van Gent, based on
     the comparison calendar prepared by KFUPM Research Institute:
     https://www.staff.science.uu.nl/~gent0113/islam/downloads/ksa_calendar_1356_1411.pdf
-    Years 1412-1500 AH were calculated by Mohammed Alshehri (dralshehri),
+Years 1412-1430 AH were calculated by Mohammed Alshehri (dralshehri),
+    based on the issues published by Umm al-Qura newspaper at that time:
+    http://ncar.gov.sa/OmElQuora/List
+Years 1431-1500 AH were calculated by Mohammed Alshehri (dralshehri),
     based on the tables presented by the website of Umm al-Qura calendar:
     http://www.ummulqura.org.sa/Index.aspx
 """
-
-gregorian_range = (1924, 8, 1), (2077, 11, 16)
-hijri_range = (1343, 1, 1), (1500, 12, 30)
-hijri_offset = 1342 * 12
 month_starts = (
     23999,
     24029,
