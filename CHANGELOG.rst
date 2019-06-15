@@ -3,14 +3,18 @@ Change Log
 
 **2.1.0**
 
-This version has more accurate conversion especially for the years before
-1401 AH and better internal code. Details as follows:
+This version has additional years, more accurate conversion and better
+internal code.
 
-- Updated the ``month_starts`` tuple for more accurate conversion.
-- Improved ``Hijri`` object rich comparison methods.
-- Improved date validation methods for better performance and readability.
+Details are as follows:
+
+- Added support for the years 1343-1355 AH.
 - Added ``validate`` parameter to Hijri object for optional disabling of
   Hijri date validation.
+- Verified conversion against original references and updated the
+``month_starts`` tuple for more accurate conversion.
+- Improved ``Hijri`` object rich comparison methods.
+- Improved date validation methods for better performance and readability.
 - Made the ``Hijri`` object hashable by adding a custom ``__hash__`` method.
 - Refactored many internal methods (not affecting the API).
 - Other minor fixes, enhancements and performance boost.
