@@ -28,7 +28,7 @@ test-cov: clean-test
 	$(PYTHON) -m pytest --cov --cov-report term --cov-report html
 	$(PYTHON) -m webbrowser $(PWD)/htmlcov/index.html
 
-.PHONY: test-more ## Run unit and integration tests
+.PHONY: test-more ## Run unit and other tests
 test-more: clean-test
 	$(PYTHON) -m pytest tests/*
 
