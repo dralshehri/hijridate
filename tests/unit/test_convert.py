@@ -111,7 +111,7 @@ def test_hijri_to_gregorian(hijri):
 
 
 def test_hijri_month_index(hijri):
-    assert hijri._month_index() == 655
+    assert hijri._month_index() == 811
 
 
 @pytest.mark.parametrize(
@@ -129,7 +129,7 @@ def test_hijri_valid_date(test_input):
     "test_input, expected",
     [
         ((37, 12, 30), "date out of range"),
-        ((1355, 12, 30), "date out of range"),
+        ((1342, 12, 29), "date out of range"),
         ((1501, 1, 1), "date out of range"),
         ((1410, 0, 1), "month must be in 1..12"),
         ((1410, 13, 1), "month must be in 1..12"),
@@ -179,7 +179,7 @@ def test_gregorian_to_hijri(gregorian):
 
 
 @pytest.mark.parametrize(
-    "test_input", [(1990, 3, 10), (1937, 3, 14), (2077, 11, 16)]
+    "test_input", [(1990, 3, 10), (1924, 8, 1), (2077, 11, 16)]
 )
 def test_gregorian_valid_range(test_input):
     year, month, day = test_input
@@ -192,7 +192,7 @@ def test_gregorian_valid_range(test_input):
 @pytest.mark.parametrize(
     "test_input, expected",
     [
-        ((1937, 3, 13), "date out of range"),
+        ((1924, 7, 31), "date out of range"),
         ((2077, 11, 17), "date out of range"),
     ],
 )
