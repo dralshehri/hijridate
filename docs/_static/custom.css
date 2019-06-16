@@ -33,6 +33,16 @@ div.contents ul {
     margin-left: 20px;
 }
 
+div.contents ul ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+div.contents li > p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
 dl.class {
     margin-top: 60px;
 }
