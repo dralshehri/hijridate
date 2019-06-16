@@ -109,7 +109,7 @@ Hijri date validation enabled) than that when *Umalqurra* package was used.
 The above code illustrates the execution time of both packages compared
 *(tested on Macbook Pro with 2.9GHz Intel Core i5 processor and 16GB memory)*.
 
-In addition to the packaging and maintenance issues that *Umalqurra* package
+Beside packaging and maintenance issues that *Umalqurra* package
 has, the following table summarizes the main differences:
 
 +---------------------------+-------------------+-------------------+
@@ -119,7 +119,7 @@ has, the following table summarizes the main differences:
 +---------------------------+-------------------+-------------------+
 | Accuracy [#]_             | 100%              | 91.6%             |
 +---------------------------+-------------------+-------------------+
-| Performance [#]_          | 7x faster         | 1x                |
+| Performance [#]_          | 7x (faster)       | 1x                |
 +---------------------------+-------------------+-------------------+
 | Python 3 support          | Full              | Limited           |
 +---------------------------+-------------------+-------------------+
@@ -182,31 +182,6 @@ To convert between Hijri and Gregorian dates:
    >>> convert.Gregorian(1982, 12, 2).to_hijri()
    Hijri(1403, 2, 17)
 
-The :obj:`Gregorian` object inherits all attributes and methods of
-:obj:`datetime.date` object:
-
-.. code-block:: pycon
-
-   # To get today's date in Hijri
-   >>> convert.Gregorian.today().to_hijri()
-   Hijri(1440, 9, 14)
-
-   # To format a Gregorian date
-   >>> convert.Gregorian(1982, 12, 2).strftime("%A, %-d %B %Y")
-   'Thursday, 2 December 1982'
-
-Rich comparison (==, !=, >, >=, <, <=) for :obj:`Hijri` objects are also
-supported:
-
-.. code-block:: pycon
-
-   >>> convert.Hijri(1403, 2, 17) > convert.Hijri(1402, 2, 17)
-   True
-
-   >>> today_hijri = convert.Gregorian.today().to_hijri()
-   >>> convert.Hijri.fromisoformat("1403-02-17") < today_hijri
-   True
-
 To convert from/to ISO format:
 
 .. code-block:: pycon
@@ -217,16 +192,8 @@ To convert from/to ISO format:
    >>> convert.Gregorian.fromisoformat("1982-12-02").to_hijri().isoformat()
    '1403-02-17'
 
-You can construct a :obj:`Gregorian` object from :obj:`datetime.date` object:
-
-.. code-block:: pycon
-
-   >>> from datetime import date
-   >>> my_date = date(1982, 12, 2)
-   >>> convert.Gregorian.fromdate(my_date)
-   Gregorian(1982, 12, 2)
-
-The :obj:`Hijri` object has some other useful methods. For example:
+The :obj:`Hijri` and :obj:`Gregorian` objects have some useful methods. For
+example:
 
 .. code-block:: pycon
 
@@ -247,10 +214,48 @@ The :obj:`Hijri` object has some other useful methods. For example:
    >>> hijri.notation()
    'AH'
 
-The above example methods can also be applied to the :obj:`Gregorian` object.
+You can also construct a :obj:`Gregorian` object from :obj:`datetime.date`
+object:
+
+.. code-block:: pycon
+
+   >>> from datetime import date
+   >>> my_date = date(1982, 12, 2)
+   >>> convert.Gregorian.fromdate(my_date)
+   Gregorian(1982, 12, 2)
+
+The :obj:`Gregorian` object inherits all attributes and methods of
+:obj:`datetime.date` object:
+
+.. code-block:: pycon
+
+   # To get today's date in Hijri
+   >>> convert.Gregorian.today().to_hijri()
+   Hijri(1440, 10, 13)
+
+   # To format a Gregorian date
+   >>> convert.Gregorian(1982, 12, 2).strftime("%A, %-d %B %Y")
+   'Thursday, 2 December 1982'
+
+Rich Comparison
+~~~~~~~~~~~~~~~
+
+Rich comparison (==, !=, >, >=, <, <=) for :obj:`Hijri` objects is supported.
+Comparing :obj:`Hijri` object with different type object raises a ``TypeError``
+exception that can be caught and handled in ``try`` and ``except`` blocks:
+
+.. code-block:: pycon
+
+   >>> convert.Hijri(1403, 2, 17) > convert.Hijri(1402, 2, 17)
+   True
+
+   >>> convert.Hijri.fromisoformat("1403-02-17") == "1403-02-17"
+   Traceback...
+   TypeError: can't compare 'Hijri' to 'str'
+
 
 Internationalization
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Representation of weekday names, month names, and calendar notations is
 supported. Currently, Arabic and English translations are available, but it
@@ -275,7 +280,7 @@ to use the Arabic language instead:
       'هـ'
 
 Date Validation
----------------
+~~~~~~~~~~~~~~~
 
 Date input values are by default checked if valid and within conversion range.
 Invalid date raises a ``ValueError`` exception, and out of range date raises
@@ -297,8 +302,9 @@ and ``except`` blocks:
 Online Tool
 -----------
 
-The following is a simple conversion tool that was developed to try converting
-between dates using latest version of *Hijri Converter* package:
+The following is a simple online conversion tool that was developed to convert
+between Hijri and Gregorian dates using the latest version of *Hijri Converter*
+package:
 
 https://www.dralshehri.com/hijri-converter/
 
@@ -306,14 +312,14 @@ Source Code
 -----------
 
 The source code of this package is available on
-`GitHub <https://github.com/dralshehri/hijri-converter>`__
-where you can contribute and report issues.
+`GitHub <https://github.com/dralshehri/hijri-converter>`__ where you can
+contribute and report issues.
 
 Authors
 -------
 
 The main author is Mohammed Alshehri —
-`Website <https://www.dralshehri.com/>`__.
+`@dralshehri <https://github.com/dralshehri>`__.
 
 Acknowledgment
 --------------
