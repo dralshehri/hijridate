@@ -71,13 +71,6 @@ Features
 - Works on Python 3.6+ with zero dependencies.
 - Thoroughly tested on all supported python versions.
 
-Online Demo
------------
-
-The following website implements a simple conversion tool using this package:
-
-https://www.dralshehri.com/hijri-converter/
-
 Installation
 ------------
 
@@ -99,6 +92,14 @@ Basic Usage
    h = convert.Gregorian(1982, 12, 2).to_hijri()
    print(h)
    # 1403-02-17
+
+Online Tool
+-----------
+
+The following is a simple conversion tool that was developed to try converting
+between dates using latest version of *Hijri Converter* package:
+
+https://www.dralshehri.com/hijri-converter/
 
 Documentation
 -------------
