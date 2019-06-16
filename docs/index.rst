@@ -38,13 +38,12 @@ using the Umm al-Qura calendar of Saudi Arabia.
 Overview
 --------
 
-The Umm al-Qura calendar is the lunar Hijri (Islamic) calendar officially
-adopted by Saudi Arabia for administrative purposes. It was originated from
-Umm al-Qura newspaper, the official newspaper of government of Saudi Arabia.
-The newspaper is published weekly and its first issue was on Friday,
-December 12, 1924 CE (15 Jumada al-Ula 1343 AH). However, the calendar has
-been printed and distributed separately by the Saudi government since 1346 AH
-(1927 CE).
+The Umm al-Qura calendar is the lunar Hijri calendar officially adopted by
+Saudi Arabia for administrative purposes. It was originated from Umm al-Qura
+newspaper, the official newspaper of government of Saudi Arabia. The newspaper
+is published weekly and its first issue was on Friday, 15 Jumada al-Ula 1343 AH
+(12 December 1924 CE). However, the calendar has been printed and distributed
+separately by the Saudi government since 1346 AH (1927 CE).
 
 The calendar is widely used in Saudi Arabia, especially by the governmental
 sector. Official documents, political letters, health care records, and
