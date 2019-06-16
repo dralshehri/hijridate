@@ -46,8 +46,8 @@ build: clean
 	$(PYTHON) setup.py sdist bdist_wheel
 	$(PYTHON) -m twine check dist/*
 
-.PHONY: deploy ## Deploy the package to PyPI
-deploy: build
+.PHONY: deploy ## Publish the package to PyPI
+publish: build
 	$(PYTHON) -m twine upload dist/*
 
 .PHONY: clean ## Remove all artifacts
