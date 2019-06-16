@@ -39,9 +39,17 @@ Overview
 --------
 
 The Umm al-Qura calendar is the lunar Hijri (Islamic) calendar officially
-adopted by Saudi Arabia for administrative purposes. It is mainly used by the
-government, including its health care and education systems, in which almost
-all documents and transactions are dated by the Hijri calendar.
+adopted by Saudi Arabia for administrative purposes. It was originated from
+Umm al-Qura newspaper, the official newspaper of government of Saudi Arabia.
+The newspaper is published weekly and its first issue was on Friday,
+December 12, 1924 CE (15 Jumada al-Ula 1343 AH). However, the calendar has
+been printed and distributed separately by the Saudi government since 1346 AH
+(1927 CE).
+
+The calendar is widely used in Saudi Arabia, especially by the governmental
+sector. Official documents, political letters, health care records, and
+education certificates, are just examples of many other documents that are
+dated by the Hijri calendar.
 
 However, the Gregorian calendar is the calendar used in most of the world,
 and it has been implemented as the default calendar in nearly every computer
@@ -61,13 +69,18 @@ Similar Python converters have been mainly derived from or using the
 a Javascript tool published by Suhail Alkowaileet. The last goes back to
 `R.H. van Gent`_, who built the original converter partly based on his
 astronomical calculation for years after 1420 AH and partly on a comparison
-calendar published by KFUPM in 1993 for the years 1356-1411 AH.
+calendar prepared by KFUPM in 1993 for the years 1356-1411 AH.
 
 In contrast, the *Hijri Converter* package was written in Python from scratch.
-Although it was inspired by R.H. van Gent's work, it is based on the
-`Umm al-Qura calendar dataset`_ published by Mohammed Alshehri, one that is in
-complete alignment with the official Umm al-Qura calendar. That makes it more
-accurate and broader in terms of years included, 1300-1500 AH.
+Although it was inspired by R.H. van Gent's work, it is mainly based on the
+Umm al-Qura newspaper issues published weekly since 1343 AH, one that is in
+complete alignment with the official printed Umm al-Qura calendar. However,
+other sources was also used to build the package including the comparison
+calendar prepared by KFUPM for the years 1356-1411 AH, and the official website
+of Umm al-Qura calendar for the years 1431-1500 AH. Both sources were also
+verified using the dates of then-published issues of Umm al-Qura newspaper.
+That makes *Hijri Converter* package more accurate and broader in terms of
+years included, 1343-1500 AH.
 
 When it comes to performance, using *Hijri Converter* package to convert from
 Hijri to Gregorian and back is seven times faster (or five times faster, with
@@ -102,7 +115,9 @@ has, the following table summarizes the main differences:
 +---------------------------+-------------------+-------------------+
 |         Item              |  Hijri Converter  |     Umalqurra     |
 +===========================+===================+===================+
-| Accuracy [#]_             | 100%              | 99.79%            |
+| Years included            | 1343-1500 AH      | 1356-1500 AH      |
++---------------------------+-------------------+-------------------+
+| Accuracy [#]_             | 100%              | 91.6%             |
 +---------------------------+-------------------+-------------------+
 | Performance [#]_          | 7x faster         | 1x                |
 +---------------------------+-------------------+-------------------+
@@ -120,7 +135,6 @@ has, the following table summarizes the main differences:
 .. _Umalqurra: https://pypi.org/project/umalqurra/
 .. _Hijri.js: https://github.com/xsoh/Hijri.js
 .. _`R.H. van Gent`: http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
-.. _Umm al-Qura calendar dataset: https://github.com/dralshehri/ummalqura-calendar
 
 Features
 --------
@@ -137,15 +151,8 @@ Features
 - Thoroughly tested on all supported python versions.
 
 .. note::
-   The conversion is valid for dates from the beginning of 1356 AH
-   (14 March 1937 CE) to the end of 1500 AH (16 November 2077 CE).
-
-Online Demo
------------
-
-The following website implements a simple conversion tool using this package:
-
-https://www.dralshehri.com/hijri-converter/
+   The conversion is valid for dates from the beginning of 1343 AH
+   (1 August 1924 CE) to the end of 1500 AH (16 November 2077 CE).
 
 Installation
 ------------
@@ -287,6 +294,14 @@ and ``except`` blocks:
    Traceback...
    OverflowError: date out of range
 
+Online Tool
+-----------
+
+The following is a simple conversion tool that was developed to try converting
+between dates using latest version of *Hijri Converter* package:
+
+https://www.dralshehri.com/hijri-converter/
+
 Source Code
 -----------
 
@@ -324,6 +339,7 @@ of the Hijri Converter package.
 .. autoclass:: Hijri
 .. autoclass:: Gregorian
 
-.. [#] Tested against official printed calendars.
-.. [#] With Hijri date validation disabled in *Hijri Converter* package; to be
+.. [#] Verified with the years 1343-1355 AH included, which are missing from
+       *Umalqurra* package but can produce wrong dates when used.
+.. [#] Hijri date validation was disabled in *Hijri Converter* package; to be
        comparable with *Umalqurra* package.
