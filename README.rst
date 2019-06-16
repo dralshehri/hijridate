@@ -31,32 +31,6 @@ using the Umm al-Qura calendar of Saudi Arabia.
    :alt: License
    :target: https://github.com/dralshehri/hijri-converter/blob/master/LICENSE
 
-Overview
---------
-
-The Umm al-Qura calendar is the lunar Hijri (Islamic) calendar officially
-adopted by Saudi Arabia for administrative purposes. It was originated from
-Umm al-Qura newspaper, the official newspaper of government of Saudi Arabia.
-The newspaper is published weekly and its first issue was on Friday,
-December 12, 1924 CE (15 Jumada al-Ula 1343 AH). However, the calendar has
-been printed and distributed separately by the Saudi government since 1346 AH
-(1927 CE).
-
-The calendar is widely used in Saudi Arabia, especially by the governmental
-sector. Official documents, political letters, health care records, and
-education certificates, are just examples of many other documents that are
-dated by the Hijri calendar.
-
-However, the Gregorian calendar is the calendar used in most of the world,
-and it has been implemented as the default calendar in nearly every computer
-and database.
-
-Therefore, a valid converter between Hijri and Gregorian dates is a necessity,
-especially when conducting research, analyzing data, or building applications
-that may have Hijri dates. Even though similar packages exist and try to fill
-the gap, `Hijri Converter <https://github.com/dralshehri/hijri-converter>`__
-comes with a pythonic code, higher accuracy, and better performance.
-
 Features
 --------
 
@@ -96,8 +70,9 @@ Basic Usage
 Online Tool
 -----------
 
-The following is a simple conversion tool that was developed to try converting
-between dates using latest version of *Hijri Converter* package:
+The following is a simple online conversion tool that was developed to convert
+between Hijri and Gregorian dates using the latest version of *Hijri Converter*
+package:
 
 https://www.dralshehri.com/hijri-converter/
 
@@ -105,7 +80,8 @@ Documentation
 -------------
 
 Please see https://hijri-converter.readthedocs.io/ for full documentation of
-this package, including benchmarking, usage examples and API reference.
+this package, including overview, benchmarking, usage examples and API
+reference.
 
 Contributing
 ------------
@@ -118,7 +94,7 @@ Authors
 -------
 
 The main author is Mohammed Alshehri —
-`Website <https://www.dralshehri.com/>`__.
+`@dralshehri <https://github.com/dralshehri>`__.
 
 Acknowledgment
 --------------
