@@ -11,7 +11,7 @@ are as follows:
 - Added ``validate`` parameter to Hijri object for optional disabling of
   Hijri date validation and performance improvement.
 - Verified conversion against original references and updated the
-``month_starts`` tuple for more accurate conversion.
+  ``month_starts`` tuple for more accurate conversion.
 - Improved ``Hijri`` object rich comparison methods.
 - Improved date validation methods for better performance and readability.
 - Made the ``Hijri`` object hashable by adding a custom ``__hash__`` method.
