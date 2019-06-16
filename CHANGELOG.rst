@@ -3,13 +3,13 @@ Change Log
 
 **2.1.0**
 
-This version has a more accurate conversion and better internal code. Details
-are as follows:
+This version has more accurate conversion and better internal code.
+Details are as follows:
 
 - Dropped support for the years before 1343 AH because the Umm al-Qura calendar
   was not established then.
 - Added ``validate`` parameter to Hijri object for optional disabling of
-  Hijri date validation and performance improvement.
+  Hijri date validation and improving performance.
 - Verified conversion against original references and updated the
   ``month_starts`` tuple for more accurate conversion.
 - Improved ``Hijri`` object rich comparison methods.
@@ -22,7 +22,6 @@ are as follows:
 
 In short, this version supports only lunar Hijri calendar on Python 3.6+, and
 the conversion is in complete agreement with the official Umm al-Qura calendar.
-
 Details are as follows:
 
 - Renamed the package to ``hijri-converter``.
