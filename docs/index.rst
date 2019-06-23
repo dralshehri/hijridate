@@ -35,6 +35,8 @@ using the Umm al-Qura calendar of Saudi Arabia.
    :local:
    :backlinks: none
 
+.. module:: convert
+
 Overview
 --------
 
@@ -162,8 +164,6 @@ Installation
 
 Usage Examples
 --------------
-
-.. module:: convert
 
 To import the package:
 
