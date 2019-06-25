@@ -107,5 +107,5 @@ html_sidebars = {'**': []}
 # -- Extension configuration -------------------------------------------------
 autodoc_member_order = 'bysource'
 autoclass_content = 'both'
-autodoc_default_options = {'members': True, 'show-inheritance': True}
+autodoc_default_flags = ['members', 'show-inheritance']
 intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
