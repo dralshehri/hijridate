@@ -12,7 +12,8 @@ install: clean
 	rm -fr .venv
 	python3 -m venv .venv --copies
 	$(PYTHON) -m pip install -U pip setuptools
-	$(PYTHON) -m pip install -U pytest pytest-cov black sphinx wheel twine
+	$(PYTHON) -m pip install -U pytest pytest-cov black wheel twine
+	$(PYTHON) -m pip install sphinx==1.8.5
 	$(PYTHON) -m pip install -e .
 
 .PHONY: install-pkg ## Install the package only
