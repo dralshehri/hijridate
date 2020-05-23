@@ -1,7 +1,8 @@
 import datetime
 import warnings
 from bisect import bisect
-from hijri_converter import ummalqura, locales
+
+from hijri_converter import locales, ummalqura
 
 
 class Hijri:
@@ -112,15 +113,16 @@ class Hijri:
         return self._year, self._month, self._day
 
     def isoformat(self) -> str:
-        """Return date in ISO format 'YYYY-MM-DD'."""
+        """Return date in ISO format i.e. 'YYYY-MM-DD'."""
         return f"{self._year:04}-{self._month:02}-{self._day:02}"
 
     def dmyformat(self) -> str:
-        """Return date in the format 'DD/MM/YYYY'."""
+        """Return date in 'DD/MM/YYYY' format."""
         return f"{self._day:02}/{self._month:02}/{self._year:04}"
 
     def slashformat(self) -> str:
-        """Return date in the format 'DD/MM/YYYY'.
+        """Return date in 'DD/MM/YYYY' format.
+
         This method is DEPRECATED and will be removed in a future version,
         use ``dmyformat()`` instead.
         """
@@ -237,10 +239,10 @@ class Gregorian(datetime.date):
         """
 
         year, month, day = date_object.timetuple()[:3]
-        return cls(year, month, day)
+        return super().__new__(cls, year, month, day)
 
     def datetuple(self) -> tuple:
-        """Return Gregorian date as a tuple of (year, month, day)."""
+        """Return date as a tuple of (year, month, day)."""
         return self.year, self.month, self.day
 
     def dmyformat(self) -> str:
@@ -249,6 +251,7 @@ class Gregorian(datetime.date):
 
     def slashformat(self) -> str:
         """Return date in 'DD/MM/YYYY' format.
+
         This method is DEPRECATED and will be removed in a future version,
         use ``dmyformat()`` instead.
         """
@@ -260,7 +263,7 @@ class Gregorian(datetime.date):
         return self.dmyformat()
 
     def month_name(self, language: str = "en") -> str:
-        """Return Hijri month name.
+        """Return month name.
 
         :param language: Language for localized translation which may be
             ``en`` or ``ar`` (default is ``en``)
@@ -291,13 +294,13 @@ class Gregorian(datetime.date):
         return getattr(locales, language).gregorian_notation
 
     def to_julian(self) -> int:
-        """Convert Gregorian date to Julian Day (JD) number."""
+        """Convert to Julian Day (JD) number."""
         n = self.toordinal()
         jd = _ordinal_to_julian(n)
         return jd
 
     def to_hijri(self) -> Hijri:
-        """Convert Gregorian date to Hijri date.
+        """Convert to Hijri date.
 
         :return: Hijri date object
         :rtype: Hijri
