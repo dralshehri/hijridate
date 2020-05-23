@@ -201,7 +201,7 @@ example:
    >>> hijri.datetuple()
    (1403, 2, 17)
 
-   >>> hijri.slashformat()
+   >>> hijri.dmyformat()
    '17/02/1403'
 
    >>> hijri.month_name()
