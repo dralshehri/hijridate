@@ -1,6 +1,14 @@
 Change Log
 ----------
 
+**2.1.1**
+
+- Added ``dmyformat()`` to return dates in DD/MM/YYYY format.
+- Deprecated ``slashformat()`` method to be replaced by ``dmyformat()`` method.
+- Fixed PyPI package not including a required file. Issue `#3 <https://github.com/dralshehri/hijri-converter/issues/3>`__ by `@PureTryOut <https://github.com/PureTryOut>`__.
+- Fixed some typos.
+- Updated tests.
+
 **2.1.0**
 
 This version has more accurate conversion and better internal code.
