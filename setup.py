@@ -7,7 +7,7 @@ changelog = (here / "CHANGELOG.rst").read_text(encoding="utf-8")
 
 setup(
     name="hijri-converter",
-    version="2.1.0",
+    version="2.1.1",
     description="Accurate Hijri-Gregorian date converter based on the "
     "Umm al-Qura calendar",
     long_description="\n".join([readme, changelog]),
