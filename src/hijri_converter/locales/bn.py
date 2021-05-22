@@ -3,8 +3,7 @@
 This module contains localized translation for week day names, month names,
 and notations.
 
-Note: months tuple must starts with empty string
-Translation to : Bengali-Bangladesh (bn-BD)
+Translation to: Bengali-Bangladesh (bn-BD)
 Translated By: Nazmul Haque Naqib (নাজমুল হক নকিব)
 """
 
@@ -12,7 +11,7 @@ weekday_names = (
     "সোমবার",
     "মঙ্গলবার",
     "বুধবার",
-	"ৃহস্পতিবার",
+    "ৃহস্পতিবার",
     "শুক্রবার",
     "শনিবার",
     "রোববার",
@@ -20,15 +19,14 @@ weekday_names = (
 
 gregorian_notation = "খ্রিস্টাব্দ"
 gregorian_months = (
-    "",
     "জানুয়ারি",
     "ফেব্রুয়ারি",
     "মার্চ",
     "এপ্রিল",
-   	"মে",
+    "মে",
     "জুন",
     "ঞ্জুলাই",
-   	"আগস্ট",
+    "আগস্ট",
     "সেপ্টেম্বর",
     "অক্টোবর",
     "নভেম্বর",
@@ -37,7 +35,6 @@ gregorian_months = (
 
 hijri_notation = "হিজরি"
 hijri_months = (
-    "",
     "মুহাররম",
     "সফর",
     "রবিউল আউয়াল",
