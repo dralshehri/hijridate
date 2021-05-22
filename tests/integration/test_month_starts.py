@@ -1,12 +1,14 @@
 import json
-import pytest
 from pathlib import Path
+
+import pytest
+
 from hijri_converter import convert
 
 
 def load_params_from_json():
     data = []
-    files = Path(__file__).parent.joinpath("data").glob("*.json")
+    files = Path(__file__).parent.joinpath("fixtures").glob("*.json")
     for file in files:
         file_content = json.loads(file.read_text())
         file_data = [[tuple(i) for i in x[1]] for x in file_content]
