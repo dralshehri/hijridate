@@ -1,5 +1,7 @@
-import pytest
 from datetime import date
+
+import pytest
+
 from hijri_converter import convert
 
 
@@ -115,9 +117,7 @@ def test_hijri_month_index(hijri):
     assert hijri._month_index() == 811
 
 
-@pytest.mark.parametrize(
-    "test_input", [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)]
-)
+@pytest.mark.parametrize("test_input", [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)])
 def test_hijri_valid_date(test_input):
     year, month, day = test_input
     try:
@@ -184,9 +184,7 @@ def test_gregorian_to_hijri(gregorian):
     assert gregorian.to_hijri().datetuple() == (1410, 8, 13)
 
 
-@pytest.mark.parametrize(
-    "test_input", [(1990, 3, 10), (1924, 8, 1), (2077, 11, 16)]
-)
+@pytest.mark.parametrize("test_input", [(1990, 3, 10), (1924, 8, 1), (2077, 11, 16)])
 def test_gregorian_valid_range(test_input):
     year, month, day = test_input
     try:
