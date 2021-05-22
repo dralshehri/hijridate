@@ -4,6 +4,12 @@ The format is based on [semantic versioning](https://packaging.python.org/guides
 and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
 schemes recommended by the Python Packaging Authority (PPA).
 
+## Unreleased
+
+- Fixed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` object.
+- Updated packaging files and local development workflow.
+- Other minor fixes and documentation enhancements.
+
 ## 2.1.1 (2020-05-21)
 
 - Added `dmyformat()` to return dates in `DD/MM/YYYY` format.
