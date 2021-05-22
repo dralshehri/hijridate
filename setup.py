@@ -1,44 +1,10 @@
-import pathlib
-from setuptools import setup, find_packages
+"""Setup.py entry point for package
 
-here = pathlib.Path(__file__).parent
-readme = (here / "README.rst").read_text(encoding="utf-8")
-changelog = (here / "CHANGELOG.rst").read_text(encoding="utf-8")
+Configuration is handled by setuptools through setup.cfg
+https://setuptools.readthedocs.io/en/latest/setuptools.html
+"""
 
-setup(
-    name="hijri-converter",
-    version="2.1.1",
-    description="Accurate Hijri-Gregorian date converter based on the "
-    "Umm al-Qura calendar",
-    long_description="\n".join([readme, changelog]),
-    long_description_content_type="text/x-rst",
-    url="https://github.com/dralshehri/hijri-converter",
-    project_urls={"Documentation": "https://hijri-converter.readthedocs.io/"},
-    author="Mohammed Alshehri",
-    author_email="",
-    license="MIT",
-    classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Intended Audience :: Developers",
-        "Intended Audience :: Science/Research",
-        "Intended Audience :: Healthcare Industry",
-        "Intended Audience :: Legal Industry",
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Topic :: Scientific/Engineering",
-        "Topic :: Software Development :: Internationalization",
-        "Topic :: Software Development :: Localization",
-        "Topic :: Utilities",
-        "Typing :: Typed",
-    ],
-    keywords="hijri gregorian date converter ummalqura saudi calendar",
-    packages=find_packages(where="src"),
-    package_dir={"": "src"},
-    include_package_data=True,
-    python_requires=">=3.6",
-)
+import setuptools
+
+if __name__ == "__main__":
+    setuptools.setup()
