@@ -2,8 +2,6 @@
 
 This module contains localized translation for week day names, month names,
 and notations.
-
-Note: months tuple must starts with empty string
 """
 
 weekday_names = (
@@ -18,7 +16,6 @@ weekday_names = (
 
 gregorian_notation = "CE"
 gregorian_months = (
-    "",
     "January",
     "February",
     "March",
@@ -35,7 +32,6 @@ gregorian_months = (
 
 hijri_notation = "AH"
 hijri_months = (
-    "",
     "Muharram",
     "Safar",
     "Rabi’ al-Awwal",

@@ -142,7 +142,7 @@ class Hijri:
         :type language: str
         """
 
-        return getattr(locales, language).hijri_months[self._month]
+        return getattr(locales, language).hijri_months[self._month - 1]
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 ... Sunday is 6."""
@@ -264,7 +264,7 @@ class Gregorian(datetime.date):
         :type language: str
         """
 
-        return getattr(locales, language).gregorian_months[self.month]
+        return getattr(locales, language).gregorian_months[self.month - 1]
 
     def day_name(self, language: str = "en") -> str:
         """Return day name.
