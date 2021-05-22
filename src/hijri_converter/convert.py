@@ -12,9 +12,7 @@ class Hijri:
 
     __slots__ = "_year", "_month", "_day"
 
-    def __init__(
-        self, year: int, month: int, day: int, validate: bool = True
-    ) -> None:
+    def __init__(self, year: int, month: int, day: int, validate: bool = True) -> None:
         """
         :param year: Hijri year
         :type year: int
@@ -76,7 +74,7 @@ class Hijri:
     @classmethod
     def fromisoformat(cls, date_string: str):
         """Construct Hijri object from an ISO formatted Hijri date
-        'YYYY-MM-DD'.
+        ``YYYY-MM-DD``.
 
         :param date_string: Hijri date in ISO format ``YYYY-MM-DD``
         :type date_string: str
@@ -109,15 +107,15 @@ class Hijri:
         return self._year, self._month, self._day
 
     def isoformat(self) -> str:
-        """Return date in ISO format i.e. 'YYYY-MM-DD'."""
+        """Return date in ISO format i.e. ``YYYY-MM-DD``."""
         return f"{self._year:04}-{self._month:02}-{self._day:02}"
 
     def dmyformat(self) -> str:
-        """Return date in 'DD/MM/YYYY' format."""
+        """Return date in ``DD/MM/YYYY`` format."""
         return f"{self._day:02}/{self._month:02}/{self._year:04}"
 
     def slashformat(self) -> str:
-        """Return date in 'DD/MM/YYYY' format.
+        """Return date in ``DD/MM/YYYY`` format.
 
         This method is DEPRECATED and will be removed in a future version,
         use ``dmyformat()`` instead.
@@ -211,7 +209,7 @@ class Hijri:
             raise ValueError(f"day must be in 1..{month_length} for month")
 
     def _month_index(self) -> int:
-        """Return month's index in ummalqura data"""
+        """Return month’s index in ummalqura data"""
         prior_months = ((self.year - 1) * 12) + self.month - 1
         index = prior_months - ummalqura.hijri_offset
         return index
@@ -242,11 +240,11 @@ class Gregorian(datetime.date):
         return self.year, self.month, self.day
 
     def dmyformat(self) -> str:
-        """Return date in 'DD/MM/YYYY' format."""
+        """Return date in `DD/MM/YYYY` format."""
         return f"{self.day:02}/{self.month:02}/{self.year:04}"
 
     def slashformat(self) -> str:
-        """Return date in 'DD/MM/YYYY' format.
+        """Return date in ``DD/MM/YYYY`` format.
 
         This method is DEPRECATED and will be removed in a future version,
         use ``dmyformat()`` instead.
