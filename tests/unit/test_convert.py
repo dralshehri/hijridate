@@ -85,6 +85,7 @@ def test_hijri_month_length(hijri):
 def test_hijri_month_name(hijri):
     assert hijri.month_name() == "Sha’ban"
     assert hijri.month_name("ar") == "شعبان"
+    assert hijri.month_name("bn") == "শাবান"
 
 
 def test_hijri_weekday(hijri):
@@ -98,11 +99,13 @@ def test_hijri_iso_weekday(hijri):
 def test_hijri_day_name(hijri):
     assert hijri.day_name() == "Saturday"
     assert hijri.day_name("ar") == "السبت"
+    assert hijri.day_name("bn") == "শনিবার"
 
 
 def test_hijri_notation(hijri):
     assert hijri.notation() == "AH"
     assert hijri.notation("ar") == "هـ"
+    assert hijri.notation("bn") == "হিজরি"
 
 
 def test_hijri_to_julian(hijri):
@@ -175,16 +178,19 @@ def test_gregorian_slashformat_deprecation(gregorian):
 def test_gregorian_month_name(gregorian):
     assert gregorian.month_name() == "March"
     assert gregorian.month_name("ar") == "مارس"
+    assert gregorian.month_name("bn") == "মার্চ"
 
 
 def test_gregorian_day_name(gregorian):
     assert gregorian.day_name() == "Saturday"
     assert gregorian.day_name("ar") == "السبت"
+    assert gregorian.day_name("bn") == "শনিবার"
 
 
 def test_gregorian_notation(gregorian):
     assert gregorian.notation() == "CE"
     assert gregorian.notation("ar") == "م"
+    assert gregorian.notation("bn") == "খ্রিস্টাব্দ"
 
 
 def test_gregorian_to_julian(gregorian):

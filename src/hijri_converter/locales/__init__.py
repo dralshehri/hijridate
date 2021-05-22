@@ -1,1 +1,1 @@
-from hijri_converter.locales import ar, en
+from hijri_converter.locales import ar, bn, en
