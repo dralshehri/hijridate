@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests/unit"]
+
+[tool.coverage.run]
+branch = true
+source = ["src/hijri_converter"]
+
+[tool.black]
+target-version = ['py36', 'py37', 'py38', 'py39']
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
