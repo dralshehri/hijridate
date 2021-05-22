@@ -137,7 +137,7 @@ def test_hijri_valid_date(test_input):
         ((1501, 1, 1), "date out of range"),
     ],
 )
-def test_hijri_invalid_date(test_input, expected):
+def test_hijri_invalid_year(test_input, expected):
     with pytest.raises(OverflowError) as e:
         convert.Hijri(*test_input, validate=False)._check_date()
     assert str(e.value) == expected
@@ -151,7 +151,7 @@ def test_hijri_invalid_date(test_input, expected):
         ((1410, 8, 30), "day must be in 1..29 for month"),
     ],
 )
-def test_hijri_invalid_date(test_input, expected):
+def test_hijri_invalid_day_or_month(test_input, expected):
     with pytest.raises(ValueError) as e:
         convert.Hijri(*test_input, validate=False)._check_date()
     assert str(e.value) == expected
