@@ -7,6 +7,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 ## Unreleased
 
 - Fixed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` object.
+- Improved `Hijri` exception tests.
 - Updated packaging files and local development workflow.
 - Other minor fixes and documentation enhancements.
 
