@@ -36,7 +36,7 @@ jobs:
         pytest tests
   coverage:
     name: Code Coverage
-    needs: test-code
+    needs: pytest
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
