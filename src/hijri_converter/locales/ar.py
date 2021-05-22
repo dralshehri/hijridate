@@ -18,7 +18,6 @@ weekday_names = (
 
 gregorian_notation = "م"
 gregorian_months = (
-    "",
     "يناير",
     "فبراير",
     "مارس",
@@ -35,7 +34,6 @@ gregorian_months = (
 
 hijri_notation = "هـ"
 hijri_months = (
-    "",
     "محرم",
     "صفر",
     "ربيع الأول",
