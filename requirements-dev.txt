@@ -1,0 +1,8 @@
+-e .
+-r tests/requirements.txt
+-r docs/requirements.txt
+mypy
+black
+isort
+build
+twine
