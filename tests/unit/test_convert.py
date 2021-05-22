@@ -25,13 +25,9 @@ def test_hijri_hash(hijri):
     assert hijri.__hash__() == hash(("Hijri", 1410, 8, 13))
 
 
-@pytest.mark.parametrize(
-    "test_input", ["__gt__", "__ge__", "__lt__", "__le__"]
-)
-def test_test_hijri_comparison_exception(hijri, test_input):
-    with pytest.raises(TypeError) as e:
-        getattr(hijri, test_input)("1410-08-13")
-    assert str(e.value) == "can't compare 'Hijri' to 'str'"
+@pytest.mark.parametrize("test_input", ["__gt__", "__ge__", "__lt__", "__le__"])
+def test_hijri_comparison_notimplemented(hijri, test_input):
+    assert getattr(hijri, test_input)("1410-08-13") == NotImplemented
 
 
 def test_hijri_equality(hijri):
