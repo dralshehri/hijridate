@@ -6,6 +6,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 ## Unreleased
 
+- Add Bangla translation. (Thanks to [@nokibsarkar](https://github.com/nokibsarkar))
 - Fixed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` object.
 - Improved `Hijri` exception tests.
 - Updated packaging files and local development workflow.
@@ -15,7 +16,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 - Added `dmyformat()` to return dates in `DD/MM/YYYY` format.
 - Deprecated `slashformat()` method to be replaced by `dmyformat()` method.
-- Fixed PyPI package not including some required files. ([#3](https://github.com/dralshehri/hijri-converter/issues/3))
+- Fixed PyPI package not including some required files. (Thanks to [@PureTryOut](https://github.com/PureTryOut))
 - Fixed some typos.
 - Updated tests.
 
