@@ -42,4 +42,5 @@ jobs:
           publish_dir: ./docs/_build
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          full_commit_message: Update documentation
+          full_commit_message: Publish documentation
+          force_orphan: true

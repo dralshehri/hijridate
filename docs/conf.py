@@ -64,9 +64,7 @@ myst_heading_anchors = 2
 #
 html_theme = "furo"
 html_static_path = ["_static"]
-html_css_files = [
-    "css/custom.css",
-]
+html_css_files = ["custom.css"]
 html_sidebars = {
     "**": [
         "sidebar/scroll-start.html",
