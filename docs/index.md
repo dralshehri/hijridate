@@ -19,7 +19,7 @@ content/changelog
 content/contributing
 content/authors
 content/license
-GitHub Repository <https://github.com/dralshehri/hijri-converter>
+GitHub Repo <https://github.com/dralshehri/hijri-converter>
 :::
 
 # Hijri Converter
