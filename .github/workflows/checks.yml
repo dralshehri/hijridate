@@ -1,4 +1,4 @@
-name: Run tests
+name: Checks
 
 on:
   push:
@@ -13,14 +13,38 @@ on:
       - 'tests/**'
 
 jobs:
-  pytest:
-    name: Python ${{ matrix.python-version }}
+  check-quality:
+    name: Check code quality
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install -U pip
+        pip install mypy black isort
+    - name: Check typing
+      run: |
+        mypy src
+    - name: Check formatting
+      run: |
+        black --check --quiet src tests
+    - name: Check imports
+      run: |
+        isort --check-only src tests
+  run-tests:
+    name: Test on Python ${{ matrix.python-version }}
+    needs: check-quality
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8, 3.9]
     steps:
-    - name: Clone repository
+    - name: Checkout repository
       uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -34,12 +58,13 @@ jobs:
     - name: Run tests
       run: |
         pytest tests
-  coverage:
-    name: Code Coverage
-    needs: pytest
+  check-coverage:
+    name: Check code coverage
+    needs: run-tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -52,5 +77,3 @@ jobs:
     - name: Generate report
       run: |
         pytest --cov --cov-report=term --cov-report=xml --cov-fail-under=100 tests/unit
-    - name: Upload report
-      uses: codecov/codecov-action@v1
