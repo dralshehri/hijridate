@@ -20,7 +20,7 @@ using the Umm al-Qura calendar of Saudi Arabia.
 
 ## Features
 
-- Accurate and tested conversion.
+- Accurate and tested date conversion.
 - Optimized code performance compared to similar packages.
 - Intuitive, clean, and easy-to-use interface.
 - Most of the methods and formats are similar to those of standard library.
