@@ -2,5 +2,5 @@
 hide-toc: true
 ---
 
-:::{include} ../../Authors.md
+:::{include} ../../AUTHORS.md
 :::
