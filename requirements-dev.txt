@@ -1,8 +1,10 @@
 -e .
--r tests/requirements.txt
--r docs/requirements.txt
+build
 mypy
 black
 isort
-build
-twine
+pytest
+pytest-cov
+sphinx
+myst-parser
+furo
