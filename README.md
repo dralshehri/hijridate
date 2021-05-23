@@ -4,18 +4,18 @@
 A Python package to convert accurately between Hijri and Gregorian dates
 using the Umm al-Qura calendar of Saudi Arabia.
 
-[![Build Status](https://img.shields.io/travis/com/dralshehri/hijri-converter.svg)][build]
-[![Coverage Status](https://img.shields.io/codecov/c/github/dralshehri/hijri-converter.svg)][coverage]
-[![Docs Status](https://img.shields.io/readthedocs/hijri-converter/stable.svg)][docs]
-[![PyPI Version](https://img.shields.io/pypi/v/hijri-converter.svg)][version]
-[![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter)][downloads]
-[![Package License](https://img.shields.io/github/license/dralshehri/hijri-converter.svg)][license]
+[![Checks Status](https://img.shields.io/github/workflow/status/dralshehri/hijri-converter/Checks?event=push&label=checks)][checks]
+[![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
+[![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijri-converter?&label=codefactor)][quality]
+[![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads]
+[![PyPI Version](https://img.shields.io/pypi/v/hijri-converter)][version]
+[![Package License](https://img.shields.io/github/license/dralshehri/hijri-converter)][license]
 
-[build]: https://travis-ci.com/dralshehri/hijri-converter
-[coverage]: https://codecov.io/github/dralshehri/hijri-converter
-[docs]: https://hijri-converter.readthedocs.io/
-[version]: https://pypi.python.org/pypi/hijri-converter
+[checks]: https://github.com/dralshehri/hijri-converter/actions/workflows/checks.yml
+[coverage]: https://github.com/dralshehri/hijri-converter/actions/workflows/checks.yml
+[quality]: https://www.codefactor.io/repository/github/dralshehri/hijri-converter/overview/main
 [downloads]: https://pypistats.org/packages/hijri-converter
+[version]: https://pypi.python.org/pypi/hijri-converter
 [license]: https://github.com/dralshehri/hijri-converter/blob/main/LICENSE
 
 ## Features
@@ -60,8 +60,8 @@ print(h)
 
 ## Documentation
 
-Please see <https://hijri-converter.readthedocs.io/> for full documentation of
-this package, including overview, benchmarking, usage examples and API
+Please see <https://dralshehri.github.io/hijri-converter/> for full documentation of
+this package, including background, benchmarking, usage examples and API
 reference.
 
 ## Changelog
