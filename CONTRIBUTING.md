@@ -11,10 +11,9 @@ An issue may be a simple comment, question, feature request, or bug report. When
 You may want to make some changes to the package codebase. For example, to fix a bug, to add a new feature, or to update documentation. You can do so by following these simple steps:
 1. Fork [GitHub repository](https://github.com/dralshehri/hijri-converter).
 2. Clone your repository locally.
-3. Create a new branch from `next`
-4. Make your code changes.
-5. Push it back to your repository.
-6. Create a pull request on GitHub.
+3. Make your code changes.
+4. Push it back to your repository.
+5. Create a pull request on GitHub.
 
 ## Developing Locally
 
@@ -69,7 +68,6 @@ sphinx-build -E docs docs/_build
 
 ```shell
 python -m build --sdist --wheel
-python -m twine check dist/*
 ```
 
 ## Need Help?
