@@ -60,7 +60,7 @@ print(h)
 
 ## Documentation
 
-Please see <https://dralshehri.github.io/hijri-converter/> for full documentation of
+Please see <https://hijri-converter.readthedocs.io> for full documentation of
 this package, including background, benchmarking, usage examples and API
 reference.
 
