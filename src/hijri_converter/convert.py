@@ -138,7 +138,7 @@ class Hijri:
         """Return month name.
 
         :param language: Language for localized translation which may be
-            ``en`` or ``ar`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``)
         :type language: str
         """
 
@@ -158,7 +158,7 @@ class Hijri:
         """Return day name.
 
         :param language: Language for localized translation which may be
-            ``en`` or ``ar`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``)
         :type language: str
         """
 
@@ -169,7 +169,7 @@ class Hijri:
         """Return calendar notation/abbreviation.
 
         :param language: Language for localized translation which may be
-            ``en`` or ``ar`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``)
         :type language: str
         """
 
@@ -260,7 +260,7 @@ class Gregorian(datetime.date):
         """Return month name.
 
         :param language: Language for localized translation which may be
-            ``en`` or ``ar`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``)
         :type language: str
         """
 
@@ -270,7 +270,7 @@ class Gregorian(datetime.date):
         """Return day name.
 
         :param language: Language for localized translation which may be
-            ``en`` or ``ar`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``)
         :type language: str
         """
 
@@ -281,7 +281,7 @@ class Gregorian(datetime.date):
         """Return calendar notation/abbreviation.
 
         :param language: Language for localized translation which may be
-            ``en`` or ``ar`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``)
         :type language: str
         """
 

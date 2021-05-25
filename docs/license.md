@@ -5,6 +5,6 @@ This package is distributed under an MIT license.
 The license is as follows:
 
 
-:::{literalinclude} ../../LICENSE
+:::{literalinclude} ../LICENSE
     :language: text
 :::

@@ -5,20 +5,20 @@ hide-toc: true
 :::{toctree}
 :hidden:
 
-content/background
-content/benchmarking
-content/usage
-content/reference
+background
+benchmarking
+usage
+reference
 :::
 
 :::{toctree}
 :caption: Development
 :hidden:
 
-content/changelog
-content/contributing
-content/authors
-content/license
+changelog
+contributing
+authors
+license
 GitHub Repo <https://github.com/dralshehri/hijri-converter>
 :::
 

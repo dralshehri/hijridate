@@ -45,16 +45,14 @@ pip install -U hijri-converter
 
 ## Basic Usage
 
-```python
-from hijri_converter import convert
+```pycon
+>>> from hijri_converter import convert
 
-g = convert.Hijri(1403, 2, 17).to_gregorian()
-print(g)
-# 1982-12-02
+>>> convert.Hijri(1403, 2, 17).to_gregorian()
+Gregorian(1982, 12, 2)
 
-h = convert.Gregorian(1982, 12, 2).to_hijri()
-print(h)
-# 1403-02-17
+>>> convert.Gregorian(1982, 12, 2).to_hijri()
+Hijri(1403, 2, 17)
 ```
 <!-- end summary -->
 
