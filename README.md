@@ -1,6 +1,7 @@
 # Hijri Converter
 
 <!-- start summary -->
+
 A Python package to convert accurately between Hijri and Gregorian dates
 using the Umm al-Qura calendar of Saudi Arabia.
 
@@ -45,20 +46,24 @@ pip install -U hijri-converter
 
 ## Basic Usage
 
-```pycon
->>> from hijri_converter import convert
+```python
+from hijri_converter import convert
 
->>> convert.Hijri(1403, 2, 17).to_gregorian()
-Gregorian(1982, 12, 2)
 
->>> convert.Gregorian(1982, 12, 2).to_hijri()
-Hijri(1403, 2, 17)
+g_date = convert.Hijri(1403, 2, 17).to_gregorian()
+print(g_date)
+# 1982-12-02
+
+h_date = convert.Gregorian(1982, 12, 2).to_hijri()
+print(h_date)
+# 1403-02-17
 ```
+
 <!-- end summary -->
 
 ## Documentation
 
-Please see <https://hijri-converter.readthedocs.io> for full documentation of
+Please see <https://dralshehri.github.io/hijri-converter/> for full documentation of
 this package, including background, benchmarking, usage examples and API
 reference.
 
