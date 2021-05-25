@@ -8,7 +8,7 @@ hide-toc: true
 background
 benchmarking
 usage
-reference
+api
 :::
 
 :::{toctree}
