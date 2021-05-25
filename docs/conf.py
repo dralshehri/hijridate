@@ -66,11 +66,11 @@ myst_heading_anchors = 2
 html_baseurl = "https://dralshehri.github.io/hijri-converter/"
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    'display_version': True,
-    'navigation_depth': 1,
-    'includehidden': True,
-    'titles_only': True,
-    'style_nav_header_background': '#2980B9',
+    "display_version": True,
+    "navigation_depth": 1,
+    "includehidden": True,
+    "titles_only": True,
+    "style_nav_header_background": "#2980B9",
 }
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
