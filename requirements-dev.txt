@@ -7,4 +7,4 @@ pytest
 pytest-cov
 sphinx
 myst-parser
-furo
+sphinx_rtd_theme
