@@ -1,3 +1,3 @@
-code.literal {
-  font-size: var(--font-size--small);
+pre {
+  font-size: 13px !important;
 }

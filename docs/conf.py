@@ -13,8 +13,9 @@ sys.path.insert(0, os.path.abspath("../src/hijri_converter"))
 #
 
 project = "Hijri Converter"
-project_copyright = "2018 Mohammed Alshehri (@dralshehri)"
 author = "Mohammed Alshehri"
+project_copyright = "2018 Mohammed Alshehri (@dralshehri)"
+version = "latest"
 
 #
 # -- General configuration -------------------------------------------------------------
@@ -25,11 +26,11 @@ extensions = [
     "sphinx.ext.githubpages",
     "myst_parser",
 ]
-templates_path = ["_templates"]
 source_suffix = {
     ".rst": "restructuredtext",
     ".md": "markdown",
 }
+pygments_style = "colorful"
 
 #
 # -- Options for autodoc -------------------------------------------------
@@ -38,7 +39,7 @@ autodoc_default_options = {
     "members": True,
     "member-order": "bysource",
     "special-members": "__init__",
-    "inherited-members": True,
+    # "inherited-members": True,
     "show_inheritance": True,
     "noindex": True,
 }
@@ -62,26 +63,17 @@ myst_heading_anchors = 2
 #
 # -- Options for HTML output -----------------------------------------------------------
 #
-html_theme = "furo"
+html_baseurl = "https://dralshehri.github.io/hijri-converter/"
+html_theme = "sphinx_rtd_theme"
+html_theme_options = {
+    'display_version': True,
+    'navigation_depth': 1,
+    'includehidden': True,
+    'titles_only': True,
+    'style_nav_header_background': '#2980B9',
+}
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
-html_sidebars = {
-    "**": [
-        "sidebar/scroll-start.html",
-        "sidebar/brand.html",
-        "sidebar/navigation.html",
-        "sidebar/scroll-end.html",
-    ]
-}
-html_theme_options = {
-    "light_css_variables": {
-        "code-font-size": "var(--font-size--small)",
-        "color-foreground-primary": "#24292e",
-        "color-foreground-muted": "#868e96",
-        "color-foreground-border": "#868e96",
-        "color-background-secondary": "#f1f3f5",
-        "color-background-border": "#e9ecef",
-        "color-brand-primary": "#1971c2",
-        "color-brand-content": "#1971c2",
-    },
-}
+html_copy_source = False
+html_show_sourcelink = False
+html_show_sphinx = False
