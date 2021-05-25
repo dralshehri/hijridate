@@ -84,7 +84,7 @@ Details are as follows:
 
 - Improved documentation and changelog.
 
-### 1.3.1 (2018-11-16)
+## 1.3.1 (2018-11-16)
 
 - Fixed README file.
 
