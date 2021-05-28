@@ -50,13 +50,11 @@ pip install -U hijri-converter
 from hijri_converter import convert
 
 
+# Convert a Hijri date to Gregorian
 g_date = convert.Hijri(1403, 2, 17).to_gregorian()
-print(g_date)
-# 1982-12-02
 
+# Convert a Gregorian date to Hijri
 h_date = convert.Gregorian(1982, 12, 2).to_hijri()
-print(h_date)
-# 1403-02-17
 ```
 
 <!-- end summary -->
