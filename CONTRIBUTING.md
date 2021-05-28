@@ -61,7 +61,7 @@ isort src tests
 ### Generate documentation:
 
 ```shell
-sphinx-build -E docs docs/_build
+sphinx-build -E -b dirhtml docs docs/_build
 ```
 
 ### Build package:
