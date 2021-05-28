@@ -7,7 +7,7 @@ is published weekly and its first issue was on Friday, 15 Jumada al-Ula 1343 AH
 (12 December 1924 CE). However, the calendar has been printed and distributed
 separately by the Saudi government since 1346 AH (1927 CE).
 
-The calendar is widely used in Saudi Arabia, especially by the governmental
+The calendar is widely used in Saudi Arabia, especially by the public
 sector. Official documents, political letters, health care records, and
 education certificates, are just examples of many other documents that are
 dated by the Hijri calendar.
