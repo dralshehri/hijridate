@@ -34,7 +34,7 @@ jobs:
           pip install -e .
       - name: Build docs
         run: |
-          sphinx-build docs docs/_build
+          sphinx-build -b dirhtml docs docs/_build
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
