@@ -2,8 +2,6 @@
 
 This module contains localized translation for week day names, month names,
 and notations.
-
-Note: months tuple must starts with empty string
 """
 
 weekday_names = (
