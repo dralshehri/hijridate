@@ -1,4 +1,3 @@
-include AUTHORS.md
 include CHANGELOG.md
 include py.typed
 graft tests
