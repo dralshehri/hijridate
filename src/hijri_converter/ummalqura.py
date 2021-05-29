@@ -1,30 +1,14 @@
-"""Umm al-Qura calendar specific constants."""
+"""Umm al-Qura calendar specific constants used by the converter."""
 
-"""Range of valid Gregorian dates (inclusive) supported by the converter."""
 GREGORIAN_RANGE = (1924, 8, 1), (2077, 11, 16)
+"""Inclusive range of supported Gregorian dates (year, month and day)."""
 
-"""Range of valid Hijri dates (inclusive) supported by the converter."""
 HIJRI_RANGE = (1343, 1, 1), (1500, 12, 30)
+"""Inclusive range of supported Hijri dates (year, month and day)."""
 
-"""Total Hijri months before the first month."""
 HIJRI_OFFSET = 1342 * 12
+"""Total Hijri months elapsed before the beginning of year 1343 AH."""
 
-
-"""Reduced Julian Day (RJD) numbers for the beginning of Hijri months.
-
-Years 1343-1355 AH were calculated by Mohammed Alshehri (dralshehri),
-    based on the issues published by Umm al-Qura newspaper at that time:
-    http://ncar.gov.sa/OmElQuora/List
-Years 1356-1411 AH were calculated by R.H. van Gent, based on
-    the comparison calendar prepared by KFUPM Research Institute:
-    https://www.staff.science.uu.nl/~gent0113/islam/downloads/ksa_calendar_1356_1411.pdf
-Years 1412-1430 AH were calculated by Mohammed Alshehri (dralshehri),
-    based on the issues published by Umm al-Qura newspaper at that time:
-    http://ncar.gov.sa/OmElQuora/List
-Years 1431-1500 AH were calculated by Mohammed Alshehri (dralshehri),
-    based on the tables presented by the website of Umm al-Qura calendar:
-    http://www.ummulqura.org.sa/Index.aspx
-"""
 MONTH_STARTS = (
     23999,
     24029,
@@ -1924,3 +1908,20 @@ MONTH_STARTS = (
     79960,
     79990,
 )
+"""Ordered list of Reduced Julian Day (RJD) numbers for the beginning of supported
+Hijri months. Numbers were calculated based on the following references:
+
+1343-1355 AH
+    Archived issues of Umm al-Qura newspaper by the Saudi Center for Archives & Records:
+    https://ncar.gov.sa/OmElQuora/List
+1356-1411 AH
+    Comparison calendar prepared by the Research Institute at King Fahd University of
+    Petroleum and Minerals:
+    https://www.staff.science.uu.nl/~gent0113/islam/downloads/ksa_calendar_1356_1411.pdf
+1412-1430 AH
+    Archived issues of Umm al-Qura newspaper by the Saudi Center for Archives & Records:
+    https://ncar.gov.sa/OmElQuora/List
+1431-1500 AH
+    Data tables available at the official website of Umm al-Qura calendar:
+    http://www.ummulqura.org.sa/Index.aspx
+"""
