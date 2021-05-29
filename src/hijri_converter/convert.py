@@ -166,7 +166,7 @@ class Hijri:
 
     @staticmethod
     def notation(language: str = "en") -> str:
-        """Return calendar notation/abbreviation.
+        """Return calendar era notation.
 
         :param language: Language for localized translation which may be
             ``en``, ``ar`` or ``bn`` (default is ``en``)
@@ -278,7 +278,7 @@ class Gregorian(datetime.date):
 
     @staticmethod
     def notation(language: str = "en") -> str:
-        """Return calendar notation/abbreviation.
+        """Return calendar era notation.
 
         :param language: Language for localized translation which may be
             ``en``, ``ar`` or ``bn`` (default is ``en``)
