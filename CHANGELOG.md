@@ -6,11 +6,10 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 ## Unreleased
 
-- Fixed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` object.
 - Add Bangla translation. (Thanks to [@nokibsarkar](https://github.com/nokibsarkar))
+- Changed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` object.
 - Changed `ummalqura` constants to be in capital letters adhering to PEP8.
-- Improved `Hijri` exception tests.
-- Updated packaging files and local development workflow.
+- Updated packaging configuration files and local development workflow.
 - Other minor fixes and documentation enhancements.
 
 ## 2.1.1 (2020-05-21)
