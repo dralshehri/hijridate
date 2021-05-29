@@ -1,13 +1,13 @@
 """Umm al-Qura calendar specific constants."""
 
 """Range of valid Gregorian dates (inclusive) supported by the converter."""
-gregorian_range = (1924, 8, 1), (2077, 11, 16)
+GREGORIAN_RANGE = (1924, 8, 1), (2077, 11, 16)
 
 """Range of valid Hijri dates (inclusive) supported by the converter."""
-hijri_range = (1343, 1, 1), (1500, 12, 30)
+HIJRI_RANGE = (1343, 1, 1), (1500, 12, 30)
 
 """Total Hijri months before the first month."""
-hijri_offset = 1342 * 12
+HIJRI_OFFSET = 1342 * 12
 
 
 """Reduced Julian Day (RJD) numbers for the beginning of Hijri months.
@@ -25,7 +25,7 @@ Years 1431-1500 AH were calculated by Mohammed Alshehri (dralshehri),
     based on the tables presented by the website of Umm al-Qura calendar:
     http://www.ummulqura.org.sa/Index.aspx
 """
-month_starts = (
+MONTH_STARTS = (
     23999,
     24029,
     24058,
