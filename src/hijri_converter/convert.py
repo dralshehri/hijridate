@@ -129,7 +129,7 @@ class Hijri:
 
     def month_length(self) -> int:
         """Return number of days in month."""
-        month_starts = ummalqura.month_starts
+        month_starts = ummalqura.MONTH_STARTS
         index = self._month_index()
         length = month_starts[index + 1] - month_starts[index]
         return length
@@ -177,7 +177,7 @@ class Hijri:
 
     def to_julian(self) -> int:
         """Convert to Julian Day (JD) number."""
-        month_starts = ummalqura.month_starts
+        month_starts = ummalqura.MONTH_STARTS
         index = self._month_index()
         rjd = month_starts[index] + self._day - 1
         jd = _reduced_julian_to_julian(rjd)
@@ -197,7 +197,7 @@ class Hijri:
     def _check_date(self) -> None:
         """Check date values if within valid range."""
         # check year
-        min_year, max_year = [d[0] for d in ummalqura.hijri_range]
+        min_year, max_year = [d[0] for d in ummalqura.HIJRI_RANGE]
         if not min_year <= self.year <= max_year:
             raise OverflowError("date out of range")
         # check month
@@ -211,7 +211,7 @@ class Hijri:
     def _month_index(self) -> int:
         """Return month’s index in ummalqura data"""
         prior_months = ((self.year - 1) * 12) + self.month - 1
-        index = prior_months - ummalqura.hijri_offset
+        index = prior_months - ummalqura.HIJRI_OFFSET
         return index
 
 
@@ -303,9 +303,9 @@ class Gregorian(datetime.date):
         self._check_range()
         jd = self.to_julian()
         rjd = _julian_to_reduced_julian(jd)
-        month_starts = ummalqura.month_starts
+        month_starts = ummalqura.MONTH_STARTS
         index = bisect(month_starts, rjd) - 1
-        months = index + ummalqura.hijri_offset
+        months = index + ummalqura.HIJRI_OFFSET
         years = int(months / 12)
         year = years + 1
         month = months - (years * 12) + 1
@@ -314,7 +314,7 @@ class Gregorian(datetime.date):
 
     def _check_range(self) -> None:
         """Check if Gregorian date is within valid range."""
-        min_date, max_date = ummalqura.gregorian_range
+        min_date, max_date = ummalqura.GREGORIAN_RANGE
         if not min_date <= (self.year, self.month, self.day) <= max_date:
             raise OverflowError("date out of range")
 
