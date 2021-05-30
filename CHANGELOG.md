@@ -4,7 +4,7 @@ The format is based on [semantic versioning](https://packaging.python.org/guides
 and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
 schemes recommended by the Python Packaging Authority (PPA).
 
-## Unreleased
+## 2.1.2 (2021-05-30)
 
 - Add Bangla translation. (Thanks to [@nokibsarkar](https://github.com/nokibsarkar))
 - Changed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` object.
