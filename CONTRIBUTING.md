@@ -4,7 +4,7 @@ Any contribution is welcome, and it's much appreciated! Every little helps, and 
 
 ## Reporting Issues
 
-An issue may be a simple comment, question, feature request, or bug report. When [reporting an issue](https://github.com/dralshehri/hijri-converter/issues/new/choose), please make sure to provide enough information to understand it.
+An issue may be a simple comment, question, feature request, or bug report. When [reporting an issue](https://github.com/dralshehri/hijri-converter/issues/new), please make sure to provide enough information to understand it.
 
 ## Changing Code
 

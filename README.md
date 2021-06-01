@@ -3,7 +3,7 @@
 <!-- start summary -->
 
 A Python package to convert accurately between Hijri and Gregorian dates
-using the Umm al-Qura calendar of Saudi Arabia.
+based on astronomical calculation of the Umm al-Qura calendar.
 
 [![Checks Status](https://img.shields.io/github/workflow/status/dralshehri/hijri-converter/Checks?event=push&label=checks)][checks]
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
