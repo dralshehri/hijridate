@@ -1,10 +1,10 @@
--e .
-build
-mypy
-black
-isort
-pytest
-pytest-cov
-sphinx
-myst-parser
-sphinx_rtd_theme
+taskipy==1.8.1
+flake8==3.9.2
+mypy==0.812
+black==21.5b2
+isort==5.8.0
+pytest==6.2.4
+pytest-cov==2.12.1
+sphinx==3.5.4
+myst-parser==0.14.0
+sphinx_rtd_theme==0.5.2

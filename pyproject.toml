@@ -9,11 +9,26 @@ testpaths = ["tests/unit"]
 
 [tool.coverage.run]
 branch = true
-source = ["src/hijri_converter"]
+source = ["hijri_converter"]
+
+[tool.coverage.paths]
+source = ["src"]
 
 [tool.black]
+line-length = 88
 target-version = ['py36', 'py37', 'py38', 'py39']
 
 [tool.isort]
 profile = "black"
-src_paths = ["src", "tests"]
+
+[tool.taskipy.tasks]
+test_all = "pytest tests"
+test_cov = "pytest --cov --cov-report=term-missing --cov-fail-under=100"
+test = "task test_cov tests"
+lint_flake8 = "flake8 src tests"
+lint_mypy = "mypy src"
+lint_isort = "isort --check-only src tests"
+lint_black = "black --check --quiet src tests"
+lint = "task lint_flake8 && task lint_mypy && task lint_isort && task lint_black"
+format = "isort src tests docs && black src tests docs"
+docs = "sphinx-build -E -b dirhtml docs docs/_build"
