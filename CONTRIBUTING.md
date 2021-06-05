@@ -28,7 +28,7 @@ Python 3.9 or newer.
 
 ### Preparing for development:
 
-All required packages can be installed using the `requirements-dev.txt` file:
+The project and all required packages can be installed using:
 
 ```shell
 pip install -r requirements-dev.txt -e .
