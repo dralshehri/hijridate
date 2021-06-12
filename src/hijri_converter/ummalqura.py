@@ -1,4 +1,4 @@
-"""Umm al-Qura calendar constants
+"""Umm al-Qura calendar constants.
 
 https://github.com/dralshehri/hijri-converter
 """
