@@ -145,12 +145,12 @@ class Hijri:
         return getattr(locales, language).hijri_months[self._month - 1]
 
     def weekday(self) -> int:
-        """Return day of week, where Monday is 0 ... Sunday is 6."""
+        """Return day of week, where Monday is 0 and Sunday is 6."""
         jd = self.to_julian()
         return int(jd % 7)
 
     def isoweekday(self) -> int:
-        """Return day of week, where Monday is 1 ... Sunday is 7."""
+        """Return day of week, where Monday is 1 and Sunday is 7."""
         jd = self.to_julian()
         return int(jd % 7) + 1
 
