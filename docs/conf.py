@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath("../src/hijri_converter"))
 
 project = "Hijri Converter"
 author = "Mohammed Alshehri"
-project_copyright = "2018 Mohammed Alshehri (@dralshehri)"
+project_copyright = "2018 Mohammed Alshehri (@dralshehri) and contributors"
 version = "latest"
 
 #
