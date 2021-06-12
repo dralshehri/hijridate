@@ -14,13 +14,14 @@ class Hijri:
 
     def __init__(self, year: int, month: int, day: int, validate: bool = True) -> None:
         """
-        :param year: Hijri year
+        :param year: Hijri year.
         :type year: int
-        :param month: Hijri month
+        :param month: Hijri month.
         :type month: int
-        :param day: Hijri day
+        :param day: Hijri day.
         :type day: int
-        :param validate: Whether to validate date or not (default is ``True``)
+        :param validate: Whether to validate Hijri input or not (default is ``True``).
+            It's recommended to keep the default for accurate conversion.
         :type validate: bool
         """
 
@@ -76,9 +77,9 @@ class Hijri:
         """Construct Hijri object from an ISO formatted Hijri date
         ``YYYY-MM-DD``.
 
-        :param date_string: Hijri date in ISO format ``YYYY-MM-DD``
+        :param date_string: Hijri date in ISO format ``YYYY-MM-DD``.
         :type date_string: str
-        :return: Hijri date object
+        :return: Hijri date object.
         :rtype: Hijri
         """
 
@@ -138,7 +139,7 @@ class Hijri:
         """Return month name.
 
         :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``).
         :type language: str
         """
 
@@ -158,7 +159,7 @@ class Hijri:
         """Return day name.
 
         :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``).
         :type language: str
         """
 
@@ -169,7 +170,7 @@ class Hijri:
         """Return calendar era notation.
 
         :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``).
         :type language: str
         """
 
@@ -186,7 +187,7 @@ class Hijri:
     def to_gregorian(self) -> "Gregorian":
         """Convert to Gregorian date.
 
-        :return: Gregorian date object
+        :return: Gregorian date object.
         :rtype: Gregorian
         """
 
@@ -226,9 +227,9 @@ class Gregorian(datetime.date):
     def fromdate(cls, date_object: datetime.date) -> "Gregorian":
         """Construct Gregorian object from a date object.
 
-        :param date_object: Date object
+        :param date_object: Date object.
         :type date_object: datetime.date
-        :return: Gregorian date object
+        :return: Gregorian date object.
         :rtype: Gregorian
         """
 
@@ -260,7 +261,7 @@ class Gregorian(datetime.date):
         """Return month name.
 
         :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``).
         :type language: str
         """
 
@@ -270,7 +271,7 @@ class Gregorian(datetime.date):
         """Return day name.
 
         :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``).
         :type language: str
         """
 
@@ -281,7 +282,7 @@ class Gregorian(datetime.date):
         """Return calendar era notation.
 
         :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``)
+            ``en``, ``ar`` or ``bn`` (default is ``en``).
         :type language: str
         """
 
@@ -296,7 +297,7 @@ class Gregorian(datetime.date):
     def to_hijri(self) -> Hijri:
         """Convert to Hijri date.
 
-        :return: Hijri date object
+        :return: Hijri date object.
         :rtype: Hijri
         """
 
