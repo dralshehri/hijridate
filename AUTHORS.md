@@ -1,15 +1,17 @@
 # Authors
 
-* Mohammed Alshehri [@dralshehri](https://github.com/dralshehri) &mdash; Core development
-* Nokib Sarkar [@nokibsarkar](https://github.com/nokibsarkar) &mdash; Translation
+## Main Author
+* Mohammed Alshehri [@dralshehri](https://github.com/dralshehri)
 
-A full, up-to-date list of contributors is available from git with:
+## Contributors
 
-```shell
-git shortlog -sne
-```
+In chronological order:
 
-## Acknowledgements
+* Nokib Sarkar [@nokibsarkar](https://github.com/nokibsarkar)
 
-* [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) &mdash; Inspiration and scientific guidance.
-* [@AZalshehri7](https://github.com/AZalshehri7) &mdash; Dates review and validation.
+A full, up-to-date record of contributions is available at [GitHub](https://github.com/dralshehri/hijri-converter/graphs/contributors).
+
+**Special thanks to:**
+
+* [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) for inspiration, scientific guidance and resources.
+* [@AZalshehri7](https://github.com/AZalshehri7) for his support in dates review and validation.
