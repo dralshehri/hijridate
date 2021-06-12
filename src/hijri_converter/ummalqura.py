@@ -1,4 +1,7 @@
-"""Umm al-Qura calendar specific constants used by the converter."""
+"""Umm al-Qura calendar constants
+
+https://github.com/dralshehri/hijri-converter
+"""
 
 GREGORIAN_RANGE = (1924, 8, 1), (2077, 11, 16)
 """Inclusive range of supported Gregorian dates (year, month and day)."""
