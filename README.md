@@ -73,14 +73,13 @@ All notable changes to this package are documented in
 
 ## Contributing
 
-Any contribution is welcome! Refer to
-[CONTRIBUTING.md](https://github.com/dralshehri/hijri-converter/blob/main/CONTRIBUTING.md)
-for instructions and local development commands.
+Contributions are always welcome! See [CONTRIBUTING.md](https://github.com/dralshehri/hijri-converter/blob/main/CONTRIBUTING.md)
+for ways to get started.
 
-## Authors
+## Acknowledgements
 
-Authors and acknowledgments are listed in 
-[AUTHORS.md](https://github.com/dralshehri/hijri-converter/blob/main/AUTHORS.md).
+* [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) &mdash; inspiration, scientific guidance and resources.
+* [@AZalshehri7](https://github.com/AZalshehri7) &mdash; support in dates review and conversion validation.
 
 ## License
 
