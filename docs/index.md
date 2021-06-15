@@ -17,7 +17,6 @@ api
 
 changelog
 contributing
-authors
 license
 GitHub Repo <https://github.com/dralshehri/hijri-converter>
 :::
