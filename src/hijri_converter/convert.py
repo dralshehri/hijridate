@@ -136,12 +136,12 @@ class Hijri:
     def month_name(self, language: str = "en") -> str:
         """Return month name.
 
-        :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``).
+        :param language: Language tag for localized month name (default is ``en``).
+            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
         :type language: str
         """
 
-        return getattr(locales, language).hijri_months[self._month - 1]
+        return locales.get_locale(language).month_name(self._month)
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 and Sunday is 6."""
@@ -156,23 +156,23 @@ class Hijri:
     def day_name(self, language: str = "en") -> str:
         """Return day name.
 
-        :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``).
+        :param language: Language tag for localized day name (default is ``en``).
+            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
         :type language: str
         """
 
-        return getattr(locales, language).weekday_names[self.weekday()]
+        return locales.get_locale(language).day_name(self.isoweekday())
 
     @staticmethod
     def notation(language: str = "en") -> str:
         """Return calendar era notation.
 
-        :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``).
+        :param language: Language tag for localized notation (default is ``en``).
+            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
         :type language: str
         """
 
-        return getattr(locales, language).hijri_notation
+        return locales.get_locale(language).notation
 
     def to_julian(self) -> int:
         """Convert to Julian Day (JD) number."""
@@ -258,33 +258,33 @@ class Gregorian(datetime.date):
     def month_name(self, language: str = "en") -> str:
         """Return month name.
 
-        :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``).
+        :param language: Language tag for localized month name (default is ``en``).
+            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
         :type language: str
         """
 
-        return getattr(locales, language).gregorian_months[self.month - 1]
+        return locales.get_locale(language).gregorian_month_name(self.month)
 
     def day_name(self, language: str = "en") -> str:
         """Return day name.
 
-        :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``).
+        :param language: Language tag for localized day name (default is ``en``).
+            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
         :type language: str
         """
 
-        return getattr(locales, language).weekday_names[self.weekday()]
+        return locales.get_locale(language).day_name(self.isoweekday())
 
     @staticmethod
     def notation(language: str = "en") -> str:
         """Return calendar era notation.
 
-        :param language: Language for localized translation which may be
-            ``en``, ``ar`` or ``bn`` (default is ``en``).
+        :param language: Language tag for localized notation (default is ``en``).
+            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
         :type language: str
         """
 
-        return getattr(locales, language).gregorian_notation
+        return locales.get_locale(language).gregorian_notation
 
     def to_julian(self) -> int:
         """Convert to Julian Day (JD) number."""
