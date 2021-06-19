@@ -8,6 +8,7 @@ hide-toc: true
 background
 benchmarking
 usage
+localization
 api
 changelog
 :::
