@@ -6,9 +6,7 @@ from hijri_converter import locales, ummalqura
 
 
 class Hijri:
-    """A Hijri object represents a date (year, month and day) in Hijri
-    calendar.
-    """
+    """A Hijri object represents a date (year, month and day) in Hijri calendar."""
 
     __slots__ = "_year", "_month", "_day"
 
@@ -218,7 +216,7 @@ class Hijri:
 
 class Gregorian(datetime.date):
     """A Gregorian object represents a date (year, month and day) in Gregorian
-    calendar inheriting all attributes and methods of `datetime.date` object.
+    calendar inheriting all attributes and methods of :obj:`datetime.date` object.
     """
 
     __slots__ = ()
@@ -241,7 +239,7 @@ class Gregorian(datetime.date):
         return self.year, self.month, self.day
 
     def dmyformat(self) -> str:
-        """Return date in `DD/MM/YYYY` format."""
+        """Return date in ``DD/MM/YYYY`` format."""
         return f"{self.day:02}/{self.month:02}/{self.year:04}"
 
     def slashformat(self) -> str:
