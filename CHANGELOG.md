@@ -4,6 +4,10 @@ The format is based on [semantic versioning](https://packaging.python.org/guides
 and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
 schemes recommended by the Python Packaging Authority (PPA).
 
+## Unreleased
+
+- Refactored locales for better management and testing. (Inspired by [Arrow](https://github.com/arrow-py/arrow) localization)
+
 ## 2.1.3 (2021-06-22)
 
 - Minor fixes and enhancements for docstrings and documentation.
