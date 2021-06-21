@@ -15,7 +15,6 @@ sys.path.insert(0, os.path.abspath("../src/hijri_converter"))
 project = "Hijri Converter"
 author = "Mohammed Alshehri"
 project_copyright = "2018 Mohammed Alshehri (@dralshehri) and contributors"
-version = "latest"
 
 #
 # -- General configuration -------------------------------------------------------------
@@ -23,9 +22,10 @@ version = "latest"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
-    "sphinx.ext.githubpages",
     "myst_parser",
+    "notfound.extension",
 ]
+templates_path = ["_templates"]
 source_suffix = {
     ".rst": "restructuredtext",
     ".md": "markdown",
@@ -39,7 +39,6 @@ autodoc_default_options = {
     "members": True,
     "member-order": "bysource",
     "special-members": "__init__",
-    # "inherited-members": True,
     "show_inheritance": True,
     "noindex": True,
 }
@@ -50,6 +49,11 @@ autodoc_default_options = {
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
 }
+
+#
+# -- Options for notfound -------------------------------------------------
+#
+notfound_urls_prefix = "/en/stable/"
 
 #
 # -- Options for Markdown files --------------------------------------------------------
@@ -63,14 +67,13 @@ myst_heading_anchors = 2
 #
 # -- Options for HTML output -----------------------------------------------------------
 #
-html_baseurl = "https://dralshehri.github.io/hijri-converter/"
+html_baseurl = "https://hijri-converter.readthedocs.io/en/stable/"
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     "display_version": True,
     "navigation_depth": 1,
     "includehidden": True,
     "titles_only": True,
-    "style_nav_header_background": "#2980B9",
 }
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]

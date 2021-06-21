@@ -16,7 +16,7 @@ to add a new feature, or to update documentation.
 You can do so by following these simple steps:
 1. Fork [GitHub repository](https://github.com/dralshehri/hijri-converter).
 2. Clone your repository locally.
-3. Make your code changes.
+3. Make your code changes on the `develop` branch.
 4. Push it back to your repository.
 5. Create a pull request on GitHub.
 
