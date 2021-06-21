@@ -14,11 +14,13 @@ please make sure to provide enough information to understand it.
 You may want to make some changes to the package codebase. For example, to fix a bug,
 to add a new feature, or to update documentation.
 You can do so by following these simple steps:
-1. Fork [GitHub repository](https://github.com/dralshehri/hijri-converter).
-2. Clone your repository locally.
-3. Make your code changes on the `develop` branch.
-4. Push it back to your repository.
-5. Create a pull request on GitHub.
+1. Fork the [repository](https://github.com/dralshehri/hijri-converter) on GitHub.
+2. Clone your copy locally.
+3. Create a new branch.
+4. Make your code changes.
+5. Format code and run tests.
+6. Commit and push changes.
+7. Create a pull request on GitHub (select the `develop` base branch).
 
 ## Developing Locally
 
