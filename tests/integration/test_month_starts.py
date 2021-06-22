@@ -11,7 +11,7 @@ def load_params_from_json():
     files = Path(__file__).parent.joinpath("fixtures").glob("*.json")
     for file in files:
         file_content = json.loads(file.read_text())
-        file_data = [[tuple(i) for i in x[1]] for x in file_content]
+        file_data = [[tuple(i) for i in x[0]] for x in file_content]
         data += file_data
     params = [tuple(x) for x in data]
     params_reversed = [tuple(x[::-1]) for x in data]
