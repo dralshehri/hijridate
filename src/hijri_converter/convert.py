@@ -138,6 +138,7 @@ class Hijri:
 
         :param language: Language tag for localized month name (default is ``en``).
             Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
+            Supported languages are ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -158,6 +159,7 @@ class Hijri:
 
         :param language: Language tag for localized day name (default is ``en``).
             Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
+            Supported languages are ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -169,6 +171,7 @@ class Hijri:
 
         :param language: Language tag for localized notation (default is ``en``).
             Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
+            Supported languages are ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -270,6 +273,7 @@ class Gregorian(datetime.date):
 
         :param language: Language tag for localized day name (default is ``en``).
             Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
+            Supported languages are ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -281,6 +285,7 @@ class Gregorian(datetime.date):
 
         :param language: Language tag for localized notation (default is ``en``).
             Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
+            Supported languages are ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
