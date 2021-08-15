@@ -16,7 +16,8 @@ changelog
 :caption: Development
 :hidden:
 contributing
-GitHub Repo <https://github.com/dralshehri/hijri-converter>
+GitHub <https://github.com/dralshehri/hijri-converter>
+PyPI <https://pypi.org/project/hijri-converter>
 :::
 
 # Hijri Converter
