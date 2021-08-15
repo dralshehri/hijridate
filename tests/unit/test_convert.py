@@ -56,6 +56,10 @@ def test_hijri_fromisoformat(hijri):
     assert convert.Hijri.fromisoformat("1410-08-13") == hijri
 
 
+def test_hijri_today(hijri):
+    assert convert.Hijri.today().to_gregorian().isoformat() == date.today().isoformat()
+
+
 def test_hijri_year(hijri):
     assert hijri.year == 1410
 

@@ -86,6 +86,16 @@ class Hijri:
         day = int(date_string[8:10])
         return cls(year, month, day)
 
+    @classmethod
+    def today(cls):
+        """Construct Hijri object from today's date.
+
+        :return: Hijri date object.
+        :rtype: Hijri
+        """
+
+        return Gregorian.today().to_hijri()
+
     @property
     def year(self) -> int:
         """Return year as an integer."""
