@@ -1,11 +1,11 @@
 taskipy==1.8.1
 flake8==3.9.2
-mypy==0.902
-black==21.6b0
-isort==5.9.0
+mypy==0.910
+black==21.7b0
+isort==5.9.3
 pytest==6.2.4
 pytest-cov==2.12.1
-sphinx==4.0.2
+sphinx==4.1.2
 myst-parser==0.15.1
 sphinx_rtd_theme==0.5.2
 sphinx-notfound-page==0.7.1
