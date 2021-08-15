@@ -9,6 +9,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 - Added today() classmethod to Hijri class to get the Hijri Object of today's date.
 - Refactored locales for better management and testing. (Inspired by [Arrow](https://github.com/arrow-py/arrow) localization)
 - Updated main classes to be conveniently imported into the package level e.g. `from hijri_converter import Hijri, Gregorian`.
+- Removed deprecated method `slashformat()` from Hijri and Gregorian classes.
 - Updated tests and documentation.
 
 ## 2.1.3 (2021-06-22)
