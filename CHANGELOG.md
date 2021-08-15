@@ -11,6 +11,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 - Updated main classes to be conveniently imported into the package level e.g. `from hijri_converter import Hijri, Gregorian`.
 - Removed deprecated method `slashformat()` from Hijri and Gregorian classes.
 - Updated tests and documentation.
+- Other minor fixes and enhancements. 
 
 ## 2.1.3 (2021-06-22)
 
@@ -19,7 +20,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 ## 2.1.2 (2021-05-30)
 
 - Added Bangla translation. (Thanks to [@nokibsarkar](https://github.com/nokibsarkar))
-- Changed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` object.
+- Changed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` class.
 - Changed `ummalqura` constants to be in capital letters adhering to PEP8.
 - Updated packaging configuration files and local development workflow.
 - Other minor fixes and documentation enhancements.
@@ -39,13 +40,14 @@ Details are as follows:
 
 - Dropped support for the years before 1343 AH because the Umm al-Qura calendar
   was not established then.
-- Added `validate` parameter to Hijri object for optional disabling of
-  Hijri date validation and improving performance.
+- Added `validate` parameter to Hijri class for optional disabling of
+  Hijri date validation and improving performance. However, disabling validation 
+  will decrease the conversion accuracy silently.
 - Verified conversion against original references and updated the
   `month_starts` tuple for more accurate conversion.
-- Improved `Hijri` object rich comparison methods.
+- Improved `Hijri` class rich comparison methods.
 - Improved date validation methods for better performance and readability.
-- Made the `Hijri` object hashable by adding a custom `__hash__` method.
+- Made the `Hijri` class hashable by adding a custom `__hash__` method.
 - Refactored many internal methods (not affecting the API).
 - Other minor fixes, enhancements and performance boost.
 
@@ -60,11 +62,11 @@ Details are as follows:
 - Dropped support for Python 3.5.
 - Refactored localization and `ummalqura.py` module.
 - Updated `month_starts` tuple in alignment with the Umm al-Qura calendar.
-- Added `fromdate()` classmethod to `Gregorian` object.
-- Added `notation()` method to `Hijri` and `Gregorian` objects.
-- Added more methods to `Gregorian` object including `slashformat()`,
+- Added `fromdate()` classmethod to `Gregorian` class.
+- Added `notation()` method to `Hijri` and `Gregorian` classes.
+- Added more methods to `Gregorian` class including `slashformat()`,
   `month_name()`, `day_name()` and `to_julian()`.
-- Renamed `month_days()` method of `Hijri` object to `month_length()`.
+- Renamed `month_days()` method of `Hijri` class to `month_length()`.
 - Changed formatted string to use f-strings.
 - Improved documentation and examples.
 - Updated unit tests.
@@ -72,7 +74,7 @@ Details are as follows:
 
 ## 1.5.0 (2018-12-27)
 
-- Added `fromisoformat()` classmethod to `Hijri` object.
+- Added `fromisoformat()` classmethod to `Hijri` class.
 - Added support for rich comparison between Hijri dates.
 - Updated documentation and testing code.
 - Other minor fixes and enhancements.
@@ -81,7 +83,7 @@ Details are as follows:
 
 - Refactored conversion methods to improve performance.
 - Changed date validation back to be the default and removed optional parameter.
-- Added `to_julian()` method to `Hijri` object.
+- Added `to_julian()` method to `Hijri` class.
 - Updated documentation and testing code.
 - Other minor fixes and enhancements.
 
@@ -109,7 +111,7 @@ Details are as follows:
 
 ## 1.2.0 (2018-11-09)
 
-- Added `slashformat()` method to `Hijri` object.
+- Added `slashformat()` method to `Hijri` class.
 - Improved date validation code.
 - Fixed some typos in documentation and docstrings.
 
