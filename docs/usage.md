@@ -106,7 +106,8 @@ TypeError: '>' not supported between instances of 'Hijri' and 'str'
 ## Internationalization
 
 Representation of weekday names, month names, and calendar notations is
-supported. The English is the default language. Currently, Arabic and Bangla translations are available, but it
+supported. English `en` is the default language.
+Additionally, Arabic `ar` and Bangla `bn` translations are available, but it
 can be easily extended for other natural languages.
 
 The following is an example showing how
