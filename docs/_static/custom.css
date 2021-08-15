@@ -1,3 +1,14 @@
 pre {
   font-size: 13px !important;
 }
+a[class='reference external']:after {
+  content: "↪";
+  color: #b3b3b3;
+  font-size: 90%;
+  margin: 0 .1em;
+}
+
+dl[class='py class'] a[class='reference external']:after,
+dl[class='py method'] a[class='reference external']:after {
+  content: "";
+}
