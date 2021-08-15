@@ -32,6 +32,15 @@ To convert from/to ISO format:
 '1403-02-17'
 :::
 
+To get the today's date in Hijri:
+
+:::{code-block} pycon
+>>> from hijri_converter import Hijri
+
+>>> Hijri.today().isoformat()
+'1443-01-08'
+:::
+
 The {obj}`Hijri` and {obj}`Gregorian` objects have some useful methods. For
 example:
 
