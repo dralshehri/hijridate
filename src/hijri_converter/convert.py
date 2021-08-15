@@ -1,5 +1,4 @@
 import datetime
-import warnings
 from bisect import bisect
 
 from hijri_converter import locales, ummalqura
@@ -123,19 +122,6 @@ class Hijri:
         """Return date in ``DD/MM/YYYY`` format."""
         return f"{self._day:02}/{self._month:02}/{self._year:04}"
 
-    def slashformat(self) -> str:
-        """Return date in ``DD/MM/YYYY`` format.
-
-        This method is DEPRECATED and will be removed in a future version,
-        use ``dmyformat()`` instead.
-        """
-
-        warnings.warn(
-            "slashformat() is deprecated, use dmyformat() instead",
-            DeprecationWarning,
-        )
-        return self.dmyformat()
-
     def month_length(self) -> int:
         """Return number of days in month."""
         month_starts = ummalqura.MONTH_STARTS
@@ -254,19 +240,6 @@ class Gregorian(datetime.date):
     def dmyformat(self) -> str:
         """Return date in ``DD/MM/YYYY`` format."""
         return f"{self.day:02}/{self.month:02}/{self.year:04}"
-
-    def slashformat(self) -> str:
-        """Return date in ``DD/MM/YYYY`` format.
-
-        This method is DEPRECATED and will be removed in a future version,
-        use ``dmyformat()`` instead.
-        """
-
-        warnings.warn(
-            "slashformat() is deprecated, use dmyformat() instead",
-            DeprecationWarning,
-        )
-        return self.dmyformat()
 
     def month_name(self, language: str = "en") -> str:
         """Return month name.

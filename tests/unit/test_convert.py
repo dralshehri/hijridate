@@ -84,11 +84,6 @@ def test_hijri_dmyformat(hijri):
     assert hijri.dmyformat() == "13/08/1410"
 
 
-def test_hijri_slashformat_deprecation(hijri):
-    with pytest.deprecated_call():
-        hijri.slashformat()
-
-
 def test_hijri_month_length(hijri):
     assert hijri.month_length() == 29
 
@@ -179,11 +174,6 @@ def test_gregorian_datetuple(gregorian):
 
 def test_gregorian_dmyformat(gregorian):
     assert gregorian.dmyformat() == "10/03/1990"
-
-
-def test_gregorian_slashformat_deprecation(gregorian):
-    with pytest.deprecated_call():
-        gregorian.slashformat()
 
 
 def test_gregorian_month_name(gregorian):
