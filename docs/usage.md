@@ -11,24 +11,24 @@ hide-toc: true
 To convert between Hijri and Gregorian dates:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Hijri, Gregorian
 
->>> convert.Hijri(1403, 2, 17).to_gregorian()
+>>> Hijri(1403, 2, 17).to_gregorian()
 Gregorian(1982, 12, 2)
 
->>> convert.Gregorian(1982, 12, 2).to_hijri()
+>>> Gregorian(1982, 12, 2).to_hijri()
 Hijri(1403, 2, 17)
 :::
 
 To convert from/to ISO format:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Hijri, Gregorian
 
->>> convert.Hijri.fromisoformat('1403-02-17').to_gregorian().isoformat()
+>>> Hijri.fromisoformat('1403-02-17').to_gregorian().isoformat()
 '1982-12-02'
 
->>> convert.Gregorian.fromisoformat('1982-12-02').to_hijri().isoformat()
+>>> Gregorian.fromisoformat('1982-12-02').to_hijri().isoformat()
 '1403-02-17'
 :::
 
@@ -36,9 +36,9 @@ The {obj}`Hijri` and {obj}`Gregorian` objects have some useful methods. For
 example:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Gregorian
 
->>> hijri = convert.Gregorian(1982, 12, 2).to_hijri()
+>>> hijri = Gregorian(1982, 12, 2).to_hijri()
 
 >>> hijri.datetuple()
 (1403, 2, 17)
@@ -60,11 +60,11 @@ You can also construct a {obj}`Gregorian` object from {obj}`datetime.date`
 object:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Gregorian
 >>> from datetime import date
 
 >>> my_date = date(1982, 12, 2)
->>> convert.Gregorian.fromdate(my_date)
+>>> Gregorian.fromdate(my_date)
 Gregorian(1982, 12, 2)
 :::
 
@@ -72,14 +72,14 @@ The {obj}`Gregorian` object inherits all attributes and methods of
 {obj}`datetime.date` object:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Gregorian
 
 # To get today's date in Hijri
->>> convert.Gregorian.today().to_hijri()
+>>> Gregorian.today().to_hijri()
 Hijri(1440, 10, 13)
 
 # To format a Gregorian date
->>> convert.Gregorian(1982, 12, 2).strftime(''%A, %-d %B %Y'')
+>>> Gregorian(1982, 12, 2).strftime(''%A, %-d %B %Y'')
 'Thursday, 2 December 1982'
 :::
 
@@ -91,12 +91,12 @@ exception may be raised where it can be caught and handled in `try` and `except`
 blocks: For example:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Hijri
 
->>> convert.Hijri(1403, 2, 17) > convert.Hijri(1402, 2, 17)
+>>> Hijri(1403, 2, 17) > Hijri(1402, 2, 17)
 True
 
->>> convert.Hijri.fromisoformat('1403-02-17') > '1402-02-17'
+>>> Hijri.fromisoformat('1403-02-17') > '1402-02-17'
 Traceback (most recent call last):
 ...
 ...
@@ -113,9 +113,9 @@ The following is an example showing how
 to use the Arabic language:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Hijri
 
->>> hijri = convert.Hijri(1403, 2, 17)
+>>> hijri = Hijri(1403, 2, 17)
 
 >>> hijri.month_name('ar')
 'صفر'
@@ -135,15 +135,15 @@ an `OverflowError` exception. Both exceptions can be caught and handled in `try`
 and `except` blocks:
 
 :::{code-block} pycon
->>> from hijri_converter import convert
+>>> from hijri_converter import Hijri, Gregorian
 
->>> convert.Hijri(1403, 1, 30)
+>>> Hijri(1403, 1, 30)
 Traceback (most recent call last):
 ...
 ...
 ValueError: day must be in 1..29 for month
 
->>> convert.Gregorian(1882, 12, 2).to_hijri()
+>>> Gregorian(1882, 12, 2).to_hijri()
 Traceback (most recent call last):
 ...
 ...

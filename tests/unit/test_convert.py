@@ -5,6 +5,13 @@ import pytest
 from hijri_converter import convert
 
 
+def test_importing_at_init_module():
+    from hijri_converter import Gregorian, Hijri
+
+    assert Hijri(1410, 8, 13).datetuple() == (1410, 8, 13)
+    assert Gregorian(1990, 3, 10).datetuple() == (1990, 3, 10)
+
+
 @pytest.fixture(scope="module")
 def hijri():
     return convert.Hijri(1410, 8, 13)
