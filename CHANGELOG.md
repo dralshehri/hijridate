@@ -7,6 +7,8 @@ schemes recommended by the Python Packaging Authority (PPA).
 ## Unreleased
 
 - Refactored locales for better management and testing. (Inspired by [Arrow](https://github.com/arrow-py/arrow) localization)
+- Updated main classes to be conveniently imported into the package level e.g. `from hijri_converter import Hijri, Gregorian`.
+- Updated tests and documentation.
 
 ## 2.1.3 (2021-06-22)
 

@@ -54,14 +54,14 @@ pip install -U hijri-converter
 ## Basic Usage
 
 ```python
-from hijri_converter import convert
+from hijri_converter import Hijri, Gregorian
 
 
 # Convert a Hijri date to Gregorian
-g = convert.Hijri(1403, 2, 17).to_gregorian()
+g = Hijri(1403, 2, 17).to_gregorian()
 
 # Convert a Gregorian date to Hijri
-h = convert.Gregorian(1982, 12, 2).to_hijri()
+h = Gregorian(1982, 12, 2).to_hijri()
 ```
 
 <!-- end summary -->

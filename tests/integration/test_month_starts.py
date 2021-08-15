@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from hijri_converter import convert
+from hijri_converter import Gregorian, Hijri
 
 
 def load_params_from_json():
@@ -24,7 +24,7 @@ hijri_gregorian_params, gregorian_hijri_params = load_params_from_json()
 @pytest.mark.parametrize("test_input, expected", hijri_gregorian_params)
 def test_convert_hijri_to_gregorian(test_input, expected):
     year, month, day = test_input
-    hijri = convert.Hijri(year, month, day, validate=False)
+    hijri = Hijri(year, month, day, validate=False)
     converted = hijri.to_gregorian().datetuple()
     assert converted == expected
 
@@ -32,6 +32,6 @@ def test_convert_hijri_to_gregorian(test_input, expected):
 @pytest.mark.parametrize("test_input, expected", gregorian_hijri_params)
 def test_convert_gregorian_to_hijri(test_input, expected):
     year, month, day = test_input
-    gregorian = convert.Gregorian(year, month, day)
+    gregorian = Gregorian(year, month, day)
     converted = gregorian.to_hijri().datetuple()
     assert converted == expected
