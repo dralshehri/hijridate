@@ -226,19 +226,3 @@ def test_gregorian_invalid_range(test_input, expected):
     with pytest.raises(OverflowError) as e:
         convert.Gregorian(*test_input)._check_range()
     assert str(e.value) == expected
-
-
-def test_julian_to_ordinal():
-    assert convert._julian_to_ordinal(2447977) == 726552
-
-
-def test_ordinal_to_julian():
-    assert convert._ordinal_to_julian(726552) == 2447977
-
-
-def test_julian_to_reduced_julian():
-    assert convert._julian_to_reduced_julian(2456087) == 56087
-
-
-def test_reduced_julian_to_julian():
-    assert convert._reduced_julian_to_julian(56087) == 2456087

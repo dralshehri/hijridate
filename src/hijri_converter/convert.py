@@ -1,7 +1,7 @@
 import datetime
 from bisect import bisect
 
-from hijri_converter import locales, ummalqura
+from hijri_converter import helpers, locales, ummalqura
 
 
 class Hijri:
@@ -189,7 +189,7 @@ class Hijri:
         month_starts = ummalqura.MONTH_STARTS
         index = self._month_index()
         rjd = month_starts[index] + self._day - 1
-        jd = _reduced_julian_to_julian(rjd)
+        jd = helpers.reduced_julian_to_julian(rjd)
         return jd
 
     def to_gregorian(self) -> "Gregorian":
@@ -200,7 +200,7 @@ class Hijri:
         """
 
         jd = self.to_julian()
-        n = _julian_to_ordinal(jd)
+        n = helpers.julian_to_ordinal(jd)
         return Gregorian.fromordinal(n)
 
     def _check_date(self) -> None:
@@ -299,7 +299,7 @@ class Gregorian(datetime.date):
     def to_julian(self) -> int:
         """Convert to Julian Day (JD) number."""
         n = self.toordinal()
-        jd = _ordinal_to_julian(n)
+        jd = helpers.ordinal_to_julian(n)
         return jd
 
     def to_hijri(self) -> Hijri:
@@ -311,7 +311,7 @@ class Gregorian(datetime.date):
 
         self._check_range()
         jd = self.to_julian()
-        rjd = _julian_to_reduced_julian(jd)
+        rjd = helpers.julian_to_reduced_julian(jd)
         month_starts = ummalqura.MONTH_STARTS
         index = bisect(month_starts, rjd) - 1
         months = index + ummalqura.HIJRI_OFFSET
@@ -326,23 +326,3 @@ class Gregorian(datetime.date):
         min_date, max_date = ummalqura.GREGORIAN_RANGE
         if not min_date <= (self.year, self.month, self.day) <= max_date:
             raise OverflowError("date out of range")
-
-
-def _julian_to_ordinal(jd: int) -> int:
-    """Convert Julian Day (JD) number to ordinal number."""
-    return jd - 1721425
-
-
-def _ordinal_to_julian(n: int) -> int:
-    """Convert ordinal number to Julian Day (JD) number."""
-    return n + 1721425
-
-
-def _julian_to_reduced_julian(jd: int) -> int:
-    """Convert Julian Day (JD) number to Reduced Julian Day (RJD) number."""
-    return jd - 2400000
-
-
-def _reduced_julian_to_julian(rjd: int) -> int:
-    """Convert Reduced Julian Day (RJD) number to Julian Day (JD) number."""
-    return rjd + 2400000
