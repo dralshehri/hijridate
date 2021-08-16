@@ -82,6 +82,8 @@ def test_hijri_isoformat(hijri):
 
 def test_hijri_dmyformat(hijri):
     assert hijri.dmyformat() == "13/08/1410"
+    assert hijri.dmyformat(padding=False) == "13/8/1410"
+    assert hijri.dmyformat(separator=".") == "13.08.1410"
 
 
 def test_hijri_month_length(hijri):
@@ -174,6 +176,8 @@ def test_gregorian_datetuple(gregorian):
 
 def test_gregorian_dmyformat(gregorian):
     assert gregorian.dmyformat() == "10/03/1990"
+    assert gregorian.dmyformat(padding=False) == "10/3/1990"
+    assert gregorian.dmyformat(separator=".") == "10.03.1990"
 
 
 def test_gregorian_month_name(gregorian):

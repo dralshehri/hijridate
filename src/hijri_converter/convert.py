@@ -118,9 +118,20 @@ class Hijri:
         """Return date in ISO format i.e. ``YYYY-MM-DD``."""
         return f"{self._year:04}-{self._month:02}-{self._day:02}"
 
-    def dmyformat(self) -> str:
-        """Return date in ``DD/MM/YYYY`` format."""
-        return f"{self._day:02}/{self._month:02}/{self._year:04}"
+    def dmyformat(self, separator: str = "/", padding: bool = True) -> str:
+        """Return date in day month year format (``DD/MM/YYYY`` by default).
+
+        :param separator: String that separates the day, month, and year values
+            (default is ``/``).
+        :type separator: str
+        :param padding: Whether to add a leading zero as a padding character to fill
+            day and month values when less than 10 (default is ``True``).
+        :type padding: bool
+        """
+
+        day = f"{self._day:02}" if padding else self._day
+        month = f"{self._month:02}" if padding else self._month
+        return f"{day}{separator}{month}{separator}{self._year}"
 
     def month_length(self) -> int:
         """Return number of days in month."""
@@ -207,7 +218,7 @@ class Hijri:
             raise ValueError(f"day must be in 1..{month_length} for month")
 
     def _month_index(self) -> int:
-        """Return month’s index in ummalqura data"""
+        """Return month’s index in ummalqura month starts"""
         prior_months = ((self.year - 1) * 12) + self.month - 1
         index = prior_months - ummalqura.HIJRI_OFFSET
         return index
@@ -237,9 +248,20 @@ class Gregorian(datetime.date):
         """Return date as a tuple of (year, month, day)."""
         return self.year, self.month, self.day
 
-    def dmyformat(self) -> str:
-        """Return date in ``DD/MM/YYYY`` format."""
-        return f"{self.day:02}/{self.month:02}/{self.year:04}"
+    def dmyformat(self, separator: str = "/", padding: bool = True) -> str:
+        """Return date in day month year format (``DD/MM/YYYY`` by default).
+
+        :param separator: String that separates the day, month, and year values
+            (default is ``/``).
+        :type separator: str
+        :param padding: Whether to add a leading zero as a padding character to fill
+            day and month values when less than 10 (default is ``True``).
+        :type padding: bool
+        """
+
+        day = f"{self.day:02}" if padding else self.day
+        month = f"{self.month:02}" if padding else self.month
+        return f"{day}{separator}{month}{separator}{self.year}"
 
     def month_name(self, language: str = "en") -> str:
         """Return month name.
