@@ -41,7 +41,7 @@ To get the today's date in Hijri:
 '1443-01-08'
 :::
 
-The {obj}`Hijri` and {obj}`Gregorian` objects have some useful methods. For
+The {obj}`Hijri` and {obj}`Gregorian` objects have some other useful methods. For
 example:
 
 :::{code-block} pycon
@@ -55,6 +55,9 @@ example:
 >>> hijri.dmyformat()
 '17/02/1403'
 
+>>> hijri.dmyformat(".", False)
+'17.2.1403'
+
 >>> hijri.month_name()
 'Safar'
 
@@ -65,7 +68,9 @@ example:
 'AH'
 :::
 
-You can also construct a {obj}`Gregorian` object from {obj}`datetime.date`
+The same methods can be applied to {obj}`Gregorian`.
+
+You can additionally construct a {obj}`Gregorian` object from {obj}`datetime.date`
 object:
 
 :::{code-block} pycon
