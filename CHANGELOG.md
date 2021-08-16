@@ -4,7 +4,7 @@ The format is based on [semantic versioning](https://packaging.python.org/guides
 and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
 schemes recommended by the Python Packaging Authority (PPA).
 
-## Unreleased
+## 2.2.0 (2021-08-16)
 
 - Added `today()` classmethod to Hijri class to get the Hijri Object of today's date.
 - Added `separator` and `padding` parameters to `dmyformat()` method to have more control on formatting.
@@ -12,7 +12,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 - Updated main classes to be conveniently imported into the package level e.g. `from hijri_converter import Hijri, Gregorian`.
 - Removed deprecated method `slashformat()` from Hijri and Gregorian classes.
 - Updated tests and documentation.
-- Other minor fixes and enhancements. 
+- Other minor fixes and internal enhancements.
 
 ## 2.1.3 (2021-06-22)
 
