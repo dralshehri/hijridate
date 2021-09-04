@@ -5,4 +5,4 @@ https://github.com/dralshehri/hijri-converter
 
 from hijri_converter.convert import Gregorian, Hijri
 
-__version__ = "2.2.0"
+__version__ = "2.2.1"
