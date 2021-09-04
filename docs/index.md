@@ -2,25 +2,6 @@
 hide-toc: true
 ---
 
-:::{toctree}
-:hidden:
-
-background
-benchmarking
-usage
-api
-changelog
-:::
-
-:::{toctree}
-:caption: Development
-:hidden:
-
-contributing
-GitHub <https://github.com/dralshehri/hijri-converter>
-PyPI <https://pypi.org/project/hijri-converter>
-:::
-
 # Hijri Converter
 
 :::{include} ../README.md
@@ -33,7 +14,23 @@ PyPI <https://pypi.org/project/hijri-converter>
 :end-before: <!-- end summary -->
 :::
 
-:::{include} ../README.md
-:start-after: <!-- start footer -->
-:end-before: <!-- end footer -->
+:::{toctree}
+:caption: Documentation
+:maxdepth: 1
+
+background
+benchmarking
+usage
+api
+changelog
+:::
+
+:::{toctree}
+:caption: Development
+:maxdepth: 1
+
+contributing
+license
+GitHub <https://github.com/dralshehri/hijri-converter>
+PyPI <https://pypi.org/project/hijri-converter>
 :::
