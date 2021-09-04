@@ -153,13 +153,13 @@ class Hijri:
 
     def weekday(self) -> int:
         """Return day of week, where Monday is 0 and Sunday is 6."""
-        jd = self.to_julian()
-        return int(jd % 7)
+        jdn = self.to_julian()
+        return int(jdn % 7)
 
     def isoweekday(self) -> int:
         """Return day of week, where Monday is 1 and Sunday is 7."""
-        jd = self.to_julian()
-        return int(jd % 7) + 1
+        jdn = self.to_julian()
+        return int(jdn % 7) + 1
 
     def day_name(self, language: str = "en") -> str:
         """Return day name.
@@ -185,12 +185,12 @@ class Hijri:
         return locales.get_locale(language).notation
 
     def to_julian(self) -> int:
-        """Convert to Julian Day (JD) number."""
+        """Return corresponding Julian day number (JDN)."""
         month_starts = ummalqura.MONTH_STARTS
         index = self._month_index()
         rjd = month_starts[index] + self._day - 1
-        jd = helpers.reduced_julian_to_julian(rjd)
-        return jd
+        jdn = helpers.rjd_to_jdn(rjd)
+        return jdn
 
     def to_gregorian(self) -> "Gregorian":
         """Convert to Gregorian date.
@@ -199,8 +199,8 @@ class Hijri:
         :rtype: Gregorian
         """
 
-        jd = self.to_julian()
-        n = helpers.julian_to_ordinal(jd)
+        jdn = self.to_julian()
+        n = helpers.jdn_to_ordinal(jdn)
         return Gregorian.fromordinal(n)
 
     def _check_date(self) -> None:
@@ -297,10 +297,10 @@ class Gregorian(datetime.date):
         return locales.get_locale(language).gregorian_notation
 
     def to_julian(self) -> int:
-        """Convert to Julian Day (JD) number."""
+        """Return corresponding Julian day number (JDN)."""
         n = self.toordinal()
-        jd = helpers.ordinal_to_julian(n)
-        return jd
+        jdn = helpers.ordinal_to_jdn(n)
+        return jdn
 
     def to_hijri(self) -> Hijri:
         """Convert to Hijri date.
@@ -310,8 +310,8 @@ class Gregorian(datetime.date):
         """
 
         self._check_range()
-        jd = self.to_julian()
-        rjd = helpers.julian_to_reduced_julian(jd)
+        jdn = self.to_julian()
+        rjd = helpers.jdn_to_rjd(jdn)
         month_starts = ummalqura.MONTH_STARTS
         index = bisect(month_starts, rjd) - 1
         months = index + ummalqura.HIJRI_OFFSET
