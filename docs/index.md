@@ -15,6 +15,7 @@ changelog
 :::{toctree}
 :caption: Development
 :hidden:
+
 contributing
 GitHub <https://github.com/dralshehri/hijri-converter>
 PyPI <https://pypi.org/project/hijri-converter>

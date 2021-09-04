@@ -12,20 +12,20 @@ his astronomical calculations for years after 1420 AH and partly on a comparison
 calendar prepared by King Fahd University of Petroleum and Minerals (KFUPM) in 1993
 for the years 1356-1411 AH.
 
-In contrast, the [Hijri Converter] package was written in Python from scratch.
-Although it was inspired by R.H. van Gent's work, it is mainly based on the
-Umm al-Qura newspaper issues published weekly since 1343 AH, one that is in
-complete alignment with the official printed Umm al-Qura calendar. However,
-other sources was also used to build the package including the comparison
-calendar prepared by KFUPM for the years 1356-1411 AH, and the official website
-of Umm al-Qura calendar for the years 1431-1500 AH. Both sources were also
-verified using the dates of then-published issues of Umm al-Qura newspaper.
-That makes [Hijri Converter] package more accurate and broader in terms of
-years included, 1343-1500 AH.
+In contrast, the **Hijri Converter** package was written in Python from scratch.
+Although it was inspired by R.H. van Gent's work, it is based on multiple official 
+sources including archived issues of Umm al-Qura newspaper published weekly 
+since 1343 AH, one that is in complete alignment with the official printed Umm 
+al-Qura calendar. Other sources were also used to build the package including the 
+Comparison Calendar prepared by KFUPM for the years 1356-1411 AH, the Umm al-Qura 
+Comparative Calendar (Taqwīm Umm al-Qurá al-muqāran) books for the years 
+1412-1450 AH, and the official website of Umm al-Qura calendar for the years 
+1451-1500 AH. That makes **Hijri Converter** package more accurate and broader in 
+terms of years included, 1343-1500 AH.
 
-When it comes to performance, using [Hijri Converter] package to convert from
+When it comes to performance, using **Hijri Converter** package to convert from
 Hijri to Gregorian and back is nine times faster (or six times faster, with
-Hijri date validation enabled) than that when [Ummalqura] package was used.
+Hijri date validation enabled) than that when **Ummalqura** package was used.
 
 ```shell
 # Hijri Converter, without Hijri date validation
@@ -44,7 +44,7 @@ $ python -m timeit -s 'from ummalqura.hijri import Umalqurra' -n 50000 -r 5 'Uma
 The above code illustrates the execution time of both packages compared
 *(tested on Mac mini (M1, 2020) with Apple M1 chip and 16GB memory)*.
 
-Beside code quality, packaging and maintenance issues that [Ummalqura] package
+Beside code quality, packaging and maintenance issues that **Ummalqura** package
 has, the following table summarizes the main differences:
 
 | Item              | Hijri Converter | Ummalqura     |
@@ -61,12 +61,11 @@ has, the following table summarizes the main differences:
 
 
 [^1]: Verified with the years 1343-1355 AH included, which are missing from 
-[Ummalqura] package but can produce wrong dates when used.
+**Ummalqura** package but can produce wrong dates when used.
 
-[^2]: Hijri date validation was disabled in [Hijri Converter] package;
-to be comparable with [Ummalqura] package.
+[^2]: Hijri date validation was disabled in **Hijri Converter** package;
+to be comparable with **Ummalqura** package.
 
-[Hijri Converter]: https://pypi.org/project/hijri-converter/
 [Ummalqura]: https://pypi.org/project/ummalqura/
 [Hijri.js]: https://github.com/xsoh/Hijri.js
 [R.H. van Gent]: http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm

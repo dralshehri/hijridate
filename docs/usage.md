@@ -5,7 +5,7 @@ hide-toc: true
 # Usage Examples
 
 :::{eval-rst}
-.. module:: convert
+.. currentmodule:: convert
 :::
 
 To convert between Hijri and Gregorian dates:
@@ -41,13 +41,13 @@ To get the today's date in Hijri:
 '1443-01-08'
 :::
 
-The {obj}`Hijri` and {obj}`Gregorian` objects have some other useful methods. For
+The {obj}`Hijri` objects have some other useful methods. For
 example:
 
 :::{code-block} pycon
->>> from hijri_converter import Gregorian
+>>> from hijri_converter import Hijri
 
->>> hijri = Gregorian(1982, 12, 2).to_hijri()
+>>> hijri = Hijri(1403, 2, 17)
 
 >>> hijri.datetuple()
 (1403, 2, 17)
@@ -55,7 +55,7 @@ example:
 >>> hijri.dmyformat()
 '17/02/1403'
 
->>> hijri.dmyformat(".", False)
+>>> hijri.dmyformat('.', False)
 '17.2.1403'
 
 >>> hijri.month_name()
@@ -68,7 +68,7 @@ example:
 'AH'
 :::
 
-The same methods can be applied to {obj}`Gregorian`.
+The above methods can also be used with {obj}`Gregorian` objects.
 
 You can additionally construct a {obj}`Gregorian` object from {obj}`datetime.date`
 object:
@@ -93,7 +93,7 @@ The {obj}`Gregorian` object inherits all attributes and methods of
 Hijri(1440, 10, 13)
 
 # To format a Gregorian date
->>> Gregorian(1982, 12, 2).strftime(''%A, %-d %B %Y'')
+>>> Gregorian(1982, 12, 2).strftime('%A, %-d %B %Y')
 'Thursday, 2 December 1982'
 :::
 

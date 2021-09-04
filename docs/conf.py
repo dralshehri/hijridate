@@ -15,7 +15,6 @@ sys.path.append(str(package_path.resolve()))
 #
 # -- Project information -----------------------------------------------------
 #
-
 project = "Hijri Converter"
 author = "Mohammed Alshehri (@dralshehri)"
 project_copyright = "2018 Mohammed Alshehri (@dralshehri) and contributors"
@@ -28,6 +27,7 @@ version = re.search(r"(?<=__version__\s=\s\").*(?=\")", init_file_content).group
 #
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "myst_parser",
     "notfound.extension",
@@ -47,7 +47,6 @@ autodoc_default_options = {
     "member-order": "bysource",
     "undoc-members": False,
     "show_inheritance": True,
-    "noindex": True,
 }
 autoclass_content = "both"
 autodoc_member_order = "bysource"
