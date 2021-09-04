@@ -7,7 +7,7 @@ HIJRI_RANGE = (1343, 1, 1), (1500, 12, 30)
 """Inclusive range of supported Hijri dates (year, month and day)."""
 
 HIJRI_OFFSET = 1342 * 12
-"""Total Hijri months elapsed before the beginning of year 1343 AH."""
+"""Total Hijri months elapsed before the beginning of Hijri range."""
 
 MONTH_STARTS = (
     23999,
@@ -1909,19 +1909,5 @@ MONTH_STARTS = (
     79990,
 )
 """Ordered list of Reduced Julian Day (RJD) numbers for the beginning of supported
-Hijri months. Numbers were calculated based on the following references:
-
-1343-1355 AH
-    Archived issues of Umm al-Qura newspaper by the Saudi Center for Archives & Records:
-    https://ncar.gov.sa/OmElQuora/List
-1356-1411 AH
-    Comparison calendar prepared by the Research Institute at King Fahd University of
-    Petroleum and Minerals:
-    https://www.staff.science.uu.nl/~gent0113/islam/downloads/ksa_calendar_1356_1411.pdf
-1412-1430 AH
-    Archived issues of Umm al-Qura newspaper by the Saudi Center for Archives & Records:
-    https://ncar.gov.sa/OmElQuora/List
-1431-1500 AH
-    Data tables available at the official website of Umm al-Qura calendar:
-    http://www.ummulqura.org.sa/Index.aspx
+Hijri months.
 """

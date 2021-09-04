@@ -1,3 +1,5 @@
+"""Main module of the Hijri Converter package."""
+
 import datetime
 from bisect import bisect
 
@@ -70,14 +72,12 @@ class Hijri:
         return 0 if x == y else 1 if x > y else -1
 
     @classmethod
-    def fromisoformat(cls, date_string: str):
+    def fromisoformat(cls, date_string: str) -> "Hijri":
         """Construct Hijri object from an ISO formatted Hijri date
         ``YYYY-MM-DD``.
 
         :param date_string: Hijri date in ISO format ``YYYY-MM-DD``.
         :type date_string: str
-        :return: Hijri date object.
-        :rtype: Hijri
         """
 
         year = int(date_string[0:4])
@@ -86,13 +86,8 @@ class Hijri:
         return cls(year, month, day)
 
     @classmethod
-    def today(cls):
-        """Construct Hijri object from today's date.
-
-        :return: Hijri date object.
-        :rtype: Hijri
-        """
-
+    def today(cls) -> "Hijri":
+        """Construct Hijri object from today's date."""
         return Gregorian.today().to_hijri()
 
     @property
@@ -193,11 +188,7 @@ class Hijri:
         return jdn
 
     def to_gregorian(self) -> "Gregorian":
-        """Convert to Gregorian date.
-
-        :return: Gregorian date object.
-        :rtype: Gregorian
-        """
+        """Return Gregorian object for the corresponding Hijri date."""
 
         jdn = self.to_julian()
         n = helpers.jdn_to_ordinal(jdn)
@@ -237,8 +228,6 @@ class Gregorian(datetime.date):
 
         :param date_object: Date object.
         :type date_object: datetime.date
-        :return: Gregorian date object.
-        :rtype: Gregorian
         """
 
         year, month, day = date_object.timetuple()[:3]
@@ -303,12 +292,7 @@ class Gregorian(datetime.date):
         return jdn
 
     def to_hijri(self) -> Hijri:
-        """Convert to Hijri date.
-
-        :return: Hijri date object.
-        :rtype: Hijri
-        """
-
+        """Return Hijri object for the corresponding Gregorian date."""
         self._check_range()
         jdn = self.to_julian()
         rjd = helpers.jdn_to_rjd(jdn)
