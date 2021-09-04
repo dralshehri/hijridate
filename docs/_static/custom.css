@@ -2,10 +2,12 @@ pre {
   font-size: 13px !important;
 }
 a[class='reference external']:after {
-  content: "↪";
+  content: "↗";
   color: #b3b3b3;
-  font-size: 90%;
-  margin: 0 .1em;
+  font-size: 70%;
+  font-weight: bold;
+  vertical-align: top;
+  margin: 0 .2em;
 }
 
 dl[class='py class'] a[class='reference external']:after,
