@@ -93,3 +93,10 @@ html_css_files = ["custom.css"]
 html_copy_source = False
 html_show_sourcelink = False
 html_show_sphinx = False
+
+#
+# -- Options for manual pages output -----------------------------------------------------------
+#
+man_pages = [
+    ("man", package_name, "Umm al-Qura Hijri-Gregorian dates converter", author, 7)
+]
