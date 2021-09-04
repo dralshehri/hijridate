@@ -11,8 +11,10 @@ based on the Umm al-Qura calendar.
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
 [![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijri-converter/main?&label=codefactor)][quality]
 [![Docs Status](https://img.shields.io/readthedocs/hijri-converter/stable)][docs]
+
 [![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads]
-[![PyPI Version](https://img.shields.io/pypi/v/hijri-converter)][version]
+[![PyPI Version](https://img.shields.io/pypi/v/hijri-converter)][pypi-version]
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijri-converter)][conda-version]
 [![Package License](https://img.shields.io/github/license/dralshehri/hijri-converter)][license]
 
 [checks]: https://github.com/dralshehri/hijri-converter/actions/workflows/checks.yml
@@ -20,7 +22,8 @@ based on the Umm al-Qura calendar.
 [quality]: https://www.codefactor.io/repository/github/dralshehri/hijri-converter/overview/main
 [docs]: https://hijri-converter.readthedocs.io
 [downloads]: https://pypistats.org/packages/hijri-converter
-[version]: https://pypi.python.org/pypi/hijri-converter
+[pypi-version]: https://pypi.python.org/pypi/hijri-converter
+[conda-version]: https://anaconda.org/conda-forge/hijri-converter
 [license]: https://github.com/dralshehri/hijri-converter/blob/main/LICENSE
 
 <!-- start summary -->
@@ -47,8 +50,14 @@ based on the Umm al-Qura calendar.
 
 ## Installation
 
+To install using `pip`, run:
 ```shell
-pip install -U hijri-converter
+pip install hijri-converter
+```
+
+To install using `conda`, make sure the `conda-forge` channel is enabled, then run:
+```shell
+conda install hijri-converter
 ```
 
 ## Basic Usage
