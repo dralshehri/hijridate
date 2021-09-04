@@ -1,3 +1,7 @@
+---
+hide-toc: true
+---
+
 # Background
 
 **Hijri Converter** is a Python package to convert accurately between Hijri and 
@@ -16,3 +20,11 @@ An accurate converter between Hijri and Gregorian dates is a necessity. For inst
 when conducting researches, analyzing data, or developing solutions that may have 
 Hijri dates. Therefore, the **Hijri Converter** was developed to fill the gap with 
 higher code quality, more accuracy, and better performance compared to other tools.
+
+
+## Acknowledgements
+
+* [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) &mdash; inspiration,
+  scientific guidance and resources.
+* [@AZalshehri7](https://github.com/AZalshehri7) &mdash; support in dates review and 
+  conversion accuracy verification.

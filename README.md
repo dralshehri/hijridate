@@ -91,16 +91,7 @@ All notable changes to this package are documented in
 Contributions are always welcome! See [CONTRIBUTING.md](https://github.com/dralshehri/hijri-converter/blob/main/CONTRIBUTING.md)
 for ways to get started.
 
-<!-- start footer -->
-
-## Acknowledgements
-
-* [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) &mdash; inspiration, scientific guidance and resources.
-* [@AZalshehri7](https://github.com/AZalshehri7) &mdash; support in dates review and conversion validation.
-
 ## License
 
 This package is distributed under an MIT license.
 See [LICENSE](https://github.com/dralshehri/hijri-converter/blob/main/LICENSE).
-
-<!-- end footer -->

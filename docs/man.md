@@ -2,16 +2,15 @@
 orphan: true
 ---
 
-# Background
+# Man Page
 
 :::{toctree}
+:hidden:
 background
-:::
-
-GitHub URL: <https://github.com/dralshehri/hijri-converter>
-
-# API Reference
-
-:::{toctree}
+benchmarking
 api
 :::
+
+## See Also
+
+Full documentation: <https://hijri-converter.readthedocs.io>

@@ -52,7 +52,6 @@ autoclass_content = "both"
 autodoc_member_order = "bysource"
 autodoc_mock_imports = [package_name]
 autodoc_typehints = "signature"
-# autodoc_typehints_description_target = "documented"
 
 #
 # -- Options for intersphinx -------------------------------------------------
@@ -78,7 +77,6 @@ myst_heading_anchors = 2
 #
 # -- Options for HTML output -----------------------------------------------------------
 #
-html_baseurl = "https://hijri-converter.readthedocs.io/en/stable/"
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     "collapse_navigation": False,
