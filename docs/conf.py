@@ -3,18 +3,25 @@
 # Full list of options can be found in the Sphinx documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-import os
+import re
 import sys
+from pathlib import Path
 
-sys.path.insert(0, os.path.abspath("../src/hijri_converter"))
+package_name = "hijri_converter"
+package_path = Path("../src").joinpath(package_name)
+sys.path.append(str(package_path.resolve()))
+
 
 #
 # -- Project information -----------------------------------------------------
 #
 
 project = "Hijri Converter"
-author = "Mohammed Alshehri"
+author = "Mohammed Alshehri (@dralshehri)"
 project_copyright = "2018 Mohammed Alshehri (@dralshehri) and contributors"
+
+init_file_content = package_path.joinpath("__init__.py").read_text()
+version = re.search(r"(?<=__version__\s=\s\").*(?=\")", init_file_content).group()
 
 #
 # -- General configuration -------------------------------------------------------------
@@ -38,10 +45,15 @@ pygments_style = "colorful"
 autodoc_default_options = {
     "members": True,
     "member-order": "bysource",
-    "special-members": "__init__",
+    "undoc-members": False,
     "show_inheritance": True,
     "noindex": True,
 }
+autoclass_content = "both"
+autodoc_member_order = "bysource"
+autodoc_mock_imports = [package_name]
+autodoc_typehints = "signature"
+# autodoc_typehints_description_target = "documented"
 
 #
 # -- Options for intersphinx -------------------------------------------------
@@ -70,6 +82,7 @@ myst_heading_anchors = 2
 html_baseurl = "https://hijri-converter.readthedocs.io/en/stable/"
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
+    "collapse_navigation": False,
     "display_version": True,
     "navigation_depth": 1,
     "includehidden": True,
