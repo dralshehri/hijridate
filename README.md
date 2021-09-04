@@ -3,7 +3,7 @@
 <!-- start description -->
 
 A Python package to convert accurately between Hijri and Gregorian dates
-based on astronomical calculation of the Umm al-Qura calendar.
+based on the Umm al-Qura calendar.
 
 <!-- end description -->
 
@@ -27,11 +27,11 @@ based on astronomical calculation of the Umm al-Qura calendar.
 
 ## Features
 
-- Accurate and tested date conversion.
+- Accurate and verified date conversion.
 - Optimized code performance compared to similar packages.
 - Intuitive, clean, and easy-to-use interface.
 - Most of the methods and formats are similar to those of standard library.
-- Multilingual representation of weekday names, months, and calendar notations.
+- Multilingual representation of weekday names, months, and calendar era notations.
 - Easily extendable to support other natural languages.
 - Rich comparison between dates.
 - Validation of input dates.
