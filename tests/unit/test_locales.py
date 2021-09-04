@@ -10,8 +10,6 @@ def all_locales(request):
 
 @pytest.mark.usefixtures("all_locales")
 class TestLocalesValidity:
-    """Validate locales to ensure that translations are valid and complete"""
-
     def test_locale_data_structure(self):
         for locale_cls in self.locales.values():
             assert len(locale_cls.language_tag) == 2
@@ -49,6 +47,7 @@ class TestGettingLocale:
             "xx-yy",
             "xx_yy",
             "xx_YY",
+            "xx_YY.UTF-8",
         ],
     )
     def test_locale_possible_names(self, test_input):
