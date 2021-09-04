@@ -4,6 +4,14 @@ The format is based on [semantic versioning](https://packaging.python.org/guides
 and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
 schemes recommended by the Python Packaging Authority (PPA).
 
+## Unreleased
+
+- Fixed calculation of month 12 of year 1354 AH.
+- Fixed an issue when generating documentation without the package being installed.
+- Refactored internal helper functions.
+- Updated and improved tests and documentation.
+- Fixed some typos.
+
 ## 2.2.0 (2021-08-16)
 
 - Added `today()` classmethod to Hijri class to get the Hijri Object of today's date.
