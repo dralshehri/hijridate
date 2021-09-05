@@ -14,3 +14,8 @@ dl[class='py class'] a[class='reference external']:after,
 dl[class='py method'] a[class='reference external']:after {
   content: "";
 }
+
+dl[class='py property'] {
+  display: block !important;
+  padding-right: initial !important;
+}

@@ -9,3 +9,4 @@ sphinx==4.1.2
 myst-parser==0.15.2
 sphinx_rtd_theme==0.5.2
 sphinx-notfound-page==0.7.1
+sphinx-sitemap==2.2.0

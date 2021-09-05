@@ -1,16 +1,10 @@
 # API Reference
 
 This page contains auto-generated API reference documentation
-for the **Hijri Converter** package.
+for the main classes of **hijri-converter** package.
 
 :::{eval-rst}
-.. currentmodule:: convert
-.. autosummary::
-
-   convert
-:::
-
-:::{eval-rst}
-.. autoclass:: convert.Hijri
-.. autoclass:: convert.Gregorian
+.. currentmodule:: hijri_converter.convert
+.. autoclass:: Hijri
+.. autoclass:: Gregorian
 :::
