@@ -5,7 +5,7 @@ hide-toc: true
 # Usage Examples
 
 :::{eval-rst}
-.. currentmodule:: convert
+.. currentmodule:: hijri_converter.convert
 :::
 
 To convert between Hijri and Gregorian dates:

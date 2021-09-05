@@ -6,8 +6,8 @@ orphan: true
 
 :::{toctree}
 :hidden:
+
 background
-benchmarking
 api
 :::
 

@@ -2,7 +2,7 @@
 hide-toc: true
 ---
 
-# Hijri Converter
+# hijri-converter
 
 :::{include} ../README.md
 :start-after: <!-- start description -->

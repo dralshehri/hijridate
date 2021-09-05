@@ -8,62 +8,74 @@ import sys
 from pathlib import Path
 
 package_name = "hijri_converter"
-package_path = Path("../src").joinpath(package_name)
-sys.path.append(str(package_path.resolve()))
+package_path = Path("../src").joinpath(package_name).resolve()
+
+sys.path.append(str(package_path.parent))
+
+
+def read_version():
+    content = package_path.joinpath("__init__.py").read_text()
+    pattern = re.compile(r"(?<=__version__\s=\s\").*(?=\")")
+    return pattern.search(content).group()
 
 
 #
-# -- Project information -----------------------------------------------------
+# -- Project information ---------------------------------------------------------------
 #
-project = "Hijri Converter"
-author = "Mohammed Alshehri (@dralshehri)"
-project_copyright = "2018 Mohammed Alshehri (@dralshehri) and contributors"
-
-init_file_content = package_path.joinpath("__init__.py").read_text()
-version = re.search(r"(?<=__version__\s=\s\").*(?=\")", init_file_content).group()
+project = "hijri-converter"  # project name at PyPI and GitHub
+author = "Mohd Alshehri (@dralshehri)"
+project_copyright = "2018 Mohd Alshehri (@dralshehri) and contributors"
+version = read_version()
 
 #
 # -- General configuration -------------------------------------------------------------
 #
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
+    "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
     "myst_parser",
     "notfound.extension",
+    "sphinx_sitemap",
 ]
+
+exclude_patterns = ["manpage.*"]
 templates_path = ["_templates"]
 source_suffix = {
     ".rst": "restructuredtext",
     ".md": "markdown",
 }
 pygments_style = "colorful"
+add_module_names = False
 
 #
-# -- Options for autodoc -------------------------------------------------
+# -- Options for autodoc ---------------------------------------------------------------
 #
 autodoc_default_options = {
     "members": True,
     "member-order": "bysource",
     "undoc-members": False,
-    "show_inheritance": True,
+    "show-inheritance": True,
 }
 autoclass_content = "both"
-autodoc_member_order = "bysource"
-autodoc_mock_imports = [package_name]
-autodoc_typehints = "signature"
+autodoc_typehints = "description"
 
 #
-# -- Options for intersphinx -------------------------------------------------
+# -- Options for intersphinx -----------------------------------------------------------
 #
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
 }
 
 #
-# -- Options for notfound -------------------------------------------------
+# -- Options for notfound --------------------------------------------------------------
 #
 notfound_urls_prefix = "/en/stable/"
+
+#
+# -- Options for sitemap ---------------------------------------------------------------
+#
+sitemap_url_scheme = "{link}"
 
 #
 # -- Options for Markdown files --------------------------------------------------------
@@ -77,6 +89,7 @@ myst_heading_anchors = 2
 #
 # -- Options for HTML output -----------------------------------------------------------
 #
+html_baseurl = f"https://{project}.readthedocs.io/en/stable/"
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     "collapse_navigation": False,
@@ -85,15 +98,16 @@ html_theme_options = {
     "includehidden": True,
     "titles_only": True,
 }
-html_static_path = ["_static"]
+html_logo = None
+html_favicon = None
 html_css_files = ["custom.css"]
+html_static_path = ["_static"]
+html_extra_path = ["robots.txt"]
 html_copy_source = False
 html_show_sourcelink = False
 html_show_sphinx = False
 
 #
-# -- Options for manual pages output -----------------------------------------------------------
+# -- Options for manual pages output ---------------------------------------------------
 #
-man_pages = [
-    ("man", package_name, "Umm al-Qura Hijri-Gregorian dates converter", author, 7)
-]
+man_pages = [("manpage", package_name, "convert Hijri-Gregorian dates", author, 7)]

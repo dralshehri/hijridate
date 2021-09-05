@@ -1,0 +1,5 @@
+User-agent: *
+
+Disallow: /en/latest/ # Hidden version
+
+Sitemap: https://hijri-converter.readthedocs.io/en/stable/sitemap.xml
