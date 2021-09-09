@@ -1,9 +1,9 @@
-# Hijri Converter
+# hijri-converter
 
 <!-- start description -->
 
 A Python package to convert accurately between Hijri and Gregorian dates
-based on the Umm al-Qura calendar.
+using the Umm al-Qura calendar.
 
 <!-- end description -->
 
@@ -38,7 +38,7 @@ based on the Umm al-Qura calendar.
 - Rich comparison between dates.
 - Validation of input dates.
 - Works on Python 3.6+ with zero dependencies.
-- Thoroughly tested on all supported python versions.
+- Thoroughly tested with 100% test coverage.
 
 ## Limitations
 
@@ -54,9 +54,9 @@ To install using `pip`, run:
 pip install hijri-converter
 ```
 
-To install using `conda`, make sure the `conda-forge` channel is enabled, then run:
+To install using `conda`, run:
 ```shell
-conda install hijri-converter
+conda install -c conda-forge hijri-converter
 ```
 
 ## Basic Usage
@@ -80,17 +80,7 @@ Please see <https://hijri-converter.readthedocs.io> for full documentation of
 this package, including background, benchmarking, usage examples and API
 reference.
 
-## Changelog
-
-All notable changes to this package are documented in 
-[CHANGELOG.md](https://github.com/dralshehri/hijri-converter/blob/main/CHANGELOG.md).
-
-## Contributing
-
-Contributions are always welcome! See [CONTRIBUTING.md](https://github.com/dralshehri/hijri-converter/blob/main/CONTRIBUTING.md)
-for ways to get started.
 
 ## License
 
-This package is distributed under an MIT license.
-See [LICENSE](https://github.com/dralshehri/hijri-converter/blob/main/LICENSE).
+This project is licensed under the terms of the MIT license.
