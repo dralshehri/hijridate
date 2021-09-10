@@ -1,0 +1,4 @@
+taskipy
+-r quality.txt
+-r tests.txt
+-r docs.txt
