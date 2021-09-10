@@ -15,7 +15,7 @@ You may want to make some changes to the package codebase. For example, to fix a
 to add a new feature, or to update documentation.
 You can do so by following these simple steps:
 1. Fork the [repository](https://github.com/dralshehri/hijri-converter) on GitHub.
-2. Clone your copy locally.
+2. Clone your fork locally.
 3. Create a new branch.
 4. Make your code changes.
 5. Format code and run tests.
@@ -30,10 +30,10 @@ Python 3.9 or newer.
 
 ### Preparing for development:
 
-The project and all required packages can be installed using:
+The project and development dependencies can be installed using:
 
 ```shell
-pip install -r requirements-dev.txt -e .
+pip install -r .reqs/dev.txt -e .
 ```
 
 ### Formatting code:
@@ -64,5 +64,5 @@ task lint
 ```
 
 ## Need Help?
-Don't let anything to discourage you from making the pull request.
+Don't let anything discourage you from making the pull request.
 I can help you! Just go ahead and submit the pull request.
