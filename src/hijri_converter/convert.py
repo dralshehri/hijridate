@@ -1,4 +1,4 @@
-"""Main module of the Hijri Converter package."""
+"""Main module of the hijri-converter package."""
 
 import datetime
 from bisect import bisect
@@ -11,7 +11,7 @@ class Hijri:
 
     __slots__ = "_year", "_month", "_day"
 
-    def __init__(self, year: int, month: int, day: int, validate: bool = True) -> None:
+    def __init__(self, year: int, month: int, day: int, validate: bool = True):
         """
         :param year: Hijri year.
         :type year: int
@@ -19,8 +19,8 @@ class Hijri:
         :type month: int
         :param day: Hijri day.
         :type day: int
-        :param validate: Whether to validate Hijri input or not (default is ``True``).
-            It's recommended to keep the default for accurate conversion.
+        :param validate: Whether to validate Hijri input or not. It's recommended to
+            keep the default for accurate conversion.
         :type validate: bool
         """
 
@@ -78,6 +78,7 @@ class Hijri:
 
         :param date_string: Hijri date in ISO format ``YYYY-MM-DD``.
         :type date_string: str
+        :rtype: Hijri
         """
 
         year = int(date_string[0:4])
@@ -87,7 +88,10 @@ class Hijri:
 
     @classmethod
     def today(cls) -> "Hijri":
-        """Construct Hijri object from today's date."""
+        """Construct Hijri object from today's date.
+
+        :rtype: Hijri
+        """
         return Gregorian.today().to_hijri()
 
     @property
@@ -114,13 +118,12 @@ class Hijri:
         return f"{self._year:04}-{self._month:02}-{self._day:02}"
 
     def dmyformat(self, separator: str = "/", padding: bool = True) -> str:
-        """Return date in day month year format (``DD/MM/YYYY`` by default).
+        """Return date in day-month-year format (``DD/MM/YYYY`` by default).
 
-        :param separator: String that separates the day, month, and year values
-            (default is ``/``).
+        :param separator: String that separates the day, month, and year values.
         :type separator: str
         :param padding: Whether to add a leading zero as a padding character to fill
-            day and month values when less than 10 (default is ``True``).
+            day and month values when less than 10.
         :type padding: bool
         """
 
@@ -138,9 +141,9 @@ class Hijri:
     def month_name(self, language: str = "en") -> str:
         """Return month name.
 
-        :param language: Language tag for localized month name (default is ``en``).
-            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
-            Supported languages are ``en``, ``ar`` and ``bn``.
+        :param language: Language tag for localized month name. Full locale name can
+            be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported languages are
+            ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -159,9 +162,9 @@ class Hijri:
     def day_name(self, language: str = "en") -> str:
         """Return day name.
 
-        :param language: Language tag for localized day name (default is ``en``).
-            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
-            Supported languages are ``en``, ``ar`` and ``bn``.
+        :param language: Language tag for localized day name. Full locale name can
+            be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported languages are
+            ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -171,9 +174,9 @@ class Hijri:
     def notation(language: str = "en") -> str:
         """Return calendar era notation.
 
-        :param language: Language tag for localized notation (default is ``en``).
-            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
-            Supported languages are ``en``, ``ar`` and ``bn``.
+        :param language: Language tag for localized notation. Full locale name can
+            be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported languages are
+            ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -188,7 +191,10 @@ class Hijri:
         return jdn
 
     def to_gregorian(self) -> "Gregorian":
-        """Return Gregorian object for the corresponding Hijri date."""
+        """Return Gregorian object for the corresponding Hijri date.
+
+        :rtype: Gregorian
+        """
 
         jdn = self.to_julian()
         n = helpers.jdn_to_ordinal(jdn)
@@ -217,17 +223,18 @@ class Hijri:
 
 class Gregorian(datetime.date):
     """A Gregorian object represents a date (year, month and day) in Gregorian
-    calendar inheriting all attributes and methods of :obj:`datetime.date` object.
+    calendar.
     """
 
     __slots__ = ()
 
     @classmethod
     def fromdate(cls, date_object: datetime.date) -> "Gregorian":
-        """Construct Gregorian object from a date object.
+        """Construct Gregorian object from a Python date object.
 
-        :param date_object: Date object.
+        :param date_object: Python date object.
         :type date_object: datetime.date
+        :rtype: Gregorian
         """
 
         year, month, day = date_object.timetuple()[:3]
@@ -238,13 +245,12 @@ class Gregorian(datetime.date):
         return self.year, self.month, self.day
 
     def dmyformat(self, separator: str = "/", padding: bool = True) -> str:
-        """Return date in day month year format (``DD/MM/YYYY`` by default).
+        """Return date in day-month-year format (``DD/MM/YYYY`` by default).
 
-        :param separator: String that separates the day, month, and year values
-            (default is ``/``).
+        :param separator: String that separates the day, month, and year values.
         :type separator: str
         :param padding: Whether to add a leading zero as a padding character to fill
-            day and month values when less than 10 (default is ``True``).
+            day and month values when less than 10.
         :type padding: bool
         """
 
@@ -255,8 +261,9 @@ class Gregorian(datetime.date):
     def month_name(self, language: str = "en") -> str:
         """Return month name.
 
-        :param language: Language tag for localized month name (default is ``en``).
-            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
+        :param language: Language tag for localized month name. Full locale name can
+            be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported languages are
+            ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -265,9 +272,9 @@ class Gregorian(datetime.date):
     def day_name(self, language: str = "en") -> str:
         """Return day name.
 
-        :param language: Language tag for localized day name (default is ``en``).
-            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
-            Supported languages are ``en``, ``ar`` and ``bn``.
+        :param language: Language tag for localized day name. Full locale name can
+            be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported languages are
+            ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -277,9 +284,9 @@ class Gregorian(datetime.date):
     def notation(language: str = "en") -> str:
         """Return calendar era notation.
 
-        :param language: Language tag for localized notation (default is ``en``).
-            Full locale name can also be used, e.g. ``en-US`` or ``en_US.UTF-8``.
-            Supported languages are ``en``, ``ar`` and ``bn``.
+        :param language: Language tag for localized notation. Full locale name can
+            be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported languages are
+            ``en``, ``ar`` and ``bn``.
         :type language: str
         """
 
@@ -292,7 +299,10 @@ class Gregorian(datetime.date):
         return jdn
 
     def to_hijri(self) -> Hijri:
-        """Return Hijri object for the corresponding Gregorian date."""
+        """Return Hijri object for the corresponding Gregorian date.
+
+        :rtype: Hijri
+        """
         self._check_range()
         jdn = self.to_julian()
         rjd = helpers.jdn_to_rjd(jdn)
