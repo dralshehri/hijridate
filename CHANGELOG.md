@@ -4,6 +4,13 @@ The format is based on [semantic versioning](https://packaging.python.org/guides
 and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
 schemes recommended by the Python Packaging Authority (PPA).
 
+## Unreleased
+
+- Added some missing variable annotations to `ummalqura` module.
+- Fixed an issue when generating documentation.
+- Fixed some typos in docstrings and improved documentation.
+- Other minor fixes and enhancements.
+
 ## 2.2.1 (2021-09-04)
 
 - Fixed calculation of month 12 of year 1354 AH.
