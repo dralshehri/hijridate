@@ -4,10 +4,10 @@ from typing import Tuple
 
 DateTuple = Tuple[int, int, int]
 
-GREGORIAN_RANGE: Tuple[DateTuple, DateTuple] = (1924, 8, 1), (2077, 11, 16)
+GREGORIAN_RANGE: Tuple[DateTuple, DateTuple] = ((1924, 8, 1), (2077, 11, 16))
 """Inclusive range of supported Gregorian dates (year, month and day)."""
 
-HIJRI_RANGE: Tuple[DateTuple, DateTuple] = (1343, 1, 1), (1500, 12, 30)
+HIJRI_RANGE: Tuple[DateTuple, DateTuple] = ((1343, 1, 1), (1500, 12, 30))
 """Inclusive range of supported Hijri dates (year, month and day)."""
 
 HIJRI_OFFSET: int = 1342 * 12
