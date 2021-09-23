@@ -52,7 +52,7 @@ To build and browse documentation locally, run:
 task docs
 ```
 
-The resulting HTML can be found in `docs/_build/html`
+The resulting HTML can be found in `docs/_build`
 
 ### Running tests and quality checks:
 
