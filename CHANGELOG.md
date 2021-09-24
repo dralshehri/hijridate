@@ -4,7 +4,7 @@ The format is based on [semantic versioning](https://packaging.python.org/guides
 and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
 schemes recommended by the Python Packaging Authority (PPA).
 
-## Unreleased
+## 2.2.2 (2021-09-25)
 
 - Added some missing variable annotations to `ummalqura` module.
 - Fixed an issue when generating documentation.
