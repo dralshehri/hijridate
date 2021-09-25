@@ -1,0 +1,7 @@
+User-agent: *
+
+Disallow: /
+
+Allow: /en/stable/
+
+Sitemap: sitemap_url
