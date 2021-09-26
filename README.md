@@ -80,7 +80,13 @@ Please see <https://hijri-converter.readthedocs.io> for full documentation of
 this package, including background, benchmarking, usage examples and API
 reference.
 
-
 ## License
 
 This project is licensed under the terms of the MIT license.
+
+## Acknowledgements
+
+* [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) &mdash; inspiration,
+  scientific guidance and resources.
+* [@AZalshehri7](https://github.com/AZalshehri7) &mdash; support in dates review and 
+  conversion accuracy verification.
