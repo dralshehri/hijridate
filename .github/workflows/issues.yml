@@ -1,7 +1,7 @@
 name: Issues
 on:
   schedule:
-    - cron: "30 5 * * *"
+    - cron: "0 0 * * 0"
 
 jobs:
   close-issues:
