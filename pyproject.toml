@@ -15,22 +15,43 @@ source = ["hijri_converter"]
 source = ["src"]
 
 [tool.black]
-line-length = 88
-target-version = ['py36', 'py37', 'py38', 'py39']
+line-length = 80
+target-version = ["py36", "py37", "py38", "py39", "py310"]
 
 [tool.isort]
 profile = "black"
 
+[tool.pylint.messages_control]
+disable = ["bad-whitespace", "bad-continuation"]  # recommended by Black
+
+[tool.pylint.reports]
+score = false
+
+[tool.pylint.format]
+max-line-length = 80
+expected-line-ending-format = "LF"
+
+[tool.pylint.master]
+ignore = ["tests"]
+
+[tool.taskipy.settings]
+use_vars = true
+
+[tool.taskipy.variables]
+target = "src tests"
+
 [tool.taskipy.tasks]
-test_all = "pytest tests"
+test = "task test_cov tests"
 test_cov = "pytest --cov --cov-report=term-missing --cov-fail-under=100"
 test_cov_html = "pytest --cov --cov-report=term --cov-report=html"
-test = "task test_cov tests"
-lint_flake8 = "flake8 src tests"
-lint_mypy = "mypy src"
-lint_isort = "isort --check-only src tests"
-lint_black = "black --check --quiet src tests"
-lint = "task lint_flake8 && task lint_mypy && task lint_isort && task lint_black"
-format = "isort src tests docs && black src tests docs"
+test_all = "pytest tests"
+lint = "task lint_isort && task lint_black && task lint_pylint && task lint_mypy"
+lint_isort = "isort --check-only {target}"
+lint_black = "black --check --quiet {target}"
+lint_pylint = "pylint {target}"
+lint_mypy = "mypy {target}"
+format = "isort {target} && black {target}"
+upgrade = "task upgrade_dev && upgrade_docs"
+upgrade_dev = "pip install -U -r requirements-dev.txt"
+upgrade_docs = "pip install -U -r docs/requirements.txt"
 docs = "sphinx-build -E docs docs/_build"
-update = "pip install -U -r .reqs/dev.txt"
