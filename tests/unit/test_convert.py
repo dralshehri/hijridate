@@ -2,7 +2,7 @@ from datetime import date
 
 import pytest
 
-from hijri_converter import convert
+from hijri_converter.convert import Gregorian, Hijri
 
 
 def test_importing_at_init_module():
@@ -14,7 +14,7 @@ def test_importing_at_init_module():
 
 @pytest.fixture(scope="class")
 def hijri_obj(request):
-    request.cls.hijri_obj = convert.Hijri(1410, 8, 13)
+    request.cls.hijri_obj = Hijri(1410, 8, 13)
 
 
 @pytest.mark.usefixtures("hijri_obj")
@@ -28,26 +28,30 @@ class TestHijri:
     def test_hash(self):
         assert self.hijri_obj.__hash__() == hash(("Hijri", 1410, 8, 13))
 
-    @pytest.mark.parametrize("test_input", ["__gt__", "__ge__", "__lt__", "__le__"])
+    @pytest.mark.parametrize(
+        "test_input", ["__gt__", "__ge__", "__lt__", "__le__"]
+    )
     def test_comparison_notimplemented(self, test_input):
-        assert getattr(self.hijri_obj, test_input)("1410-08-13") == NotImplemented
+        assert (
+            getattr(self.hijri_obj, test_input)("1410-08-13") == NotImplemented
+        )
 
     def test_equality(self):
-        assert self.hijri_obj == convert.Hijri(1410, 8, 13)
-        assert self.hijri_obj != convert.Hijri(1410, 8, 14)
+        assert self.hijri_obj == Hijri(1410, 8, 13)
+        assert self.hijri_obj != Hijri(1410, 8, 14)
         assert self.hijri_obj != "1410-08-13"
 
     def test_ordering(self):
-        assert self.hijri_obj > convert.Hijri(1410, 8, 12)
-        assert self.hijri_obj >= convert.Hijri(1410, 8, 13)
-        assert self.hijri_obj < convert.Hijri(1410, 8, 14)
-        assert self.hijri_obj <= convert.Hijri(1410, 8, 13)
+        assert self.hijri_obj > Hijri(1410, 8, 12)
+        assert self.hijri_obj >= Hijri(1410, 8, 13)
+        assert self.hijri_obj < Hijri(1410, 8, 14)
+        assert self.hijri_obj <= Hijri(1410, 8, 13)
 
     def test_fromisoformat(self):
-        assert convert.Hijri.fromisoformat("1410-08-13") == self.hijri_obj
+        assert Hijri.fromisoformat("1410-08-13") == self.hijri_obj
 
     def test_today(self):
-        assert convert.Hijri.today().to_gregorian() == convert.Gregorian.today()
+        assert Hijri.today().to_gregorian() == Gregorian.today()
 
     def test_year(self):
         assert self.hijri_obj.year == 1410
@@ -108,7 +112,7 @@ class TestHijri:
     def test_valid_date(self, test_input):
         year, month, day = test_input
         try:
-            convert.Hijri(year, month, day, validate=False)._check_date()
+            Hijri(year, month, day, validate=False)._check_date()
         except (ValueError, OverflowError):
             pytest.fail()
 
@@ -122,7 +126,7 @@ class TestHijri:
     )
     def test_invalid_year(self, test_input, expected):
         with pytest.raises(OverflowError) as e:
-            convert.Hijri(*test_input, validate=False)._check_date()
+            Hijri(*test_input, validate=False)._check_date()
         assert str(e.value) == expected
 
     @pytest.mark.parametrize(
@@ -135,20 +139,20 @@ class TestHijri:
     )
     def test_invalid_day_or_month(self, test_input, expected):
         with pytest.raises(ValueError) as e:
-            convert.Hijri(*test_input, validate=False)._check_date()
+            Hijri(*test_input, validate=False)._check_date()
         assert str(e.value) == expected
 
 
 @pytest.fixture(scope="class")
 def gregorian_obj(request):
-    request.cls.gregorian_obj = convert.Gregorian(1990, 3, 10)
+    request.cls.gregorian_obj = Gregorian(1990, 3, 10)
 
 
 @pytest.mark.usefixtures("gregorian_obj")
 class TestGregorian:
     def test_fromdate(self):
         test_date = date(2014, 12, 28)
-        assert convert.Gregorian.fromdate(test_date).datetuple() == (2014, 12, 28)
+        assert Gregorian.fromdate(test_date).datetuple() == (2014, 12, 28)
 
     def test_datetuple(self):
         assert self.gregorian_obj.datetuple() == (1990, 3, 10)
@@ -185,7 +189,7 @@ class TestGregorian:
     def test_valid_range(self, test_input):
         year, month, day = test_input
         try:
-            convert.Gregorian(year, month, day)._check_range()
+            Gregorian(year, month, day)._check_range()
         except OverflowError:
             pytest.fail()
 
@@ -198,5 +202,5 @@ class TestGregorian:
     )
     def test_invalid_range(self, test_input, expected):
         with pytest.raises(OverflowError) as e:
-            convert.Gregorian(*test_input)._check_range()
+            Gregorian(*test_input)._check_range()
         assert str(e.value) == expected
