@@ -1,8 +1,12 @@
 # Changelog
 
-The format is based on [semantic versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#semantic-versioning-preferred)
-and [pre-release versioning](https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning)
+The format is based on [semantic versioning] and [pre-release versioning]
 schemes recommended by the Python Packaging Authority (PPA).
+
+[semantic versioning]:
+  https://packaging.python.org/guides/distributing-packages-using-setuptools/#semantic-versioning-preferred
+[pre-release versioning]:
+  https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning
 
 ## 2.2.2 (2021-09-25)
 
@@ -14,17 +18,22 @@ schemes recommended by the Python Packaging Authority (PPA).
 ## 2.2.1 (2021-09-04)
 
 - Fixed calculation of month 12 of year 1354 AH.
-- Fixed an issue when generating documentation without the package being installed.
+- Fixed an issue when generating documentation without the package being
+  installed.
 - Refactored internal helper functions.
 - Updated and improved tests and documentation.
 - Fixed some typos.
 
 ## 2.2.0 (2021-08-16)
 
-- Added `today()` classmethod to Hijri class to get the Hijri Object of today's date.
-- Added `separator` and `padding` parameters to `dmyformat()` method to have more control on formatting.
-- Refactored locales for better management and testing. (Inspired by [Arrow](https://github.com/arrow-py/arrow) localization)
-- Updated main classes to be conveniently imported into the package level e.g. `from hijri_converter import Hijri, Gregorian`.
+- Added `today()` classmethod to Hijri class to get the Hijri Object of today's
+  date.
+- Added `separator` and `padding` parameters to `dmyformat()` method to have
+  more control on formatting.
+- Refactored locales for better management and testing. (Inspired by
+  [Arrow](https://github.com/arrow-py/arrow) localization)
+- Updated main classes to be conveniently imported into the package level e.g.
+  `from hijri_converter import Hijri, Gregorian`.
 - Removed deprecated method `slashformat()` from Hijri and Gregorian classes.
 - Updated tests and documentation.
 - Other minor fixes and internal enhancements.
@@ -35,8 +44,10 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 ## 2.1.2 (2021-05-30)
 
-- Added Bangla translation. (Thanks to [@nokibsarkar](https://github.com/nokibsarkar))
-- Changed `Hijri` rich comparison to return `NotImplemented` when the second operand is not `Hijri` class.
+- Added Bangla translation. (Thanks to
+  [@nokibsarkar](https://github.com/nokibsarkar))
+- Changed `Hijri` rich comparison to return `NotImplemented` when the second
+  operand is not `Hijri` class.
 - Changed `ummalqura` constants to be in capital letters adhering to PEP8.
 - Updated packaging configuration files and local development workflow.
 - Other minor fixes and documentation enhancements.
@@ -45,22 +56,23 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 - Added `dmyformat()` to return dates in `DD/MM/YYYY` format.
 - Deprecated `slashformat()` method to be replaced by `dmyformat()` method.
-- Fixed PyPI package not including some required files. (Thanks to [@PureTryOut](https://github.com/PureTryOut))
+- Fixed PyPI package not including some required files. (Thanks to
+  [@PureTryOut](https://github.com/PureTryOut))
 - Fixed some typos.
 - Updated tests.
 
 ## 2.1.0 (2019-06-16)
 
-This version has more accurate conversion and better internal code.
-Details are as follows:
+This version has more accurate conversion and better internal code. Details are
+as follows:
 
 - Dropped support for the years before 1343 AH because the Umm al-Qura calendar
   was not established then.
-- Added `validate` parameter to Hijri class for optional disabling of
-  Hijri date validation and improving performance. However, disabling validation 
-  will decrease the conversion accuracy silently.
-- Verified conversion against original references and updated the
-  `month_starts` tuple for more accurate conversion.
+- Added `validate` parameter to Hijri class for optional disabling of Hijri date
+  validation and improving performance. However, disabling validation will
+  decrease the conversion accuracy silently.
+- Verified conversion against original references and updated the `month_starts`
+  tuple for more accurate conversion.
 - Improved `Hijri` class rich comparison methods.
 - Improved date validation methods for better performance and readability.
 - Made the `Hijri` class hashable by adding a custom `__hash__` method.
