@@ -1,0 +1,79 @@
+name: Release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  call-checks:
+    name: Checks
+    uses: ./.github/workflows/checks.yml
+  update-default:
+    name: Update default branch
+    runs-on: ubuntu-latest
+    needs: call-checks
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PERSONAL_ACTION_TOKEN }}
+      - name: Merge tag branch
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          BRANCH=$(git branch -r --contains $GITHUB_REF_NAME)
+          git checkout $BRANCH
+          git rebase origin/$DEFAULT_BRANCH
+          git checkout $DEFAULT_BRANCH
+          git merge --ff-only $BRANCH
+          git push
+  publish-package:
+    name: Publish package to PyPI
+    runs-on: ubuntu-latest
+    needs: update-default
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install build
+      - name: Build distributions
+        run: python -m build --sdist --wheel
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+  clean-runs:
+    name: Clean up workflow runs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run cleaning script
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const workflows = [
+              { workflow_id: "draft.yml", status: "completed" },
+              { workflow_id: "release.yml", status: "completed", conclusion: "failure" },
+            ];
+            const runIds = []
+            for (const params of workflows) {
+              const runs = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ...params,
+              });
+              runIds.push(...runs.data.workflow_runs.map((obj) => obj.id))
+            }
+            for (const id of runIds) {
+              await github.rest.actions.deleteWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: id,
+              });
+            }
