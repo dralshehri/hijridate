@@ -4,17 +4,17 @@ hide-toc: true
 
 # hijri-converter
 
-:::{include} ../README.md
+```{include} ../README.md
 :start-after: <!-- start description -->
 :end-before: <!-- end description -->
-:::
+```
 
-:::{include} ../README.md
+```{include} ../README.md
 :start-after: <!-- start summary -->
 :end-before: <!-- end summary -->
-:::
+```
 
-:::{toctree}
+```{toctree}
 :caption: Documentation
 :maxdepth: 1
 
@@ -23,14 +23,14 @@ benchmarking
 usage
 api
 changelog
-:::
+```
 
-:::{toctree}
+```{toctree}
 :caption: Development
 :maxdepth: 1
 
 contributing
 license
-GitHub <https://github.com/dralshehri/hijri-converter>
+GitHub <https://github.com/mhalshehri/hijri-converter>
 PyPI <https://pypi.org/project/hijri-converter>
-:::
+```

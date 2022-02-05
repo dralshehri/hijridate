@@ -4,12 +4,12 @@ orphan: true
 
 # Man Page
 
-:::{toctree}
+```{toctree}
 :hidden:
 
 background
 api
-:::
+```
 
 ## See Also
 

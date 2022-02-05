@@ -37,4 +37,6 @@ def create_sitemap(app, exception):
     # update robots with sitemap url
     sitemap_url = site_url + sitemap_file.name
     robots_file = output_path.joinpath("robots.txt")
-    robots_file.write_text(robots_file.read_text().replace("sitemap_url", sitemap_url))
+    robots_file.write_text(
+        robots_file.read_text().replace("sitemap_url", sitemap_url)
+    )

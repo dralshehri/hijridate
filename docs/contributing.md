@@ -2,5 +2,6 @@
 hide-toc: true
 ---
 
-:::{include} ../CONTRIBUTING.md
-:::
+```{include} ../CONTRIBUTING.md
+
+```

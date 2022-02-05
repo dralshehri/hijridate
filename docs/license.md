@@ -4,6 +4,6 @@ hide-toc: true
 
 # License
 
-:::{literalinclude} ../LICENSE
+```{literalinclude} ../LICENSE
 :language: text
-:::
+```

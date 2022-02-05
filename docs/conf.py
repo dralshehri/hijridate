@@ -26,8 +26,8 @@ sys.path.append(str(Path("_extensions").resolve()))
 # -- Project information ---------------------------------------------------------------
 #
 project = "hijri-converter"  # project name at PyPI and GitHub
-author = "Mohd Alshehri (@dralshehri)"
-project_copyright = "2018 Mohd Alshehri (@dralshehri) and contributors"
+author = "Mohammed H Alshehri (@mhalshehri)"
+project_copyright = "2018 Mohammed H Alshehri (@mhalshehri) and contributors"
 version = read_version()
 
 #
@@ -37,6 +37,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.napoleon",
     "myst_parser",
     "notfound.extension",
     "custom_sitemap",
@@ -71,6 +72,12 @@ intersphinx_mapping = {
 }
 
 #
+# -- Options for napoleon -----------------------------------------------------------
+#
+napoleon_google_docstring = True
+napoleon_numpy_docstring = False
+
+#
 # -- Options for notfound --------------------------------------------------------------
 #
 notfound_urls_prefix = "/en/stable/"
@@ -87,7 +94,6 @@ sitemap_excluded_pages = [
 # -- Options for Markdown files --------------------------------------------------------
 #
 myst_enable_extensions = [
-    "colon_fence",
     "smartquotes",
 ]
 myst_heading_anchors = 2
@@ -116,4 +122,6 @@ html_show_sphinx = False
 #
 # -- Options for manual pages output ---------------------------------------------------
 #
-man_pages = [("manpage", package_name, "convert Hijri-Gregorian dates", author, 7)]
+man_pages = [
+    ("manpage", package_name, "convert Hijri-Gregorian dates", author, 7)
+]
