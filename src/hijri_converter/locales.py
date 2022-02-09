@@ -8,8 +8,8 @@ _locale_map: Dict[str, Type["Locale"]] = {}
 def get_locale(name: str) -> "Locale":
     """Return an appropriate :obj:`Locale` corresponding to a locale name.
 
-    :param name: name of the locale.
-    :type name: str
+    Args:
+        name: name of the locale.
     """
 
     language_tag = name.lower()[:2]
@@ -22,7 +22,7 @@ def get_locale(name: str) -> "Locale":
 
 
 class Locale:
-    """A Hijri locale object represents locale-specific data and functionality."""
+    """A Locale object represents locale-specific data and functionality."""
 
     language_tag: ClassVar[str]
     month_names: ClassVar[List[str]] = []
@@ -39,8 +39,8 @@ class Locale:
     def month_name(self, month: int) -> str:
         """Return the month name for a specified Hijri month of the year.
 
-        :param month: month of year, in range 1-12.
-        :type month: int
+        Args:
+            month: month of year, in range 1-12.
         """
 
         return self.month_names[month - 1]
@@ -48,8 +48,8 @@ class Locale:
     def gregorian_month_name(self, month: int) -> str:
         """Return the month name for a specified Gregorian month of the year.
 
-        :param month: month of year, in range 1-12.
-        :type month: int
+        Args:
+            month: month of year, in range 1-12.
         """
 
         return self.gregorian_month_names[month - 1]
@@ -57,14 +57,18 @@ class Locale:
     def day_name(self, day: int) -> str:
         """Return the day name for a specified day of the week.
 
-        :param day: day of week, where Monday is 1 and Sunday is 7.
-        :type day: int
+        Args:
+            day: day of week, where Monday is 1 and Sunday is 7.
         """
 
         return self.day_names[day - 1]
 
 
 class EnglishLocale(Locale):
+    """An English Locale object represents English locale-specific data and
+    functionality.
+    """
+
     language_tag = "en"
     month_names = [
         "Muharram",
@@ -108,6 +112,10 @@ class EnglishLocale(Locale):
 
 
 class ArabicLocale(Locale):
+    """An Arabic Locale object represents Arabic locale-specific data and
+    functionality.
+    """
+
     language_tag = "ar"
     month_names = [
         "محرم",
@@ -151,6 +159,10 @@ class ArabicLocale(Locale):
 
 
 class BengaliLocale(Locale):
+    """A Bengali Locale object represents Bengali locale-specific data and
+    functionality.
+    """
+
     language_tag = "bn"
     month_names = [
         "মুহাররম",
