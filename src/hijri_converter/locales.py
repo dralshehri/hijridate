@@ -1,8 +1,8 @@
 """Localization for the Hijri month and day names."""
 
-from typing import Any, ClassVar, Dict, List, Type
+from typing import ClassVar, Dict, List, Type
 
-_locale_map: Dict[str, Type["Locale"]] = dict()
+_locale_map: Dict[str, Type["Locale"]] = {}
 
 
 def get_locale(name: str) -> "Locale":
@@ -31,7 +31,7 @@ class Locale:
     notation: ClassVar[str]
     gregorian_notation: ClassVar[str]
 
-    def __init_subclass__(cls, **kwargs: Any) -> None:
+    def __init_subclass__(cls) -> None:
         if cls.language_tag in _locale_map:
             raise LookupError(f"Duplicated language tag: {cls.language_tag}")
         _locale_map[cls.language_tag] = cls
