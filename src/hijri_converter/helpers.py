@@ -11,14 +11,14 @@ def jdn_to_ordinal(jdn: int) -> int:
     return jdn - 1721425
 
 
-def ordinal_to_jdn(n: int) -> int:
+def ordinal_to_jdn(don: int) -> int:
     """Convert date ordinal number to Julian day number (JDN).
 
     :param n: Date ordinal number.
     :type n: int
     """
 
-    return n + 1721425
+    return don + 1721425
 
 
 def jdn_to_rjd(jdn: int) -> int:
