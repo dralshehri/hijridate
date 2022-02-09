@@ -1,6 +1,6 @@
 """Accurate Hijri-Gregorian dates converter based on the Umm al-Qura calendar.
 
-https://github.com/dralshehri/hijri-converter
+https://github.com/mhalshehri/hijri-converter
 """
 
 __version__ = "2.2.2"
