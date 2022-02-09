@@ -67,9 +67,15 @@ class Hijri:
         return self._compare(other) <= 0
 
     def _compare(self, other: "Hijri") -> int:
-        x = self.datetuple()
-        y = other.datetuple()
-        return 0 if x == y else 1 if x > y else -1
+        self_date = self.datetuple()
+        other_date = other.datetuple()
+        return (
+            0
+            if self_date == other_date
+            else 1
+            if self_date > other_date
+            else -1
+        )
 
     @classmethod
     def fromisoformat(cls, date_string: str) -> "Hijri":
@@ -197,8 +203,8 @@ class Hijri:
         """
 
         jdn = self.to_julian()
-        n = helpers.jdn_to_ordinal(jdn)
-        return Gregorian.fromordinal(n)
+        don = helpers.jdn_to_ordinal(jdn)
+        return Gregorian.fromordinal(don)
 
     def _check_date(self) -> None:
         """Check date values if within valid range."""
@@ -294,8 +300,8 @@ class Gregorian(datetime.date):
 
     def to_julian(self) -> int:
         """Return corresponding Julian day number (JDN)."""
-        n = self.toordinal()
-        jdn = helpers.ordinal_to_jdn(n)
+        don = self.toordinal()
+        jdn = helpers.ordinal_to_jdn(don)
         return jdn
 
     def to_hijri(self) -> Hijri:
