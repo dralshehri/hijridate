@@ -8,3 +8,13 @@ classes of **hijri-converter** package.
 .. autoclass:: Hijri
 .. autoclass:: Gregorian
 ```
+
+---
+
+The following are the supported ranges by the Umm al-Qura calendar (defined at
+`hijri_converter.ummalqura` module):
+
+```{eval-rst}
+.. autodata:: hijri_converter.ummalqura.HIJRI_RANGE
+.. autodata:: hijri_converter.ummalqura.GREGORIAN_RANGE
+```
