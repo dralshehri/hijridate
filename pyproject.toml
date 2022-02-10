@@ -32,13 +32,11 @@ max-line-length = 80
 expected-line-ending-format = "LF"
 
 [tool.pylint.master]
-ignore = ["tests"]
+py-version = "3.6"
 
-[tool.taskipy.settings]
-use_vars = true
-
-[tool.taskipy.variables]
-target = "src tests"
+[tool.mypy]
+python_version = "3.6"
+strict = true
 
 [tool.taskipy.tasks]
 test = "task test_cov tests"
@@ -46,12 +44,12 @@ test_cov = "pytest --cov --cov-report=term-missing --cov-fail-under=100"
 test_cov_html = "pytest --cov --cov-report=term --cov-report=html"
 test_all = "pytest tests"
 lint = "task lint_isort && task lint_black && task lint_pylint && task lint_mypy"
-lint_isort = "isort --check-only {target}"
-lint_black = "black --check --quiet {target}"
-lint_pylint = "pylint {target}"
-lint_mypy = "mypy {target}"
-format = "isort {target} && black {target}"
-upgrade = "task upgrade_dev && upgrade_docs"
+lint_isort = "isort --check-only src tests"
+lint_black = "black --check --quiet src tests"
+lint_pylint = "pylint src"
+lint_mypy = "mypy src"
+format = "isort src tests && black src tests"
+upgrade = "task upgrade_dev && task upgrade_docs"
 upgrade_dev = "pip install -U -r requirements-dev.txt"
 upgrade_docs = "pip install -U -r docs/requirements.txt"
 docs = "sphinx-build -E docs docs/_build"
