@@ -21,6 +21,12 @@ class Hijri:
             day: Hijri day.
             validate: Whether to validate Hijri input or not. It's recommended
                 to keep the default for accurate conversion.
+
+        Raises:
+            OverflowError: When ``year`` is out of supported Hijri range.
+            ValueError: When ``month`` is not within the range of `1..12`.
+            ValueError: When ``day`` is not within the range of
+                `1..month_length` for month.
         """
 
         self._year = year
@@ -199,6 +205,7 @@ class Hijri:
 
     def _check_date(self) -> None:
         """Check date values if within valid range."""
+
         # check year
         min_year, max_year = [d[0] for d in ummalqura.HIJRI_RANGE]
         if not min_year <= self.year <= max_year:
@@ -295,7 +302,12 @@ class Gregorian(datetime.date):
         return jdn
 
     def to_hijri(self) -> Hijri:
-        """Return Hijri object for the corresponding Gregorian date."""
+        """Return Hijri object for the corresponding Gregorian date.
+
+        Raises:
+            OverflowError: When date is out of supported Gregorian range.
+        """
+
         self._check_range()
         jdn = self.to_julian()
         rjd = helpers.jdn_to_rjd(jdn)
