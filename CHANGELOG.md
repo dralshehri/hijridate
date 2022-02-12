@@ -8,6 +8,13 @@ schemes recommended by the Python Packaging Authority (PPA).
 [pre-release versioning]:
   https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning
 
+## 2.2.3 (2022-02-12)
+
+- Changed GitHub username to @mhalshehri and updated related links.
+- Changed package docstrings to Google style and updated documentation.
+- Updated development workflows and configurations.
+- Other minor fixes and enhancements.
+
 ## 2.2.2 (2021-09-25)
 
 - Added some missing variable annotations to `ummalqura` module.
