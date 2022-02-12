@@ -2,6 +2,7 @@
 
 import datetime
 from bisect import bisect
+from typing import Tuple
 
 from hijri_converter import helpers, locales, ummalqura
 
@@ -116,7 +117,7 @@ class Hijri:
         """Return day as an integer."""
         return self._day
 
-    def datetuple(self) -> tuple:
+    def datetuple(self) -> Tuple[int, int, int]:
         """Return date as a tuple of (year, month, day)."""
         return self._year, self._month, self._day
 
@@ -244,7 +245,7 @@ class Gregorian(datetime.date):
         year, month, day = date_object.timetuple()[:3]
         return super().__new__(cls, year, month, day)
 
-    def datetuple(self) -> tuple:
+    def datetuple(self) -> Tuple[int, int, int]:
         """Return date as a tuple of (year, month, day)."""
         return self.year, self.month, self.day
 
