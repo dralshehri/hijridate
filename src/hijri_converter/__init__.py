@@ -3,6 +3,6 @@
 https://github.com/mhalshehri/hijri-converter
 """
 
-__version__ = "2.2.2"
+__version__ = "2.2.3"
 
 from hijri_converter.convert import Gregorian, Hijri
