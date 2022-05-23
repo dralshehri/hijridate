@@ -8,7 +8,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 [pre-release versioning]:
   https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning
 
-## Unreleased
+## 2.2.4 (2022-05-23)
 
 - Added more classifiers to package configuration.
 - Fixed location of type checking marker file. ([#10] bt [@dimbleby])
