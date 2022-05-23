@@ -8,12 +8,23 @@ schemes recommended by the Python Packaging Authority (PPA).
 [pre-release versioning]:
   https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning
 
+## Unreleased
+
+- Added more classifiers to package configuration.
+- Fixed location of type checking marker file. ([#10] bt [@dimbleby])
+- Updated development and build requirements.
+
+[#10]: https://github.com/mhalshehri/hijri-converter/pull/10
+[@dimbleby]: https://github.com/dimbleby
+
 ## 2.2.3 (2022-02-12)
 
-- Changed GitHub username to @mhalshehri and updated related links.
+- Changed GitHub username to [@mhalshehri] and updated related links.
 - Changed package docstrings to Google style and updated documentation.
 - Updated development workflows and configurations.
 - Other minor fixes and enhancements.
+
+[@mhalshehri]: https://github.com/mhalshehri
 
 ## 2.2.2 (2021-09-25)
 
@@ -26,10 +37,12 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 - Fixed calculation of month 12 of year 1354 AH.
 - Fixed an issue when generating documentation without the package being
-  installed.
+  installed. ([#7])
 - Refactored internal helper functions.
 - Updated and improved tests and documentation.
 - Fixed some typos.
+
+[#7]: https://github.com/mhalshehri/hijri-converter/issues/7
 
 ## 2.2.0 (2021-08-16)
 
@@ -37,13 +50,15 @@ schemes recommended by the Python Packaging Authority (PPA).
   date.
 - Added `separator` and `padding` parameters to `dmyformat()` method to have
   more control on formatting.
-- Refactored locales for better management and testing. (Inspired by
-  [Arrow](https://github.com/arrow-py/arrow) localization)
+- Refactored locales for better management and testing. (Inspired by [Arrow]
+  localization)
 - Updated main classes to be conveniently imported into the package level e.g.
   `from hijri_converter import Hijri, Gregorian`.
 - Removed deprecated method `slashformat()` from Hijri and Gregorian classes.
 - Updated tests and documentation.
 - Other minor fixes and internal enhancements.
+
+[arrow]: https://github.com/arrow-py/arrow
 
 ## 2.1.3 (2021-06-22)
 
@@ -51,22 +66,25 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 ## 2.1.2 (2021-05-30)
 
-- Added Bangla translation. (Thanks to
-  [@nokibsarkar](https://github.com/nokibsarkar))
+- Added Bangla translation. ([#4] by [@nokibsarkar])
 - Changed `Hijri` rich comparison to return `NotImplemented` when the second
   operand is not `Hijri` class.
 - Changed `ummalqura` constants to be in capital letters adhering to PEP8.
 - Updated packaging configuration files and local development workflow.
 - Other minor fixes and documentation enhancements.
 
+[#4]: https://github.com/mhalshehri/hijri-converter/pull/4
+[@nokibsarkar]: https://github.com/nokibsarkar
+
 ## 2.1.1 (2020-05-21)
 
 - Added `dmyformat()` to return dates in `DD/MM/YYYY` format.
 - Deprecated `slashformat()` method to be replaced by `dmyformat()` method.
-- Fixed PyPI package not including some required files. (Thanks to
-  [@PureTryOut](https://github.com/PureTryOut))
+- Fixed PyPI package not including some required files. ([#3])
 - Fixed some typos.
 - Updated tests.
+
+[#3]: https://github.com/mhalshehri/hijri-converter/issues/3
 
 ## 2.1.0 (2019-06-16)
 
