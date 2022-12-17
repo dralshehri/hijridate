@@ -7,7 +7,7 @@ the Umm al-Qura calendar.
 
 <!-- end description -->
 
-[![Build Status](https://img.shields.io/github/workflow/status/mhalshehri/hijri-converter/Release)][build]
+[![Release Status](https://img.shields.io/github/actions/workflow/status/mhalshehri/hijri-converter/release.yml?branch=v2.2.4&label=release)][release]
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
 [![Code Quality](https://img.shields.io/codefactor/grade/github/mhalshehri/hijri-converter/main?&label=codefactor)][quality]
 [![Docs Status](https://img.shields.io/readthedocs/hijri-converter/stable)][docs]
@@ -16,7 +16,7 @@ the Umm al-Qura calendar.
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijri-converter)][conda-version]
 [![Package License](https://img.shields.io/github/license/mhalshehri/hijri-converter)][license]
 
-[build]:
+[release]:
   https://github.com/mhalshehri/hijri-converter/actions/workflows/release.yml
 [coverage]:
   https://github.com/mhalshehri/hijri-converter/actions/workflows/release.yml
