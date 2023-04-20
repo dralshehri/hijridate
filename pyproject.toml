@@ -32,10 +32,10 @@ max-line-length = 80
 expected-line-ending-format = "LF"
 
 [tool.pylint.master]
-py-version = "3.6"
+py-version = "3.7"
 
 [tool.mypy]
-python_version = "3.6"
+python_version = "3.7"
 strict = true
 
 [tool.taskipy.tasks]

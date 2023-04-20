@@ -41,7 +41,7 @@ the Umm al-Qura calendar.
 - Easily extendable to support other natural languages.
 - Rich comparison between dates.
 - Validation of input dates.
-- Works on Python 3.6+ with zero dependencies.
+- Works on Python 3.7+ with zero dependencies.
 - Thoroughly tested with 100% test coverage.
 
 ## Limitations
