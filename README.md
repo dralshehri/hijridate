@@ -7,6 +7,8 @@ the Umm al-Qura calendar.
 
 <!-- end description -->
 
+<!-- start badges -->
+
 [![Release Status](https://img.shields.io/github/actions/workflow/status/mhalshehri/hijri-converter/release.yml?branch=v2.2.4&label=release)][release]
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
 [![Code Quality](https://img.shields.io/codefactor/grade/github/mhalshehri/hijri-converter/main?&label=codefactor)][quality]
@@ -27,6 +29,8 @@ the Umm al-Qura calendar.
 [pypi-version]: https://pypi.python.org/pypi/hijri-converter
 [conda-version]: https://anaconda.org/conda-forge/hijri-converter
 [license]: https://github.com/mhalshehri/hijri-converter/blob/main/LICENSE
+
+<!-- end badges -->
 
 <!-- start summary -->
 
