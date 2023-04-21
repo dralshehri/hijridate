@@ -26,8 +26,8 @@ sys.path.append(str(Path("_extensions").resolve()))
 # -- Project information ---------------------------------------------------------------
 #
 project = "hijri-converter"  # project name at PyPI and GitHub
-author = "Mohammed H Alshehri (@mhalshehri)"
-project_copyright = "2018 Mohammed H Alshehri (@mhalshehri) and contributors"
+author = "Mohammed Alshehri"
+project_copyright = "2018 Mohammed Alshehri (https://www.dralshehri.com)"
 version = read_version()
 
 #
