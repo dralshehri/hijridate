@@ -9,26 +9,26 @@ the Umm al-Qura calendar.
 
 <!-- start badges -->
 
-[![Release Status](https://img.shields.io/github/actions/workflow/status/mhalshehri/hijri-converter/release.yml?branch=v2.2.4&label=release)][release]
+[![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijri-converter/release.yml?branch=v2.2.4&label=release)][release]
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
-[![Code Quality](https://img.shields.io/codefactor/grade/github/mhalshehri/hijri-converter/main?&label=codefactor)][quality]
+[![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijri-converter/main?&label=codefactor)][quality]
 [![Docs Status](https://img.shields.io/readthedocs/hijri-converter/stable)][docs]
 [![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads]
 [![PyPI Version](https://img.shields.io/pypi/v/hijri-converter)][pypi-version]
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijri-converter)][conda-version]
-[![Package License](https://img.shields.io/github/license/mhalshehri/hijri-converter)][license]
+[![Package License](https://img.shields.io/github/license/dralshehri/hijri-converter)][license]
 
 [release]:
-  https://github.com/mhalshehri/hijri-converter/actions/workflows/release.yml
+  https://github.com/dralshehri/hijri-converter/actions/workflows/release.yml
 [coverage]:
-  https://github.com/mhalshehri/hijri-converter/actions/workflows/release.yml
+  https://github.com/dralshehri/hijri-converter/actions/workflows/release.yml
 [quality]:
-  https://www.codefactor.io/repository/github/mhalshehri/hijri-converter/overview/main
+  https://www.codefactor.io/repository/github/dralshehri/hijri-converter/overview/main
 [docs]: https://hijri-converter.readthedocs.io
 [downloads]: https://pypistats.org/packages/hijri-converter
 [pypi-version]: https://pypi.python.org/pypi/hijri-converter
 [conda-version]: https://anaconda.org/conda-forge/hijri-converter
-[license]: https://github.com/mhalshehri/hijri-converter/blob/main/LICENSE
+[license]: https://github.com/dralshehri/hijri-converter/blob/main/LICENSE
 
 <!-- end badges -->
 

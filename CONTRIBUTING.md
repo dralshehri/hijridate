@@ -9,7 +9,7 @@ An issue may be a simple comment, question, feature request, or bug report. When
 [reporting an issue], please make sure to provide enough information to
 understand it.
 
-[reporting an issue]: https://github.com/mhalshehri/hijri-converter/issues/new
+[reporting an issue]: https://github.com/dralshehri/hijri-converter/issues/new
 
 ## Changing Code
 
@@ -26,7 +26,7 @@ following these simple steps:
 7. Commit and push your changes to your fork.
 8. Create a pull request on GitHub and select the `develop` base branch.
 
-[project repository]: https://github.com/mhalshehri/hijri-converter
+[project repository]: https://github.com/dralshehri/hijri-converter
 
 ## Developing Locally
 

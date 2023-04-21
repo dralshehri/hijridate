@@ -31,6 +31,6 @@ changelog
 
 contributing
 license
-GitHub <https://github.com/mhalshehri/hijri-converter>
+GitHub <https://github.com/dralshehri/hijri-converter>
 PyPI <https://pypi.org/project/hijri-converter>
 ```
