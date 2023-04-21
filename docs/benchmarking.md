@@ -24,25 +24,25 @@ years 1451-1500 AH. That makes **hijri-converter** package more accurate and
 broader in terms of years included, 1343-1500 AH.
 
 When it comes to performance, using **hijri-converter** package to convert from
-Hijri to Gregorian and back is nine times faster (or six times faster, with
-Hijri date validation enabled) than that when _ummalqura_ package was used.
+Hijri to Gregorian and back is about nine times faster (or six times faster,
+with Hijri date validation enabled) than that when _ummalqura_ package was used.
 
 ```shell
 # hijri-converter, without Hijri date validation
 $ python -m timeit -s 'from hijri_converter import convert' -n 50000 -r 5 'convert.Hijri(1402, 10, 15, False).to_gregorian(); convert.Gregorian(1982, 8, 4).to_hijri()'
-50000 loops, best of 5: 1.95 usec per loop
+50000 loops, best of 5: 1.69 usec per loop
 
 # hijri-converter, with Hijri date validation
 $ python -m timeit -s 'from hijri_converter import convert' -n 50000 -r 5 'convert.Hijri(1402, 10, 15, True).to_gregorian(); convert.Gregorian(1982, 8, 4).to_hijri()'
-50000 loops, best of 5: 2.77 usec per loop
+50000 loops, best of 5: 2.37 usec per loop
 
 # ummalqura, without Hijri date validation
 $ python -m timeit -s 'from ummalqura.hijri import Umalqurra' -n 50000 -r 5 'Umalqurra().hijri_to_gregorian(1402, 10, 15); Umalqurra().gegorean_to_hijri(1982, 8, 4)'
-50000 loops, best of 5: 17.3 usec per loop
+50000 loops, best of 5: 13.9 usec per loop
 ```
 
 The above code illustrates the execution time of both packages compared _(tested
-on Mac mini (M1, 2020) with Apple M1 chip and 16GB memory)_.
+using Python 3.11 on Mac mini (M1, 2020) with Apple M1 chip and 16GB memory)_.
 
 Beside code quality, packaging and maintenance issues that _ummalqura_ package
 has, the following table summarizes the main differences:
