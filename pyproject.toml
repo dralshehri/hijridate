@@ -1,9 +1,9 @@
 [build-system]
-requires = ["setuptools>=43", "wheel"]
+requires = ["setuptools>=51"]
 build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
-minversion = "6.0"
+minversion = "7.0"
 addopts = "-ra -q"
 testpaths = ["tests/unit"]
 
@@ -16,13 +16,10 @@ source = ["src"]
 
 [tool.black]
 line-length = 80
-target-version = ["py36", "py37", "py38", "py39", "py310"]
+target-version = ["py37", "py38", "py39", "py310", "py311"]
 
 [tool.isort]
 profile = "black"
-
-[tool.pylint.messages_control]
-disable = ["bad-whitespace", "bad-continuation"]  # recommended by Black
 
 [tool.pylint.reports]
 score = false
@@ -40,9 +37,10 @@ strict = true
 
 [tool.taskipy.tasks]
 test = "task test_cov tests"
+test_min = "pytest"
+test_all = "pytest tests"
 test_cov = "pytest --cov --cov-report=term-missing --cov-fail-under=100"
 test_cov_html = "pytest --cov --cov-report=term --cov-report=html"
-test_all = "pytest tests"
 lint = "task lint_isort && task lint_black && task lint_pylint && task lint_mypy"
 lint_isort = "isort --check-only src tests"
 lint_black = "black --check --quiet src tests"
