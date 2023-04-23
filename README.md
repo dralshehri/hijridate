@@ -9,7 +9,7 @@ the Umm al-Qura calendar.
 
 <!-- start badges -->
 
-[![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijri-converter/release.yml?branch=v2.2.4&label=release)][release]
+[![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijri-converter/release.yml?label=release)][release]
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
 [![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijri-converter/main?&label=codefactor)][quality]
 [![Docs Status](https://img.shields.io/readthedocs/hijri-converter/stable)][docs]
