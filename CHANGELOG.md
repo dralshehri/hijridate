@@ -1,17 +1,20 @@
 # Changelog
 
-The format is based on [semantic versioning] and [pre-release versioning]
-schemes recommended by the Python Packaging Authority (PPA).
+The versioning scheme is compliant with the [PEP 440] specification.
 
-[semantic versioning]:
-  https://packaging.python.org/guides/distributing-packages-using-setuptools/#semantic-versioning-preferred
-[pre-release versioning]:
-  https://packaging.python.org/guides/distributing-packages-using-setuptools/#pre-release-versioning
+[PEP 440]: https://peps.python.org/pep-0440/#public-version-identifiers
+
+## Unreleased
+
+- Dropped support for Python 3.6 and added support for Python 3.11.
+- Updated documentation and removed badges from the package description.
+- Updated development configurations and GitHub actions.
+- Changed GitHub username back to @dralshehri and updated related links.
 
 ## 2.2.4 (2022-05-23)
 
 - Added more classifiers to package configuration.
-- Fixed location of type checking marker file. ([#10] bt [@dimbleby])
+- Fixed location of type-checking marker file. (By [@dimbleby] in [#10])
 - Updated development and build requirements.
 
 [#10]: https://github.com/dralshehri/hijri-converter/pull/10
@@ -19,10 +22,10 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 ## 2.2.3 (2022-02-12)
 
-- Changed GitHub username to @mhalshehri and updated related links.
 - Changed package docstrings to Google style and updated documentation.
 - Updated development workflows and configurations.
 - Other minor fixes and enhancements.
+- Changed GitHub username to @mhalshehri and updated related links.
 
 ## 2.2.2 (2021-09-25)
 
@@ -33,7 +36,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 ## 2.2.1 (2021-09-04)
 
-- Fixed calculation of month 12 of year 1354 AH.
+- Fixed calculation of month 12 of the year 1354 AH.
 - Fixed an issue when generating documentation without the package being
   installed. ([#7])
 - Refactored internal helper functions.
@@ -64,7 +67,7 @@ schemes recommended by the Python Packaging Authority (PPA).
 
 ## 2.1.2 (2021-05-30)
 
-- Added Bangla translation. ([#4] by [@nokibsarkar])
+- Added Bangla translation. (By [@nokibsarkar] in [#4])
 - Changed `Hijri` rich comparison to return `NotImplemented` when the second
   operand is not `Hijri` class.
 - Changed `ummalqura` constants to be in capital letters adhering to PEP8.
