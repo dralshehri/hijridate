@@ -4,7 +4,17 @@ The versioning scheme is compliant with the [PEP 440] specification.
 
 [PEP 440]: https://peps.python.org/pep-0440/#public-version-identifiers
 
-## Unreleased
+## 2.3.0 (2023-04-24)
+
+**IMPORTANT**
+
+The `hijri-converter` package has been **renamed** to `hijridate` in preparation
+for the upcoming major update.
+
+Please use a version specifier e.g. `hijridate~=2.3.0` to avoid any breaking
+changes in the future.
+
+### What's Changed
 
 - Renamed the package to `hijridate` and deprecated the old name.
 - Dropped support for Python 3.6 and added support for Python 3.11.
