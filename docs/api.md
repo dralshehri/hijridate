@@ -1,10 +1,10 @@
 # API Reference
 
 This page contains auto-generated API reference documentation for the main
-classes of **hijri-converter** package.
+classes of **hijridate** package.
 
 ```{eval-rst}
-.. currentmodule:: hijri_converter.convert
+.. currentmodule:: hijridate.convert
 .. autoclass:: Hijri
 .. autoclass:: Gregorian
 ```
@@ -12,9 +12,9 @@ classes of **hijri-converter** package.
 ---
 
 The following are the supported ranges by the Umm al-Qura calendar (defined at
-`hijri_converter.ummalqura` module):
+`hijridate.ummalqura` module):
 
 ```{eval-rst}
-.. autodata:: hijri_converter.ummalqura.HIJRI_RANGE
-.. autodata:: hijri_converter.ummalqura.GREGORIAN_RANGE
+.. autodata:: hijridate.ummalqura.HIJRI_RANGE
+.. autodata:: hijridate.ummalqura.GREGORIAN_RANGE
 ```

@@ -2,7 +2,7 @@
 hide-toc: true
 ---
 
-# hijri-converter
+# hijridate
 
 ```{include} ../README.md
 :start-after: <!-- start description -->
@@ -31,6 +31,6 @@ changelog
 
 contributing
 license
-GitHub <https://github.com/dralshehri/hijri-converter>
-PyPI <https://pypi.org/project/hijri-converter>
+GitHub <https://github.com/dralshehri/hijridate>
+PyPI <https://pypi.org/project/hijridate>
 ```

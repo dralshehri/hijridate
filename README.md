@@ -1,4 +1,4 @@
-# hijri-converter
+# hijridate
 
 <!-- start description -->
 
@@ -9,26 +9,25 @@ the Umm al-Qura calendar.
 
 <!-- start badges -->
 
-[![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijri-converter/release.yml?label=release)][release]
+[![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijridate/release.yml?label=release)][release]
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
-[![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijri-converter/main?&label=codefactor)][quality]
-[![Docs Status](https://img.shields.io/readthedocs/hijri-converter/stable)][docs]
-[![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads]
-[![PyPI Version](https://img.shields.io/pypi/v/hijri-converter)][pypi-version]
-[![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijri-converter)][conda-version]
-[![Package License](https://img.shields.io/github/license/dralshehri/hijri-converter)][license]
+[![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijridate/main?&label=codefactor)][quality]
+[![Docs Status](https://img.shields.io/readthedocs/hijridate/stable)][docs]
+[![PyPI Downloads](https://img.shields.io/pypi/dm/hijridate?color=blue)][downloads]
+[![PyPI Version](https://img.shields.io/pypi/v/hijridate)][pypi-version]
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijridate)][conda-version]
+[![Package License](https://img.shields.io/github/license/dralshehri/hijridate)][license]
 
-[release]:
-  https://github.com/dralshehri/hijri-converter/actions/workflows/release.yml
+[release]: https://github.com/dralshehri/hijridate/actions/workflows/release.yml
 [coverage]:
-  https://github.com/dralshehri/hijri-converter/actions/workflows/release.yml
+  https://github.com/dralshehri/hijridate/actions/workflows/release.yml
 [quality]:
-  https://www.codefactor.io/repository/github/dralshehri/hijri-converter/overview/main
-[docs]: https://hijri-converter.readthedocs.io
-[downloads]: https://pypistats.org/packages/hijri-converter
-[pypi-version]: https://pypi.python.org/pypi/hijri-converter
-[conda-version]: https://anaconda.org/conda-forge/hijri-converter
-[license]: https://github.com/dralshehri/hijri-converter/blob/main/LICENSE
+  https://www.codefactor.io/repository/github/dralshehri/hijridate/overview/main
+[docs]: https://hijridate.readthedocs.io
+[downloads]: https://pypistats.org/packages/hijridate
+[pypi-version]: https://pypi.python.org/pypi/hijridate
+[conda-version]: https://anaconda.org/conda-forge/hijridate
+[license]: https://github.com/dralshehri/hijridate/blob/main/LICENSE
 
 <!-- end badges -->
 
@@ -61,20 +60,19 @@ the Umm al-Qura calendar.
 To install using `pip`, run:
 
 ```shell
-pip install hijri-converter
+pip install hijridate
 ```
 
 To install using `conda`, run:
 
 ```shell
-conda install -c conda-forge hijri-converter
+conda install -c conda-forge hijridate
 ```
 
 ## Basic Usage
 
 ```python
-from hijri_converter import Hijri, Gregorian
-
+from hijridate import Hijri, Gregorian
 
 # Convert a Hijri date to Gregorian
 g = Hijri(1403, 2, 17).to_gregorian()
@@ -87,9 +85,8 @@ h = Gregorian(1982, 12, 2).to_hijri()
 
 ## Documentation
 
-Please see <https://hijri-converter.readthedocs.io> for full documentation of
-this package, including background, benchmarking, usage examples and API
-reference.
+Please see <https://hijridate.readthedocs.io> for full documentation of this
+package, including background, benchmarking, usage examples and API reference.
 
 ## License
 

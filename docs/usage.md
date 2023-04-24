@@ -5,13 +5,13 @@ hide-toc: true
 # Usage Examples
 
 ```{eval-rst}
-.. currentmodule:: hijri_converter.convert
+.. currentmodule:: hijridate.convert
 ```
 
 To convert between Hijri and Gregorian dates:
 
 ```pycon
->>> from hijri_converter import Hijri, Gregorian
+>>> from hijridate import Hijri, Gregorian
 
 >>> Hijri(1403, 2, 17).to_gregorian()
 Gregorian(1982, 12, 2)
@@ -23,7 +23,7 @@ Hijri(1403, 2, 17)
 To convert from/to ISO format:
 
 ```pycon
->>> from hijri_converter import Hijri, Gregorian
+>>> from hijridate import Hijri, Gregorian
 
 >>> Hijri.fromisoformat('1403-02-17').to_gregorian().isoformat()
 '1982-12-02'
@@ -35,7 +35,7 @@ To convert from/to ISO format:
 To get the today's date in Hijri:
 
 ```pycon
->>> from hijri_converter import Hijri
+>>> from hijridate import Hijri
 
 >>> Hijri.today().isoformat()
 '1443-01-08'
@@ -44,7 +44,7 @@ To get the today's date in Hijri:
 The {obj}`Hijri` objects have some other useful methods. For example:
 
 ```pycon
->>> from hijri_converter import Hijri
+>>> from hijridate import Hijri
 
 >>> hijri = Hijri(1403, 2, 17)
 
@@ -74,7 +74,7 @@ You can additionally construct a {obj}`Gregorian` object from
 
 ```pycon
 >>> from datetime import date
->>> from hijri_converter import Gregorian
+>>> from hijridate import Gregorian
 
 >>> my_date = date(1982, 12, 2)
 >>> Gregorian.fromdate(my_date)
@@ -85,7 +85,7 @@ The {obj}`Gregorian` object inherits all attributes and methods of
 {obj}`datetime.date` object:
 
 ```pycon
->>> from hijri_converter import Gregorian
+>>> from hijridate import Gregorian
 
 # To get today's date in Hijri
 >>> Gregorian.today().to_hijri()
@@ -104,7 +104,7 @@ may be raised where it can be caught and handled in `try` and `except` blocks:
 For example:
 
 ```pycon
->>> from hijri_converter import Hijri
+>>> from hijridate import Hijri
 
 >>> Hijri(1403, 2, 17) > Hijri(1402, 2, 17)
 True
@@ -125,7 +125,7 @@ natural languages.
 The following is an example showing how to use the Arabic language:
 
 ```pycon
->>> from hijri_converter import Hijri
+>>> from hijridate import Hijri
 
 >>> hijri = Hijri(1403, 2, 17)
 
@@ -147,7 +147,7 @@ Invalid date raises a `ValueError` exception, and out of range date raises an
 and `except` blocks:
 
 ```pycon
->>> from hijri_converter import Hijri, Gregorian
+>>> from hijridate import Hijri, Gregorian
 
 >>> Hijri(1403, 1, 30)
 Traceback (most recent call last):

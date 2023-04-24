@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 # Set package variables and add to path
-package_name = "hijri_converter"
+package_name = "hijridate"
 package_path = Path("../src").joinpath(package_name).resolve()
 sys.path.append(str(package_path.parent))
 
@@ -25,7 +25,7 @@ sys.path.append(str(Path("_extensions").resolve()))
 #
 # -- Project information ---------------------------------------------------------------
 #
-project = "hijri-converter"  # project name at PyPI and GitHub
+project = "hijridate"  # project name at PyPI and GitHub
 author = "Mohammed Alshehri"
 project_copyright = "2018 Mohammed Alshehri (https://www.dralshehri.com)"
 version = read_version()
