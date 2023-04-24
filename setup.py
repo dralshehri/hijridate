@@ -24,7 +24,7 @@ readme_content_cleaned = re.sub(
 # Package name is added here for GitHub's dependency graph
 # Also, a cleaner version of the long description is added
 setuptools.setup(
-    name="hijri-converter",
+    name="hijridate",
     long_description=readme_content_cleaned,
     long_description_content_type="text/markdown",
 )

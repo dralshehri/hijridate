@@ -9,7 +9,7 @@ testpaths = ["tests/unit"]
 
 [tool.coverage.run]
 branch = true
-source = ["hijri_converter"]
+source = ["hijridate"]
 
 [tool.coverage.paths]
 source = ["src"]
