@@ -6,6 +6,7 @@ The versioning scheme is compliant with the [PEP 440] specification.
 
 ## Unreleased
 
+- Renamed the package to `hijridate` and deprecated the old name.
 - Dropped support for Python 3.6 and added support for Python 3.11.
 - Updated documentation and removed badges from the package description.
 - Updated development configurations and GitHub actions.
@@ -17,7 +18,7 @@ The versioning scheme is compliant with the [PEP 440] specification.
 - Fixed location of type-checking marker file. (By [@dimbleby] in [#10])
 - Updated development and build requirements.
 
-[#10]: https://github.com/dralshehri/hijri-converter/pull/10
+[#10]: https://github.com/dralshehri/hijridate/pull/10
 [@dimbleby]: https://github.com/dimbleby
 
 ## 2.2.3 (2022-02-12)
@@ -43,14 +44,14 @@ The versioning scheme is compliant with the [PEP 440] specification.
 - Updated and improved tests and documentation.
 - Fixed some typos.
 
-[#7]: https://github.com/dralshehri/hijri-converter/issues/7
+[#7]: https://github.com/dralshehri/hijridate/issues/7
 
 ## 2.2.0 (2021-08-16)
 
 - Added `today()` classmethod to Hijri class to get the Hijri Object of today's
   date.
 - Added `separator` and `padding` parameters to `dmyformat()` method to have
-  more control on formatting.
+  more control over formatting.
 - Refactored locales for better management and testing. (Inspired by [Arrow]
   localization)
 - Updated main classes to be conveniently imported into the package level e.g.
@@ -74,7 +75,7 @@ The versioning scheme is compliant with the [PEP 440] specification.
 - Updated packaging configuration files and local development workflow.
 - Other minor fixes and documentation enhancements.
 
-[#4]: https://github.com/dralshehri/hijri-converter/pull/4
+[#4]: https://github.com/dralshehri/hijridate/pull/4
 [@nokibsarkar]: https://github.com/nokibsarkar
 
 ## 2.1.1 (2020-05-21)
@@ -85,7 +86,7 @@ The versioning scheme is compliant with the [PEP 440] specification.
 - Fixed some typos.
 - Updated tests.
 
-[#3]: https://github.com/dralshehri/hijri-converter/issues/3
+[#3]: https://github.com/dralshehri/hijridate/issues/3
 
 ## 2.1.0 (2019-06-16)
 
