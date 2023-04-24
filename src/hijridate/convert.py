@@ -1,10 +1,10 @@
-"""Main module of the hijri-converter package."""
+"""Main module of the hijridate package."""
 
 import datetime
 from bisect import bisect
 from typing import Tuple
 
-from hijri_converter import helpers, locales, ummalqura
+from hijridate import helpers, locales, ummalqura
 
 
 class Hijri:

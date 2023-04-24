@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from hijri_converter import Gregorian, Hijri
+from hijridate import Gregorian, Hijri
 
 
 def load_params_from_json():

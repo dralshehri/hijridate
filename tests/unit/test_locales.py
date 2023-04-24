@@ -1,6 +1,6 @@
 import pytest
 
-from hijri_converter import locales
+from hijridate import locales
 
 
 @pytest.fixture(scope="class")

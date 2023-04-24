@@ -1,4 +1,4 @@
-from hijri_converter import helpers
+from hijridate import helpers
 
 
 def test_julian_to_ordinal():

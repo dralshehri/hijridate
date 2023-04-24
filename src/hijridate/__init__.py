@@ -1,8 +1,8 @@
 """Accurate Hijri-Gregorian dates converter based on the Umm al-Qura calendar.
 
-https://github.com/dralshehri/hijri-converter
+https://github.com/dralshehri/hijridate
 """
 
 __version__ = "2.2.4"
 
-from hijri_converter.convert import Gregorian, Hijri
+from hijridate.convert import Gregorian, Hijri

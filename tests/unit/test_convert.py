@@ -2,11 +2,11 @@ from datetime import date
 
 import pytest
 
-from hijri_converter.convert import Gregorian, Hijri
+from hijridate.convert import Gregorian, Hijri
 
 
 def test_importing_at_init_module():
-    from hijri_converter import Gregorian, Hijri
+    from hijridate import Gregorian, Hijri
 
     assert Hijri(1410, 8, 13)
     assert Gregorian(1990, 3, 10)
