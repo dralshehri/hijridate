@@ -1,4 +1,4 @@
-# Hijri Date (`hijridate`)
+# HijriDate
 
 <!-- start description -->
 

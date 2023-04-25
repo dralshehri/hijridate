@@ -1,7 +1,7 @@
 # API Reference
 
 This page contains auto-generated API reference documentation for the main
-classes of **hijridate** package.
+classes of **HijriDate** package.
 
 ```{eval-rst}
 .. currentmodule:: hijridate.convert
