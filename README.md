@@ -15,7 +15,7 @@ the Umm al-Qura calendar.
 [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
 [![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijridate/main?&label=codefactor)][quality]
 [![Docs Status](https://img.shields.io/readthedocs/hijridate/stable)][docs]
-[![PyPI Downloads](https://img.shields.io/pypi/dm/hijridate?color=blue)][downloads]
+[![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads]
 [![PyPI Version](https://img.shields.io/pypi/v/hijridate)][pypi-version]
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijridate)][conda-version]
 [![Package License](https://img.shields.io/github/license/dralshehri/hijridate)][license]
