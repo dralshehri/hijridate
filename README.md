@@ -1,6 +1,8 @@
-# hijridate
+# Hijri Date (`hijridate`)
 
 <!-- start description -->
+
+> formerly `hijri-converter`
 
 A Python package to convert accurately between Hijri and Gregorian dates using
 the Umm al-Qura calendar.

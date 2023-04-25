@@ -2,7 +2,7 @@
 hide-toc: true
 ---
 
-# hijridate
+# Hijri Date (`hijridate`)
 
 ```{include} ../README.md
 :start-after: <!-- start description -->
