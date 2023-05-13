@@ -26,7 +26,7 @@ the Umm al-Qura calendar.
 [quality]:
   https://www.codefactor.io/repository/github/dralshehri/hijridate/overview/main
 [docs]: https://hijridate.readthedocs.io
-[downloads]: https://pypistats.org/packages/hijridate
+[downloads]: https://pypistats.org/packages/hijri-converter
 [pypi-version]: https://pypi.python.org/pypi/hijridate
 [conda-version]: https://anaconda.org/conda-forge/hijridate
 [license]: https://github.com/dralshehri/hijridate/blob/main/LICENSE
