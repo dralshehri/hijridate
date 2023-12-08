@@ -10,6 +10,9 @@ The versioning scheme is compliant with the [PEP 440] specification.
 - Fixed a typo in the Bangla translation. (By [@nokibsarkar] in [#18])
 - Changed documentation theme along with other enhancements.
 
+[#18]: https://github.com/dralshehri/hijridate/pull/18
+[@nokibsarkar]: https://github.com/nokibsarkar
+
 ## 2.3.0 (2023-04-24)
 
 **IMPORTANT**
