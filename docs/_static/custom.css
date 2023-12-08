@@ -1,21 +1,12 @@
-pre {
-  font-size: 13px !important;
-}
 a[class='reference external']:after {
-  content: "↗";
-  color: #b3b3b3;
-  font-size: 70%;
-  font-weight: bold;
-  vertical-align: top;
-  margin: 0 .2em;
+  content: '↗' !important;
+  color: var(--color-sidebar-link-text) !important;
+  font-size: 70% !important;
+  font-weight: bold !important;
+  margin: 0 0.2em !important;
 }
 
 dl[class='py class'] a[class='reference external']:after,
 dl[class='py method'] a[class='reference external']:after {
-  content: "";
-}
-
-dl[class='py property'] {
-  display: block !important;
-  padding-right: initial !important;
+  content: '' !important;
 }
