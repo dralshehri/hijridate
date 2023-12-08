@@ -13,7 +13,7 @@ jobs:
       version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Get release info
         run: |
           echo "git-version=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
@@ -37,7 +37,7 @@ jobs:
     needs: get-version
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare release changes
         env:
           VERSION: ${{ needs.get-version.outputs.version }}
