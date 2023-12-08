@@ -106,6 +106,7 @@ html_baseurl = f"https://{package_name}.readthedocs.io/en/stable/"
 html_title = f"{project} Documentation"
 html_theme = "furo"
 html_theme_options = {
+    "top_of_page_button": None,
     "footer_icons": [
         {
             "name": "GitHub",
