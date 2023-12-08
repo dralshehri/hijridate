@@ -201,8 +201,8 @@ class Hijri:
         """Return Gregorian object for the corresponding Hijri date."""
 
         jdn = self.to_julian()
-        don = helpers.jdn_to_ordinal(jdn)
-        return Gregorian.fromordinal(don)
+        ordinal = helpers.jdn_to_ordinal(jdn)
+        return Gregorian.fromordinal(ordinal)
 
     def _check_date(self) -> None:
         """Check date values if within valid range."""
@@ -243,7 +243,7 @@ class Gregorian(datetime.date):
         """
 
         year, month, day = date_object.timetuple()[:3]
-        return super().__new__(cls, year, month, day)
+        return cls(year, month, day)
 
     def datetuple(self) -> Tuple[int, int, int]:
         """Return date as a tuple of (year, month, day)."""
@@ -298,8 +298,8 @@ class Gregorian(datetime.date):
 
     def to_julian(self) -> int:
         """Return corresponding Julian day number (JDN)."""
-        don = self.toordinal()
-        jdn = helpers.ordinal_to_jdn(don)
+        ordinal = self.toordinal()
+        jdn = helpers.ordinal_to_jdn(ordinal)
         return jdn
 
     def to_hijri(self) -> Hijri:
