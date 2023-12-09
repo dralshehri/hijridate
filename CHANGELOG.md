@@ -4,6 +4,10 @@ The versioning scheme is compliant with the [PEP 440] specification.
 
 [PEP 440]: https://peps.python.org/pep-0440/#public-version-identifiers
 
+## 2.4.1 (2023-12-09)
+
+- Fixed some typos.
+
 ## 2.4.0 (2023-12-08)
 
 - Dropped support for Python 3.7 and added support for Python 3.12.
