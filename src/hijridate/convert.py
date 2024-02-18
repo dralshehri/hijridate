@@ -78,9 +78,7 @@ class Hijri:
         return (
             0
             if self_date == other_date
-            else 1
-            if self_date > other_date
-            else -1
+            else 1 if self_date > other_date else -1
         )
 
     @classmethod
@@ -92,9 +90,7 @@ class Hijri:
             date_string: Hijri date in ISO format ``YYYY-MM-DD``.
         """
 
-        year = int(date_string[0:4])
-        month = int(date_string[5:7])
-        day = int(date_string[8:10])
+        year, month, day = map(int, date_string.split("-"))
         return cls(year, month, day)
 
     @classmethod
