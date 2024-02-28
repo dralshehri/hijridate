@@ -1,6 +1,8 @@
 """Localization for the Hijri month and day names."""
 
-from typing import ClassVar, Dict, List, Type
+from typing import ClassVar, Dict, List, Literal, Type
+
+Language = Literal["en", "ar", "bn"]
 
 _locale_map: Dict[str, Type["Locale"]] = {}
 
@@ -16,7 +18,7 @@ def get_locale(name: str) -> "Locale":
     locale_cls = _locale_map.get(language_tag)
 
     if locale_cls is None:
-        raise ValueError(f"Unsupported language: {language_tag}")
+        raise ValueError(f"unsupported language: {language_tag}")
 
     return locale_cls()
 
@@ -33,7 +35,7 @@ class Locale:
 
     def __init_subclass__(cls) -> None:
         if cls.language_tag in _locale_map:
-            raise LookupError(f"Duplicated language tag: {cls.language_tag}")
+            raise LookupError(f"duplicated language tag: {cls.language_tag}")
         _locale_map[cls.language_tag] = cls
 
     def month_name(self, month: int) -> str:

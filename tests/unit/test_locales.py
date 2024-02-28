@@ -1,3 +1,5 @@
+from typing import get_args
+
 import pytest
 
 from hijridate import locales
@@ -11,6 +13,7 @@ def all_locales(request):
 @pytest.mark.usefixtures("all_locales")
 class TestLocalesValidity:
     def test_locale_data_structure(self):
+        assert tuple(self.locales.keys())[:-1] == get_args(locales.Language)
         for locale_cls in self.locales.values():
             assert len(locale_cls.language_tag) == 2
             assert locale_cls.language_tag.islower()

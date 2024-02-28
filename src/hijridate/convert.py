@@ -141,13 +141,11 @@ class Hijri:
         length = month_starts[index + 1] - month_starts[index]
         return length
 
-    def month_name(self, language: str = "en") -> str:
+    def month_name(self, language: locales.Language = "en") -> str:
         """Return month name.
 
         Args:
-            language: Language tag for localized month name. Full locale name
-                can be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported
-                languages are ``en``, ``ar`` and ``bn``.
+            language: Two-letter language code for localized month name.
         """
 
         return locales.get_locale(language).month_name(self._month)
@@ -162,25 +160,21 @@ class Hijri:
         jdn = self.to_julian()
         return int(jdn % 7) + 1
 
-    def day_name(self, language: str = "en") -> str:
+    def day_name(self, language: locales.Language = "en") -> str:
         """Return day name.
 
         Args:
-            language: Language tag for localized month name. Full locale name
-                can be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported
-                languages are ``en``, ``ar`` and ``bn``.
+            language: Two-letter language code for localized day name.
         """
 
         return locales.get_locale(language).day_name(self.isoweekday())
 
     @staticmethod
-    def notation(language: str = "en") -> str:
+    def notation(language: locales.Language = "en") -> str:
         """Return calendar era notation.
 
         Args:
-            language: Language tag for localized month name. Full locale name
-                can be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported
-                languages are ``en``, ``ar`` and ``bn``.
+            language: Two-letter language code for localized era notation.
         """
 
         return locales.get_locale(language).notation
@@ -264,36 +258,30 @@ class Gregorian(datetime.date):
         month = f"{self.month:02}" if padding else self.month
         return f"{day}{separator}{month}{separator}{self.year}"
 
-    def month_name(self, language: str = "en") -> str:
+    def month_name(self, language: locales.Language = "en") -> str:
         """Return month name.
 
         Args:
-            language: Language tag for localized month name. Full locale name
-                can be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported
-                languages are ``en``, ``ar`` and ``bn``.
+            language: Two-letter language code for localized month name.
         """
 
         return locales.get_locale(language).gregorian_month_name(self.month)
 
-    def day_name(self, language: str = "en") -> str:
+    def day_name(self, language: locales.Language = "en") -> str:
         """Return day name.
 
         Args:
-            language: Language tag for localized month name. Full locale name
-                can be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported
-                languages are ``en``, ``ar`` and ``bn``.
+            language: Two-letter language code for localized day name.
         """
 
         return locales.get_locale(language).day_name(self.isoweekday())
 
     @staticmethod
-    def notation(language: str = "en") -> str:
+    def notation(language: locales.Language = "en") -> str:
         """Return calendar era notation.
 
         Args:
-            language: Language tag for localized month name. Full locale name
-                can be used, e.g. ``en-US`` or ``en_US.UTF-8``. Supported
-                languages are ``en``, ``ar`` and ``bn``.
+            language: Two-letter language code for localized era notation.
         """
 
         return locales.get_locale(language).gregorian_notation
