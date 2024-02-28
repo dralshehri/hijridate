@@ -318,5 +318,6 @@ class Gregorian(datetime.date):
             min_date_iso = "-".join(map(lambda i: f"{i:02}", min_date))
             max_date_iso = "-".join(map(lambda i: f"{i:02}", max_date))
             raise OverflowError(
-                f"date must be in '{min_date_iso}'-'{max_date_iso}', got '{self.isoformat()}'"
+                f"date must be in '{min_date_iso}'-'{max_date_iso}', "
+                f"got '{self.isoformat()}'"
             )
