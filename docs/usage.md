@@ -142,9 +142,8 @@ The following is an example showing how to use the Arabic language:
 ## Date Validation
 
 Date input values are by default checked if valid and within conversion range.
-Invalid date raises a `ValueError` exception, and out of range date raises an
-`OverflowError` exception. Both exceptions can be caught and handled in `try`
-and `except` blocks:
+Invalid date raises a `ValueError` exception, which can be caught and handled in
+`try` and `except` blocks:
 
 ```pycon
 >>> from hijridate import Hijri, Gregorian
@@ -152,10 +151,10 @@ and `except` blocks:
 >>> Hijri(1403, 1, 30)
 Traceback (most recent call last):
     ...
-ValueError: day must be in 1..29 for month
+ValueError: day must be in 1-29 for month, got '30'
 
 >>> Gregorian(1882, 12, 2).to_hijri()
 Traceback (most recent call last):
     ...
-OverflowError: date out of range
+OverflowError: date must be in '1924-08-01'-'2077-11-16', got '1882-12-02'
 ```

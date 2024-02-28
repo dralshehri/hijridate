@@ -3,6 +3,12 @@ from datetime import date
 import pytest
 
 from hijridate.convert import Gregorian, Hijri
+from hijridate.ummalqura import GREGORIAN_RANGE, HIJRI_RANGE
+
+hijri_min, hijri_max = HIJRI_RANGE
+gregorian_min, gregorian_max = GREGORIAN_RANGE
+gregorian_min_iso = "-".join(map(lambda i: f"{i:02}", gregorian_min))
+gregorian_max_iso = "-".join(map(lambda i: f"{i:02}", gregorian_max))
 
 
 def test_importing_at_init_module():
@@ -119,9 +125,18 @@ class TestHijri:
     @pytest.mark.parametrize(
         "test_input, expected",
         [
-            ((37, 12, 30), "date out of range"),
-            ((1342, 12, 29), "date out of range"),
-            ((1501, 1, 1), "date out of range"),
+            (
+                (37, 12, 30),
+                f"year must be in {hijri_min[0]}-{hijri_max[0]}, got '37'",
+            ),
+            (
+                (1342, 12, 29),
+                f"year must be in {hijri_min[0]}-{hijri_max[0]}, got '1342'",
+            ),
+            (
+                (1501, 1, 1),
+                f"year must be in {hijri_min[0]}-{hijri_max[0]}, got '1501'",
+            ),
         ],
     )
     def test_invalid_year(self, test_input, expected):
@@ -132,9 +147,9 @@ class TestHijri:
     @pytest.mark.parametrize(
         "test_input, expected",
         [
-            ((1410, 0, 1), "month must be in 1..12"),
-            ((1410, 13, 1), "month must be in 1..12"),
-            ((1410, 8, 30), "day must be in 1..29 for month"),
+            ((1410, 0, 1), f"month must be in 1-12, got '0'"),
+            ((1410, 13, 1), f"month must be in 1-12, got '13'"),
+            ((1410, 8, 30), f"day must be in 1-29 for month, got '30'"),
         ],
     )
     def test_invalid_day_or_month(self, test_input, expected):
@@ -196,8 +211,14 @@ class TestGregorian:
     @pytest.mark.parametrize(
         "test_input, expected",
         [
-            ((1924, 7, 31), "date out of range"),
-            ((2077, 11, 17), "date out of range"),
+            (
+                (1924, 7, 31),
+                f"date must be in '{gregorian_min_iso}'-'{gregorian_max_iso}', got '1924-07-31'",
+            ),
+            (
+                (2077, 11, 17),
+                f"date must be in '{gregorian_min_iso}'-'{gregorian_max_iso}', got '2077-11-17'",
+            ),
         ],
     )
     def test_invalid_range(self, test_input, expected):

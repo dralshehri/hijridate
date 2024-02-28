@@ -25,9 +25,9 @@ class Hijri:
 
         Raises:
             OverflowError: When ``year`` is out of supported Hijri range.
-            ValueError: When ``month`` is not within the range of `1..12`.
+            ValueError: When ``month`` is not within the range of `1-12`.
             ValueError: When ``day`` is not within the range of
-                `1..month_length` for month.
+                `1-month_length` for month.
         """
 
         self._year = year
@@ -206,15 +206,21 @@ class Hijri:
         # check year
         min_year, max_year = [d[0] for d in ummalqura.HIJRI_RANGE]
         if not min_year <= self.year <= max_year:
-            raise OverflowError("date out of range")
+            raise OverflowError(
+                f"year must be in {min_year}-{max_year}, got '{self.year}'"
+            )
         # check month
         max_months = 12
         if not 1 <= self.month <= max_months:
-            raise ValueError(f"month must be in 1..{max_months}")
+            raise ValueError(
+                f"month must be in 1-{max_months}, got '{self.month}'"
+            )
         # check day
         month_length = self.month_length()
         if not 1 <= self.day <= month_length:
-            raise ValueError(f"day must be in 1..{month_length} for month")
+            raise ValueError(
+                f"day must be in 1-{month_length} for month, got '{self.day}'"
+            )
 
     def _month_index(self) -> int:
         """Return month’s index in ummalqura month starts"""
@@ -321,4 +327,8 @@ class Gregorian(datetime.date):
         """Check if Gregorian date is within valid range."""
         min_date, max_date = ummalqura.GREGORIAN_RANGE
         if not min_date <= (self.year, self.month, self.day) <= max_date:
-            raise OverflowError("date out of range")
+            min_date_iso = "-".join(map(lambda i: f"{i:02}", min_date))
+            max_date_iso = "-".join(map(lambda i: f"{i:02}", max_date))
+            raise OverflowError(
+                f"date must be in '{min_date_iso}'-'{max_date_iso}', got '{self.isoformat()}'"
+            )
