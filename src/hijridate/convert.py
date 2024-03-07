@@ -134,6 +134,13 @@ class Hijri:
         month = f"{self._month:02}" if padding else self._month
         return f"{day}{separator}{month}{separator}{self._year}"
 
+    def year_length(self) -> int:
+        """Return number of days in year."""
+        month_starts = ummalqura.MONTH_STARTS
+        first_index, last_index = self._year_indexes()
+        length = month_starts[last_index + 1] - month_starts[first_index]
+        return length
+
     def month_length(self) -> int:
         """Return number of days in month."""
         month_starts = ummalqura.MONTH_STARTS
@@ -215,6 +222,13 @@ class Hijri:
             raise ValueError(
                 f"day must be in 1-{month_length} for month, got '{self.day}'"
             )
+
+    def _year_indexes(self) -> Tuple[int, int]:
+        """Return year’s first and last indexes in ummalqura month starts"""
+        prior_months = (self.year - 1) * 12
+        first_index = prior_months - ummalqura.HIJRI_OFFSET
+        last_index = first_index + 11
+        return first_index, last_index
 
     def _month_index(self) -> int:
         """Return month’s index in ummalqura month starts"""

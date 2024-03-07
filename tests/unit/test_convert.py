@@ -79,6 +79,9 @@ class TestHijri:
         assert self.hijri_obj.dmyformat(padding=False) == "13/8/1410"
         assert self.hijri_obj.dmyformat(separator=".") == "13.08.1410"
 
+    def test_year_length(self):
+        assert self.hijri_obj.year_length() == 355
+
     def test_month_length(self):
         assert self.hijri_obj.month_length() == 29
 
