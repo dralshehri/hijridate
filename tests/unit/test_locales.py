@@ -12,6 +12,8 @@ def all_locales(request):
 
 @pytest.mark.usefixtures("all_locales")
 class TestLocalesValidity:
+    locales = None
+
     def test_locale_data_structure(self):
         assert tuple(self.locales.keys())[:-1] == get_args(locales.Language)
         for locale_cls in self.locales.values():
