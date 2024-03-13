@@ -20,9 +20,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  REQUIREMENTS_FILE: requirements-dev.txt
-
 jobs:
   code-quality:
     name: Check code quality
@@ -34,21 +31,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: pip
-          cache-dependency-path: ${{ env.REQUIREMENTS_FILE }}
-      - name: Install dependencies
+      - name: Install Hatch
         run: |
-          pip install -U pip
-          pip install -r $REQUIREMENTS_FILE
-          pip install -e .
-      - name: Check imports
-        run: task lint_isort
-      - name: Check formatting
-        run: task lint_black
-      - name: Check style
-        run: task lint_pylint
-      - name: Check typing
-        run: task lint_mypy
+          python -m pip install --upgrade pip
+          pip install hatch
+      - name: Check types
+        run: hatch run types:check
+      - name: Check format
+        run: hatch fmt --check
   code-tests:
     name: Test on Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
@@ -63,15 +53,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: pip
-          cache-dependency-path: ${{ env.REQUIREMENTS_FILE }}
-      - name: Install dependencies
+      - name: Install Hatch
         run: |
-          pip install -U pip
-          pip install -r $REQUIREMENTS_FILE
-          pip install -e .
+          python -m pip install --upgrade pip
+          pip install hatch
       - name: Run tests
-        run: task test_all
+        run: hatch run +py=${{ matrix.python-version }} tests:full
   code-coverage:
     name: Check code coverage
     runs-on: ubuntu-latest
@@ -80,14 +67,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
+        id: py312
         with:
           python-version: '3.12'
-          cache: pip
-          cache-dependency-path: ${{ env.REQUIREMENTS_FILE }}
-      - name: Install dependencies
+      - name: Install Hatch
         run: |
-          pip install -U pip
-          pip install -r $REQUIREMENTS_FILE
-          pip install -e .
+          python -m pip install --upgrade pip
+          pip install hatch
       - name: Generate report
-        run: task test_cov
+        run: hatch run +py=${{ steps.py312.outputs.python-version }} tests:cov

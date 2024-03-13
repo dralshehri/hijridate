@@ -1,11 +1,127 @@
 [build-system]
-requires = ["setuptools>=51"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hijridate"
+authors = [
+    { name = "Mohammed Alshehri", email = "" },
+]
+license = "MIT"
+requires-python = ">=3.8"
+description = "Accurate Hijri-Gregorian dates converter based on the Umm al-Qura calendar"
+keywords = [
+    "calendar",
+    "converter",
+    "date",
+    "gregorian",
+    "hijri",
+    "saudi",
+    "ummalqura",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Legal Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Arabic",
+    "Natural Language :: Bengali",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Internationalization",
+    "Topic :: Software Development :: Localization",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dynamic = [
+    "version",
+    "readme",
+]
+
+[project.urls]
+Documentation = "https://hijridate.readthedocs.io"
+Changelog = "https://github.com/dralshehri/hijridate/blob/main/CHANGELOG.md"
+Source = "https://github.com/dralshehri/hijridate"
+
+[tool.hatch.version]
+path = "src/hijridate/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hijridate"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "CHANGELOG.md",
+    "README.md",
+]
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/markdown"
+fragments = [
+    {path = "README.md"},
+]
+substitutions = [
+    {pattern = "<!-- start badges -->[\\S\\s]+<!-- end badges -->\n+", replacement = ""},
+    {pattern = "<!--[\\s\\w]+-->\n+", replacement = ""},
+]
+
+[tool.hatch.envs.tests]
+dependencies = [
+    "pytest",
+    "pytest-cov",
+]
+matrix = [
+    {python = ["3.8", "3.9", "3.10", "3.11", "3.12"]}
+]
+
+[tool.hatch.envs.tests.scripts]
+fast = "pytest tests/unit"
+full = "pytest tests"
+cov = "full --cov=hijridate --cov-config=pyproject.toml --cov-report=term-missing --cov-fail-under=100"
+cov-html = "check --cov-report=html"
+
+[tool.hatch.envs.types]
+dependencies = [
+    "mypy",
+]
+
+[tool.hatch.envs.types.scripts]
+check = "mypy"
+
+[tool.hatch.envs.docs]
+dependencies = [
+    "sphinx",
+    "sphinx-notfound-page",
+    "myst-parser",
+    "furo",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "sphinx-build -E docs docs/_build"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "-ra -q"
-testpaths = ["tests/unit"]
+addopts = [
+    "-ra",
+    "-q",
+    "--import-mode=importlib",
+    "--tb=short",
+    "--strict-markers",
+    "--strict-config",
+]
+testpaths = ["tests"]
 
 [tool.coverage.run]
 branch = true
@@ -14,33 +130,31 @@ source = ["hijridate"]
 [tool.coverage.paths]
 source = ["src"]
 
-[tool.black]
-line-length = 80
-target-version = ["py38", "py39", "py310", "py311", "py312"]
+[tool.mypy]
+files = "src"
+python_version = "3.8"
+strict = true
 
-[tool.isort]
-profile = "black"
+[tool.ruff]
+line-length = 88
+src = ["src"]
 
-[tool.pylint.reports]
-score = false
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
 
-[tool.pylint.format]
-max-line-length = 80
-expected-line-ending-format = "LF"
+[tool.ruff.lint]
+extend-select = [
+    "C90",
+    "I",
+    "N",
+    "D",
+    "UP",
+]
+ignore = ["D105", "D205", "D417"]
+ignore-init-module-imports = true
+pydocstyle = { convention = "google"}
+isort = { combine-as-imports = true, lines-between-types = 1 }
 
-[tool.taskipy.tasks]
-test = "task test_cov tests"
-test_min = "pytest"
-test_all = "pytest tests"
-test_cov = "pytest --cov --cov-report=term-missing --cov-fail-under=100"
-test_cov_html = "pytest --cov --cov-report=term --cov-report=html"
-lint = "task lint_isort && task lint_black && task lint_pylint && task lint_mypy"
-lint_isort = "isort --check-only src tests"
-lint_black = "black --check --quiet src tests"
-lint_pylint = "pylint src"
-lint_mypy = "mypy src"
-format = "isort src tests && black src tests"
-upgrade = "task upgrade_dev && task upgrade_docs"
-upgrade_dev = "pip install -U -r requirements-dev.txt"
-upgrade_docs = "pip install -U -r docs/requirements.txt"
-docs = "sphinx-build -E docs docs/_build"
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D10", "S101", "ARG002", "SLF001", "PLR2004"]
