@@ -1,6 +1,6 @@
 """Localization for the Hijri month and day names."""
 
-from typing import ClassVar, Dict, List, Literal, Type
+from typing import ClassVar, Dict, Literal, Tuple, Type
 
 Language = Literal["en", "ar", "bn"]
 
@@ -28,9 +28,9 @@ class Locale:
     """A Locale object represents locale-specific data and functionality."""
 
     language_tag: ClassVar[str]
-    month_names: ClassVar[List[str]] = []
-    gregorian_month_names: ClassVar[List[str]] = []
-    day_names: ClassVar[List[str]] = []
+    month_names: ClassVar[Tuple[str, ...]]
+    gregorian_month_names: ClassVar[Tuple[str, ...]]
+    day_names: ClassVar[Tuple[str, ...]]
     notation: ClassVar[str]
     gregorian_notation: ClassVar[str]
 
@@ -72,7 +72,7 @@ class EnglishLocale(Locale):
     """An English Locale object represents English locale-specific data."""
 
     language_tag = "en"
-    month_names = [
+    month_names = (
         "Muharram",
         "Safar",
         "Rabi’ al-Awwal",
@@ -85,8 +85,8 @@ class EnglishLocale(Locale):
         "Shawwal",
         "Dhu al-Qi’dah",
         "Dhu al-Hijjah",
-    ]
-    gregorian_month_names = [
+    )
+    gregorian_month_names = (
         "January",
         "February",
         "March",
@@ -99,8 +99,8 @@ class EnglishLocale(Locale):
         "October",
         "November",
         "December",
-    ]
-    day_names = [
+    )
+    day_names = (
         "Monday",
         "Tuesday",
         "Wednesday",
@@ -108,7 +108,7 @@ class EnglishLocale(Locale):
         "Friday",
         "Saturday",
         "Sunday",
-    ]
+    )
     notation = "AH"
     gregorian_notation = "CE"
 
@@ -117,7 +117,7 @@ class ArabicLocale(Locale):
     """An Arabic Locale object represents Arabic locale-specific data."""
 
     language_tag = "ar"
-    month_names = [
+    month_names = (
         "محرم",
         "صفر",
         "ربيع الأول",
@@ -130,8 +130,8 @@ class ArabicLocale(Locale):
         "شوال",
         "ذو القعدة",
         "ذو الحجة",
-    ]
-    gregorian_month_names = [
+    )
+    gregorian_month_names = (
         "يناير",
         "فبراير",
         "مارس",
@@ -144,8 +144,8 @@ class ArabicLocale(Locale):
         "أكتوبر",
         "نوفمبر",
         "ديسمبر",
-    ]
-    day_names = [
+    )
+    day_names = (
         "الإثنين",
         "الثلاثاء",
         "الأربعاء",
@@ -153,7 +153,7 @@ class ArabicLocale(Locale):
         "الجمعة",
         "السبت",
         "الأحد",
-    ]
+    )
     notation = "هـ"
     gregorian_notation = "م"
 
@@ -162,7 +162,7 @@ class BengaliLocale(Locale):
     """A Bengali Locale object represents Bengali locale-specific data."""
 
     language_tag = "bn"
-    month_names = [
+    month_names = (
         "মুহাররম",
         "সফর",
         "রবিউল আউয়াল",
@@ -175,8 +175,8 @@ class BengaliLocale(Locale):
         "শাওয়াল",
         "জিলক্বদ",
         "জিলহজ",
-    ]
-    gregorian_month_names = [
+    )
+    gregorian_month_names = (
         "জানুয়ারি",
         "ফেব্রুয়ারি",
         "মার্চ",
@@ -189,8 +189,8 @@ class BengaliLocale(Locale):
         "অক্টোবর",
         "নভেম্বর",
         "ডিসেম্বর",
-    ]
-    day_names = [
+    )
+    day_names = (
         "সোমবার",
         "মঙ্গলবার",
         "বুধবার",
@@ -198,6 +198,6 @@ class BengaliLocale(Locale):
         "শুক্রবার",
         "শনিবার",
         "রবিবার",
-    ]
+    )
     notation = "হিজরি"
     gregorian_notation = "খ্রিস্টাব্দ"
