@@ -1,4 +1,5 @@
 import json
+
 from pathlib import Path
 
 import pytest
@@ -24,7 +25,7 @@ def load_params_from_json():
 hijri_gregorian_params, gregorian_hijri_params = load_params_from_json()
 
 
-@pytest.mark.parametrize("test_input, expected", hijri_gregorian_params)
+@pytest.mark.parametrize(("test_input", "expected"), hijri_gregorian_params)
 def test_convert_hijri_to_gregorian(test_input, expected):
     year, month, day = test_input
     hijri = Hijri(year, month, day, validate=False)
@@ -32,7 +33,7 @@ def test_convert_hijri_to_gregorian(test_input, expected):
     assert converted == expected
 
 
-@pytest.mark.parametrize("test_input, expected", gregorian_hijri_params)
+@pytest.mark.parametrize(("test_input", "expected"), gregorian_hijri_params)
 def test_convert_gregorian_to_hijri(test_input, expected):
     year, month, day = test_input
     gregorian = Gregorian(year, month, day)

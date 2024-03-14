@@ -5,10 +5,10 @@ import pytest
 from hijridate.convert import Gregorian, Hijri
 from hijridate.ummalqura import GREGORIAN_RANGE, HIJRI_RANGE
 
-hijri_min, hijri_max = HIJRI_RANGE
-gregorian_min, gregorian_max = GREGORIAN_RANGE
-gregorian_min_iso = "-".join(map(lambda i: f"{i:02}", gregorian_min))
-gregorian_max_iso = "-".join(map(lambda i: f"{i:02}", gregorian_max))
+h_min, h_max = HIJRI_RANGE
+g_min, g_max = GREGORIAN_RANGE
+g_min_iso = "-".join([f"{i:02}" for i in g_min])
+g_max_iso = "-".join([f"{i:02}" for i in g_max])
 
 
 def test_importing_at_init_module():
@@ -34,13 +34,9 @@ class TestHijri:
     def test_hash(self, hijri_obj):
         assert self.hijri_obj.__hash__() == hash(("Hijri", 1410, 8, 13))
 
-    @pytest.mark.parametrize(
-        "test_input", ["__gt__", "__ge__", "__lt__", "__le__"]
-    )
+    @pytest.mark.parametrize("test_input", ["__gt__", "__ge__", "__lt__", "__le__"])
     def test_comparison_notimplemented(self, hijri_obj, test_input):
-        assert (
-            getattr(self.hijri_obj, test_input)("1410-08-13") == NotImplemented
-        )
+        assert getattr(self.hijri_obj, test_input)("1410-08-13") == NotImplemented
 
     def test_equality(self, hijri_obj):
         assert self.hijri_obj == Hijri(1410, 8, 13)
@@ -86,9 +82,9 @@ class TestHijri:
         assert self.hijri_obj.month_length() == 29
 
     def test_month_name(self, hijri_obj):
-        assert self.hijri_obj.month_name() == "Sha’ban"
-        assert self.hijri_obj.month_name("en") == "Sha’ban"
-        assert self.hijri_obj.month_name("en-US") == "Sha’ban"
+        assert self.hijri_obj.month_name() == "Sha'ban"
+        assert self.hijri_obj.month_name("en") == "Sha'ban"
+        assert self.hijri_obj.month_name("en-US") == "Sha'ban"
 
     def test_weekday(self, hijri_obj):
         assert self.hijri_obj.weekday() == 5
@@ -123,42 +119,40 @@ class TestHijri:
         try:
             Hijri(year, month, day, validate=False)._check_date()
         except (ValueError, OverflowError):
-            pytest.fail()
+            pytest.fail("date is invalid")
 
     @pytest.mark.parametrize(
-        "test_input, expected",
+        ("test_input", "expected"),
         [
             (
                 (37, 12, 30),
-                f"year must be in {hijri_min[0]}-{hijri_max[0]}, got '37'",
+                f"year must be in {h_min[0]}-{h_max[0]}, got '37'",
             ),
             (
                 (1342, 12, 29),
-                f"year must be in {hijri_min[0]}-{hijri_max[0]}, got '1342'",
+                f"year must be in {h_min[0]}-{h_max[0]}, got '1342'",
             ),
             (
                 (1501, 1, 1),
-                f"year must be in {hijri_min[0]}-{hijri_max[0]}, got '1501'",
+                f"year must be in {h_min[0]}-{h_max[0]}, got '1501'",
             ),
         ],
     )
     def test_invalid_year(self, test_input, expected):
-        with pytest.raises(OverflowError) as e:
+        with pytest.raises(OverflowError, match=expected):
             Hijri(*test_input, validate=False)._check_date()
-        assert str(e.value) == expected
 
     @pytest.mark.parametrize(
-        "test_input, expected",
+        ("test_input", "expected"),
         [
-            ((1410, 0, 1), f"month must be in 1-12, got '0'"),
-            ((1410, 13, 1), f"month must be in 1-12, got '13'"),
-            ((1410, 8, 30), f"day must be in 1-29 for month, got '30'"),
+            ((1410, 0, 1), "month must be in 1-12, got '0'"),
+            ((1410, 13, 1), "month must be in 1-12, got '13'"),
+            ((1410, 8, 30), "day must be in 1-29 for month, got '30'"),
         ],
     )
     def test_invalid_day_or_month(self, test_input, expected):
-        with pytest.raises(ValueError) as e:
+        with pytest.raises(ValueError, match=expected):
             Hijri(*test_input, validate=False)._check_date()
-        assert str(e.value) == expected
 
 
 @pytest.fixture(scope="class")
@@ -209,22 +203,21 @@ class TestGregorian:
         try:
             Gregorian(year, month, day)._check_range()
         except OverflowError:
-            pytest.fail()
+            pytest.fail("date is invalid")
 
     @pytest.mark.parametrize(
-        "test_input, expected",
+        ("test_input", "expected"),
         [
             (
                 (1924, 7, 31),
-                f"date must be in '{gregorian_min_iso}'-'{gregorian_max_iso}', got '1924-07-31'",
+                f"date must be in '{g_min_iso}'-'{g_max_iso}', got '1924-07-31'",
             ),
             (
                 (2077, 11, 17),
-                f"date must be in '{gregorian_min_iso}'-'{gregorian_max_iso}', got '2077-11-17'",
+                f"date must be in '{g_min_iso}'-'{g_max_iso}', got '2077-11-17'",
             ),
         ],
     )
     def test_invalid_range(self, test_input, expected):
-        with pytest.raises(OverflowError) as e:
+        with pytest.raises(OverflowError, match=expected):
             Gregorian(*test_input)._check_range()
-        assert str(e.value) == expected

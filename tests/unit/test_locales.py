@@ -30,7 +30,7 @@ class TestLocalesValidity:
 
     def test_locale_map(self):
         assert len(locales._locale_map) > 0
-        assert "en" in locales._locale_map.keys()
+        assert "en" in locales._locale_map
 
     def test_duplicated_language_tag(self):
         with pytest.raises(LookupError):
@@ -59,5 +59,5 @@ class TestGettingLocale:
         assert locales.get_locale(test_input).__class__ == self.CustomLocale
 
     def test_unsupported_language(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError, match="unsupported language: xy"):
             locales.get_locale("xy")
