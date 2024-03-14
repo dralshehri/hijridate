@@ -8,14 +8,14 @@ from hijridate import helpers, locales, ummalqura
 
 
 class Hijri:
-    """A Hijri object represents a date (year, month and day) in lunar Hijri
-    calendar.
-    """
+    """A Hijri object represents a date in lunar Hijri calendar."""
 
     __slots__ = "_year", "_month", "_day"
 
     def __init__(self, year: int, month: int, day: int, *, validate: bool = True):
-        """Args:
+        """Construct Hijri object from Hijri date (year, month, day).
+
+        Args:
             year: Hijri year.
             month: Hijri month.
             day: Hijri day.
@@ -82,8 +82,7 @@ class Hijri:
 
     @classmethod
     def fromisoformat(cls, date_string: str) -> "Hijri":
-        """Construct Hijri object from an ISO formatted Hijri date
-        ``YYYY-MM-DD``.
+        """Construct Hijri object from an ISO formatted Hijri date.
 
         Args:
             date_string: Hijri date in ISO format ``YYYY-MM-DD``.
@@ -220,22 +219,20 @@ class Hijri:
             )
 
     def _year_indexes(self) -> Tuple[int, int]:
-        """Return year’s first and last indexes in ummalqura month starts"""
+        """Return year's first and last indexes in ummalqura month starts."""
         prior_months = (self.year - 1) * 12
         first_index = prior_months - ummalqura.HIJRI_OFFSET
         last_index = first_index + 11
         return first_index, last_index
 
     def _month_index(self) -> int:
-        """Return month’s index in ummalqura month starts"""
+        """Return month's index in ummalqura month starts."""
         prior_months = ((self.year - 1) * 12) + self.month - 1
         return prior_months - ummalqura.HIJRI_OFFSET
 
 
 class Gregorian(datetime.date):
-    """A Gregorian object represents a date (year, month and day) in Gregorian
-    calendar.
-    """
+    """A Gregorian object represents a date in Gregorian calendar."""
 
     __slots__ = ()
 

@@ -67,9 +67,7 @@ class Locale:
 
 
 class EnglishLocale(Locale):
-    """An English Locale object represents English locale-specific data and
-    functionality.
-    """
+    """An English Locale object represents English locale-specific data."""
 
     language_tag = "en"
     month_names = [
@@ -114,9 +112,7 @@ class EnglishLocale(Locale):
 
 
 class ArabicLocale(Locale):
-    """An Arabic Locale object represents Arabic locale-specific data and
-    functionality.
-    """
+    """An Arabic Locale object represents Arabic locale-specific data."""
 
     language_tag = "ar"
     month_names = [
@@ -161,9 +157,7 @@ class ArabicLocale(Locale):
 
 
 class BengaliLocale(Locale):
-    """A Bengali Locale object represents Bengali locale-specific data and
-    functionality.
-    """
+    """A Bengali Locale object represents Bengali locale-specific data."""
 
     language_tag = "bn"
     month_names = [
