@@ -202,21 +202,18 @@ class Hijri:
         # check year
         min_year, max_year = [d[0] for d in ummalqura.HIJRI_RANGE]
         if not min_year <= self.year <= max_year:
-            raise OverflowError(
-                f"year must be in {min_year}-{max_year}, got '{self.year}'"
-            )
+            message = f"year must be in {min_year}-{max_year}, got '{self.year}'"
+            raise OverflowError(message)
         # check month
         max_months = 12
         if not 1 <= self.month <= max_months:
-            raise ValueError(
-                f"month must be in 1-{max_months}, got '{self.month}'"
-            )
+            message = f"month must be in 1-{max_months}, got '{self.month}'"
+            raise ValueError(message)
         # check day
         month_length = self.month_length()
         if not 1 <= self.day <= month_length:
-            raise ValueError(
-                f"day must be in 1-{month_length} for month, got '{self.day}'"
-            )
+            message = f"day must be in 1-{month_length} for month, got '{self.day}'"
+            raise ValueError(message)
 
     def _year_indexes(self) -> Tuple[int, int]:
         """Return year's first and last indexes in ummalqura month starts."""
@@ -320,9 +317,10 @@ class Gregorian(datetime.date):
         """Check if Gregorian date is within valid range."""
         min_date, max_date = ummalqura.GREGORIAN_RANGE
         if not min_date <= (self.year, self.month, self.day) <= max_date:
-            min_date_iso = "-".join(map(lambda i: f"{i:02}", min_date))
-            max_date_iso = "-".join(map(lambda i: f"{i:02}", max_date))
-            raise OverflowError(
+            min_date_iso = "-".join([f"{i:02}" for i in min_date])
+            max_date_iso = "-".join([f"{i:02}" for i in max_date])
+            message = (
                 f"date must be in '{min_date_iso}'-'{max_date_iso}', "
                 f"got '{self.isoformat()}'"
             )
+            raise OverflowError(message)

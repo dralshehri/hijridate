@@ -18,7 +18,8 @@ def get_locale(name: str) -> "Locale":
     locale_cls = _locale_map.get(language_tag)
 
     if locale_cls is None:
-        raise ValueError(f"unsupported language: {language_tag}")
+        message = f"unsupported language: {language_tag}"
+        raise ValueError(message)
 
     return locale_cls()
 
@@ -35,7 +36,8 @@ class Locale:
 
     def __init_subclass__(cls) -> None:
         if cls.language_tag in _locale_map:
-            raise LookupError(f"duplicated language tag: {cls.language_tag}")
+            message = f"duplicated language tag: {cls.language_tag}"
+            raise LookupError(message)
         _locale_map[cls.language_tag] = cls
 
     def month_name(self, month: int) -> str:
