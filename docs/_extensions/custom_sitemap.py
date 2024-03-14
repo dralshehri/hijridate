@@ -15,7 +15,7 @@ def setup(app):
     app.sitemap_pages = []
 
 
-def add_links(app, pagename):
+def add_links(app, pagename, *_):
     """As each page is built, collect page names for the sitemap."""
     excluded_pages = app.config.sitemap_excluded_pages
     excluded_pages = list({*excluded_pages, "404", "search", "genindex"})

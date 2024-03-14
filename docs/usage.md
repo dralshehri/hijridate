@@ -54,7 +54,8 @@ The {obj}`Hijri` objects have some other useful methods. For example:
 >>> hijri.dmyformat()
 '17/02/1403'
 
->>> hijri.dmyformat('.', False)
+>>> hijri.dmyformat('.', padding=False)
+# padding is keyword-only argument
 '17.2.1403'
 
 >>> hijri.month_name()
@@ -69,8 +70,7 @@ The {obj}`Hijri` objects have some other useful methods. For example:
 
 The above methods can also be used with {obj}`Gregorian` objects.
 
-You can additionally construct a {obj}`Gregorian` object from
-{obj}`datetime.date` object:
+You can additionally construct a {obj}`Gregorian` object from {obj}`datetime.date` object:
 
 ```pycon
 >>> from datetime import date
@@ -81,8 +81,7 @@ You can additionally construct a {obj}`Gregorian` object from
 Gregorian(1982, 12, 2)
 ```
 
-The {obj}`Gregorian` object inherits all attributes and methods of
-{obj}`datetime.date` object:
+The {obj}`Gregorian` object inherits all attributes and methods of {obj}`datetime.date` object:
 
 ```pycon
 >>> from hijridate import Gregorian
@@ -98,10 +97,7 @@ Hijri(1440, 10, 13)
 
 ## Rich Comparison
 
-Rich comparison (==, !=, >, >=, <, <=) for {obj}`Hijri` objects is supported.
-Both operands should be {obj}`Hijri` objects. Otherwise, a `TypeError` exception
-may be raised where it can be caught and handled in `try` and `except` blocks:
-For example:
+Rich comparison (==, !=, >, >=, <, <=) for {obj}`Hijri` objects is supported. Both operands should be {obj}`Hijri` objects. Otherwise, a `TypeError` exception may be raised where it can be caught and handled in `try` and `except` blocks: For example:
 
 ```pycon
 >>> from hijridate import Hijri
@@ -117,10 +113,7 @@ TypeError: '>' not supported between instances of 'Hijri' and 'str'
 
 ## Internationalization
 
-Representation of weekday names, month names, and calendar notations is
-supported. English `en` is the default language. Additionally, Arabic `ar` and
-Bangla `bn` translations are available, but it can be easily extended for other
-natural languages.
+Representation of weekday names, month names, and calendar notations is supported. English `en` is the default language. Additionally, Arabic `ar` and Bangla `bn` translations are available, but it can be easily extended for other natural languages.
 
 The following is an example showing how to use the Arabic language:
 
@@ -141,9 +134,7 @@ The following is an example showing how to use the Arabic language:
 
 ## Date Validation
 
-Date input values are by default checked if valid and within conversion range.
-Invalid date raises a `ValueError` exception, which can be caught and handled in
-`try` and `except` blocks:
+Date input values are by default checked if valid and within conversion range. Invalid date raises a `ValueError` exception, and out of range date raises an `OverflowError` exception. Both exceptions can be caught and handled in `try` and `except` blocks:
 
 ```pycon
 >>> from hijridate import Hijri, Gregorian
