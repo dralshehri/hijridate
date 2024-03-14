@@ -151,10 +151,10 @@ extend-select = [
     "D",
     "UP",
 ]
-ignore = ["D105", "D205", "D417"]
+ignore = ["D105", "D417", "INP001", "FA100"]
 ignore-init-module-imports = true
 pydocstyle = { convention = "google"}
 isort = { combine-as-imports = true, lines-between-types = 1 }
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["D10", "S101", "ARG002", "SLF001", "PLR2004"]
+"tests/*" = ["D10", "S101", "ARG002", "SLF001", "PLR2004", "EXE002"]
