@@ -1,18 +1,19 @@
 # Changelog
 
-The versioning scheme is compliant with the [PEP 440] specification.
-
-[PEP 440]: https://peps.python.org/pep-0440/#public-version-identifiers
+The versioning scheme is compliant with the [PEP 440](https://peps.python.org/pep-0440/#public-version-identifiers) specification.
 
 ## Unreleased
 
 - Added `year_length()` function to calculate Hijri year's total days.
+- Changed the Hijri's `validate` argument to be keyword-only argument.
 - Refactored Hijri's `fromisoformat()` parsing code for readability.
 - Improved exception messages to show the provided value.
 - Improved type hints for supported natural languages.
+- Fixed some typos in English Hijri month names.
 - Fixed some typos in functions documentation.
 - Added [Hatch](https://hatch.pypa.io) as package manager including static analysis tools backed by [Ruff](https://docs.astral.sh/ruff/).
 - Updated development workflows and documentations.
+- Fixed miscellaneous formatting and linting issues.
 
 ## 2.4.1 - 2023-12-09
 
