@@ -5,4 +5,4 @@ https://github.com/dralshehri/hijridate
 
 __version__ = "2.4.1"
 
-from hijridate.convert import Gregorian, Hijri
+from hijridate.convert import Gregorian, Hijri  # noqa: F401

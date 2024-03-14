@@ -200,7 +200,7 @@ class Hijri:
         """Check date values if within valid range."""
 
         # check year
-        min_year, max_year = [d[0] for d in ummalqura.HIJRI_RANGE]
+        min_year, max_year = (d[0] for d in ummalqura.HIJRI_RANGE)
         if not min_year <= self.year <= max_year:
             message = f"year must be in {min_year}-{max_year}, got '{self.year}'"
             raise OverflowError(message)
@@ -248,7 +248,7 @@ class Gregorian(datetime.date):
         """Return date as a tuple of (year, month, day)."""
         return self.year, self.month, self.day
 
-    def dmyformat(self, separator: str = "/", padding: bool = True) -> str:
+    def dmyformat(self, separator: str = "/", *, padding: bool = True) -> str:
         """Return date in day-month-year format (``DD/MM/YYYY`` by default).
 
         Args:
