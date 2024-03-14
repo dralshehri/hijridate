@@ -13,7 +13,6 @@ def get_locale(name: str) -> "Locale":
     Args:
         name: name of the locale.
     """
-
     language_tag = name.lower()[:2]
     locale_cls = _locale_map.get(language_tag)
 
@@ -46,7 +45,6 @@ class Locale:
         Args:
             month: month of year, in range 1-12.
         """
-
         return self.month_names[month - 1]
 
     def gregorian_month_name(self, month: int) -> str:
@@ -55,7 +53,6 @@ class Locale:
         Args:
             month: month of year, in range 1-12.
         """
-
         return self.gregorian_month_names[month - 1]
 
     def day_name(self, day: int) -> str:
@@ -64,7 +61,6 @@ class Locale:
         Args:
             day: day of week, where Monday is 1 and Sunday is 7.
         """
-
         return self.day_names[day - 1]
 
 

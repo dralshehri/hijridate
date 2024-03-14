@@ -7,7 +7,6 @@ def jdn_to_ordinal(jdn: int) -> int:
     Args:
         jdn: Julian day number (JDN).
     """
-
     return jdn - 1721425
 
 
@@ -17,7 +16,6 @@ def ordinal_to_jdn(ordinal: int) -> int:
     Args:
         ordinal: Gregorian date ordinal.
     """
-
     return ordinal + 1721425
 
 
@@ -27,7 +25,6 @@ def jdn_to_rjd(jdn: int) -> int:
     Args:
         jdn: Julian day number (JDN).
     """
-
     return jdn - 2400000
 
 
@@ -37,5 +34,4 @@ def rjd_to_jdn(rjd: int) -> int:
     Args:
         rjd: Reduced Julian Day (RJD) number.
     """
-
     return rjd + 2400000

@@ -1,6 +1,7 @@
 """Main module of the hijridate package."""
 
 import datetime
+
 from bisect import bisect
 from typing import Tuple
 
@@ -28,7 +29,6 @@ class Hijri:
             ValueError: When ``day`` is not within the range of
                 `1-month_length` for month.
         """
-
         self._year = year
         self._month = month
         self._day = day
@@ -74,11 +74,7 @@ class Hijri:
     def _compare(self, other: "Hijri") -> int:
         self_date = self.datetuple()
         other_date = other.datetuple()
-        return (
-            0
-            if self_date == other_date
-            else 1 if self_date > other_date else -1
-        )
+        return 0 if self_date == other_date else 1 if self_date > other_date else -1
 
     @classmethod
     def fromisoformat(cls, date_string: str) -> "Hijri":
@@ -87,7 +83,6 @@ class Hijri:
         Args:
             date_string: Hijri date in ISO format ``YYYY-MM-DD``.
         """
-
         year, month, day = map(int, date_string.split("-"))
         return cls(year, month, day)
 
@@ -127,7 +122,6 @@ class Hijri:
             padding: Whether to add a leading zero as a padding character to
                 fill day and month values when less than 10.
         """
-
         day = f"{self._day:02}" if padding else self._day
         month = f"{self._month:02}" if padding else self._month
         return f"{day}{separator}{month}{separator}{self._year}"
@@ -150,7 +144,6 @@ class Hijri:
         Args:
             language: Two-letter language code for localized month name.
         """
-
         return locales.get_locale(language).month_name(self._month)
 
     def weekday(self) -> int:
@@ -169,7 +162,6 @@ class Hijri:
         Args:
             language: Two-letter language code for localized day name.
         """
-
         return locales.get_locale(language).day_name(self.isoweekday())
 
     @staticmethod
@@ -179,7 +171,6 @@ class Hijri:
         Args:
             language: Two-letter language code for localized era notation.
         """
-
         return locales.get_locale(language).notation
 
     def to_julian(self) -> int:
@@ -191,14 +182,12 @@ class Hijri:
 
     def to_gregorian(self) -> "Gregorian":
         """Return Gregorian object for the corresponding Hijri date."""
-
         jdn = self.to_julian()
         ordinal = helpers.jdn_to_ordinal(jdn)
         return Gregorian.fromordinal(ordinal)
 
     def _check_date(self) -> None:
         """Check date values if within valid range."""
-
         # check year
         min_year, max_year = (d[0] for d in ummalqura.HIJRI_RANGE)
         if not min_year <= self.year <= max_year:
@@ -240,7 +229,6 @@ class Gregorian(datetime.date):
         Args:
             date_object: Python date object.
         """
-
         year, month, day = date_object.timetuple()[:3]
         return cls(year, month, day)
 
@@ -256,7 +244,6 @@ class Gregorian(datetime.date):
             padding: Whether to add a leading zero as a padding character to
                 fill day and month values when less than 10.
         """
-
         day = f"{self.day:02}" if padding else self.day
         month = f"{self.month:02}" if padding else self.month
         return f"{day}{separator}{month}{separator}{self.year}"
@@ -267,7 +254,6 @@ class Gregorian(datetime.date):
         Args:
             language: Two-letter language code for localized month name.
         """
-
         return locales.get_locale(language).gregorian_month_name(self.month)
 
     def day_name(self, language: locales.Language = "en") -> str:
@@ -276,7 +262,6 @@ class Gregorian(datetime.date):
         Args:
             language: Two-letter language code for localized day name.
         """
-
         return locales.get_locale(language).day_name(self.isoweekday())
 
     @staticmethod
@@ -286,7 +271,6 @@ class Gregorian(datetime.date):
         Args:
             language: Two-letter language code for localized era notation.
         """
-
         return locales.get_locale(language).gregorian_notation
 
     def to_julian(self) -> int:
@@ -300,7 +284,6 @@ class Gregorian(datetime.date):
         Raises:
             OverflowError: When date is out of supported Gregorian range.
         """
-
         self._check_range()
         jdn = self.to_julian()
         rjd = helpers.jdn_to_rjd(jdn)
