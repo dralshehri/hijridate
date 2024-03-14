@@ -14,9 +14,8 @@ class Hijri:
 
     __slots__ = "_year", "_month", "_day"
 
-    def __init__(self, year: int, month: int, day: int, validate: bool = True):
-        """
-        Args:
+    def __init__(self, year: int, month: int, day: int, *, validate: bool = True):
+        """Args:
             year: Hijri year.
             month: Hijri month.
             day: Hijri day.
@@ -121,7 +120,7 @@ class Hijri:
         """Return date in ISO format i.e. ``YYYY-MM-DD``."""
         return f"{self._year:04}-{self._month:02}-{self._day:02}"
 
-    def dmyformat(self, separator: str = "/", padding: bool = True) -> str:
+    def dmyformat(self, separator: str = "/", *, padding: bool = True) -> str:
         """Return date in day-month-year format (``DD/MM/YYYY`` by default).
 
         Args:
