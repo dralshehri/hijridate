@@ -75,15 +75,15 @@ class EnglishLocale(Locale):
     month_names = (
         "Muharram",
         "Safar",
-        "Rabi’ al-Awwal",
-        "Rabi’ al-Thani",
+        "Rabi' al-Awwal",
+        "Rabi' al-Thani",
         "Jumada al-Ula",
         "Jumada al-Akhirah",
         "Rajab",
-        "Sha’ban",
-        "Ramadhan",
+        "Sha'ban",
+        "Ramadan",
         "Shawwal",
-        "Dhu al-Qi’dah",
+        "Dhu al-Qa'dah",
         "Dhu al-Hijjah",
     )
     gregorian_month_names = (
