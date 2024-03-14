@@ -137,15 +137,13 @@ class Hijri:
         """Return number of days in year."""
         month_starts = ummalqura.MONTH_STARTS
         first_index, last_index = self._year_indexes()
-        length = month_starts[last_index + 1] - month_starts[first_index]
-        return length
+        return month_starts[last_index + 1] - month_starts[first_index]
 
     def month_length(self) -> int:
         """Return number of days in month."""
         month_starts = ummalqura.MONTH_STARTS
         index = self._month_index()
-        length = month_starts[index + 1] - month_starts[index]
-        return length
+        return month_starts[index + 1] - month_starts[index]
 
     def month_name(self, language: locales.Language = "en") -> str:
         """Return month name.
@@ -190,8 +188,7 @@ class Hijri:
         month_starts = ummalqura.MONTH_STARTS
         index = self._month_index()
         rjd = month_starts[index] + self._day - 1
-        jdn = helpers.rjd_to_jdn(rjd)
-        return jdn
+        return helpers.rjd_to_jdn(rjd)
 
     def to_gregorian(self) -> "Gregorian":
         """Return Gregorian object for the corresponding Hijri date."""
@@ -232,8 +229,7 @@ class Hijri:
     def _month_index(self) -> int:
         """Return month’s index in ummalqura month starts"""
         prior_months = ((self.year - 1) * 12) + self.month - 1
-        index = prior_months - ummalqura.HIJRI_OFFSET
-        return index
+        return prior_months - ummalqura.HIJRI_OFFSET
 
 
 class Gregorian(datetime.date):
@@ -302,8 +298,7 @@ class Gregorian(datetime.date):
     def to_julian(self) -> int:
         """Return corresponding Julian day number (JDN)."""
         ordinal = self.toordinal()
-        jdn = helpers.ordinal_to_jdn(ordinal)
-        return jdn
+        return helpers.ordinal_to_jdn(ordinal)
 
     def to_hijri(self) -> Hijri:
         """Return Hijri object for the corresponding Gregorian date.
