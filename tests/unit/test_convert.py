@@ -118,8 +118,8 @@ class TestHijri:
         year, month, day = test_input
         try:
             Hijri(year, month, day, validate=False)._check_date()
-        except (ValueError, OverflowError):
-            pytest.fail("date is invalid")
+        except (ValueError, OverflowError) as e:
+            pytest.fail(f"Unexpected exception raised: {e}")
 
     @pytest.mark.parametrize(
         ("test_input", "expected"),
@@ -202,8 +202,8 @@ class TestGregorian:
         year, month, day = test_input
         try:
             Gregorian(year, month, day)._check_range()
-        except OverflowError:
-            pytest.fail("date is invalid")
+        except OverflowError as e:
+            pytest.fail(f"Unexpected exception raised: {e}")
 
     @pytest.mark.parametrize(
         ("test_input", "expected"),
