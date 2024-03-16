@@ -9,26 +9,25 @@ from hijridate import helpers, locales, ummalqura
 
 
 class Hijri:
-    """A Hijri object represents a date in lunar Hijri calendar."""
+    """A Hijri object represents a date in lunar Hijri calendar.
+
+    Args:
+        year: Hijri year.
+        month: Hijri month.
+        day: Hijri day.
+        validate: Whether to validate Hijri input or not. It's recommended
+            to keep the default for accurate conversion.
+
+    Raises:
+        OverflowError: When ``year`` is out of supported Hijri range.
+        ValueError: When ``month`` is not within the range of `1-12`.
+        ValueError: When ``day`` is not within the range of
+            `1-month_length` for month.
+    """
 
     __slots__ = "_year", "_month", "_day"
 
     def __init__(self, year: int, month: int, day: int, *, validate: bool = True):
-        """Construct Hijri object from Hijri date (year, month, day).
-
-        Args:
-            year: Hijri year.
-            month: Hijri month.
-            day: Hijri day.
-            validate: Whether to validate Hijri input or not. It's recommended
-                to keep the default for accurate conversion.
-
-        Raises:
-            OverflowError: When ``year`` is out of supported Hijri range.
-            ValueError: When ``month`` is not within the range of `1-12`.
-            ValueError: When ``day`` is not within the range of
-                `1-month_length` for month.
-        """
         self._year = year
         self._month = month
         self._day = day
@@ -218,7 +217,13 @@ class Hijri:
 
 
 class Gregorian(datetime.date):
-    """A Gregorian object represents a date in Gregorian calendar."""
+    """A Gregorian object represents a date in Gregorian calendar.
+
+    Args:
+        year: Gregorian year.
+        month: Gregorian month.
+        day: Gregorian day.
+    """
 
     __slots__ = ()
 

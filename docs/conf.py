@@ -65,7 +65,7 @@ autodoc_default_options = {
     "undoc-members": False,
     "show-inheritance": True,
 }
-autoclass_content = "both"
+autoclass_content = "class"
 autodoc_typehints = "description"
 
 #

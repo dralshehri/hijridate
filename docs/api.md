@@ -1,7 +1,6 @@
 # API Reference
 
-This page contains auto-generated API reference documentation for the main
-classes of **HijriDate** package.
+This page contains auto-generated API reference documentation for the main classes of **HijriDate** package.
 
 ```{eval-rst}
 .. currentmodule:: hijridate.convert
@@ -11,8 +10,7 @@ classes of **HijriDate** package.
 
 ---
 
-The following are the supported ranges by the Umm al-Qura calendar (defined at
-`hijridate.ummalqura` module):
+The following are the supported ranges by the Umm al-Qura calendar (defined at `hijridate.ummalqura` module):
 
 ```{eval-rst}
 .. autodata:: hijridate.ummalqura.HIJRI_RANGE
