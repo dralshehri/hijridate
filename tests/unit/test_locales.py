@@ -6,11 +6,11 @@ from hijridate import locales
 
 
 @pytest.fixture(scope="class")
-def all_locales(request):
+def _all_locales(request):
     request.cls.locales = locales._locale_map
 
 
-@pytest.mark.usefixtures("all_locales")
+@pytest.mark.usefixtures("_all_locales")
 class TestLocalesValidity:
     locales = None
 

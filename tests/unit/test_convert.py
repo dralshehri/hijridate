@@ -19,100 +19,103 @@ def test_importing_at_init_module():
 
 
 @pytest.fixture(scope="class")
-def hijri_obj(request):
-    request.cls.hijri_obj = Hijri(1410, 8, 13)
+def _hijri_date(request):
+    request.cls.hijri_date = Hijri(1410, 8, 13)
 
 
-@pytest.mark.usefixtures("hijri_obj")
+@pytest.mark.usefixtures("_hijri_date")
 class TestHijri:
-    def test_representation(self, hijri_obj):
-        assert self.hijri_obj.__repr__() == "Hijri(1410, 8, 13)"
+    hijri_date = None
 
-    def test_string_representation(self, hijri_obj):
-        assert self.hijri_obj.__str__() == "1410-08-13"
+    def test_representation(self):
+        assert self.hijri_date.__repr__() == "Hijri(1410, 8, 13)"
 
-    def test_hash(self, hijri_obj):
-        assert self.hijri_obj.__hash__() == hash(("Hijri", 1410, 8, 13))
+    def test_string_representation(self):
+        assert self.hijri_date.__str__() == "1410-08-13"
+
+    def test_hash(self):
+        assert self.hijri_date.__hash__() == hash(("Hijri", 1410, 8, 13))
 
     @pytest.mark.parametrize("test_input", ["__gt__", "__ge__", "__lt__", "__le__"])
-    def test_comparison_notimplemented(self, hijri_obj, test_input):
-        assert getattr(self.hijri_obj, test_input)("1410-08-13") == NotImplemented
+    def test_comparison_notimplemented(self, test_input):
+        assert getattr(self.hijri_date, test_input)("1410-08-13") == NotImplemented
 
-    def test_equality(self, hijri_obj):
-        assert self.hijri_obj == Hijri(1410, 8, 13)
-        assert self.hijri_obj != Hijri(1410, 8, 14)
-        assert self.hijri_obj != "1410-08-13"
+    def test_equality(self):
+        assert self.hijri_date == Hijri(1410, 8, 13)
+        assert self.hijri_date != Hijri(1410, 8, 14)
+        assert self.hijri_date != "1410-08-13"
 
-    def test_ordering(self, hijri_obj):
-        assert self.hijri_obj > Hijri(1410, 8, 12)
-        assert self.hijri_obj >= Hijri(1410, 8, 13)
-        assert self.hijri_obj < Hijri(1410, 8, 14)
-        assert self.hijri_obj <= Hijri(1410, 8, 13)
+    def test_ordering(self):
+        assert self.hijri_date > Hijri(1410, 8, 12)
+        assert self.hijri_date >= Hijri(1410, 8, 13)
+        assert self.hijri_date < Hijri(1410, 8, 14)
+        assert self.hijri_date <= Hijri(1410, 8, 13)
 
-    def test_fromisoformat(self, hijri_obj):
-        assert Hijri.fromisoformat("1410-08-13") == self.hijri_obj
+    def test_fromisoformat(self):
+        assert Hijri.fromisoformat("1410-08-13") == self.hijri_date
 
     def test_today(self):
         assert Hijri.today().to_gregorian() == Gregorian.today()
 
-    def test_year(self, hijri_obj):
-        assert self.hijri_obj.year == 1410
+    def test_year(self):
+        assert self.hijri_date.year == 1410
 
-    def test_month(self, hijri_obj):
-        assert self.hijri_obj.month == 8
+    def test_month(self):
+        assert self.hijri_date.month == 8
 
-    def test_day(self, hijri_obj):
-        assert self.hijri_obj.day == 13
+    def test_day(self):
+        assert self.hijri_date.day == 13
 
-    def test_datetuple(self, hijri_obj):
-        assert self.hijri_obj.datetuple() == (1410, 8, 13)
+    def test_datetuple(self):
+        assert self.hijri_date.datetuple() == (1410, 8, 13)
 
-    def test_isoformat(self, hijri_obj):
-        assert self.hijri_obj.isoformat() == "1410-08-13"
+    def test_isoformat(self):
+        assert self.hijri_date.isoformat() == "1410-08-13"
 
-    def test_dmyformat(self, hijri_obj):
-        assert self.hijri_obj.dmyformat() == "13/08/1410"
-        assert self.hijri_obj.dmyformat(padding=False) == "13/8/1410"
-        assert self.hijri_obj.dmyformat(separator=".") == "13.08.1410"
+    def test_dmyformat(self):
+        assert self.hijri_date.dmyformat() == "13/08/1410"
+        assert self.hijri_date.dmyformat(padding=False) == "13/8/1410"
+        assert self.hijri_date.dmyformat(separator=".") == "13.08.1410"
 
-    def test_year_length(self, hijri_obj):
-        assert self.hijri_obj.year_length() == 355
+    def test_year_length(self):
+        assert self.hijri_date.year_length() == 355
 
-    def test_month_length(self, hijri_obj):
-        assert self.hijri_obj.month_length() == 29
+    def test_month_length(self):
+        assert self.hijri_date.month_length() == 29
 
-    def test_month_name(self, hijri_obj):
-        assert self.hijri_obj.month_name() == "Sha'ban"
-        assert self.hijri_obj.month_name("en") == "Sha'ban"
-        assert self.hijri_obj.month_name("en-US") == "Sha'ban"
+    def test_month_name(self):
+        assert self.hijri_date.month_name() == "Sha'ban"
+        assert self.hijri_date.month_name("en") == "Sha'ban"
+        assert self.hijri_date.month_name("en-US") == "Sha'ban"
 
-    def test_weekday(self, hijri_obj):
-        assert self.hijri_obj.weekday() == 5
+    def test_weekday(self):
+        assert self.hijri_date.weekday() == 5
 
-    def test_iso_weekday(self, hijri_obj):
-        assert self.hijri_obj.isoweekday() == 6
+    def test_iso_weekday(self):
+        assert self.hijri_date.isoweekday() == 6
 
-    def test_day_name(self, hijri_obj):
-        assert self.hijri_obj.day_name() == "Saturday"
-        assert self.hijri_obj.day_name("en") == "Saturday"
-        assert self.hijri_obj.day_name("en-US") == "Saturday"
+    def test_day_name(self):
+        assert self.hijri_date.day_name() == "Saturday"
+        assert self.hijri_date.day_name("en") == "Saturday"
+        assert self.hijri_date.day_name("en-US") == "Saturday"
 
-    def test_notation(self, hijri_obj):
-        assert self.hijri_obj.notation() == "AH"
-        assert self.hijri_obj.notation("en") == "AH"
-        assert self.hijri_obj.notation("en-US") == "AH"
+    def test_notation(self):
+        assert self.hijri_date.notation() == "AH"
+        assert self.hijri_date.notation("en") == "AH"
+        assert self.hijri_date.notation("en-US") == "AH"
 
-    def test_to_julian(self, hijri_obj):
-        assert self.hijri_obj.to_julian() == 2447961
+    def test_to_julian(self):
+        assert self.hijri_date.to_julian() == 2447961
 
-    def test_to_gregorian(self, hijri_obj):
-        assert self.hijri_obj.to_gregorian().datetuple() == (1990, 3, 10)
+    def test_to_gregorian(self):
+        assert self.hijri_date.to_gregorian().datetuple() == (1990, 3, 10)
 
-    def test_month_index(self, hijri_obj):
-        assert self.hijri_obj._month_index() == 811
+    def test_month_index(self):
+        assert self.hijri_date._month_index() == 811
 
     @pytest.mark.parametrize(
-        "test_input", [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)]
+        "test_input",
+        [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)],
     )
     def test_valid_date(self, test_input):
         year, month, day = test_input
@@ -156,47 +159,50 @@ class TestHijri:
 
 
 @pytest.fixture(scope="class")
-def gregorian_obj(request):
-    request.cls.gregorian_obj = Gregorian(1990, 3, 10)
+def _gregorian_date(request):
+    request.cls.gregorian_date = Gregorian(1990, 3, 10)
 
 
-@pytest.mark.usefixtures("gregorian_obj")
+@pytest.mark.usefixtures("_gregorian_date")
 class TestGregorian:
+    gregorian_date = None
+
     def test_fromdate(self):
         test_date = date(2014, 12, 28)
         assert Gregorian.fromdate(test_date).datetuple() == (2014, 12, 28)
 
-    def test_datetuple(self, gregorian_obj):
-        assert self.gregorian_obj.datetuple() == (1990, 3, 10)
+    def test_datetuple(self):
+        assert self.gregorian_date.datetuple() == (1990, 3, 10)
 
-    def test_dmyformat(self, gregorian_obj):
-        assert self.gregorian_obj.dmyformat() == "10/03/1990"
-        assert self.gregorian_obj.dmyformat(padding=False) == "10/3/1990"
-        assert self.gregorian_obj.dmyformat(separator=".") == "10.03.1990"
+    def test_dmyformat(self):
+        assert self.gregorian_date.dmyformat() == "10/03/1990"
+        assert self.gregorian_date.dmyformat(padding=False) == "10/3/1990"
+        assert self.gregorian_date.dmyformat(separator=".") == "10.03.1990"
 
-    def test_month_name(self, gregorian_obj):
-        assert self.gregorian_obj.month_name() == "March"
-        assert self.gregorian_obj.month_name("en") == "March"
-        assert self.gregorian_obj.month_name("en-US") == "March"
+    def test_month_name(self):
+        assert self.gregorian_date.month_name() == "March"
+        assert self.gregorian_date.month_name("en") == "March"
+        assert self.gregorian_date.month_name("en-US") == "March"
 
-    def test_day_name(self, gregorian_obj):
-        assert self.gregorian_obj.day_name() == "Saturday"
-        assert self.gregorian_obj.day_name("en") == "Saturday"
-        assert self.gregorian_obj.day_name("en-US") == "Saturday"
+    def test_day_name(self):
+        assert self.gregorian_date.day_name() == "Saturday"
+        assert self.gregorian_date.day_name("en") == "Saturday"
+        assert self.gregorian_date.day_name("en-US") == "Saturday"
 
-    def test_notation(self, gregorian_obj):
-        assert self.gregorian_obj.notation() == "CE"
-        assert self.gregorian_obj.notation("en") == "CE"
-        assert self.gregorian_obj.notation("en-US") == "CE"
+    def test_notation(self):
+        assert self.gregorian_date.notation() == "CE"
+        assert self.gregorian_date.notation("en") == "CE"
+        assert self.gregorian_date.notation("en-US") == "CE"
 
-    def test_to_julian(self, gregorian_obj):
-        assert self.gregorian_obj.to_julian() == 2447961
+    def test_to_julian(self):
+        assert self.gregorian_date.to_julian() == 2447961
 
-    def test_to_hijri(self, gregorian_obj):
-        assert self.gregorian_obj.to_hijri().datetuple() == (1410, 8, 13)
+    def test_to_hijri(self):
+        assert self.gregorian_date.to_hijri().datetuple() == (1410, 8, 13)
 
     @pytest.mark.parametrize(
-        "test_input", [(1990, 3, 10), (1924, 8, 1), (2077, 11, 16)]
+        "test_input",
+        [(1990, 3, 10), (1924, 8, 1), (2077, 11, 16)],
     )
     def test_valid_range(self, test_input):
         year, month, day = test_input
