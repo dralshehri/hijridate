@@ -5,4 +5,6 @@ https://github.com/dralshehri/hijridate
 
 __version__ = "2.4.1"
 
-from hijridate.convert import Gregorian, Hijri  # noqa: F401
+from hijridate.convert import Gregorian, Hijri
+
+__all__ = ["Gregorian", "Hijri"]
