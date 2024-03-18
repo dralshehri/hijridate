@@ -95,12 +95,12 @@ tests = [
     "hatch run all:cov-tests",
     "hatch run cov-report",
 ]
-checks = [
-    "hatch run quality:types",
-    "hatch run quality:format",
-    "hatch run quality:lint --fix",
+tools = [
+    "hatch run tools:type-check",
+    "hatch run tools:format",
+    "hatch run tools:lint --fix",
 ]
-docs = "hatch run docs:build"
+docs = "hatch run docs:build {args}" # add '-b man' to generate the manpage
 
 [[tool.hatch.envs.all.matrix]]
 python = [
@@ -111,16 +111,16 @@ python = [
     "3.12",
 ]
 
-[tool.hatch.envs.quality]
+[tool.hatch.envs.tools]
 dependencies = [
     "pyright",
     "ruff",
 ]
 
-[tool.hatch.envs.quality.scripts]
-types = "pyright"
+[tool.hatch.envs.tools.scripts]
+type-check = "pyright {args}"
 lint = "ruff check {args}"
-lint-all = "ruff check --select=ALL --ignore=D105,D107,ANN,COM,S,CPY,EXE,FA,INP,SLF"
+lint-all = "ruff check --select=ALL --ignore=D105,D107,ANN,COM,S,CPY,EXE,FA,INP,SLF {args}"
 format = "ruff format {args}"
 
 [tool.hatch.envs.docs]
@@ -132,7 +132,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.docs.scripts]
-build = "sphinx-build -E docs docs/_build"
+build = "sphinx-build -E {args} docs docs/_build"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
