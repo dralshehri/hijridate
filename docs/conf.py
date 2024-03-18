@@ -44,6 +44,7 @@ extensions = [
     "myst_parser",
     "notfound.extension",
     "custom_sitemap",
+    "custom_manpage",
 ]
 
 exclude_patterns = ["manpage.*"]
