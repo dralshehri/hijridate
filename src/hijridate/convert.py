@@ -220,9 +220,9 @@ class Gregorian(datetime.date):
     """A Gregorian object represents a date in Gregorian calendar.
 
     Args:
-        year: Gregorian year.
-        month: Gregorian month.
-        day: Gregorian day.
+        year (int): Gregorian year.
+        month (int): Gregorian month.
+        day (int): Gregorian day.
     """
 
     __slots__ = ()
