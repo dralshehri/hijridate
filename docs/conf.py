@@ -23,7 +23,7 @@ def get_version():
 
 
 # Add custom extensions to path
-sys.path.append(str(Path("_extensions").resolve()))
+sys.path.append(str(Path("_ext").resolve()))
 
 #
 # -- Project information ---------------------------------------------------------------

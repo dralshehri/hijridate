@@ -2,10 +2,6 @@
 
 from pathlib import Path
 
-from sphinx.util import logging
-
-logger = logging.getLogger(__name__)
-
 
 def setup(app):
     """Setup connect events to the sitemap builder."""
@@ -25,10 +21,11 @@ def add_links(app, pagename, *_):
 
 def create_sitemap(app, exception):
     """Generates the sitemap.txt from the collected pages."""
-    site_url = app.builder.config.html_baseurl.rstrip("/") + "/"
+    if app.builder.name != "html" or exception is not None or not app.sitemap_pages:
+        return
 
-    if not site_url or exception is not None or not app.sitemap_pages:
-        logger.error("error while generating sitemap")
+    site_url = app.builder.config.html_baseurl.rstrip("/") + "/"
+    if not site_url:
         return
 
     output_path = Path(app.outdir)
