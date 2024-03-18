@@ -1,4 +1,4 @@
-name: Checks
+name: Code
 
 on:
   workflow_call:
@@ -21,8 +21,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  code-quality:
-    name: Check code quality
+  analysis:
+    name: Static analysis
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -36,13 +36,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install hatch
       - name: Check typing
-        run: hatch run quality:types
+        run: hatch run tools:type-check
       - name: Check linting
-        run: hatch run quality:lint
+        run: hatch run tools:lint
       - name: Check format
-        run: hatch run quality:format --check
-  code-tests:
-    name: Test on Python ${{ matrix.python-version }}
+        run: hatch run tools:format --check
+  tests:
+    name: Python ${{ matrix.python-version }} tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -66,10 +66,10 @@ jobs:
         with:
           name: coverage-data-${{ matrix.python-version }}
           path: .coverage.*
-  code-coverage:
-    name: Check code coverage
+  coverage:
+    name: Coverage report
     runs-on: ubuntu-latest
-    needs: code-tests
+    needs: tests
     if: always()
     steps:
       - name: Checkout repository
@@ -89,7 +89,7 @@ jobs:
           merge-multiple: true
       - name: Generate coverage report
         run: hatch run cov-report
-      - name: Upload report when failed
+      - name: Upload the HTML report
         uses: actions/upload-artifact@v4
         with:
           name: html-report
