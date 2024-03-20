@@ -25,17 +25,17 @@ def load_params_from_json():
 hijri_gregorian_params, gregorian_hijri_params = load_params_from_json()
 
 
-@pytest.mark.parametrize(("test_input", "expected"), hijri_gregorian_params)
-def test_convert_hijri_to_gregorian(test_input, expected):
-    year, month, day = test_input
-    hijri = Hijri(year, month, day, validate=False)
+@pytest.mark.parametrize(("h_datetuple", "g_datetuple"), hijri_gregorian_params)
+def test_convert_hijri_to_gregorian(h_datetuple, g_datetuple):
+    year, month, day = h_datetuple
+    hijri = Hijri(year, month, day)
     converted = hijri.to_gregorian().datetuple()
-    assert converted == expected
+    assert converted == g_datetuple
 
 
-@pytest.mark.parametrize(("test_input", "expected"), gregorian_hijri_params)
-def test_convert_gregorian_to_hijri(test_input, expected):
-    year, month, day = test_input
+@pytest.mark.parametrize(("g_datetuple", "h_datetuple"), gregorian_hijri_params)
+def test_convert_gregorian_to_hijri(g_datetuple, h_datetuple):
+    year, month, day = g_datetuple
     gregorian = Gregorian(year, month, day)
     converted = gregorian.to_hijri().datetuple()
-    assert converted == expected
+    assert converted == h_datetuple

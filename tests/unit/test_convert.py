@@ -36,9 +36,9 @@ class TestHijri:
     def test_hash(self):
         assert self.hijri_date.__hash__() == hash(("Hijri", 1410, 8, 13))
 
-    @pytest.mark.parametrize("test_input", ["__gt__", "__ge__", "__lt__", "__le__"])
-    def test_comparison_notimplemented(self, test_input):
-        assert getattr(self.hijri_date, test_input)("1410-08-13") == NotImplemented
+    @pytest.mark.parametrize("attr", ["__gt__", "__ge__", "__lt__", "__le__"])
+    def test_comparison_notimplemented(self, attr):
+        assert getattr(self.hijri_date, attr)("1410-08-13") == NotImplemented
 
     def test_equality(self):
         assert self.hijri_date == Hijri(1410, 8, 13)
@@ -114,18 +114,18 @@ class TestHijri:
         assert self.hijri_date._month_index() == 811
 
     @pytest.mark.parametrize(
-        "test_input",
+        "datetuple",
         [(1410, 9, 30), (1356, 1, 1), (1500, 12, 30)],
     )
-    def test_valid_date(self, test_input):
-        year, month, day = test_input
+    def test_valid_date(self, datetuple):
+        year, month, day = datetuple
         try:
-            Hijri(year, month, day, validate=False)._check_date()
+            Hijri(year, month, day)
         except (ValueError, OverflowError) as e:
             pytest.fail(f"Unexpected exception raised: {e}")
 
     @pytest.mark.parametrize(
-        ("test_input", "expected"),
+        ("datetuple", "err_message"),
         [
             (
                 (37, 12, 30),
@@ -141,21 +141,21 @@ class TestHijri:
             ),
         ],
     )
-    def test_invalid_year(self, test_input, expected):
-        with pytest.raises(OverflowError, match=expected):
-            Hijri(*test_input, validate=False)._check_date()
+    def test_invalid_year(self, datetuple, err_message):
+        with pytest.raises(OverflowError, match=err_message):
+            Hijri(*datetuple)
 
     @pytest.mark.parametrize(
-        ("test_input", "expected"),
+        ("datetuple", "err_message"),
         [
             ((1410, 0, 1), "month must be in 1-12, got '0'"),
             ((1410, 13, 1), "month must be in 1-12, got '13'"),
             ((1410, 8, 30), "day must be in 1-29 for month, got '30'"),
         ],
     )
-    def test_invalid_day_or_month(self, test_input, expected):
-        with pytest.raises(ValueError, match=expected):
-            Hijri(*test_input, validate=False)._check_date()
+    def test_invalid_day_or_month(self, datetuple, err_message):
+        with pytest.raises(ValueError, match=err_message):
+            Hijri(*datetuple)._check_date()
 
 
 @pytest.fixture(scope="class")
@@ -201,18 +201,18 @@ class TestGregorian:
         assert self.gregorian_date.to_hijri().datetuple() == (1410, 8, 13)
 
     @pytest.mark.parametrize(
-        "test_input",
+        "datetuple",
         [(1990, 3, 10), (1924, 8, 1), (2077, 11, 16)],
     )
-    def test_valid_range(self, test_input):
-        year, month, day = test_input
+    def test_valid_range(self, datetuple):
+        year, month, day = datetuple
         try:
             Gregorian(year, month, day)._check_range()
         except OverflowError as e:
             pytest.fail(f"Unexpected exception raised: {e}")
 
     @pytest.mark.parametrize(
-        ("test_input", "expected"),
+        ("datetuple", "err_message"),
         [
             (
                 (1924, 7, 31),
@@ -224,6 +224,6 @@ class TestGregorian:
             ),
         ],
     )
-    def test_invalid_range(self, test_input, expected):
-        with pytest.raises(OverflowError, match=expected):
-            Gregorian(*test_input)._check_range()
+    def test_invalid_range(self, datetuple, err_message):
+        with pytest.raises(OverflowError, match=err_message):
+            Gregorian(*datetuple)._check_range()

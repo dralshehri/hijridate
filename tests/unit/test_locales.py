@@ -44,7 +44,7 @@ class TestGettingLocale:
         language_tag = "xx"
 
     @pytest.mark.parametrize(
-        "test_input",
+        "tag",
         [
             "xx",
             "XX",
@@ -55,8 +55,8 @@ class TestGettingLocale:
             "xx_YY.UTF-8",
         ],
     )
-    def test_locale_possible_names(self, test_input):
-        assert locales.get_locale(test_input).__class__ == self.CustomLocale
+    def test_locale_possible_names(self, tag):
+        assert locales.get_locale(tag).__class__ == self.CustomLocale
 
     def test_unsupported_language(self):
         with pytest.raises(ValueError, match="unsupported language: xy"):
