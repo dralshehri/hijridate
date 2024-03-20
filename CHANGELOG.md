@@ -4,15 +4,16 @@ The versioning scheme is compliant with the [PEP 440](https://peps.python.org/pe
 
 ## Unreleased
 
-- Added a new `year_length()` function that calculates the total number of days in a Hijri year.
-- Changed the `validate` argument for Hijri objects to be a keyword-only argument.
-- Changed the `padding` arguments for `dmyformat()` functions to be keyword-only arguments.
-- Improved exception messages to show the provided values more clearly.
+- Added a new function called `year_length()`, which calculates the total number of days in a Hijri year.
+- Changed the `validate` argument when instantiating Hijri objects to be a keyword-only argument.
+- Changed the `padding` argument for `dmyformat()` functions to be a keyword-only argument.
+- Improved exception messages to display the values provided by the user.
 - Improved type hints for supported natural languages.
-- Improved code readability and documentation for some functions.
-- Fixed some typos in English Hijri month names.
+- Improved readability and documentation of several functions.
+- Improved reliability of some tests.
+- Fixed typos in English Hijri month names.
 - Fixed miscellaneous formatting and linting issues.
-- Updated development tools, workflows and documentations.
+- Updated development tools, workflows, and documentation.
 
 ## 2.4.1 - 2023-12-09
 
