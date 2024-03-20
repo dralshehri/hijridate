@@ -2,6 +2,6 @@
 hide-toc: true
 ---
 
-```{include} ../CONTRIBUTING.md
+```{include} ../.github/CONTRIBUTING.md
 
 ```
