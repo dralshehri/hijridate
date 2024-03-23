@@ -4,27 +4,17 @@
 
 > formerly `hijri-converter`
 
-A Python package to convert accurately between Hijri and Gregorian dates using
-the Umm al-Qura calendar.
+A Python package that accurately converts between Hijri and Gregorian dates based on the Umm al-Qura calendar.
 
 <!-- end description -->
 
 <!-- start badges -->
 
-[![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijridate/release.yml?label=release)][release]
-[![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage]
-[![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijridate/main?&label=codefactor)][quality]
-[![Docs Status](https://img.shields.io/readthedocs/hijridate/stable)][docs]
-[![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads]
-[![PyPI Version](https://img.shields.io/pypi/v/hijridate)][pypi-version]
-[![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijridate)][conda-version]
-[![Package License](https://img.shields.io/github/license/dralshehri/hijridate)][license]
+[![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijridate/release.yml?label=release)][release] [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage] [![Code Quality](https://img.shields.io/codefactor/grade/github/dralshehri/hijridate/main?&label=codefactor)][quality] [![Docs Status](https://img.shields.io/readthedocs/hijridate/stable)][docs] [![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads] [![PyPI Version](https://img.shields.io/pypi/v/hijridate)][pypi-version] [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijridate)][conda-version] [![Package License](https://img.shields.io/github/license/dralshehri/hijridate)][license]
 
-[release]: https://github.com/dralshehri/hijridate/actions/workflows/release.yml
-[coverage]:
-  https://github.com/dralshehri/hijridate/actions/workflows/release.yml
-[quality]:
-  https://www.codefactor.io/repository/github/dralshehri/hijridate/overview/main
+[release]: https://github.com/dralshehri/hijridate/actions/workflows/package-release.yml
+[coverage]: https://github.com/dralshehri/hijridate/actions/workflows/release.yml
+[quality]: https://www.codefactor.io/repository/github/dralshehri/hijridate/overview/main
 [docs]: https://hijridate.readthedocs.io
 [downloads]: https://pypistats.org/packages/hijri-converter
 [pypi-version]: https://pypi.python.org/pypi/hijridate
@@ -37,12 +27,11 @@ the Umm al-Qura calendar.
 
 ## Features
 
-- Accurate and verified date conversion.
+- Accurate and verified Hijri-Gregorian date conversion.
 - Optimized code performance compared to similar packages.
 - Intuitive, clean, and easy-to-use interface.
 - Most of the methods and formats are similar to those of standard library.
-- Multilingual representation of weekday names, months, and calendar era
-  notations.
+- Multilingual representation of weekday names, months, and calendar era notations.
 - Easily extendable to support other natural languages.
 - Rich comparison between dates.
 - Validation of input dates.
@@ -51,11 +40,8 @@ the Umm al-Qura calendar.
 
 ## Limitations
 
-- The date range supported by converter is limited to the period from the
-  beginning of 1343 AH (1 August 1924 CE) to the end of 1500 AH (16 November
-  2077 CE).
-- The conversion is not intended for religious purposes where sighting of the
-  lunar crescent at the beginning of Hijri month is still preferred.
+- The date range supported by converter is limited to the period from the beginning of 1343 AH (1 August 1924 CE) to the end of 1500 AH (16 November 2077 CE).
+- The conversion is not intended for religious purposes where sighting of the lunar crescent at the beginning of Hijri month is still preferred.
 
 ## Installation
 
@@ -87,8 +73,11 @@ h = Gregorian(1982, 12, 2).to_hijri()
 
 ## Documentation
 
-Please see <https://hijridate.readthedocs.io> for full documentation of this
-package, including background, benchmarking, usage examples and API reference.
+Please refer to <https://hijridate.readthedocs.io> for complete documentation on this package, which includes background information, benchmarking, usage examples, and API reference.
+
+## Contributing
+
+If you're interested in contributing, please check out the [Contributing](https://github.com/dralshehri/hijridate/blob/main/.github/CONTRIBUTING.md) guideline for more information on how you can help!
 
 ## License
 
@@ -96,7 +85,5 @@ This project is licensed under the terms of the MIT license.
 
 ## Acknowledgements
 
-- [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) &mdash; inspiration,
-  scientific guidance and resources.
-- [@AZalshehri7](https://github.com/AZalshehri7) &mdash; support in dates review
-  and conversion accuracy verification.
+- [R.H. van Gent](http://www.staff.science.uu.nl/~gent0113) &mdash; inspiration, scientific guidance and resources.
+- [@AZalshehri7](https://github.com/AZalshehri7) &mdash; support in dates review and conversion accuracy verification.
