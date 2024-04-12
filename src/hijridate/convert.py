@@ -1,4 +1,4 @@
-"""Main module of the hijridate package."""
+"""Main module of the HijriDate package."""
 
 import datetime
 

@@ -8,7 +8,7 @@ Similar Python converters have been mainly derived from or using the [ummalqura]
 
 In contrast, the **HijriDate** package was written in Python from scratch. Although it was inspired by R.H. van Gent's work, it is based on multiple official sources including archived issues of Umm al-Qura newspaper published weekly since 1343 AH, one that is in complete alignment with the official printed Umm al-Qura calendar. Other sources were also used to build the package including the Comparison Calendar prepared by KFUPM for the years 1356-1411 AH, the Umm al-Qura Comparative Calendar (Taqwīm Umm al-Qurá al-muqāran) books for the years 1412-1450 AH, and the official website of Umm al-Qura calendar for the years 1451-1500 AH. That makes the **HijriDate** package more accurate and broader in terms of years included, 1343-1500 AH.
 
-When it comes to performance, using **hijridate** package to convert from Hijri to Gregorian and back is about nine times faster (or six times faster, with Hijri date validation enabled) than that when _ummalqura_ package was used.
+When it comes to performance, using the **HijriDate** package to convert from Hijri to Gregorian and back is about nine times faster (or six times faster, with Hijri date validation enabled) than that when _ummalqura_ package was used.
 
 ```shell
 # HijriDate, without Hijri date validation
@@ -46,7 +46,7 @@ _ummalqura_ package but can produce wrong dates when used.
 
 <!-- prettier-ignore -->
 [^p]: Although not recommended for production, Hijri date validation was
-disabled in **hijridate** package; to be comparable with _ummalqura_
+disabled in **HijriDate** package; to be comparable with _ummalqura_
 package.
 
 [ummalqura]: https://pypi.org/project/ummalqura/
