@@ -7,7 +7,7 @@ name = "hijridate"
 authors = [
     { name = "Mohammed Alshehri", email = "" },
 ]
-license = "MIT"
+license = { text = "MIT License" }
 requires-python = ">=3.8"
 description = "Accurate Hijri-Gregorian dates converter based on the Umm al-Qura calendar"
 keywords = [
