@@ -54,7 +54,7 @@ Changelog = "https://github.com/dralshehri/hijridate/blob/main/CHANGELOG.md"
 Source = "https://github.com/dralshehri/hijridate"
 
 [tool.hatch.version]
-path = "src/hijridate/__init__.py"
+path = "src/hijridate/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/hijridate"]

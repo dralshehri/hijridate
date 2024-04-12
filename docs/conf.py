@@ -17,7 +17,7 @@ sys.path.append(str(package_path.parent))
 
 def get_version():
     """Return the current version of the package."""
-    content = package_path.joinpath("__init__.py").read_text()
+    content = package_path.joinpath("_version.py").read_text()
     pattern = re.compile(r"(?<=__version__\s=\s\").*(?=\")")
     return pattern.search(content).group()
 

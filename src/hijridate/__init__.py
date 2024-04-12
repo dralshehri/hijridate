@@ -3,8 +3,7 @@
 https://github.com/dralshehri/hijridate
 """
 
-__version__ = "2.4.1"
-
+from hijridate._version import __version__
 from hijridate.convert import Gregorian, Hijri
 
-__all__ = ["Gregorian", "Hijri"]
+__all__ = ["__version__", "Gregorian", "Hijri"]
