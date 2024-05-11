@@ -14,6 +14,12 @@ hide-toc: true
 :end-before: <!-- end summary -->
 ```
 
+```{include} ../README.md
+:start-after: <!-- start attrs -->
+```
+
+---
+
 ```{toctree}
 :caption: Documentation
 :maxdepth: 1

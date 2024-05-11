@@ -1,6 +1,6 @@
 # Contributing
 
-We value and appreciate all contributions to this project, whether they are simple questions or full-fledged pull requests..
+We value and appreciate all contributions to this project, whether they are simple questions or full-fledged pull requests.
 
 Your contribution may fall into one of the following categories:
 

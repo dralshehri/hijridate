@@ -2,6 +2,9 @@
 hide-toc: true
 ---
 
-```{include} ../.github/CONTRIBUTING.md
+# Contributing
+
+```{include} ../CONTRIBUTING.md
+:start-after: "# Contributing"
 
 ```
