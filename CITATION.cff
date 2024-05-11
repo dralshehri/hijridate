@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: 'If you use this software, please cite it using the metadata from this file.'
+type: software
+title: 'HijriDate: A Python package for Hijri-Gregorian date conversion'
+authors:
+  - given-names: Mohammed H
+    family-names: Alshehri
+    orcid: 'https://orcid.org/0000-0001-5852-3363'
+abstract: >-
+  HijriDate is a Python package for converting between Hijri and Gregorian dates using
+  the Umm al-Qura calendar. The package has been thoroughly verified and tested against
+  original references to ensure its accuracy and reliability. It has an intuitive
+  design, allows rich comparison and basic formatting of Hijri dates, and is optimized
+  for performance.
+keywords:
+  - hijri
+  - gregorian
+  - ummalqura
+  - ummulqura
+  - calendar
+  - date
+  - converter
+  - conversion
+version: 2.4.1
+date-released: 2023-12-09
+license: MIT
+doi: 10.5281/zenodo.11200950
+repository-code: 'https://github.com/dralshehri/hijridate'
