@@ -119,10 +119,7 @@ class TestHijri:
     )
     def test_valid_date(self, datetuple):
         year, month, day = datetuple
-        try:
-            Hijri(year, month, day)
-        except (ValueError, OverflowError) as e:
-            pytest.fail(f"Unexpected exception raised: {e}")
+        Hijri(year, month, day, validate=True)
 
     @pytest.mark.parametrize(
         ("datetuple", "err_message"),
@@ -143,7 +140,7 @@ class TestHijri:
     )
     def test_invalid_year(self, datetuple, err_message):
         with pytest.raises(OverflowError, match=err_message):
-            Hijri(*datetuple)
+            Hijri(*datetuple, validate=True)
 
     @pytest.mark.parametrize(
         ("datetuple", "err_message"),
@@ -155,7 +152,7 @@ class TestHijri:
     )
     def test_invalid_day_or_month(self, datetuple, err_message):
         with pytest.raises(ValueError, match=err_message):
-            Hijri(*datetuple)._check_date()
+            Hijri(*datetuple, validate=True)
 
 
 @pytest.fixture(scope="class")
@@ -206,10 +203,7 @@ class TestGregorian:
     )
     def test_valid_range(self, datetuple):
         year, month, day = datetuple
-        try:
-            Gregorian(year, month, day)._check_range()
-        except OverflowError as e:
-            pytest.fail(f"Unexpected exception raised: {e}")
+        Gregorian(year, month, day)._check_range()
 
     @pytest.mark.parametrize(
         ("datetuple", "err_message"),
