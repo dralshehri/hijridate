@@ -4,12 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hijridate"
-authors = [
-    { name = "Mohammed Alshehri", email = "" },
-]
-license = { text = "MIT License" }
-requires-python = ">=3.8"
+authors = [{ name = "Mohammed Alshehri", email = "" }]
 description = "Accurate Hijri-Gregorian dates converter based on Umm al-Qura calendar"
+dynamic = ["readme", "version"]
+requires-python = ">=3.8"
+license = { text = "MIT License" }
 keywords = [
     "hijri",
     "gregorian",
@@ -44,15 +43,11 @@ classifiers = [
     "Topic :: Utilities",
     "Typing :: Typed",
 ]
-dynamic = [
-    "version",
-    "readme",
-]
 
 [project.urls]
-Documentation = "https://hijridate.readthedocs.io"
-Changelog = "https://github.com/dralshehri/hijridate/blob/main/CHANGELOG.md"
 Source = "https://github.com/dralshehri/hijridate"
+Changelog = "https://github.com/dralshehri/hijridate/blob/main/CHANGELOG.md"
+Documentation = "https://hijridate.readthedocs.io"
 
 [tool.hatch.version]
 path = "src/hijridate/_version.py"
@@ -70,61 +65,69 @@ include = [
 
 [tool.hatch.metadata.hooks.fancy-pypi-readme]
 content-type = "text/markdown"
-fragments = [
-    { path = "README.md" },
-]
+fragments = [{ path = "README.md" }]
 substitutions = [
     { pattern = "<!-- start badges -->[\\S\\s]+<!-- end badges -->\n+", replacement = "" },
     { pattern = "<!--[\\s\\w]+-->\n+", replacement = "" },
 ]
 
 [tool.hatch.envs.default]
+path = ".venv"
+installer = "uv"
 dependencies = [
     "pytest",
     "coverage",
 ]
 
 [tool.hatch.envs.default.scripts]
-cov-tests = "coverage run -m pytest tests"
+test = "pytest {args}"
+test-cov = "coverage run -m pytest {args}"
 cov-report = [
-    # leading hyphen is to ignore the exit code
-    "- coverage combine",
-    "- coverage report",
-    "coverage html",
+    "- coverage combine", # leading hyphen is to ignore the exit code
+    "coverage report {args}",
 ]
-tests = [
-    "hatch run all:cov-tests",
-    "hatch run cov-report",
+checks = [
+    "hatch run style:fix",
+    "hatch run types:check",
+    "test-cov",
+    "cov-report",
 ]
-tools = [
-    "hatch run tools:type-check",
-    "hatch run tools:format",
-    "hatch run tools:lint --fix",
-]
-docs = "hatch run docs:build {args}" # add '-b man' to generate the manpage
 
 [[tool.hatch.envs.all.matrix]]
 python = [
-    "3.8",
-    "3.9",
-    "3.10",
-    "3.11",
     "3.12",
+    "3.11",
+    "3.10",
+    "3.9",
+    "3.8",
 ]
 
-[tool.hatch.envs.tools]
-dependencies = [
-    "pyright",
-    "ruff",
-]
+[tool.hatch.envs.types]
+detached = true
+installer = "uv"
+dependencies = ["mypy"]
 
-[tool.hatch.envs.tools.scripts]
-type-check = "pyright {args}"
-lint = "ruff check {args}"
-lint-all = "ruff check --select=ALL --ignore=D105,D107,ANN,COM,S,CPY,EXE,FA,INP,SLF {args}"
-format = "ruff format {args}"
+[tool.hatch.envs.types.scripts]
+check = "mypy {args}"
+
+[tool.hatch.envs.style]
+detached = true
+installer = "uv"
+dependencies = ["ruff"]
+
+[tool.hatch.envs.style.scripts]
+fix = [
+    "ruff format {args}",
+    "ruff check --fix {args}",
+]
+check = [
+    "ruff format --check {args}",
+    "ruff check {args}",
+]
 
 [tool.hatch.envs.docs]
+detached = true
+installer = "uv"
 dependencies = [
     "sphinx",
     "sphinx-notfound-page",
@@ -134,9 +137,10 @@ dependencies = [
 
 [tool.hatch.envs.docs.scripts]
 build = "sphinx-build -E {args} docs docs/_build"
+build-man = "sphinx-build -E -b man docs docs/_build"
 
 [tool.pytest.ini_options]
-minversion = "7.0"
+testpaths = ['tests']
 addopts = [
     "-ra",
     "-q",
@@ -145,12 +149,12 @@ addopts = [
     "--strict-markers",
     "--strict-config",
 ]
-testpaths = ["tests/unit"]
 
 [tool.coverage.run]
-source_pkgs = ["hijridate"]
+source_pkgs = ["hijridate", "tests"]
 branch = true
 parallel = true
+omit = ["src/hijridate/_version.py"]
 
 [tool.coverage.paths]
 source = ["src"]
@@ -159,16 +163,22 @@ source = ["src"]
 fail_under = 100
 show_missing = true
 
-[tool.pyright]
-include = ["src"]
-pythonVersion = "3.8"
-pythonPlatform = "All"
-typeCheckingMode = "strict"
+[tool.mypy]
+python_version = "3.8"
+files = ["src/hijridate"]
+strict = true
 
 [tool.ruff]
 line-length = 88
 indent-width = 4
 src = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true
+docstring-code-line-length = 72
 
 [tool.ruff.lint]
 select = [
@@ -194,8 +204,6 @@ ignore = [
     "D105", # undocumented-magic-method, not required
     "D107", # undocumented-public-init, not required
 ]
-
-ignore-init-module-imports = true
 pydocstyle = { convention = "google" }
 isort = { combine-as-imports = true, lines-between-types = 1 }
 
@@ -204,10 +212,3 @@ isort = { combine-as-imports = true, lines-between-types = 1 }
     "D10", # Missing docstrings
     "PLR2004", # Magic value used in comparison
 ]
-
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-line-ending = "lf"
-docstring-code-format = true
-docstring-code-line-length = 72
