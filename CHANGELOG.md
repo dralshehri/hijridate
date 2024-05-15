@@ -13,6 +13,7 @@ The versioning scheme is compliant with the [PEP 440](https://peps.python.org/pe
 - Improved reliability of some tests.
 - Fixed typos in English Hijri month names.
 - Fixed miscellaneous formatting and linting issues.
+- Published the package on [Zenodo](https://zenodo.org/records/11200950) to become citable by researchers.
 - Updated development tools, workflows, and documentation.
 
 ## 2.4.1 - 2023-12-09
