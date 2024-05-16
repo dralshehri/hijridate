@@ -1,0 +1,118 @@
+name: Zenodo Upload
+run-name: Upload ${{ github.event.workflow_run.head_branch }} to Zenodo
+
+on:
+  workflow_run:
+    workflows:
+      - PyPI Release
+    types:
+      - completed
+
+jobs:
+  upload:
+    name: Zenodo upload
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    env:
+      AUTH: 'Authorization: Bearer ${{ secrets.ZENODO_ACCESS_TOKEN }}'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ github.event.workflow_run.head_repository.name }}-dist
+          path: 'dist'
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.workflow_run.head_repository.name }}-dist
+          path: 'dist'
+
+      - name: Get latest deposition
+        id: latest_depo
+        env:
+          # todo: update API_URL in production
+          API_URL: 'https://sandbox.zenodo.org/api/deposit/depositions'
+        run: |
+          id=$(yq '.doi' CITATION.cff | awk -F'zenodo.' '{print $2}')
+          res=$(curl -sSf -G -H "$AUTH" -d "q=conceptrecid:$id" $API_URL)
+          published=$(echo "$res" | jq -r '.[0]?.submitted?')
+          [[ published == false ]] && { echo "$res" | jq && exit 1; }
+          echo "new_url=$(echo "$res" | jq -r '.[0].links.newversion')" >> $GITHUB_OUTPUT
+
+      - name: Create a new version
+        id: new_version
+        env:
+          API_URL: ${{ steps.latest_depo.outputs.new_url }}
+        run: |
+          res=$(curl -sSf -X POST -H "$AUTH" $API_URL)
+          echo "metadata=$(echo "$res" | jq -c '{metadata: .metadata}')" >> $GITHUB_OUTPUT
+          echo "files=$(echo "$res" | jq -c '[{self: .files[].links.self}]')" >> $GITHUB_OUTPUT
+          echo "self_url=$(echo "$res" | jq -r '.links.self')" >> $GITHUB_OUTPUT
+          echo "files_url=$(echo "$res" | jq -r '.links.files')" >> $GITHUB_OUTPUT
+          echo "publish_url=$(echo "$res" | jq -r '.links.publish')" >> $GITHUB_OUTPUT
+          echo "discard_url=$(echo "$res" | jq -r '.links.discard')" >> $GITHUB_OUTPUT
+
+      - name: Update metadata content
+        env:
+          API_URL: ${{ steps.new_version.outputs.self_url }}
+          CONTENT: 'Content-Type: application/json'
+          METADATA: ${{ steps.new_version.outputs.metadata }}
+        run: |
+          update=$(yq -o=json '.' CITATION.cff | jq -c '{
+            title: .title,
+            creators: [.authors[] | {
+              name: (."family-names" + ", " + ."given-names"),
+              orcid: .orcid
+            }],
+            description: .abstract,
+            keywords: .keywords,
+            version: .version,
+            publication_date: ."date-released",
+            license: {id: .license},
+            custom: {"code:codeRepository": ."repository-code"}
+          }')
+          data=$(
+            echo "$METADATA" |
+            jq --argjson update "$update" -c '{metadata: .metadata} | .metadata += $update'
+          )
+          curl -sSf -X PUT -H "$AUTH" -H "$CONTENT" -d "$data" $API_URL -o /dev/null
+
+      - name: Delete existing files
+        env:
+          FILES: ${{ steps.new_version.outputs.files }}
+        run: |
+          echo "$FILES" | jq -r '.[].self' | while read -r self; do
+            curl -sSf -X DELETE -H "$AUTH" $self -o /dev/null
+          done
+
+      - name: Upload build files
+        env:
+          API_URL: ${{ steps.new_version.outputs.files_url }}
+        run: |
+          find ./dist -maxdepth 1 -type f | while read -r file; do
+            curl -sSf -X POST -H "$AUTH" -F "file=@$file" $API_URL -o /dev/null
+          done
+
+      - name: Publish new version
+        env:
+          API_URL: ${{ steps.new_version.outputs.publish_url }}
+        run: |
+          res=$(curl -sSf -X POST -H "$AUTH" $API_URL)
+          echo "$res" | jq 'del(.. | .links?)'
+          echo "$(echo "$res" | jq -r '.doi_url')" >> $GITHUB_STEP_SUMMARY
+
+      - name: Discard created version
+        if: ${{ failure() && steps.new_version.conclusion == 'success' }}
+        env:
+          API_URL: ${{ steps.new_version.outputs.discard_url }}
+        run: |
+          curl -sSf -X POST -H "$AUTH" $API_URL -o /dev/null

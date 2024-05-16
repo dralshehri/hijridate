@@ -1,4 +1,5 @@
 name: Draft Preparation
+run-name: Draft ${{ github.ref_name }} on GitHub
 
 on:
   push:
@@ -13,25 +14,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Get release info
+      - name: Get release information
+        env:
+          COMMIT_TIMESTAMP: ${{ github.event.head_commit.timestamp }}
         run: |
           echo "GIT_VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
           echo "PY_VERSION=$(grep '__version__' $(find src -name '_version.py') | awk -F '"' '{print $2}')" >> $GITHUB_ENV
           echo "MD_VERSION=$(grep -m 1 '##' CHANGELOG.md | awk -F ' ' '{print $2}')" >> $GITHUB_ENV
-          echo "GIT_DATE=$(git show -s --format=%cs $GITHUB_REF_NAME)" >> $GITHUB_ENV
+          echo "CF_VERSION=$(grep '^version' CITATION.cff | awk '{print $2}')" >> $GITHUB_ENV
+          echo "GIT_DATE=${COMMIT_TIMESTAMP%T*}" >> $GITHUB_ENV
           echo "MD_DATE=$(grep -m 1 '##' CHANGELOG.md | awk -F ' - ' '{print $2}')" >> $GITHUB_ENV
+          echo "CF_DATE=$(grep 'date-released' CITATION.cff | awk '{print $2}')" >> $GITHUB_ENV
 
-      - name: Validate git and py versions
+      - name: Validate release version
+        if: ${{ !cancelled() }}
         run: |
-          [[ "$GIT_VERSION" == "$PY_VERSION" ]] || exit 1
+          {
+            [[ "$GIT_VERSION" == "$PY_VERSION" ]] &&
+            [[ "$GIT_VERSION" == "$MD_VERSION" ]] &&
+            [[ "$GIT_VERSION" == "$CF_VERSION" ]]
+          } || exit 1
 
-      - name: Validate git and md versions
+      - name: Validate release date
+        if: ${{ !cancelled() }}
         run: |
-          [[ "$GIT_VERSION" == "$MD_VERSION" ]] || exit 1
-
-      - name: Validate git and md dates
-        run: |
-          [[ "$GIT_DATE" == "$MD_DATE" ]] || exit 1
+          {
+            [[ "$GIT_DATE" == "$MD_DATE" ]] &&
+            [[ "$GIT_DATE" == "$CF_DATE" ]]
+          } || exit 1
 
   draft:
     name: Draft preparation
@@ -43,7 +53,7 @@ jobs:
 
       - name: Prepare release title
         run: |
-          echo "RELEASE_TITLE=$(grep -m 1 '^# ' README.md | cut -c3-) ${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+          echo "RELEASE_TITLE=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
 
       - name: Prepare release content
         run: |
@@ -54,8 +64,8 @@ jobs:
             sed '1,2d;$d' |
             sed '1i ## What'\''s Changed\n' |
             sed -r 's/\[([^\[]+)\]\(([^)]*github.com[^)]+)\)/\1/g'
-            echo EOF
-          } >> "$GITHUB_ENV"
+            echo 'EOF'
+          } >> $GITHUB_ENV
 
       - name: Create draft release
         uses: actions/github-script@v7
@@ -69,7 +79,7 @@ jobs:
                 name: process.env.RELEASE_TITLE,
                 body: process.env.RELEASE_CONTENT,
                 draft: true,
-              });
+              })
             } catch (error) {
-              core.setFailed(error.message);
+              core.setFailed(error.message)
             }
