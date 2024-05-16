@@ -12,13 +12,13 @@ HijriDate is a Python package for converting between Hijri and Gregorian dates u
 
 [![Release Status](https://img.shields.io/github/actions/workflow/status/dralshehri/hijridate/package-release.yml?label=release)][release] [![Coverage Status](https://img.shields.io/badge/coverage-100%25-success)][coverage] [![PyPI Downloads](https://img.shields.io/pypi/dm/hijri-converter?color=blue)][downloads] [![PyPI Version](https://img.shields.io/pypi/v/hijridate)][pypi-version] [![Conda Version](https://img.shields.io/conda/vn/conda-forge/hijridate)][conda-version] [![Package License](https://img.shields.io/github/license/dralshehri/hijridate)][license] [![Package DOI](https://img.shields.io/badge/doi-10.5281%2Fzenodo.11200950-blue) ][doi]
 
-[release]: https://github.com/dralshehri/hijridate/actions/workflows/package-release.yml
-[coverage]: https://github.com/dralshehri/hijridate/actions/workflows/package-release.yml
+[release]: https://github.com/dralshehri/hijridate/actions/workflows/pypi-release.yml
+[coverage]: https://github.com/dralshehri/hijridate/actions/workflows/pypi-release.yml
 [downloads]: https://pypistats.org/packages/hijri-converter
 [pypi-version]: https://pypi.python.org/pypi/hijridate
 [conda-version]: https://anaconda.org/conda-forge/hijridate
 [license]: https://github.com/dralshehri/hijridate/blob/main/LICENSE
-[doi]: https://doi.org/10.5281/zenodo.11179109
+[doi]: https://doi.org/10.5281/zenodo.11200950
 
 <!-- end badges -->
 
