@@ -57,14 +57,10 @@ jobs:
       - name: Publish build distributions
         id: pypi
         uses: pypa/gh-action-pypi-publish@release/v1
-        # todo: remove 'with' from production
-        with:
-          repository-url: https://test.pypi.org/legacy/
 
       - name: Output new version URL
-        # todo: replace 'test.pypi.org' with 'pypi.org' in production
         run: |
-          url="https://test.pypi.org/project/${GITHUB_REPOSITORY#*/}/${GITHUB_REF_NAME#v}/"
+          url="https://pypi.org/project/${GITHUB_REPOSITORY#*/}/${GITHUB_REF_NAME#v}/"
           echo "$(echo "$url")" >> $GITHUB_STEP_SUMMARY
 
   cleanup:

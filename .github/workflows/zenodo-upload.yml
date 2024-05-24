@@ -39,8 +39,7 @@ jobs:
       - name: Get latest deposition
         id: latest_depo
         env:
-          # todo: update API_URL in production
-          API_URL: 'https://sandbox.zenodo.org/api/deposit/depositions'
+          API_URL: 'https://zenodo.org/api/deposit/depositions'
         run: |
           id=$(yq '.doi' CITATION.cff | awk -F'zenodo.' '{print $2}')
           res=$(curl -sSf -G -H "$AUTH" -d "q=conceptrecid:$id" $API_URL)
