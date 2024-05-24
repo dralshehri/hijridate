@@ -2,7 +2,7 @@
 
 The versioning scheme is compliant with the [PEP 440](https://peps.python.org/pep-0440/#public-version-identifiers) specification.
 
-## Unreleased
+## 2.5.0 - 2024-05-25
 
 - Added a new function called `year_length()`, which calculates the total number of days in a Hijri year.
 - Changed the `validate` argument when instantiating Hijri objects to be a keyword-only argument.

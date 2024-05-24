@@ -21,8 +21,8 @@ keywords:
   - date
   - converter
   - conversion
-version: 2.4.1
-date-released: 2023-12-09
+version: 2.5.0
+date-released: 2024-05-25
 license: MIT
 doi: 10.5281/zenodo.11200950
 repository-code: 'https://github.com/dralshehri/hijridate'
