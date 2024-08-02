@@ -14,7 +14,7 @@ jobs:
   build:
     name: Distribution build
     needs: checks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
   release:
     name: PyPI release
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       id-token: write
     steps:
@@ -65,7 +65,7 @@ jobs:
 
   cleanup:
     name: Workflows cleanup
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Clean up draft runs
         uses: actions/github-script@v7
