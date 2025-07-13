@@ -1,160 +1,94 @@
-[build-system]
-requires = ["hatchling", "hatch-fancy-pypi-readme"]
-build-backend = "hatchling.build"
-
 [project]
 name = "hijridate"
-authors = [{ name = "Mohammed Alshehri", email = "" }]
+version = "2.5.0"
 description = "Accurate Hijri-Gregorian dates converter based on Umm al-Qura calendar"
-dynamic = ["readme", "version"]
-requires-python = ">=3.8"
-license = { text = "MIT License" }
+dynamic = ["readme"]
+authors = [{ name = "Mohammed Alshehri" }]
+requires-python = ">=3.9"
+dependencies = []
+license = "MIT"
+license-files = ["LICENSE*"]
 keywords = [
-    "hijri",
-    "gregorian",
-    "ummalqura",
-    "ummulqura",
-    "calendar",
-    "date",
-    "converter",
-    "conversion",
+  "hijri",
+  "gregorian",
+  "ummalqura",
+  "ummulqura",
+  "calendar",
+  "date",
+  "converter",
+  "conversion",
+  "saudi",
 ]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Intended Audience :: Developers",
-    "Intended Audience :: Healthcare Industry",
-    "Intended Audience :: Legal Industry",
-    "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
-    "Natural Language :: Arabic",
-    "Natural Language :: Bengali",
-    "Natural Language :: English",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Software Development :: Internationalization",
-    "Topic :: Software Development :: Localization",
-    "Topic :: Utilities",
-    "Typing :: Typed",
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Healthcare Industry",
+  "Intended Audience :: Legal Industry",
+  "Intended Audience :: Science/Research",
+  "Natural Language :: Arabic",
+  "Natural Language :: Bengali",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Internationalization",
+  "Topic :: Software Development :: Localization",
+  "Topic :: Utilities",
+  "Typing :: Typed",
 ]
 
 [project.urls]
-Source = "https://github.com/dralshehri/hijridate"
+Repository = "https://github.com/dralshehri/hijridate"
+Issues = "https://github.com/dralshehri/hijridate/issues"
 Changelog = "https://github.com/dralshehri/hijridate/blob/main/CHANGELOG.md"
-Documentation = "https://hijridate.readthedocs.io"
 
-[tool.hatch.version]
-path = "src/hijridate/_version.py"
+[build-system]
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/hijridate"]
 
 [tool.hatch.build.targets.sdist]
-include = [
-    "/src",
-    "/tests",
-    "CHANGELOG.md",
-    "README.md",
-]
+include = ["/src", "/tests", "CHANGELOG.md", "README.md"]
 
 [tool.hatch.metadata.hooks.fancy-pypi-readme]
 content-type = "text/markdown"
 fragments = [{ path = "README.md" }]
 substitutions = [
-    { pattern = "<!-- start badges -->[\\S\\s]+<!-- end badges -->\n+", replacement = "" },
-    { pattern = "<!--[\\s\\w]+-->\n+", replacement = "" },
+  { pattern = "<!-- start badges -->[\\S\\s]+<!-- end badges -->\n+", replacement = "" },
+  { pattern = "<!--[\\s\\w]+-->\n+", replacement = "" },
 ]
 
-[tool.hatch.envs.default]
-path = ".venv"
-installer = "uv"
-dependencies = [
-    "pytest",
-    "coverage",
-]
+[dependency-groups]
+dev = ["pytest", "pytest-cov", "coverage", "mypy", "ruff"]
+docs = ["sphinx", "sphinx-notfound-page", "myst-parser", "furo"]
+build = ["hatchling", "hatch-fancy-pypi-readme"]
 
-[tool.hatch.envs.default.scripts]
-test = "pytest {args}"
-test-cov = "coverage run -m pytest {args}"
-cov-report = [
-    "- coverage combine", # leading hyphen is to ignore the exit code
-    "coverage report {args}",
-]
-checks = [
-    "hatch run style:fix",
-    "hatch run types:check",
-    "test-cov",
-    "cov-report",
-]
-
-[[tool.hatch.envs.all.matrix]]
-python = [
-    "3.12",
-    "3.11",
-    "3.10",
-    "3.9",
-    "3.8",
-]
-
-[tool.hatch.envs.types]
-detached = true
-installer = "uv"
-dependencies = ["mypy"]
-
-[tool.hatch.envs.types.scripts]
-check = "mypy {args}"
-
-[tool.hatch.envs.style]
-detached = true
-installer = "uv"
-dependencies = ["ruff"]
-
-[tool.hatch.envs.style.scripts]
-fix = [
-    "ruff format {args}",
-    "ruff check --fix {args}",
-]
-check = [
-    "ruff format --check {args}",
-    "ruff check {args}",
-]
-
-[tool.hatch.envs.docs]
-detached = true
-installer = "uv"
-dependencies = [
-    "sphinx",
-    "sphinx-notfound-page",
-    "myst-parser",
-    "furo",
-]
-
-[tool.hatch.envs.docs.scripts]
-build = "sphinx-build -E {args} docs docs/_build"
-build-man = "sphinx-build -E -b man docs docs/_build"
+[tool.uv]
+default-groups = "all"
 
 [tool.pytest.ini_options]
-testpaths = ['tests']
+testpaths = ["tests"]
 addopts = [
-    "-ra",
-    "-q",
-    "--import-mode=importlib",
-    "--tb=short",
-    "--strict-markers",
-    "--strict-config",
+  "-ra",
+  "-q",
+  "--import-mode=importlib",
+  "--tb=short",
+  "--strict-markers",
+  "--strict-config",
 ]
 
 [tool.coverage.run]
-source_pkgs = ["hijridate", "tests"]
+source_pkgs = ["hijridate"]
 branch = true
 parallel = true
-omit = ["src/hijridate/_version.py"]
 
 [tool.coverage.paths]
 source = ["src"]
@@ -164,7 +98,7 @@ fail_under = 100
 show_missing = true
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.9"
 files = ["src/hijridate"]
 strict = true
 
@@ -182,35 +116,36 @@ docstring-code-line-length = 72
 
 [tool.ruff.lint]
 select = [
-    "F", # pyflakes
-    "E", # pycodestyle error
-    "W", # pycodestyle warning
-    "I", # isort
-    "N", # pep8-naming
-    "D", # pydocstyle
-    "UP", # pyupgrade
-    "FBT", # flake8-boolean-trap
-    "B", # flake8-bugbear
-    "A", # flake8-builtins
-    "C4", # flake8-comprehensions
-    "EM", # flake8-errmsg
-    "T20", # flake8-print
-    "PT", # flake8-pytest-style
-    "Q", # flake8-quotes
-    "PL", # pylint
-    "RUF", # Ruff-specific rules
+  "F",   # pyflakes
+  "E",   # pycodestyle error
+  "W",   # pycodestyle warning
+  "I",   # isort
+  "N",   # pep8-naming
+  "D",   # pydocstyle
+  "UP",  # pyupgrade
+  "FBT", # flake8-boolean-trap
+  "B",   # flake8-bugbear
+  "A",   # flake8-builtins
+  "C4",  # flake8-comprehensions
+  "EM",  # flake8-errmsg
+  "T20", # flake8-print
+  "PT",  # flake8-pytest-style
+  "Q",   # flake8-quotes
+  "PL",  # pylint
+  "RUF", # Ruff-specific rules
 ]
 ignore = [
-    "D105", # undocumented-magic-method, not required
-    "D107", # undocumented-public-init, not required
+  "D105", # undocumented-magic-method, not required
+  "D107", # undocumented-public-init, not required
 ]
 pydocstyle = { convention = "google" }
 isort = { combine-as-imports = true, lines-between-types = 1 }
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = [
-    "D10", # Missing docstrings
-    "PLR2004", # Magic value used in comparison
+  "D10",     # Missing docstrings
+  "PLR2004", # Magic value used in comparison
+  "PLC0415", # Import outside top-level
 ]
 "src/hijridate/locales.py" = [
     "RUF001", # Allow Turkish characters like ı, ş, ç, etc.
