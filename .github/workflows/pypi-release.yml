@@ -14,25 +14,23 @@ jobs:
   build:
     name: Distribution build
     needs: checks
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-
-      - name: Install Hatch
-        env:
-          PIP_DISABLE_PIP_VERSION_CHECK: 1
-        run: |
-          python -m pip install uv
-          python -m uv pip install hatch
+          python-version-file: '.python-version'
 
       - name: Build distributions
-        run: hatch build
+        run: uv build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -43,7 +41,7 @@ jobs:
   release:
     name: PyPI release
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       id-token: write
     steps:
@@ -65,7 +63,7 @@ jobs:
 
   cleanup:
     name: Workflows cleanup
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Clean up draft runs
         uses: actions/github-script@v7

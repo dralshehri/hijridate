@@ -9,7 +9,7 @@ on:
 jobs:
   validation:
     name: Version validation
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
           COMMIT_TIMESTAMP: ${{ github.event.head_commit.timestamp }}
         run: |
           echo "GIT_VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
-          echo "PY_VERSION=$(grep '__version__' $(find src -name '_version.py') | awk -F '"' '{print $2}')" >> $GITHUB_ENV
+          echo "PY_VERSION=$(grep '^version' pyproject.toml | awk -F '"' '{print $2}')" >> $GITHUB_ENV
           echo "MD_VERSION=$(grep -m 1 '##' CHANGELOG.md | awk -F ' ' '{print $2}')" >> $GITHUB_ENV
           echo "CF_VERSION=$(grep '^version' CITATION.cff | awk '{print $2}')" >> $GITHUB_ENV
           echo "GIT_DATE=${COMMIT_TIMESTAMP%T*}" >> $GITHUB_ENV
@@ -46,7 +46,7 @@ jobs:
   draft:
     name: Draft preparation
     needs: validation
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
