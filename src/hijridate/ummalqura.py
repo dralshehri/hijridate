@@ -1,20 +1,18 @@
 """Umm al-Qura calendar constants."""
 
-from typing import Tuple
+DateTuple = tuple[int, int, int]
 
-DateTuple = Tuple[int, int, int]
-
-GREGORIAN_RANGE: Tuple[DateTuple, DateTuple] = ((1924, 8, 1), (2077, 11, 16))
+GREGORIAN_RANGE: tuple[DateTuple, DateTuple] = ((1924, 8, 1), (2077, 11, 16))
 """Inclusive range of supported Gregorian dates (year, month and day)."""
 
-HIJRI_RANGE: Tuple[DateTuple, DateTuple] = ((1343, 1, 1), (1500, 12, 30))
+HIJRI_RANGE: tuple[DateTuple, DateTuple] = ((1343, 1, 1), (1500, 12, 30))
 """Inclusive range of supported Hijri dates (year, month and day)."""
 
 HIJRI_OFFSET: int = 1342 * 12
 """Total Hijri months elapsed before the beginning of Hijri range."""
 
 # fmt: off
-MONTH_STARTS: Tuple[int, ...] = (
+MONTH_STARTS: tuple[int, ...] = (
     23999, 24029, 24058, 24088, 24118, 24147, 24177, 24207, 24237, 24265, 24295, 24325,
     24355, 24384, 24413, 24443, 24472, 24502, 24531, 24561, 24590, 24620, 24649, 24679,
     24708, 24738, 24767, 24797, 24826, 24857, 24886, 24916, 24944, 24974, 25004, 25033,

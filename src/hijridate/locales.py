@@ -1,10 +1,10 @@
 """Localization for the Hijri month and day names."""
 
-from typing import ClassVar, Dict, Literal, Tuple, Type
+from typing import ClassVar, Literal
 
 Language = Literal["en", "ar", "bn", "tr"]
 
-_locale_map: Dict[str, Type["Locale"]] = {}
+_locale_map: dict[str, type["Locale"]] = {}
 
 
 def get_locale(name: str) -> "Locale":
@@ -27,9 +27,9 @@ class Locale:
     """A Locale object represents locale-specific data and functionality."""
 
     language_tag: ClassVar[str]
-    month_names: ClassVar[Tuple[str, ...]]
-    gregorian_month_names: ClassVar[Tuple[str, ...]]
-    day_names: ClassVar[Tuple[str, ...]]
+    month_names: ClassVar[tuple[str, ...]]
+    gregorian_month_names: ClassVar[tuple[str, ...]]
+    day_names: ClassVar[tuple[str, ...]]
     notation: ClassVar[str]
     gregorian_notation: ClassVar[str]
 

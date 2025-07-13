@@ -3,7 +3,6 @@
 import datetime
 
 from bisect import bisect
-from typing import Tuple
 
 from hijridate import helpers, locales, ummalqura
 
@@ -25,7 +24,7 @@ class Hijri:
             `1-month_length` for month.
     """
 
-    __slots__ = "_year", "_month", "_day"
+    __slots__ = "_day", "_month", "_year"
 
     def __init__(self, year: int, month: int, day: int, *, validate: bool = True):
         self._year = year
@@ -105,7 +104,7 @@ class Hijri:
         """Return day as an integer."""
         return self._day
 
-    def datetuple(self) -> Tuple[int, int, int]:
+    def datetuple(self) -> tuple[int, int, int]:
         """Return date as a tuple of (year, month, day)."""
         return self._year, self._month, self._day
 
@@ -203,7 +202,7 @@ class Hijri:
             message = f"day must be in 1-{month_length} for month, got '{self.day}'"
             raise ValueError(message)
 
-    def _year_indexes(self) -> Tuple[int, int]:
+    def _year_indexes(self) -> tuple[int, int]:
         """Return year's first and last indexes in ummalqura month starts."""
         prior_months = (self.year - 1) * 12
         first_index = prior_months - ummalqura.HIJRI_OFFSET
@@ -237,7 +236,7 @@ class Gregorian(datetime.date):
         year, month, day = date_object.timetuple()[:3]
         return cls(year, month, day)
 
-    def datetuple(self) -> Tuple[int, int, int]:
+    def datetuple(self) -> tuple[int, int, int]:
         """Return date as a tuple of (year, month, day)."""
         return self.year, self.month, self.day
 
