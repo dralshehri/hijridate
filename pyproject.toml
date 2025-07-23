@@ -212,3 +212,6 @@ isort = { combine-as-imports = true, lines-between-types = 1 }
     "D10", # Missing docstrings
     "PLR2004", # Magic value used in comparison
 ]
+"src/hijridate/locales.py" = [
+    "RUF001", # Allow Turkish characters like ı, ş, ç, etc.
+]

@@ -2,6 +2,13 @@
 
 The versioning scheme is compliant with the [PEP 440](https://peps.python.org/pep-0440/#public-version-identifiers) specification.
 
+## Unreleased – 2025‑07‑23
+
+### Added
+- Turkish language support for internationalization
+  - Added `TurkishLocale` class with Turkish month names, day names, and notations
+  - Updated `Language` type to include `"tr"` for Turkish language support
+
 ## 2.5.0 - 2024-05-25
 
 - Added a new function called `year_length()`, which calculates the total number of days in a Hijri year.
