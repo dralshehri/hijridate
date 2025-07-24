@@ -68,6 +68,14 @@ uv run sphinx-build -E docs docs/_build  # Build docs
 uv build                     # Build distribution packages
 ```
 
+## Releasing (Maintainers Only)
+
+To create a new release, ensure you're on the `main` branch with all changes committed and synced with the remote:
+
+```bash
+bash release.sh <major|minor|patch>
+```
+
 ## Need Help?
 
 - Review the [GitHub documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests) on forking and pull requests
