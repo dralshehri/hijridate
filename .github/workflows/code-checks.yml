@@ -2,6 +2,7 @@ name: Code Checks
 
 on:
   workflow_call:
+  workflow_dispatch:
   push:
     branches:
       - 'main'
@@ -9,6 +10,7 @@ on:
       - 'src/**'
       - 'tests/**'
       - 'pyproject.toml'
+      - 'uv.lock'
   pull_request:
     branches:
       - 'main'
@@ -16,6 +18,7 @@ on:
       - 'src/**'
       - 'tests/**'
       - 'pyproject.toml'
+      - 'uv.lock'
 
 concurrency:
   group: '${{ github.workflow }}-${{ github.event.pull_request && github.head_ref || github.ref_name }}'
