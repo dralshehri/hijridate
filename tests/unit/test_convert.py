@@ -12,7 +12,7 @@ g_max_iso = "-".join([f"{i:02}" for i in g_max])
 
 
 def test_importing_at_init_module():
-    from hijridate import Gregorian, Hijri  # noqa: PLC0415
+    from hijridate import Gregorian, Hijri
 
     assert Hijri(1410, 8, 13)
     assert Gregorian(1990, 3, 10)
