@@ -113,7 +113,7 @@ TypeError: '>' not supported between instances of 'Hijri' and 'str'
 
 ## Internationalization
 
-Representation of weekday names, month names, and calendar notations is supported. English `en` is the default language. Additionally, Arabic `ar` and Bangla `bn` translations are available, but it can be easily extended for other natural languages.
+Representation of weekday names, month names, and calendar notations is supported. English `en` is the default language. Additionally, Arabic `ar`, Bangla `bn`, and Turkish `tr` translations are available, but it can be easily extended for other natural languages.
 
 The following is an example showing how to use the Arabic language:
 

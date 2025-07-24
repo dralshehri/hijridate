@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, Literal, Tuple, Type
 
-Language = Literal["en", "ar", "bn"]
+Language = Literal["en", "ar", "bn", "tr"]
 
 _locale_map: Dict[str, Type["Locale"]] = {}
 
@@ -197,3 +197,48 @@ class BengaliLocale(Locale):
     )
     notation = "হিজরি"
     gregorian_notation = "খ্রিস্টাব্দ"
+
+
+class TurkishLocale(Locale):
+    """A Turkish Locale object represents Turkish locale-specific data."""
+
+    language_tag = "tr"
+    month_names = (
+        "Muharrem",
+        "Safer",
+        "Rebiülevvel",
+        "Rebiülahir",
+        "Cemaziyelevvel",
+        "Cemaziyelahir",
+        "Recep",
+        "Şaban",
+        "Ramazan",
+        "Şevval",
+        "Zilkade",
+        "Zilhicce",
+    )
+    gregorian_month_names = (
+        "Ocak",
+        "Şubat",
+        "Mart",
+        "Nisan",
+        "Mayıs",
+        "Haziran",
+        "Temmuz",
+        "Ağustos",
+        "Eylül",
+        "Ekim",
+        "Kasım",
+        "Aralık",
+    )
+    day_names = (
+        "Pazartesi",
+        "Salı",
+        "Çarşamba",
+        "Perşembe",
+        "Cuma",
+        "Cumartesi",
+        "Pazar",
+    )
+    notation = "Hicri"
+    gregorian_notation = "Miladi"
