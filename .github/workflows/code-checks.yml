@@ -72,8 +72,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Run tests with coverage
-        env:
-          COVERAGE_CORE: sysmon
         run: uv run --group dev --locked coverage run -m pytest
 
       - name: Upload coverage data
@@ -81,7 +79,9 @@ jobs:
         with:
           name: coverage-data-${{ matrix.python-version }}
           path: '.coverage.*'
+          include-hidden-files: true
           compression-level: 0
+          if-no-files-found: error
 
   coverage:
     name: Code coverage
