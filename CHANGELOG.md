@@ -1,13 +1,19 @@
 # Changelog
 
-The versioning scheme is compliant with the [PEP 440](https://peps.python.org/pep-0440/#public-version-identifiers) specification.
+This project follows [PEP 440](https://peps.python.org/pep-0440/) semantic versioning:
 
-## Unreleased – 2025‑07‑23
+- **MAJOR** (e.g., `2.5.0` → `3.0.0`) — Breaking changes that require code updates (API changes, removed features, behavior changes)
+- **MINOR** (e.g., `2.5.0` → `2.6.0`) — New features that are backward compatible
+- **PATCH** (e.g., `2.5.0` → `2.5.1`) — Bug fixes and small improvements
+- **PRE-RELEASE** (e.g., `2.6.0a1`, `2.6.0b1`, `2.6.0rc1`) — Alpha, beta, and release candidate versions
 
-### Added
-- Turkish language support for internationalization
-  - Added `TurkishLocale` class with Turkish month names, day names, and notations
-  - Updated `Language` type to include `"tr"` for Turkish language support
+## Unreleased
+
+- Dropped Python 3.8 support and added Python 3.13 support.
+- Removed the versioning module and switched to using a static version.
+- Migrated to modern type hinting syntax.
+- Added Turkish language support. (By [@abdelslam1997](https://github.com/abdelslam1997) in [#25](https://github.com/dralshehri/hijridate/pull/25))
+- Updated development tools, workflows, and documentation.
 
 ## 2.5.0 - 2024-05-25
 
@@ -30,9 +36,6 @@ The versioning scheme is compliant with the [PEP 440](https://peps.python.org/pe
 ## 2.4.0 - 2023-12-08
 
 - Dropped support for Python 3.7 and added support for Python 3.12.
-
-### Subheading
-
 - Fixed a typo in the Bangla translation. (By [@nokibsarkar](https://github.com/nokibsarkar) in [#18](https://github.com/dralshehri/hijridate/pull/18))
 - Changed documentation theme along with other enhancements.
 
