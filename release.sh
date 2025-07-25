@@ -15,7 +15,7 @@ set -euo pipefail
 #
 # Prerequisites:
 # - Run from project root on 'main' branch
-# - All changes committed and synced with remote
+# - All changes committed (local commits ahead of remote are allowed)
 # - CHANGELOG.md has '## Unreleased' section
 
 handle_error() {
@@ -57,8 +57,11 @@ if [[ -n "$(git status --porcelain)" ]]; then
   handle_error "commit or stash your changes before releasing"
 fi
 
-if [[ -n "$(git diff main origin/main)" ]]; then
-  handle_error "push or pull changes to sync with remote"
+# Check if we're behind the remote (but allow being ahead)
+git fetch origin main >/dev/null 2>&1 || true
+behind_count=$(git rev-list --count HEAD..origin/main 2>/dev/null || echo "0")
+if [[ "$behind_count" -gt 0 ]]; then
+  handle_error "local branch is $behind_count commits behind origin/main"
 fi
 
 # Update version and metadata files
@@ -69,7 +72,6 @@ fi
 
 version=$(grep '^version' pyproject.toml | awk -F '"' '{print $2}')
 date=$(date +%Y-%m-%d)
-echo "updated to version $version"
 
 if ! sed -i "" "s/^## Unreleased.*/## $version - $date/" CHANGELOG.md; then
   handle_error "could not update CHANGELOG.md"
@@ -80,11 +82,13 @@ if ! sed -i "" -e "s/^version: .*/version: $version/" \
   handle_error "could not update CITATION.cff"
 fi
 
+echo "bumped to version $version"
+
 # Commit and tag release
 if confirm_action "commit release and create tag?"; then
   git add -u
-  git commit -m "Release $version"
-  git tag -a "v$version" -m "Release $version"
+  git commit -m "Bump version to $version"
+  git tag -a "v$version" -m "Bump version to $version"
   echo "created release commit and tag"
 
   if confirm_action "push to remote repository?"; then
