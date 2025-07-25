@@ -5,7 +5,6 @@ This project follows [PEP 440](https://peps.python.org/pep-0440/) semantic versi
 - **MAJOR** (e.g., `2.5.0` → `3.0.0`) — Breaking changes that require code updates (API changes, removed features, behavior changes)
 - **MINOR** (e.g., `2.5.0` → `2.6.0`) — New features that are backward compatible
 - **PATCH** (e.g., `2.5.0` → `2.5.1`) — Bug fixes and small improvements
-- **PRE-RELEASE** (e.g., `2.6.0a1`, `2.6.0b1`, `2.6.0rc1`) — Alpha, beta, and release candidate versions
 
 ## Unreleased
 
@@ -13,7 +12,8 @@ This project follows [PEP 440](https://peps.python.org/pep-0440/) semantic versi
 - Removed the versioning module and switched to using a static version.
 - Migrated to modern type hinting syntax.
 - Added Turkish language support. (By [@abdelslam1997](https://github.com/abdelslam1997) in [#25](https://github.com/dralshehri/hijridate/pull/25))
-- Updated development tools, workflows, and documentation.
+- Updated documentation content and structure.
+- Updated development tools and workflows.
 
 ## 2.5.0 - 2024-05-25
 
