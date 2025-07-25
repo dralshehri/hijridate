@@ -4,41 +4,62 @@ hide-toc: true
 
 # Benchmarking
 
-Similar Python converters have been mainly derived from or using the [ummalqura] package developed by Khalid Al-hussayen and updated lately by Borni DHIFI, which was ported from [hijri.js], a Javascript tool published by Suhail Alkowaileet. The last goes back to [R.H. van Gent], who built the original converter partly based on his astronomical calculations for years after 1420 AH and partly on a comparison calendar prepared by King Fahd University of Petroleum and Minerals (KFUPM) in 1993 for the years 1356-1411 AH.
+This document compares HijriDate against existing Hijri conversion implementations.
 
-In contrast, the **HijriDate** package was written in Python from scratch. Although it was inspired by R.H. van Gent's work, it is based on multiple official sources including archived issues of Umm al-Qura newspaper published weekly since 1343 AH, one that is in complete alignment with the official printed Umm al-Qura calendar. Other sources were also used to build the package including the Comparison Calendar prepared by KFUPM for the years 1356-1411 AH, the Umm al-Qura Comparative Calendar (Taqwīm Umm al-Qurá al-muqāran) books for the years 1412-1450 AH, and the official website of Umm al-Qura calendar for the years 1451-1500 AH. That makes the **HijriDate** package more accurate and broader in terms of years included, 1343-1500 AH.
+## Accuracy
 
-When it comes to performance, using the **HijriDate** package to convert from Hijri to Gregorian and back is about sex times faster than when the _ummalqura_ package was used.
+Most existing Python Hijri converters trace back to [R.H. van Gent's work](http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm), which combines astronomical calculations with partial calendar data. The [ummalqura package](https://pypi.org/project/ummalqura/), ported from [hijri.js](https://github.com/xsoh/Hijri.js), inherits this approach with modifications from Khalid Al-hussayen.
+
+HijriDate was developed from scratch using systematic primary source verification:
+
+- **1343-1355 AH**: Archived Umm al-Qura newspaper issues
+- **1356-1411 AH**: KFUPM Comparison Calendar
+- **1412-1450 AH**: Official Umm al-Qura Comparative Calendar books
+- **1451-1500 AH**: KACST official website data
+
+The package is tested against all 55,991 days in the supported range (1343-1500 AH / 1924-2077 CE), using 1,896 month start references from original sources:
+
+| Package   | Correct Conversions | Total Tested | Accuracy |
+| --------- | ------------------: | -----------: | -------: |
+| HijriDate |              55,991 |       55,991 |   100.0% |
+| ummalqura |              51,249 |       55,991 |    91.5% |
+
+**Note**: The ummalqura package accepts dates in 1343-1355 AH but produces incorrect conversions for this period, as it lacks verified data for these years.
+
+## Performance
+
+Benchmark environment: Python 3.12, 1M iterations, best of 5 runs.
+
+| Package   | Time per conversion\* | Relative speed | 1M conversions |
+| --------- | --------------------: | -------------: | -------------: |
+| HijriDate |                2.0 μs |     ~7x faster |           2.0s |
+| ummalqura |               13.8 μs |           1.0x |          13.8s |
+
+\*Two-way conversion (Hijri→Gregorian→Hijri)
 
 ```shell
 # HijriDate
-$ python -m timeit -s 'from hijridate import Hijri, Gregorian' -n 50000 -r 5 'Hijri(1402, 10, 15).to_gregorian(); Gregorian(1982, 8, 4).to_hijri()'
-50000 loops, best of 5: 1.88 usec per loop
+uv run python -m timeit -s 'from hijridate import Hijri, Gregorian' \
+  -n 1000000 -r 5 'Hijri(1402, 10, 15).to_gregorian(); Gregorian(1982, 8, 4).to_hijri()'
+1000000 loops, best of 5: 2 usec per loop
 
 # ummalqura
-$ python -m timeit -s 'from ummalqura.hijri import Umalqurra' -n 50000 -r 5 'Umalqurra().hijri_to_gregorian(1402, 10, 15); Umalqurra().gegorean_to_hijri(1982, 8, 4)'
-50000 loops, best of 5: 12.1 usec per loop
+uv run python -m timeit -s 'from ummalqura.hijri import Umalqurra' \
+  -n 1000000 -r 5 'Umalqurra().hijri_to_gregorian(1402, 10, 15); Umalqurra().gegorean_to_hijri(1982, 8, 4)'
+1000000 loops, best of 5: 13.8 usec per loop
 ```
 
-The preceding code illustrates the execution time of both packages compared _(tested using Python 3.12 on Mac mini (M1, 2020) with Apple M1 chip and 16GB memory)_.
+## Features
 
-Beside code quality, packaging and maintenance issues that _ummalqura_ package has, the following table summarizes the main differences:
+Beyond performance and accuracy, HijriDate provides comprehensive functionality compared to existing implementations:
 
-| Item             |  HijriDate   |  ummalqura   |
-| :--------------- | :----------: | :----------: |
-| Conversion range | 1343-1500 AH | 1356-1500 AH |
-| Accuracy [^a]    |     100%     |    91.6%     |
-| Performance [^p] | ~6x (faster) |      1x      |
-| Python 3 support |     Full     |   Limited    |
-| Rich comparison  |     Yes      |      No      |
-| Input validation |     Yes      |      No      |
-| Hashable objects |     Yes      |      No      |
-| Type annotations |     Yes      |      No      |
-| Code testing     |     100%     |     None     |
-
-<!-- prettier-ignore -->
-[^a]: Verified against original references, including the years 1343-1355 AH, which are not supported by the _ummalqura_ package, however, _ummalqura_ accepts dates within those years and returns incorrectly converted dates.
-
-[ummalqura]: https://pypi.org/project/ummalqura/
-[hijri.js]: https://github.com/xsoh/Hijri.js
-[r.h. van gent]: http://www.staff.science.uu.nl/~gent0113/islam/ummalqura.htm
+| Feature              |  HijriDate   |  ummalqura   |
+| :------------------- | :----------: | :----------: |
+| Date Range           | 1343-1500 AH | 1356-1500 AH |
+| Python 3 Support     |     Full     |   Limited    |
+| Rich Comparison      |     Yes      |      No      |
+| Input Validation     |     Yes      |      No      |
+| Hashable Objects     |     Yes      |      No      |
+| Type Annotations     |     Yes      |      No      |
+| Test Coverage        |     100%     |      0%      |
+| Internationalization | 4 languages  |     None     |
