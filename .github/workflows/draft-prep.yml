@@ -68,6 +68,7 @@ jobs:
           } >> $GITHUB_ENV
 
       - name: Create draft release
+        id: draft-release
         uses: actions/github-script@v7
         with:
           script: |
@@ -79,7 +80,12 @@ jobs:
                 name: process.env.RELEASE_TITLE,
                 body: process.env.RELEASE_CONTENT,
                 draft: true,
-              })
+              });
+              const editUrl = response.data.html_url.replace('/tag/', '/edit/');
+              return editUrl;
             } catch (error) {
-              core.setFailed(error.message)
+              core.setFailed(error.message);
             }
+
+      - name: Output draft release info
+        run: echo "${{ steps.draft-release.outputs.result }}" >> $GITHUB_STEP_SUMMARY

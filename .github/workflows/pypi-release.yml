@@ -44,13 +44,25 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       id-token: write
+      contents: write
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}-dist
           path: 'dist'
           merge-multiple: true
+
+      - name: Attach artifacts to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for file in dist/*; do
+            gh release upload ${{ github.ref_name }} "$file"
+          done
 
       - name: Publish build distributions
         id: pypi
@@ -69,18 +81,18 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const { owner, repo } = context.repo
+            const { owner, repo } = context.repo;
             try {
               const runs = await github.rest.actions.listWorkflowRuns({
                 owner,
                 repo,
                 workflow_id: 'draft-prep.yml',
                 status: 'completed',
-              })
-              const runIds = runs.data.workflow_runs.map(run => run.id)
+              });
+              const runIds = runs.data.workflow_runs.map(run => run.id);
               for (const run_id of runIds) {
-                await github.rest.actions.deleteWorkflowRun({ owner, repo, run_id })
+                await github.rest.actions.deleteWorkflowRun({ owner, repo, run_id });
               }
             } catch (error) {
-              core.setFailed(error.message)
+              core.setFailed(error.message);
             }

@@ -106,8 +106,9 @@ jobs:
           API_URL: ${{ steps.new_version.outputs.publish_url }}
         run: |
           res=$(curl -sSf -X POST -H "$AUTH" $API_URL)
+          url=$(echo "$res" | jq -r '.links.html')
           echo "$res" | jq 'del(.. | .links?)'
-          echo "$(echo "$res" | jq -r '.doi_url')" >> $GITHUB_STEP_SUMMARY
+          echo "$(echo "$url")" >> $GITHUB_STEP_SUMMARY
 
       - name: Discard created version
         if: ${{ failure() && steps.new_version.conclusion == 'success' }}

@@ -123,19 +123,19 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const { owner, repo } = context.repo
+            const { owner, repo } = context.repo;
             try {
               const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
                 owner,
                 repo,
                 run_id: context.runId,
-              })
+              });
               const artifactIds = artifacts.data.artifacts
                 .filter(artifact => artifact.name.startsWith('coverage-data-'))
-                .map(artifact => artifact.id)
+                .map(artifact => artifact.id);
               for (const artifact_id of artifactIds) {
-                await github.rest.actions.deleteArtifact({ owner, repo, artifact_id })
+                await github.rest.actions.deleteArtifact({ owner, repo, artifact_id });
               }
             } catch (error) {
-              core.setFailed(error.message)
+              core.setFailed(error.message);
             }
