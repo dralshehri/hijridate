@@ -7,11 +7,11 @@ authors:
     family-names: Alshehri
     orcid: 'https://orcid.org/0000-0001-5852-3363'
 abstract: >-
-  HijriDate is a Python package for converting between Hijri and Gregorian dates using
-  the Umm al-Qura calendar. The package has been thoroughly verified and tested against
-  original references to ensure its accuracy and reliability. It has an intuitive
-  design, allows rich comparison and basic formatting of Hijri dates, and is optimized
-  for performance.
+  HijriDate is a Python package for accurate Hijri-Gregorian date conversion using
+  Saudi Arabia's official Umm al-Qura calendar. Validated against archived Umm al-Qura
+  publications and KACST reference data, it provides reliable calendar conversion for
+  both research applications and software development. The package features comprehensive
+  type safety, multilingual support, and optimized performance with zero dependencies.
 keywords:
   - hijri
   - gregorian
