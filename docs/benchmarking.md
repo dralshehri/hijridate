@@ -28,12 +28,12 @@ The package is tested against all 55,991 days in the supported range (1343-1500 
 
 ## Performance
 
-Benchmark environment: Python 3.12, 1M iterations, best of 5 runs.
+Benchmark environment: Python 3.14, 1M iterations, best of 5 runs.
 
 | Package   | Time per conversion\* | Relative speed | 1M conversions |
-| --------- | --------------------: | -------------: | -------------: |
-| HijriDate |                2.0 μs |     ~7x faster |           2.0s |
-| ummalqura |               13.8 μs |           1.0x |          13.8s |
+| --------- | --------------------: |---------------:| -------------: |
+| HijriDate |                1.6 μs |     ~7x faster |           1.6s |
+| ummalqura |               10.8 μs |             1x |          10.8s |
 
 \*Two-way conversion (Hijri→Gregorian→Hijri)
 
@@ -41,12 +41,12 @@ Benchmark environment: Python 3.12, 1M iterations, best of 5 runs.
 # HijriDate
 uv run python -m timeit -s 'from hijridate import Hijri, Gregorian' \
   -n 1000000 -r 5 'Hijri(1402, 10, 15).to_gregorian(); Gregorian(1982, 8, 4).to_hijri()'
-1000000 loops, best of 5: 2 usec per loop
+1000000 loops, best of 5: 1.63 usec per loop
 
 # ummalqura
 uv run python -m timeit -s 'from ummalqura.hijri import Umalqurra' \
   -n 1000000 -r 5 'Umalqurra().hijri_to_gregorian(1402, 10, 15); Umalqurra().gegorean_to_hijri(1982, 8, 4)'
-1000000 loops, best of 5: 13.8 usec per loop
+1000000 loops, best of 5: 10.8 usec per loop
 ```
 
 ## Features
