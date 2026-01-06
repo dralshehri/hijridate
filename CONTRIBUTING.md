@@ -35,7 +35,7 @@ uv run pytest --cov
 
 ### 💻 Code Changes
 
-1. **Prerequisites**: [Install uv](https://docs.astral.sh/uv/getting-started/installation/) and ensure you have Python 3.9+
+1. **Prerequisites**: [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
 2. **Setup**: Fork the repo and run `uv sync` to install dependencies
 3. **Before committing**: Run these commands to ensure your changes pass all checks:
    ```bash
@@ -68,7 +68,17 @@ uv run sphinx-build -E docs docs/_build  # Build docs
 uv build                     # Build distribution packages
 ```
 
-## Releasing (Maintainers Only)
+## Maintainers Only
+
+### Updating Dependencies
+
+To update all development dependencies to their latest versions:
+
+```bash
+uv sync --upgrade
+```
+
+### Releasing
 
 To create a new release, ensure you're on the `main` branch with all changes committed and synced with the remote:
 
