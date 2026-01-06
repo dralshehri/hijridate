@@ -1,6 +1,6 @@
 [project]
 name = "hijridate"
-version = "2.5.0"
+version = "2.6.0"
 description = "Accurate Hijri-Gregorian dates converter based on Umm al-Qura calendar"
 dynamic = ["readme"]
 authors = [{ name = "Mohammed Alshehri" }]

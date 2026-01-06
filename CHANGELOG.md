@@ -6,7 +6,7 @@ This project follows [PEP 440](https://peps.python.org/pep-0440/) semantic versi
 - **MINOR** (e.g., `2.5.0` → `2.6.0`) — New features that are backward compatible
 - **PATCH** (e.g., `2.5.0` → `2.5.1`) — Bug fixes and small improvements
 
-## Unreleased
+## 2.6.0 - 2026-01-06
 
 - Dropped support for Python 3.8 and 3.9, and added support for Python 3.13 and 3.14
 - Added Turkish language support ([#25](https://github.com/dralshehri/hijridate/pull/25) by [@abdelslam1997](https://github.com/abdelslam1997))
