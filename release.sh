@@ -2,7 +2,7 @@
 set -euo pipefail
 
 #
-# Copyright (c) 2025. Mohammed Alshehri <https://www.dralshehri.com>
+# Copyright (c) Mohammed Alshehri
 #
 
 # Script: release.sh

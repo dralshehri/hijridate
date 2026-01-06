@@ -12,6 +12,7 @@ This project follows [PEP 440](https://peps.python.org/pep-0440/) semantic versi
 - Removed the versioning module and switched to using a static version
 - Migrated to modern type hinting syntax
 - Added Turkish language support ([#25](https://github.com/dralshehri/hijridate/pull/25) by [@abdelslam1997](https://github.com/abdelslam1997))
+- Simplified copyright notice format
 - Updated documentation content and structure
 - Updated development tools and workflows
 

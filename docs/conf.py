@@ -6,7 +6,6 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import sys
 
-from datetime import datetime
 from pathlib import Path
 
 import tomllib
@@ -45,7 +44,7 @@ sys.path.append(str(Path("_ext").resolve()))
 #
 project = "HijriDate"  # Project name at PyPI and GitHub
 author = project_config["authors"][0]["name"]
-project_copyright = f"2018-{datetime.now().year} {author}"
+project_copyright = author
 version = project_config["version"]
 
 #
