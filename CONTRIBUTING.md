@@ -70,6 +70,10 @@ uv build                     # Build distribution packages
 
 ## Maintainers Only
 
+### Changelog
+
+Add `## Unreleased` section to `CHANGELOG.md` when there are unreleased changes. The release script replaces it with the version number.
+
 ### Updating Dependencies
 
 To update all development dependencies to their latest versions:
