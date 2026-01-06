@@ -44,7 +44,7 @@ jobs:
           id=$(yq '.doi' CITATION.cff | awk -F'zenodo.' '{print $2}')
           res=$(curl -sSf -G -H "$AUTH" -d "q=conceptrecid:$id" $API_URL)
           published=$(echo "$res" | jq -r '.[0]?.submitted?')
-          [[ published == false ]] && { echo "$res" | jq && exit 1; }
+          [[ "$published" == "false" ]] && { echo "$res" | jq && exit 1; }
           echo "new_url=$(echo "$res" | jq -r '.[0].links.newversion')" >> $GITHUB_OUTPUT
 
       - name: Create a new version
