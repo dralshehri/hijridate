@@ -4,7 +4,7 @@ version = "2.5.0"
 description = "Accurate Hijri-Gregorian dates converter based on Umm al-Qura calendar"
 dynamic = ["readme"]
 authors = [{ name = "Mohammed Alshehri" }]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = []
 license = "MIT"
 license-files = ["LICENSE*"]
@@ -32,11 +32,11 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Scientific/Engineering",
   "Topic :: Software Development :: Internationalization",
   "Topic :: Software Development :: Localization",
@@ -100,7 +100,7 @@ fail_under = 100
 show_missing = true
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 files = ["src/hijridate"]
 strict = true
 

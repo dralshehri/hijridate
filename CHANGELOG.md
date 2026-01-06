@@ -8,7 +8,7 @@ This project follows [PEP 440](https://peps.python.org/pep-0440/) semantic versi
 
 ## Unreleased
 
-- Dropped Python 3.8 support and added Python 3.13 support
+- Dropped Python 3.8 and 3.9 support and added Python 3.13 and 3.14 support
 - Removed the versioning module and switched to using a static version
 - Migrated to modern type hinting syntax
 - Added Turkish language support ([#25](https://github.com/dralshehri/hijridate/pull/25) by [@abdelslam1997](https://github.com/abdelslam1997))

@@ -36,7 +36,6 @@ HijriDate provides reliable date conversion based on official sources, including
 - Rich comparison operations and date formatting options
 - Full type annotations and 100% test coverage
 - Zero runtime dependencies
-- Compatible with Python 3.9+
 
 ## ⚠️ Limitations
 
