@@ -30,6 +30,15 @@ confirm_action() {
   [[ $confirm =~ ^[Yy]$ ]]
 }
 
+# Cross-platform sed in-place
+sed_inplace() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i "" "$@"
+  else
+    sed -i "$@"
+  fi
+}
+
 # Validate arguments and environment
 if [[ $# -ne 1 ]]; then
   handle_error "specify version bump value"
@@ -73,12 +82,12 @@ fi
 version=$(grep '^version' pyproject.toml | awk -F '"' '{print $2}')
 date=$(date +%Y-%m-%d)
 
-if ! sed -i "" "s/^## Unreleased.*/## $version - $date/" CHANGELOG.md; then
+if ! sed_inplace "s/^## Unreleased.*/## $version - $date/" CHANGELOG.md; then
   handle_error "could not update CHANGELOG.md"
 fi
 
-if ! sed -i "" -e "s/^version: .*/version: $version/" \
-          -e "s/^date-released: .*/date-released: $date/" CITATION.cff; then
+if ! sed_inplace -e "s/^version: .*/version: $version/" \
+                 -e "s/^date-released: .*/date-released: $date/" CITATION.cff; then
   handle_error "could not update CITATION.cff"
 fi
 
