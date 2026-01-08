@@ -19,11 +19,6 @@ uv run pytest --cov
 
 ## How to Contribute
 
-### 🤔 Questions or Ideas
-
-- Check [Discussions](https://github.com/dralshehri/hijridate/discussions) for similar topics
-- Start a new discussion if you don't find what you're looking for
-
 ### 🐛 Bug Reports
 
 - Check [Issues](https://github.com/dralshehri/hijridate/issues) for existing reports
@@ -93,7 +88,6 @@ bash release.sh <major|minor|patch>
 ## Need Help?
 
 - Review the [GitHub documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests) on forking and pull requests
-- Check existing [discussions](https://github.com/dralshehri/hijridate/discussions) and [issues](https://github.com/dralshehri/hijridate/issues)
-- Start a new discussion for questions
+- Check existing [issues](https://github.com/dralshehri/hijridate/issues)
 
 We appreciate your contribution! 🎉
