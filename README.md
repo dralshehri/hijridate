@@ -60,7 +60,7 @@ pip install hijridate
 To install using `conda`, run:
 
 ```shell
-conda install -c conda-forge hijridate
+conda install conda-forge::hijridate
 ```
 
 ## 🚀 Basic Usage
