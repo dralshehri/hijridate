@@ -45,6 +45,14 @@ HijriDate was developed using systematic verification against original calendar 
 
 This approach ensures accuracy against authoritative sources across the complete supported date range.
 
+For **1451-1500 AH** (2029-2077 CE), KACST is the sole authoritative source, as these are unobserved future projections. HijriDate reflects the KACST tables as published at release; since KACST may revise these projections, this range may be updated in future versions to track official changes.
+
+### A Note on Online Converters
+
+HijriDate encodes the Umm al-Qura month starts **as officially published**. This can differ from online converters and algorithmically generated tables (including KACST's own converter), which apply an astronomical calculation whose tables have been revised over time. In fact, the calendar's own month-start criterion has been officially redefined several times over the decades,[^uaq40] so no single algorithm reproduces the published calendar across all periods. Where they diverge, HijriDate follows the officially-published sources.
+
+[^uaq40]: Kurdi, A. S., al-Tarabulsi, H. A., & al-Musbih, K. N. _Taqwīm Umm al-Qurá khilāl arbaʿīn ʿāman_ (The Umm al-Qura Calendar over Forty Years). _Al-Darah_. Dept. of Physics & Astronomy, King Saud University.
+
 ## Use Cases and Implementation Domains
 
 HijriDate serves multiple sectors requiring accurate dual-calendar functionality:

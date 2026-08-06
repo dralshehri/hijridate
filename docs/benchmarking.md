@@ -26,6 +26,8 @@ The package is tested against all 55,991 days in the supported range (1343-1500 
 
 **Note**: The ummalqura package accepts dates in 1343-1355 AH but produces incorrect conversions for this period, as it lacks verified data for these years.
 
+**Note**: References follow the officially-published calendar, which can differ from online converters and algorithmically generated tables.
+
 ## Performance
 
 Benchmark environment: Python 3.14, 1M iterations, best of 5 runs.
